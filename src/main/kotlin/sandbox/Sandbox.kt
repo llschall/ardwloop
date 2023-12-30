@@ -1,9 +1,7 @@
-package sandbox;
+package io.github.llschall.sandbox
 
-public class Sandbox {
-
-    public int findNumber() {
-        return 10*20+1;
+class Sandbox {
+    fun findNumber(): Int {
+        return 10 * 20 + 1
     }
-
 }
