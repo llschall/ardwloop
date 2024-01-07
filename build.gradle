@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
 }
 
 group = "io.github.llschall"
@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.fazecast:jSerialComm:2.10.4'
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
