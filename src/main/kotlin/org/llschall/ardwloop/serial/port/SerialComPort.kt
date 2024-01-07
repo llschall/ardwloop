@@ -21,7 +21,7 @@ data class SerialComPort(val delegate: SerialPort, val timer: Timer, val lastRea
         if (n == 0L) {
             throw StructureException("No byte available for read")
         }
-        delegate.readBytes(bytes, n)
+        delegate.readBytes(bytes, n.toInt())
     }
 
     override val descriptivePortName: String?
@@ -60,6 +60,6 @@ data class SerialComPort(val delegate: SerialPort, val timer: Timer, val lastRea
     }
 
     override fun writeBytes(bytes: ByteArray?, size: Int): Int {
-        return delegate.writeBytes(bytes, size.toLong())
+        return delegate.writeBytes(bytes, size)
     }
 }
