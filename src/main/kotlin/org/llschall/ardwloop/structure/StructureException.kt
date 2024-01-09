@@ -1,5 +1,4 @@
-package structure
-
+package org.llschall.ardwloop.structure
 class StructureException : RuntimeException {
     constructor(e: Exception?) : super(e)
 

@@ -1,11 +1,12 @@
 package org.llschall.ardwloop
 
-import structure.StructureShutdownException
-import structure.StructureThread
-import structure.StructureTimer.Companion.get
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+
+import org.llschall.ardwloop.structure.StructureShutdownException
+import org.llschall.ardwloop.structure.StructureThread
+import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Timer
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit

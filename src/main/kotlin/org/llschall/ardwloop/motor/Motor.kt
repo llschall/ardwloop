@@ -1,19 +1,16 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.AbstractLoop
-import serial.Bus
-import serial.SerialLongReadException
-import serial.SerialWriteException
-import serial.SerialWrongReadException
-import serial.port.GotJException
-import structure.StructureThread
-import structure.StructureTimer.Companion.get
-import structure.data.SerialData
-import structure.model.Model
-import structure.model.MonitorSample
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(val model: Model, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {

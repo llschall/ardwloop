@@ -1,13 +1,16 @@
-package serial
+package org.llschall.ardwloop.serial
 
 import com.fazecast.jSerialComm.SerialPort
-import serial.port.ISerialPort
-import serial.port.ISerialProvider
-import serial.port.SerialComPort
-import structure.model.SerialModel
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Timer
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

@@ -1,4 +1,4 @@
-package structure.data
+package org.llschall.ardwloop.structure.data
 
 class SerialVector @JvmOverloads constructor(
     v: Int? = null,

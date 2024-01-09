@@ -1,13 +1,14 @@
-package serial
+package org.llschall.ardwloop.serial
 
-import serial.port.GotJException
-import serial.port.ISerialProvider
-import structure.data.ProgramCfg
-import structure.data.SerialData
-import structure.model.Model
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
 
 class Bus @JvmOverloads constructor(
     private val model: Model,
@@ -46,7 +47,7 @@ class Bus @JvmOverloads constructor(
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
     fun checkP(): SerialData? {
         val opt = serial!!.checkP()
-        opt?.let { serialMdl.serialP.set(it) }
+        opt?.let { it: SerialData ->  serialMdl.serialP.set(it) }
         return opt
     }
 

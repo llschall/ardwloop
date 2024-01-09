@@ -1,14 +1,14 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.AbstractLoop
-import serial.Bus
-import serial.SerialProvider
-import structure.StructureThread
-import structure.StructureTimer.Companion.get
-import structure.model.Event
-import structure.model.EventQueue
-import structure.model.Model
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.Bus
+import org.llschall.ardwloop.serial.SerialProvider
+import org.llschall.ardwloop.structure.StructureThread
+import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.model.Event
+import org.llschall.ardwloop.structure.model.EventQueue
+import org.llschall.ardwloop.structure.model.Model
+import org.llschall.ardwloop.structure.utils.Timer
 
 class Clock(val config: Config, val loops: MutableList<AbstractLoop>, val model: Model) {
     val events: EventQueue = model.eventQueue.get()

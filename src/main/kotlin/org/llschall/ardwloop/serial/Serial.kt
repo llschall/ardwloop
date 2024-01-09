@@ -1,15 +1,14 @@
-package serial
+package org.llschall.ardwloop.serial
 
-import serial.port.GotJException
-import serial.port.ISerialPort
-import serial.port.ISerialProvider
-import structure.data.ProgramCfg
-import structure.data.SerialData
-import structure.data.SerialVector
-import structure.model.Model
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.StringWriter
 import kotlin.collections.set
 

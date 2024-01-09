@@ -1,6 +1,6 @@
-package structure
+package org.llschall.ardwloop.structure
 
-import structure.utils.Logger
+import org.llschall.ardwloop.structure.utils.Logger
 import java.io.StringWriter
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.system.exitProcess

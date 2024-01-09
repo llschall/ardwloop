@@ -1,8 +1,8 @@
-package structure
+package org.llschall.ardwloop.structure
 
-import structure.data.SerialData
-import structure.model.keyboard.KeyboardModel
-import structure.model.keyboard.Keys
+import org.llschall.ardwloop.structure.data.SerialData
+import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel
+import org.llschall.ardwloop.structure.model.keyboard.Keys
 
 interface IProgram {
 

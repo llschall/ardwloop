@@ -1,4 +1,4 @@
-package structure.model.keyboard
+package org.llschall.ardwloop.structure.model.keyboard
 
 import java.util.*
 

@@ -1,11 +1,15 @@
-package serial
+package org.llschall.ardwloop.serial
 
-import structure.StructureTimer.Companion.get
-import structure.model.Model
-import structure.model.MonitorSample
-import structure.utils.Logger.err
-import structure.utils.Logger.msg
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.err
+import org.llschall.ardwloop.structure.utils.Logger.msg
 
 internal data class Connector(val model: Model, val reader: Reader, val writer: Writer) {
     @Throws(SerialWriteException::class)

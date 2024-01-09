@@ -1,4 +1,4 @@
-package structure.utils
+package org.llschall.ardwloop.structure.utils
 
 import java.text.DecimalFormat
 

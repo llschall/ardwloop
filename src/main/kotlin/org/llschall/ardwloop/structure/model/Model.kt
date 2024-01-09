@@ -1,7 +1,7 @@
-package structure.model
+package org.llschall.ardwloop.structure.model
 
-import structure.IProgram
-import structure.model.keyboard.KeyboardModel
+import org.llschall.ardwloop.structure.IProgram
+import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference

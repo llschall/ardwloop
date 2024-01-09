@@ -1,4 +1,4 @@
-package structure.data
+package org.llschall.ardwloop.structure.data
 
 import java.util.concurrent.atomic.AtomicLong
 

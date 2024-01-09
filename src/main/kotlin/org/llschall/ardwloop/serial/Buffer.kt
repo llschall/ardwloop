@@ -1,13 +1,16 @@
-package serial
+package org.llschall.ardwloop.serial
 
-import serial.port.GotJException
-import serial.port.ISerialPort
-import structure.StructureTimer.Companion.get
-import structure.model.Model
-import structure.model.MonitorSample
-import structure.utils.Logger.msg
-import structure.utils.Text.ms
-import structure.utils.Timer
+import org.llschall.ardwloop.serial.*
+import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.model.*
+import org.llschall.ardwloop.structure.model.keyboard.*
+import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Text.ms
+import org.llschall.ardwloop.structure.utils.Timer
 import java.util.*
 
 internal class Buffer(private val model: Model, private val port: ISerialPort, private val lastRead: Timer) {

@@ -3,15 +3,16 @@ package org.llschall.ardwloop;
 import org.jetbrains.annotations.Nullable;
 import org.llschall.ardwloop.motor.Clock;
 import org.llschall.ardwloop.motor.Config;
-import structure.IProgram;
-import structure.data.ProgramCfg;
-import structure.data.SerialData;
-import structure.model.Model;
+import org.llschall.ardwloop.structure.IProgram;
+import org.llschall.ardwloop.structure.data.ProgramCfg;
+import org.llschall.ardwloop.structure.data.SerialData;
+import org.llschall.ardwloop.structure.model.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static structure.utils.Logger.msg;
+import static org.llschall.ardwloop.structure.utils.Logger.msg;
+
 
 public abstract class AbstractProgram implements IProgram {
 

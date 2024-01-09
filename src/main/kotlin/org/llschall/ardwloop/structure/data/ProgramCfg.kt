@@ -1,4 +1,4 @@
-package structure.data
+package org.llschall.ardwloop.structure.data
 
 data class ProgramCfg(@JvmField val p: Char, @JvmField val rc: Int, @JvmField val sc: Int) {
     fun p(): Char {

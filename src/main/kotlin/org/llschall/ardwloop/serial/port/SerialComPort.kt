@@ -1,8 +1,8 @@
-package serial.port
+package org.llschall.ardwloop.serial.port
 
 import com.fazecast.jSerialComm.SerialPort
-import structure.StructureException
-import structure.utils.Timer
+import org.llschall.ardwloop.structure.StructureException
+import org.llschall.ardwloop.structure.utils.Timer
 import java.util.concurrent.atomic.AtomicLong
 
 data class SerialComPort(val delegate: SerialPort, val timer: Timer, val lastReadMs: AtomicLong) : ISerialPort {

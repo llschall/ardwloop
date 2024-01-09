@@ -1,4 +1,4 @@
-package structure.model
+package org.llschall.ardwloop.structure.model
 
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference

@@ -1,8 +1,8 @@
 package org.llschall.ardwloop.motor
 
-import structure.StructureException
-import structure.model.Model
-import structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.StructureException
+import org.llschall.ardwloop.structure.model.Model
+import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path

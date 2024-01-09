@@ -1,4 +1,4 @@
-package serial.port
+package org.llschall.ardwloop.serial.port
 
 interface ISerialPort {
     fun bytesAvailable(): Int

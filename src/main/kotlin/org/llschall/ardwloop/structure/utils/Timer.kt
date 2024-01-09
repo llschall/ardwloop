@@ -1,4 +1,4 @@
-package structure.utils
+package org.llschall.ardwloop.structure.utils
 
 class Timer {
     var start: Long = System.nanoTime()
