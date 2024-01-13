@@ -21,11 +21,11 @@ public abstract class AbstractProgram implements IProgram {
 
     private final List<AbstractLoop> loops = new ArrayList<>();
 
-    public AbstractProgram() {
+    public AbstractProgram(int baud) {
         Model model = new Model(this);
         model.serialMdl.program.set(new ProgramCfg(getId(), getRc(), getSc()));
 
-        config = new Config(9600, model);
+        config = new Config(baud, model);
         this.model = model;
     }
 
