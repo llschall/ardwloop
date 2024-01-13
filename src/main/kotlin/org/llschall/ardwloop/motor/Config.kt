@@ -10,34 +10,8 @@ import java.nio.file.Paths
 import java.util.function.Consumer
 import java.util.regex.Pattern
 
-class Config(val model: Model) {
-    var baud: Int = -1
-
-    init {
-        val configPth = Paths.get("ino/arduino_sw").resolve("cfg.h")
-        loadCfgH(configPth)
-    }
-
-    private fun loadCfgH(configPth: Path) {
-        try {
-            val lines = Files.readAllLines(configPth)
-            lines.forEach(Consumer { line: String -> this.parse(line) })
-            msg("BAUD => $baud")
-            model.serialMdl.baud.set(baud)
-        } catch (e: IOException) {
-            throw StructureException(e)
-        }
-    }
-
-    private fun parse(line: String) {
-        if (line.startsWith("//")) return
-
-        if (line.startsWith("const long BAUD")) {
-            val value = parseValue(line)
-            baud = value.toInt()
-        }
-    }
-
+class Config(val baud: Int, val model: Model) {
+    
     private fun parseValue(line: String): String {
         val pattern = Pattern.compile("[^\\d]+(\\d+).*")
         val matcher = pattern.matcher(line)

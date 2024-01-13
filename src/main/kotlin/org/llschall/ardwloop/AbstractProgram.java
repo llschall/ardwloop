@@ -25,7 +25,7 @@ public abstract class AbstractProgram implements IProgram {
         Model model = new Model(this);
         model.serialMdl.program.set(new ProgramCfg(getId(), getRc(), getSc()));
 
-        config = new Config(model);
+        config = new Config(9600, model);
         this.model = model;
     }
 
