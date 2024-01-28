@@ -32,11 +32,11 @@ void ardw_begin(int reboot, int read, int post, int j, int before_k);
 
 char ardw_prg();
 
-V* ardw_s();
+V *ardw_s();
 
-V* ardw_p();
+V *ardw_p();
 
-V* ardw_r();
+V *ardw_r();
 
 void ardw_post(bool (*p)());
 

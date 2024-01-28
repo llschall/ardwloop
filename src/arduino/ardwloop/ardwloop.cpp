@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <stdio.h>
 #include "ardwloop.h"
+#include "ardwloop_buffer.h"
 #include "cfg.h"
 
 //////////////////////////////////
@@ -10,11 +11,13 @@ int P_I = -1;
 
 char PRG = 'A';
 
-char ardw_prg() {
+char ardw_prg()
+{
   return PRG;
 }
 
-bool ignore() {
+bool ignore()
+{
   return false;
 }
 
@@ -24,38 +27,27 @@ bool (*POST_IMPL)() = &ignore;
 
 struct V R, S, P;
 
-char H[] = { 'v', 'w', 'x', 'y', 'z' };
-char K[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' };
+char H[] = {'v', 'w', 'x', 'y', 'z'};
+char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
 
-struct D *Rv[] = { &R.a, &R.b, &R.c, &R.d, &R.e, &R.f, &R.g, &R.h, &R.i };
-struct D *Sv[] = { &S.a, &S.b, &S.c, &S.d, &S.e, &S.f, &S.g, &S.h, &S.i };
-struct D *Pv[] = { &P.a };
+struct D *Rv[] = {&R.a, &R.b, &R.c, &R.d, &R.e, &R.f, &R.g, &R.h, &R.i};
+struct D *Sv[] = {&S.a, &S.b, &S.c, &S.d, &S.e, &S.f, &S.g, &S.h, &S.i};
+struct D *Pv[] = {&P.a};
 
-V* ardw_s() {
+V *ardw_s()
+{
   return &S;
 }
 
-V* ardw_p() {
+V *ardw_p()
+{
   return &P;
 }
 
-V* ardw_r() {
+V *ardw_r()
+{
   return &R;
 }
-
-int bfS = 100;
-byte Bf[] = {
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '=', '-' , '-', '-', '=', '-', '-' , '-', '-', '=',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '-', '-' , '-', '-', '#', '-', '-' , '-', '-', '#',
-  '=', '-' , '-', '-', '=', '-', '-' , '-', '-', '=',
-};
 
 int DELAY_REBOOT = -1;
 int DELAY_READ = -1;
@@ -63,7 +55,8 @@ int DELAY_POST = -1;
 int DELAY_J = -1;
 int DELAY_BEFORE_K = -1;
 
-void ardw_post(bool (*p)()) {
+void ardw_post(bool (*p)())
+{
   POST_IMPL = p;
 }
 
