@@ -14,13 +14,4 @@ V *ardw_s();
 V *ardw_p();
 V *ardw_r();
 
-void reboot();
-void receive_r();
-void send_s();
-void send_p();
-void initJ();
-void reset();
-void wr_i(int);
-void wr_int(int);
-
 #endif
