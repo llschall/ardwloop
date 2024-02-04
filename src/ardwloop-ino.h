@@ -1,7 +1,7 @@
 #ifndef ardwloop_ino_h
 #define ardwloop_ino_h
 
-#include "ardwloop-core.h"
+#include "ardwloop_core.h"
 
 void ardw_begin(int reboot, int read, int post, int j, int before_k);
 char ardw_prg();

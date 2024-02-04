@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <stdio.h>
 #include "ardwloop-ino.h"
-#include "ardwloop-core.h"
-#include "ardwloop-core.cpp"
-#include "ardwloop-buffer.h"
-#include "ardwloop-utils.h"
+#include "ardwloop_core.h"
+#include "ardwloop_core.cpp"
+#include "ardwloop_buffer.h"
+#include "ardwloop_utils.h"
 
 //////////////////////////////////
 
