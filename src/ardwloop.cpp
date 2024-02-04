@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <stdio.h>
-#include "ardwloop-ino.h"
+#include "ardwloop.h"
 #include "ardwloop_core.h"
 #include "ardwloop_core.cpp"
 #include "ardwloop_buffer.h"
