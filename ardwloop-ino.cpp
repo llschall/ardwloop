@@ -3,8 +3,8 @@
 #include "ardwloop-ino.h"
 #include "ardwloop_core.h"
 #include "ardwloop_core.cpp"
-#include "ardwloop_buffer.h"
-#include "ardwloop_utils.h"
+#include "ardwloop-buffer.h"
+#include "ardwloop-utils.h"
 
 //////////////////////////////////
 

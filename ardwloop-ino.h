@@ -1,5 +1,5 @@
-#ifndef ardwloop_h
-#define ardwloop_h
+#ifndef ardwloop_ino_h
+#define ardwloop_ino_h
 
 #include "ardwloop_core.h"
 
