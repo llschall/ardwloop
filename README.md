@@ -4,16 +4,20 @@ Work in progress...
 
 Setup (Gradle/Groovy):
 
+***build.gradle***
+
+`repositories {`
 ```
-repositories {
     maven {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/llschall/ardwloop")
     }
-}
 ```
+`}`
+
+`dependencies {`
+
 ```
-dependencies {
     implementation 'io.github.llschall:ardwloop:0.0.1'
-}
 ```
+`}`
