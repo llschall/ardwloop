@@ -1,10 +1,8 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.22'
-    id("maven-publish")
+    id 'maven-publish'
+    id 'signing'
 }
-
-group = "io.github.llschall"
-version = "0.0.1"
 
 repositories {
     mavenCentral()
@@ -12,30 +10,74 @@ repositories {
 
 dependencies {
     implementation 'com.fazecast:jSerialComm:2.10.4'
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-tasks.test {
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
     useJUnitPlatform()
 }
-kotlin {
-    jvmToolchain(21)
+
+boolean publish = project.hasProperty('ossrh_user')
+
+if (!publish) {
+    println('=== Publish skipped because no credential is provided. ===')
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/llschall/ardwloop")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+    if (publish) {
+        publications {
+            pub(MavenPublication) {
+                from components.java
+
+                groupId = 'io.github.llschall'
+                artifactId = 'ardwloop'
+                version = '0.0.1-SNAPSHOT'
+
+                pom {
+                    signing {
+                        sign publishing.publications.pub
+                        sign configurations.archives
+                    }
+                    name = 'ardwloop'
+                    description = 'ardwloop takes care of exchanging a matrix of data between your Java (or Kotlin) program and its matching Arduino program.'
+                    url = 'https://github.com/llschall/ardwloop'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'llschall'
+                            name = 'Laurent Schall'
+                            email = 'llschall@gmx.com'
+                        }
+                    }
+                    scm {
+                        url = 'https://github.com/llschall/ardwloop.git'
+                    }
+                }
             }
         }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
+        repositories {
+            maven {
+                credentials {
+                    username "$ossrh_user"
+                    password "$ossrh_pwd"
+                }
+                url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+            }
+        }
+        signing {
+            sign publishing.publications.pub
         }
     }
 }
