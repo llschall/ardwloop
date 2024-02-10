@@ -1,6 +1,5 @@
 package org.llschall.ardwloop.structure.model.keyboard
 
-import org.llschall.ardwloop.structure.model.keyboard.*
 import java.util.*
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.atomic.AtomicBoolean

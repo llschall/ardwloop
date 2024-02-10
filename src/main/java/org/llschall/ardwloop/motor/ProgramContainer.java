@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class AbstractProgram {
+public class ProgramContainer {
 
-    protected Model model;
-    public Config config;
-    private IArdwProgram program;
+    public final Model model;
+    private final Config config;
+    private final IArdwProgram program;
     private final List<AbstractLoop> loops = new ArrayList<>();
 
-    protected void init(IArdwProgram program) {
+    public ProgramContainer(IArdwProgram program) {
         this.program = program;
 
         Model model = new Model(this);
@@ -28,11 +28,11 @@ public abstract class AbstractProgram {
         this.model = model;
     }
 
-    protected void addLoop(AbstractLoop loop) {
+    public void addLoop(AbstractLoop loop) {
         loops.add(loop);
     }
 
-    protected void start() {
+    public void start() {
         Clock clock = new Clock(config, loops, model);
         clock.start();
     }
