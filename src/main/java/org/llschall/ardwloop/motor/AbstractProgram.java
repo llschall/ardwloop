@@ -1,6 +1,7 @@
 package org.llschall.ardwloop.motor;
 
 import org.jetbrains.annotations.Nullable;
+import org.llschall.ardwloop.IArdwProgram;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.Model;

@@ -1,4 +1,4 @@
-package org.llschall.ardwloop.motor;
+package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel;

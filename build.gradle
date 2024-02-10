@@ -20,6 +20,10 @@ java {
     withSourcesJar()
 }
 
+kotlin {
+    jvmToolchain(21)
+}
+
 test {
     useJUnitPlatform()
 }
