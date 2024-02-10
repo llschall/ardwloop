@@ -1,12 +1,13 @@
-package org.llschall.ardwloop;
+package org.llschall.ardwloop.motor;
 
 import org.jetbrains.annotations.Nullable;
-import org.llschall.ardwloop.motor.Clock;
-import org.llschall.ardwloop.motor.Config;
+import org.llschall.ardwloop.IArdwProgram;
 import org.llschall.ardwloop.structure.IProgram;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.Model;
+import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel;
+import sandbox.org.llschall.ardwloop.motor.AbstractLoop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,15 @@ public abstract class AbstractProgram implements IProgram {
 
     protected final Model model;
     public final Config config;
-
+    private IArdwProgram program;
     private final List<AbstractLoop> loops = new ArrayList<>();
 
+    protected void init(IArdwProgram program) {
+        this.program = program;
+    }
+
     public AbstractProgram(int baud) {
+
         Model model = new Model(this);
         model.serialMdl.program.set(new ProgramCfg(getId(), getRc(), getSc()));
 
@@ -42,4 +48,9 @@ public abstract class AbstractProgram implements IProgram {
     public void post(@Nullable SerialData p) {
         msg("post ignored");
     }
+
+    public final SerialData loopPrg(KeyboardModel keyboardMdl, SerialData r) {
+        return program.loop(keyboardMdl, r);
+    }
+
 }

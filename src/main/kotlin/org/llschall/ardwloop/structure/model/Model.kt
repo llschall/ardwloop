@@ -1,12 +1,12 @@
 package org.llschall.ardwloop.structure.model
 
-import org.llschall.ardwloop.structure.IProgram
+import org.llschall.ardwloop.motor.AbstractProgram
 import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
-class Model(program: IProgram?) {
+class Model(program: AbstractProgram?) {
     @JvmField
     val monitorMdl: MonitorModel = MonitorModel()
 
@@ -29,7 +29,7 @@ class Model(program: IProgram?) {
     val config: AtomicReference<String> = AtomicReference("N/A")
 
     @JvmField
-    val program: AtomicReference<IProgram> = AtomicReference()
+    val program: AtomicReference<AbstractProgram> = AtomicReference()
 
     @JvmField
     val eventQueue: AtomicReference<EventQueue> = AtomicReference()

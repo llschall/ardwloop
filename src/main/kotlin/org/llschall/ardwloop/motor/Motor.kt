@@ -1,6 +1,5 @@
 package org.llschall.ardwloop.motor
 
-import org.llschall.ardwloop.AbstractLoop
 import org.llschall.ardwloop.serial.*
 import org.llschall.ardwloop.serial.port.*
 import org.llschall.ardwloop.structure.*
@@ -11,6 +10,7 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import sandbox.org.llschall.ardwloop.motor.AbstractLoop
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(val model: Model, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {
@@ -71,7 +71,7 @@ internal class Motor(val model: Model, val config: Config, val bus: Bus) : Abstr
             val atm = AtomicReference<SerialData?>()
 
             StructureThread({
-                val serialR = program.loop(model.keyboardMdl, serialS)
+                val serialR = program.loopPrg(model.keyboardMdl, serialS)
                 model.loop.incrementAndGet()
                 atm.set(serialR)
             }, "program_loop").start()

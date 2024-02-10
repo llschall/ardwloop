@@ -1,4 +1,4 @@
-package org.llschall.ardwloop
+package sandbox.org.llschall.ardwloop.motor
 
 
 import org.llschall.ardwloop.structure.StructureShutdownException
