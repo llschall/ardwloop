@@ -33,16 +33,16 @@ if (!publish) {
 publishing {
     if (publish) {
         publications {
-            pub(MavenPublication) {
+            ardwloop(MavenPublication) {
                 from components.java
 
                 groupId = 'io.github.llschall'
                 artifactId = 'ardwloop'
-                version = '0.0.1'
+                version = '0.0.2-SNAPSHOT'
 
                 pom {
                     signing {
-                        sign publishing.publications.pub
+                        sign publishing.publications.ardwloop
                         sign configurations.archives
                     }
                     name = 'ardwloop'
@@ -73,11 +73,11 @@ publishing {
                     username "$ossrh_user"
                     password "$ossrh_pwd"
                 }
-                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+                url "https://s01.oss.sonatype.org/content/repositories/snapshots"
             }
         }
         signing {
-            sign publishing.publications.pub
+            sign publishing.publications.ardwloop
         }
     }
 }
