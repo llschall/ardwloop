@@ -2,7 +2,8 @@ package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.serial.*
 import org.llschall.ardwloop.serial.port.*
-import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.structure.StructureThread
+
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
 import org.llschall.ardwloop.structure.data.*
 import org.llschall.ardwloop.structure.model.*
@@ -10,7 +11,6 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
-import sandbox.org.llschall.ardwloop.motor.AbstractLoop
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(val model: Model, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {
@@ -36,7 +36,7 @@ internal class Motor(val model: Model, val config: Config, val bus: Bus) : Abstr
         val program = config.model.program.get()
         try {
             val s = readS()
-            val r = program.setup(s)
+            val r = program.setupPrg(s)
             writeR(r)
 
             reconnect = false
@@ -79,7 +79,7 @@ internal class Motor(val model: Model, val config: Config, val bus: Bus) : Abstr
             while (atm.get() == null) {
                 get().delayMs(1)
                 val opt = bus.checkP()
-                opt?.let { StructureThread({ program.post(it) }, "program_post").start() }
+                opt?.let { StructureThread({ program.postPrg(it) }, "program_post").start() }
             }
 
             val loopMs = timer.checkMs()

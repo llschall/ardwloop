@@ -8,7 +8,6 @@ import org.llschall.ardwloop.structure.model.Event
 import org.llschall.ardwloop.structure.model.EventQueue
 import org.llschall.ardwloop.structure.model.Model
 import org.llschall.ardwloop.structure.utils.Timer
-import sandbox.org.llschall.ardwloop.motor.AbstractLoop
 
 class Clock(val config: Config, val loops: MutableList<AbstractLoop>, val model: Model) {
     val events: EventQueue = model.eventQueue.get()
