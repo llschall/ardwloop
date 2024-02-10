@@ -9,6 +9,6 @@ class AdrwloopTest {
     fun testProgramCanBeCreated() {
         val program = JTestProgram()
         val rc = program.rc
-        Assertions.assertEquals(1, rc)
+        Assertions.assertEquals(2, rc)
     }
 }
