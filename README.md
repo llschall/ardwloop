@@ -5,16 +5,12 @@ Work in progress...
 Setup (Gradle/Groovy):
 
 ***build.gradle***
-
-`repositories {`
 ```
+repositories {
     mavenCentral()
-```
-`}`
+}
 
-`dependencies {`
-
-```
+dependencies {
     implementation 'io.github.llschall:ardwloop:0.0.3'
+}
 ```
-`}`
