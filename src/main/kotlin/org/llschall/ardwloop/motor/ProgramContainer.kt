@@ -6,6 +6,9 @@ import org.llschall.ardwloop.structure.data.SerialData
 import org.llschall.ardwloop.structure.model.Model
 
 class ProgramContainer(private val program: IArdwProgram) {
+
+    val container: ProgramContainer? = null
+
     @JvmField
     val model: Model
     private val config: Config
