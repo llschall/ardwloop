@@ -5,7 +5,6 @@ import org.llschall.ardwloop.IArdwProgram;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.Model;
-import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +40,8 @@ public class ProgramContainer {
         return program.setup(s);
     }
 
-    public final SerialData loopPrg(KeyboardModel keyboardMdl, SerialData r) {
-        return program.loop(keyboardMdl, r);
+    public final SerialData loopPrg(SerialData r) {
+        return program.loop(r);
     }
 
     public final void postPrg(@Nullable SerialData p) {

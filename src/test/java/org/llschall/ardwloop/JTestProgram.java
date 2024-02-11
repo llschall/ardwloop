@@ -1,12 +1,11 @@
 package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.data.SerialData;
-import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel;
 
 public class JTestProgram implements IArdwProgram {
 
     @Override
-    public SerialData loop(KeyboardModel keyboardMdl, SerialData s) {
+    public SerialData loop(SerialData s) {
         return new SerialData(0, 1, 1, 1, 1, 1);
     }
 

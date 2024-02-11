@@ -1,13 +1,12 @@
 package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.data.SerialData;
-import org.llschall.ardwloop.structure.model.keyboard.KeyboardModel;
 
 import static org.llschall.ardwloop.structure.utils.Logger.msg;
 
 public interface IArdwProgram {
 
-    SerialData loop(KeyboardModel keyboardMdl, SerialData s);
+    SerialData loop(SerialData s);
 
     SerialData setup(SerialData s);
 

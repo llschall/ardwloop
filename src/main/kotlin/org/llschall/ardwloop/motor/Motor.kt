@@ -71,7 +71,7 @@ internal class Motor(val model: Model, val config: Config, val bus: Bus) : Abstr
             val atm = AtomicReference<SerialData?>()
 
             StructureThread({
-                val serialR = program.loopPrg(model.keyboardMdl, serialS)
+                val serialR = program.loopPrg(serialS)
                 model.loop.incrementAndGet()
                 atm.set(serialR)
             }, "program_loop").start()
