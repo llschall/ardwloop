@@ -8,9 +8,7 @@ Setup (Gradle/Groovy):
 
 `repositories {`
 ```
-    maven {
-      mavenCentral()
-    }
+    mavenCentral()
 ```
 `}`
 
