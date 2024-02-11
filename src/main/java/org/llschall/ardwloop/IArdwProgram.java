@@ -14,9 +14,9 @@ public interface IArdwProgram {
         msg("post ignored");
     }
 
-    String getName();
-
-    char getId();
+    default char getId() {
+        return 'a';
+    }
 
     int getRc();
 
