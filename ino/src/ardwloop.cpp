@@ -6,7 +6,7 @@
 #include "ardwloop_buffer.h"
 #include "ardwloop_utils.h"
 
-//////////////////////////////////
+/////////////////////////////////
 
 bool ignore()
 {
