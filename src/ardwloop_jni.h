@@ -20,3 +20,15 @@ void entry_reset() {
   //back_print(1, "# ardwloop_jni.h entry_reset#");
   //reset();
 }
+
+char entry_prg() {
+  return ardw_prg();
+}
+
+V* entry_s() {
+  return ardw_s();
+}
+
+V* entry_r() {
+  return ardw_r();
+}
