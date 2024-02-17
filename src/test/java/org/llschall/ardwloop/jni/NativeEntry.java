@@ -6,15 +6,15 @@ public class NativeEntry {
         System.loadLibrary("entry");
     }
 
-    public NativeEntry(int log, int reboot, int read, int post, int beforeK, int j) {
-        init(log, reboot, read, post, beforeK, j);
+    public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
+        init(reboot, read, post, beforeK, j);
     }
 
     public NativeEntry() {
-        this(9, 1, 1, 1, 1, 1);
+        this(1, 1, 1, 1, 1);
     }
 
-    public native void init(int log, int reboot, int read, int post, int beforeK, int j);
+    public native void init(int reboot, int read, int post, int beforeK, int j);
 
     public native int ping();
 

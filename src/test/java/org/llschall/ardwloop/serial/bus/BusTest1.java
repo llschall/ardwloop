@@ -76,7 +76,7 @@ public class BusTest1 extends AbstractyButTest {
 
         }, "= Computer =");
 
-        NativeEntry entry = new NativeEntry(4, 99, 1, 999, 1, 1);
+        NativeEntry entry = new NativeEntry(99, 1, 999, 1, 1);
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
             entry.setup();

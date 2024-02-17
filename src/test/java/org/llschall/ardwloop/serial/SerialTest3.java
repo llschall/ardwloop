@@ -24,7 +24,7 @@ public class SerialTest3 {
         MsgEntry back = new MsgEntry('J', 1, 1);
         BackEntry.setup(back);
 
-        NativeEntry entry = new NativeEntry(4, 999, 0, 0, 0, 0);
+        NativeEntry entry = new NativeEntry(999, 0, 0, 0, 0);
         entry.setup();
         Assertions.assertEquals('J', entry.prg());
         Assertions.assertEquals(1, entry.sc());

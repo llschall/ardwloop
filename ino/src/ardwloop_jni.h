@@ -6,6 +6,10 @@ int entry_check(int i) {
   return i * 2;
 }
 
+void entry_begin(int reboot, int read, int post, int beforeK, int j) {
+  ardw_begin(reboot, read, post, beforeK, j);
+}
+
 void entry_setup() {
   printf("\n# ardwloop_jni.h entry_setup#\n");
   ardw_setup();

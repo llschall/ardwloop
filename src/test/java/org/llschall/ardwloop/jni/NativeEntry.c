@@ -7,47 +7,46 @@
 
 JNIEnv *ENV;
 
-JNIEXPORT void JNICALL Java_jni_NativeEntry_init(JNIEnv *env, jobject obj, int log, int reboot, int read, int post, int beforeK, int j) {
-// int log ?
-    ardw_begin(reboot,read, post,beforeK,j);
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init(JNIEnv *env, jobject obj, int reboot, int read, int post, int beforeK, int j) {
+    entry_begin(reboot,read, post,beforeK,j);
 };
 
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_ping(JNIEnv *env, jobject obj) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(JNIEnv *env, jobject obj) {
    ENV = env;
    return 2023;
 };
 
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_print(JNIEnv *env, jobject obj) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_print(JNIEnv *env, jobject obj) {
    ENV = env;
    back_print(1, "Returns 2023");
    return 2023;
 };
 
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_check(JNIEnv *env, jobject obj, int i) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_check(JNIEnv *env, jobject obj, int i) {
    ENV = env;
    return entry_check(i);
 };
 
-JNIEXPORT void JNICALL Java_jni_NativeEntry_setup(JNIEnv *env, jobject obj) {
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_setup(JNIEnv *env, jobject obj) {
    ENV = env;
    entry_setup();
 };
 
-JNIEXPORT void JNICALL Java_jni_NativeEntry_loop(JNIEnv *env, jobject obj) {
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_loop(JNIEnv *env, jobject obj) {
    ENV = env;
    entry_loop();
 };
 
-JNIEXPORT void JNICALL Java_jni_NativeEntry_reset(JNIEnv *env, jobject obj) {
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_reset(JNIEnv *env, jobject obj) {
   ENV = env;
   entry_reset();
 }
 
-JNIEXPORT jchar JNICALL Java_jni_NativeEntry_prg(JNIEnv *env, jobject obj) {
+JNIEXPORT jchar JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_prg(JNIEnv *env, jobject obj) {
    return entry_prg();
 };
 
-JNIEXPORT void JNICALL Java_jni_NativeEntry_importS(JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
 
 V* S = entry_s();
 
@@ -81,7 +80,7 @@ int export_v(V data, jchar v, jchar d) {
   }
 }
 
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_exportR(JNIEnv *env, jobject obj, jchar v, jchar d) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(JNIEnv *env, jobject obj, jchar v, jchar d) {
 
   V* R = entry_r();
   return export_v(*R, v, d);
