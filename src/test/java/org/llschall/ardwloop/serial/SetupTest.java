@@ -26,6 +26,12 @@ public class SetupTest {
 
     @Test
     public void testJni() {
+
+        boolean skip = ! new File("/etc/pulse").exists();
+        if(skip) {
+            return;
+        }
+
         NativeEntry entry = new NativeEntry();
         int ping = entry.ping();
         Assertions.assertEquals(2024, ping);
