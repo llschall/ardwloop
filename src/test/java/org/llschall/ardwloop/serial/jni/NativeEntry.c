@@ -44,24 +44,18 @@ JNIEXPORT void JNICALL Java_jni_NativeEntry_reset(JNIEnv *env, jobject obj) {
 }
 
 JNIEXPORT jchar JNICALL Java_jni_NativeEntry_prg(JNIEnv *env, jobject obj) {
-   return PRG;
-};
-
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_sc(JNIEnv *env, jobject obj) {
-   return Sc;
-};
-
-JNIEXPORT jint JNICALL Java_jni_NativeEntry_rc(JNIEnv *env, jobject obj) {
-   return Rc;
+   return entry_prg();
 };
 
 JNIEXPORT void JNICALL Java_jni_NativeEntry_importS(JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
 
-S.a.w = 128;
+V* S = entry_s();
+
+S->a.w = 128;
 
 D* data;
   switch(c) {
-    case 'a': data = &S.a;
+    case 'a': data = &S->a;
   }
   data->v = v;
   data->w = w;
@@ -88,7 +82,9 @@ int export_v(V data, jchar v, jchar d) {
 }
 
 JNIEXPORT jint JNICALL Java_jni_NativeEntry_exportR(JNIEnv *env, jobject obj, jchar v, jchar d) {
-  return export_v(R, v, d);
+
+  V* R = entry_r();
+  return export_v(*R, v, d);
 }
 
 void back_print(int log, char* str, va_list c) {
