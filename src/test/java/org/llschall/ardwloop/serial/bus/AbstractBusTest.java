@@ -6,7 +6,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 import java.io.StringWriter;
 
-public class AbstractyButTest {
+public class AbstractBusTest {
 
     public static final String ARDUINO_THD = "# Arduino #";
     final Cable cableA2C = new Cable();

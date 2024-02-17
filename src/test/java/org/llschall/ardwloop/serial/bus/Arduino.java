@@ -6,10 +6,10 @@ import org.llschall.ardwloop.structure.utils.Logger;
 // Commodore side
 class Arduino implements IArduino {
 
-    private final AbstractyButTest busTest;
+    private final AbstractBusTest busTest;
     int av = 0;
 
-    public Arduino(AbstractyButTest busTest) {
+    public Arduino(AbstractBusTest busTest) {
         this.busTest = busTest;
     }
 

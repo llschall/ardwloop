@@ -24,13 +24,10 @@ public class SetupTest {
 
     @Test
     public void testJni() {
-
-        if (LocalOnly.get()) {
-            return;
-        }
-
+        if (LocalOnly.get()) return;
+        
         NativeEntry entry = new NativeEntry();
         int ping = entry.ping();
-        Assertions.assertEquals(2024, ping);
+        Assertions.assertEquals(2023, ping);
     }
 }

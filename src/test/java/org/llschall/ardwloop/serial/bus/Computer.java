@@ -6,10 +6,10 @@ import org.llschall.ardwloop.structure.utils.Logger;
 // Arduino
 class Computer implements IBackEntry {
 
-    private final AbstractyButTest busTest;
+    private final AbstractBusTest busTest;
     int av = 0;
 
-    public Computer(AbstractyButTest busTest) {
+    public Computer(AbstractBusTest busTest) {
         this.busTest = busTest;
     }
 

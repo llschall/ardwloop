@@ -19,7 +19,7 @@ import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.model.Model;
 import org.llschall.ardwloop.structure.utils.Logger;
 
-public class BusTest0 extends AbstractyButTest {
+public class BusTest0 extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
