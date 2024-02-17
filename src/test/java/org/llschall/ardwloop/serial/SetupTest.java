@@ -7,6 +7,10 @@ public class SetupTest {
 
     @Test
     public void testSetup() {
+        System.out.println("#################");
+        System.out.println("## Setup Test ###");
+        System.out.println("#################");
+
         Assertions.assertEquals(0, 1);
     }
 
