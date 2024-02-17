@@ -1,4 +1,4 @@
-package org.llschall.ardwloop.serial.jni;
+package org.llschall.ardwloop.jni;
 
 import org.llschall.ardwloop.serial.IBackEntry;
 import org.llschall.ardwloop.serial.misc.TestTimer;

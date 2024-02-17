@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.serial.jni.BackEntry;
-import org.llschall.ardwloop.serial.jni.NativeEntry;
+import org.llschall.ardwloop.jni.BackEntry;
+import org.llschall.ardwloop.jni.NativeEntry;
 
 public class ResetTest {
 

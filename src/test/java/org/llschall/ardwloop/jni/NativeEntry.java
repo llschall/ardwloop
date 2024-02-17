@@ -1,4 +1,4 @@
-package org.llschall.ardwloop.serial.jni;
+package org.llschall.ardwloop.jni;
 
 public class NativeEntry {
 

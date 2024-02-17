@@ -2,10 +2,9 @@ package org.llschall.ardwloop.serial;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.serial.jni.NativeEntry;
+import org.llschall.ardwloop.jni.NativeEntry;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 public class SetupTest {
 
@@ -27,8 +26,8 @@ public class SetupTest {
     @Test
     public void testJni() {
 
-        boolean skip = ! new File("/etc/pulse").exists();
-        if(skip) {
+        boolean skip = !new File("/etc/pulse").exists();
+        if (skip) {
             return;
         }
 

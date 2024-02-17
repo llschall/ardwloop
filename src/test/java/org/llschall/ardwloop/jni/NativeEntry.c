@@ -1,8 +1,8 @@
 #include <jni.h>        // JNI header provided by JDK
 #include <stdio.h>      // C Standard IO Header
 
-#include "../../../../../../../../ino/src/ardwloop_jni.h"
-#include "org_llschall_ardwloop_serial_jni_NativeEntry.h"
+#include "../../../../../../../ino/src/ardwloop_jni.h"
+#include "org_llschall_ardwloop_jni_NativeEntry.h"
 #include "fake.h"
 
 JNIEnv *ENV;

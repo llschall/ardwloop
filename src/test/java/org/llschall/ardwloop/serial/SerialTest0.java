@@ -2,7 +2,7 @@ package org.llschall.ardwloop.serial;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.serial.jni.NativeEntry;
+import org.llschall.ardwloop.jni.NativeEntry;
 
 public class SerialTest0 {
 
