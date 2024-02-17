@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 
@@ -22,7 +21,6 @@ public class ResetTest {
 
     @Test
     void check() {
-        if (LocalOnly.get()) return;
 
         NativeEntry entry = new NativeEntry();
         entry.reset();
@@ -32,7 +30,6 @@ public class ResetTest {
 
     @Test
     void checkAgain() {
-        if (LocalOnly.get()) return;
 
         NativeEntry entry = new NativeEntry();
         entry.reset();

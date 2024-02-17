@@ -3,7 +3,6 @@ package org.llschall.ardwloop.serial;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 
@@ -16,7 +15,6 @@ public class SerialTest2 {
 
     @Test
     void test11() {
-        if (LocalOnly.get()) return;
 
         MsgEntry back = new MsgEntry('J', 1, 1);
         BackEntry.setup(back);
@@ -44,7 +42,6 @@ public class SerialTest2 {
 
     @Test
     void test12() {
-        if (LocalOnly.get()) return;
 
         MsgEntry back = new MsgEntry('J', 1, 2);
         BackEntry.setup(back);
@@ -72,7 +69,6 @@ public class SerialTest2 {
 
     @Test
     void test99() {
-        if (LocalOnly.get()) return;
 
         MsgEntry back = new MsgEntry('J', 9, 9);
         BackEntry.setup(back);
