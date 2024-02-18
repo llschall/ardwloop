@@ -20,3 +20,15 @@ void wr(char);
 char rd();
 
 #endif
+
+void ardw_begin(int reboot, int read, int post, int j, int before_k);
+
+void ardw_setup();
+
+void ardw_loop();
+
+V *ardw_s();
+
+V *ardw_r();
+
+char ardw_prg();

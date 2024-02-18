@@ -1,5 +1,8 @@
+#ifndef ardwloop_jni
+#define ardwloop_jni
+
 #include <stdio.h>
-#include "ardwloop.h"
+#include "ardwloop_core.h"
 
 int entry_check(int i) {
   printf("\n# ardwloop_jni.h entry_check# %d\n", i);
@@ -36,3 +39,5 @@ V* entry_s() {
 V* entry_r() {
   return ardw_r();
 }
+
+#endif
