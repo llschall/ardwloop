@@ -2,6 +2,8 @@
 #include "ardwloop_buffer.h"
 #include "ardwloop_utils.h"
 
+#include <stdio.h>
+
 int Rc = -1;
 int Sc = -1;
 
@@ -28,6 +30,25 @@ int DELAY_BEFORE_K = -1;
 int bfI = 0;
 int bfN = 0;
 
+void (*fct_delay)(unsigned long);
+void (*fct_write_low)(int);
+int (*fct_available)();
+int (*fct_read)(int);
+int (*fct_write)(char);
+
+void fct_init(
+      void (*prm_delay)(unsigned long),
+      void (*prm_write_low)(int),
+      int (*prm_available)(),
+      int (*prm_read)(int),
+      int (*prm_write)(char)) {
+          fct_delay = prm_delay;
+          fct_write_low = prm_write_low;
+          fct_available = prm_available;
+          fct_read = prm_read;
+          fct_write = prm_write;
+    }
+
 char ardw_prg()
 {
   return PRG;
@@ -35,8 +56,8 @@ char ardw_prg()
 
 void reboot()
 {
-  delay(DELAY_REBOOT);
-  digitalWrite(2, LOW);
+  (*fct_delay)(DELAY_REBOOT);
+  (*fct_write_low)(2);
 }
 
 char rd()
@@ -44,7 +65,7 @@ char rd()
 
   if (bfI < bfN)
   {
-    char c = (char)Bf[bfI];
+    char c = buffer(bfI);
     if (c == 'Z')
       reboot();
     if (c == 'N')
@@ -58,17 +79,19 @@ char rd()
     }
   }
 
-  int i = Serial.available();
+  int i = (*fct_available)();
   while (i == 0)
   {
-    delay(DELAY_READ);
-    i = Serial.available();
+    (*fct_delay)(DELAY_READ);
+    i = (*fct_available)();
   }
+
+  int bfS = buffer_size();
 
   if (i > bfS)
     i = bfS;
 
-  bfN = Serial.readBytes(Bf, i);
+  bfN = (*fct_read)(i);
   bfI = 0;
 
   return rd();
@@ -76,14 +99,14 @@ char rd()
 
 void wr(char c)
 {
-  Serial.write(c);
+  (*fct_write)(c);
 }
 
 
 void reset()
 {
 
-  delay(DELAY_BEFORE_K);
+  (*fct_delay)(DELAY_BEFORE_K);
   // Wait for 'K'
 
   for (char c = rd(); c != 'K'; c = rd())
@@ -91,9 +114,9 @@ void reset()
     printf("RD %c\n", c);
   }
 
-  while (Serial.available())
+  while ((*fct_available))
   {
-    Serial.readBytes(Bf, 1);
+    (*fct_read)(1);
   }
 
   bfN = 0;
@@ -166,19 +189,19 @@ void wr_i(int i)
 void initJ()
 {
 
-  while (Serial.available() > 0)
+  while ((*fct_available)() > 0)
   {
-    Serial.readBytes(Bf, 1);
+    (*fct_read)(1);
   }
 
   while (true)
   {
     wr('J');
-    delay(DELAY_J);
-    int n = Serial.available();
+    (*fct_delay)(DELAY_J);
+    int n = (*fct_available)();
     if (n > 0)
-      Serial.readBytes(Bf, 1);
-    char c = Bf[0];
+    (*fct_read)(1);
+    char c = buffer(0);
     if (c == 'J')
     {
       return;
@@ -367,4 +390,13 @@ void send_p()
     }
     wr_int(v);
   }
+}
+
+void ardw_begin(int reboot, int read, int post, int j, int before_k)
+{
+  DELAY_REBOOT = reboot;
+  DELAY_READ = read;
+  DELAY_POST = post;
+  DELAY_J = j;
+  DELAY_BEFORE_K = before_k;
 }
