@@ -1,10 +1,18 @@
 #include <Arduino.h>
 #include <stdio.h>
 #include "ardwloop.h"
+#include "ardwloop_init.h"
 #include "ardwloop_core.h"
 #include "ardwloop_core.cpp"
 #include "ardwloop_buffer.h"
 #include "ardwloop_utils.h"
+
+/////////////////////////////////
+
+void ardw_start(int reboot, int read, int post, int j, int before_k) {
+  inject_arduino_h();
+  ardw_begin(reboot,read,post,j,before_k);
+}
 
 /////////////////////////////////
 
@@ -33,15 +41,6 @@ V *ardw_r()
 void ardw_post(bool (*p)())
 {
   POST_IMPL = p;
-}
-
-void ardw_begin(int reboot, int read, int post, int j, int before_k)
-{
-  DELAY_REBOOT = reboot;
-  DELAY_READ = read;
-  DELAY_POST = post;
-  DELAY_J = j;
-  DELAY_BEFORE_K = before_k;
 }
 
 //////////////////////////////////
