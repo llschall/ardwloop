@@ -1,6 +1,7 @@
 #ifndef ardwloop_h
 #define ardwloop_h
 
+#include <Arduino.h>
 #include "ardwloop_core.h"
 
 void ardw_begin(int reboot, int read, int post, int j, int before_k);
