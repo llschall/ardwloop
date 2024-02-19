@@ -25,10 +25,12 @@ int impl_available() {
     return Serial.available();
 }
 
-int impl_read(int i) {
-    char arr[i];
-    int r =  Serial.readBytes(arr, i);
-    buffer_wr(arr, i);
+int impl_read(int n) {
+    char arr[n];
+    int r =  Serial.readBytes(arr, n);
+    for(int i = 0; i < r; i++) {
+        buffer_set(i, arr[i]);
+    }
     return r;
 }
 

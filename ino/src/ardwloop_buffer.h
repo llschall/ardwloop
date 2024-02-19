@@ -4,7 +4,6 @@
 int buffer_size();
 
 char buffer(int i);
-
-void buffer_wr(char* c, int n);
+void buffer_set(int i, char c);
 
 #endif
