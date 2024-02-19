@@ -49,7 +49,6 @@ void ardw_post(bool (*p)())
 
 void ardw_setup()
 {
-
   S_I = 0;
   P_I = 0;
 

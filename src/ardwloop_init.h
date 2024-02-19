@@ -1,8 +1,6 @@
 #ifndef ardwloop_init
 #define ardwloop_init
 
-#include <Arduino.h>
-
 void inject_arduino_h();
 
 void impl_delay(unsigned long ms);

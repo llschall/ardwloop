@@ -1,3 +1,4 @@
+
 #include "ardwloop_core.h"
 #include "ardwloop_buffer.h"
 #include "ardwloop_utils.h"
@@ -62,7 +63,6 @@ void reboot()
 
 char rd()
 {
-
   if (bfI < bfN)
   {
     char c = buffer(bfI);
@@ -114,7 +114,7 @@ void reset()
     printf("RD %c\n", c);
   }
 
-  while ((*fct_available))
+  while ((*fct_available)())
   {
     (*fct_read)(1);
   }
@@ -188,7 +188,6 @@ void wr_i(int i)
 
 void initJ()
 {
-
   while ((*fct_available)() > 0)
   {
     (*fct_read)(1);
