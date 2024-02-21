@@ -13,7 +13,7 @@ import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.util.concurrent.atomic.AtomicReference
 
-internal class Motor(val model: Model, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {
+internal class Motor(val model: ArdwloopModel, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {
     var reconnect: Boolean = false
 
     override fun setup() {

@@ -21,7 +21,7 @@ import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialData;
-import org.llschall.ardwloop.structure.model.Model;
+import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
 public class BusTest1 extends AbstractBusTest {
@@ -48,7 +48,7 @@ public class BusTest1 extends AbstractBusTest {
 
         ProgramCfg cfg = new ProgramCfg('T', 1, sc);
 
-        Model model = new Model(new ProgramContainer(new JTestProgram()));
+        ArdwloopModel model = new ArdwloopModel(new ProgramContainer(new JTestProgram()));
         model.serialMdl.program.set(cfg);
 
         IArduino arduino = new Arduino(this);

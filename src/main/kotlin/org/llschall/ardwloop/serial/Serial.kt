@@ -12,7 +12,7 @@ import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.StringWriter
 import kotlin.collections.set
 
-class Serial internal constructor(private val model: Model, cfg: ProgramCfg, val timer: Timer) {
+class Serial internal constructor(private val model: ArdwloopModel, cfg: ProgramCfg, val timer: Timer) {
     private val serialMdl = model.serialMdl
     private var port: ISerialPort? = null
     private var writer: Writer? = null

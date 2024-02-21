@@ -1,16 +1,10 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.structure.StructureException
-import org.llschall.ardwloop.structure.model.Model
-import org.llschall.ardwloop.structure.utils.Logger.msg
-import java.io.IOException
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.util.function.Consumer
+import org.llschall.ardwloop.structure.model.ArdwloopModel
 import java.util.regex.Pattern
 
-class Config(val baud: Int, val model: Model) {
+class Config(val baud: Int, val model: ArdwloopModel) {
     
     private fun parseValue(line: String): String {
         val pattern = Pattern.compile("[^\\d]+(\\d+).*")

@@ -3,19 +3,19 @@ package org.llschall.ardwloop.motor
 import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.data.SerialData
-import org.llschall.ardwloop.structure.model.Model
+import org.llschall.ardwloop.structure.model.ArdwloopModel
 
 class ProgramContainer(private val program: IArdwProgram) {
 
     val container: ProgramContainer? = null
 
     @JvmField
-    val model: Model
+    val model: ArdwloopModel
     private val config: Config
     private val loops: MutableList<AbstractLoop> = ArrayList()
 
     init {
-        val model = Model(this)
+        val model = ArdwloopModel(this)
         model.serialMdl.program.set(ProgramCfg(program.id, program.rc, program.sc))
 
         config = Config(9600, model)

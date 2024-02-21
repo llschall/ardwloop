@@ -11,7 +11,7 @@ import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 
 class Bus @JvmOverloads constructor(
-    private val model: Model,
+    private val model: ArdwloopModel,
     private val provider: ISerialProvider,
     private val timer: Timer = Timer()
 ) {

@@ -11,7 +11,7 @@ import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 
-internal class Reader(model: Model, port: ISerialPort, timer: Timer) {
+internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     private val serialMdl = model.serialMdl
     private val serialCnt = serialMdl.serialCnt
     val buffer: Buffer = Buffer(model, port, timer)

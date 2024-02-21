@@ -13,7 +13,7 @@ import org.llschall.ardwloop.structure.utils.Text.ms
 import org.llschall.ardwloop.structure.utils.Timer
 import java.util.*
 
-internal class Buffer(private val model: Model, private val port: ISerialPort, private val lastRead: Timer) {
+internal class Buffer(private val model: ArdwloopModel, private val port: ISerialPort, private val lastRead: Timer) {
     private val chars = LinkedList<Char>()
 
     @Throws(SerialLongReadException::class)
