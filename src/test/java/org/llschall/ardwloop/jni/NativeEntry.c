@@ -1,8 +1,8 @@
 #include <jni.h>        // JNI header provided by JDK
 #include <stdio.h>      // C Standard IO Header
 
-#include "../../../../../../../ino/src/ardwloop_jni.cpp"
-#include "../../../../../../../ino/src/ardwloop_core.cpp"
+#include <ardwloop_jni.cpp>
+#include <ardwloop_core.cpp>
 #include "org_llschall_ardwloop_jni_NativeEntry.h"
 #include "fake.h"
 
