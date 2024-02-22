@@ -31,17 +31,14 @@ void fct_init(
       int (*prm_read)(int),
       int (*prm_write)(char));
 
-void ardw_begin(int reboot, int read, int post, int j, int before_k);
+void core_begin(int reboot, int read, int post, int j, int before_k);
+int core_delay_post();
 
-void ardw_setup();
+void core_setup();
+void core_loop();
 
-void ardw_loop();
-
-V *ardw_s();
-
-V *ardw_r();
-
-char ardw_prg();
+void core_post(bool (*p)());
+char core_prg();
 
 V *core_s();
 V *core_p();
@@ -52,9 +49,3 @@ void reset();
 void send_s();
 void send_p();
 void receive_r();
-int core_delay_post();
-
-void core_setup();
-void core_loop();
-
-void core_post(bool (*p)());
