@@ -39,3 +39,15 @@ V *ardw_s();
 V *ardw_r();
 
 char ardw_prg();
+
+V *core_s();
+V *core_p();
+V *core_r();
+
+void initJ();
+void reset();
+void send_s();
+void send_p();
+void receive_r();
+int core_delay_post();
+void core_zero();
