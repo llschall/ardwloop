@@ -37,7 +37,6 @@ void ardw_post(bool (*p)())
 //////////////////////////////////
 /// MISC
 
-
 void ardw_setup()
 {
   core_setup();
@@ -46,4 +45,8 @@ void ardw_setup()
 void ardw_loop()
 {
   core_loop();
+}
+
+char ardw_prg() {
+  return core_prg();
 }
