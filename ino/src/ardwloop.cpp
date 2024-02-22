@@ -3,7 +3,6 @@
 #include "ardwloop.h"
 #include "ardwloop_init.h"
 #include "ardwloop_core.h"
-#include "ardwloop_core.cpp"
 #include "ardwloop_buffer.h"
 #include "ardwloop_utils.h"
 
@@ -23,19 +22,19 @@ bool ignore()
 
 bool (*POST_IMPL)() = &ignore;
 
-V *ardw_s()
+V* ardw_s()
 {
-  return &S;
+  return core_s();
 }
 
-V *ardw_p()
+V* ardw_p()
 {
-  return &P;
+  return core_p();
 }
 
-V *ardw_r()
+V* ardw_r()
 {
-  return &R;
+  return core_r();
 }
 
 void ardw_post(bool (*p)())
@@ -49,8 +48,8 @@ void ardw_post(bool (*p)())
 
 void ardw_setup()
 {
-  S_I = 0;
-  P_I = 0;
+
+core_zero();
 
   pinMode(2, OUTPUT);
   digitalWrite(2, HIGH);
@@ -73,7 +72,7 @@ void ardw_loop()
   {
     if (post)
     {
-      if (i == DELAY_POST)
+      if (i == core_delay_post())
       {
         post = (*POST_IMPL)();
         send_p();

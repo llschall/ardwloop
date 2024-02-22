@@ -399,3 +399,27 @@ void ardw_begin(int reboot, int read, int post, int j, int before_k)
   DELAY_J = j;
   DELAY_BEFORE_K = before_k;
 }
+
+V* core_s()
+{
+  return &S;
+}
+
+V* core_p()
+{
+  return &P;
+}
+
+V* core_r()
+{
+  return &R;
+}
+
+int core_delay_post() {
+  return DELAY_POST;
+}
+
+void core_zero() {
+  S_I = 0;
+  P_I = 0;
+}
