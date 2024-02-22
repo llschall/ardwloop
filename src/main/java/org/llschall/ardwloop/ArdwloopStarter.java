@@ -6,6 +6,8 @@ import org.llschall.ardwloop.structure.model.ArdwloopModel;
 
 public class ArdwloopStarter {
 
+    public static String ARDWLOOP_VERSION = "0.0.7-SNAPSHOT";
+
     ProgramContainer container;
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
 
