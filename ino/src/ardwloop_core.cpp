@@ -33,18 +33,34 @@ int bfN = 0;
 
 void (*fct_delay)(unsigned long);
 void (*fct_write_low)(int);
+void (*fct_write_high)(int);
+void (*fct_pin_out)(int);
+void (*fct_serial_begin)(int);
 int (*fct_available)();
 int (*fct_read)(int);
 int (*fct_write)(char);
 
+bool ignore()
+{
+  return false;
+}
+
+bool (*POST_IMPL)() = &ignore;
+
 void fct_init(
       void (*prm_delay)(unsigned long),
       void (*prm_write_low)(int),
+      void (*prm_write_high)(int),
+      void (*prm_pin_out)(int),
+      void (*prm_serial_begin)(int),
       int (*prm_available)(),
       int (*prm_read)(int),
       int (*prm_write)(char)) {
           fct_delay = prm_delay;
           fct_write_low = prm_write_low;
+          fct_write_high = prm_write_high;
+          fct_pin_out = prm_pin_out,
+          fct_serial_begin = prm_serial_begin,
           fct_available = prm_available;
           fct_read = prm_read;
           fct_write = prm_write;
@@ -419,7 +435,55 @@ int core_delay_post() {
   return DELAY_POST;
 }
 
-void core_zero() {
+void core_setup() {
   S_I = 0;
   P_I = 0;
+
+  (*fct_pin_out)(2);
+  (*fct_write_high)(2);
+  (*fct_serial_begin)(BAUD);
+
+  initJ();
+  reset();
+}
+
+void core_loop()
+{
+  send_s();
+
+  int i = 0;
+  int p = 0;
+  bool post = true;
+  while ((*fct_available)() == 0)
+  {
+    if (post)
+    {
+      if (i == core_delay_post())
+      {
+        post = (*POST_IMPL)();
+        send_p();
+        i = 0;
+      }
+      else
+      {
+        i++;
+        (*fct_delay)(1);
+      }
+    }
+    else
+    {
+      p++;
+      if (p > 999)
+      {
+        send_p();
+        p = 0;
+      }
+      (*fct_delay)(9);
+    }
+  }
+  receive_r();
+}
+
+void core_post(bool (*p)()) {
+  POST_IMPL = p;
 }

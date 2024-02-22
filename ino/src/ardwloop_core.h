@@ -24,6 +24,9 @@ char rd();
 void fct_init(
       void (*prm_delay)(unsigned long),
       void (*prm_write_low)(int),
+      void (*prm_write_high)(int),
+      void (*prm_pin_out)(int),
+      void (*prm_serial_begin)(int),
       int (*prm_available)(),
       int (*prm_read)(int),
       int (*prm_write)(char));
@@ -50,4 +53,8 @@ void send_s();
 void send_p();
 void receive_r();
 int core_delay_post();
-void core_zero();
+
+void core_setup();
+void core_loop();
+
+void core_post(bool (*p)());
