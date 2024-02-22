@@ -9,7 +9,7 @@
 
 void ardw_start(int reboot, int read, int post, int j, int before_k) {
   inject_arduino_h();
-  ardw_begin(reboot,read,post,j,before_k);
+  core_begin(reboot,read,post,j,before_k);
 }
 
 /////////////////////////////////

@@ -66,7 +66,7 @@ void fct_init(
           fct_write = prm_write;
     }
 
-char ardw_prg()
+char core_prg()
 {
   return PRG;
 }
@@ -407,7 +407,7 @@ void send_p()
   }
 }
 
-void ardw_begin(int reboot, int read, int post, int j, int before_k)
+void core_begin(int reboot, int read, int post, int j, int before_k)
 {
   DELAY_REBOOT = reboot;
   DELAY_READ = read;

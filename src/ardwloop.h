@@ -11,7 +11,7 @@ void ardw_setup();
 void ardw_loop();
 void ardw_post(bool (*p)());
 
-V *ardw_s();
+V *core_s();
 V *ardw_p();
 V *ardw_r();
 
