@@ -8,6 +8,9 @@ void inject_arduino_h() {
     fct_init(
         &impl_delay,
         &impl_write_low,
+        &impl_write_high,
+        &impl_pin_out,
+        &impl_serial_begin,
         &impl_available,
         &impl_read,
         &impl_write);
@@ -21,11 +24,24 @@ void impl_write_low(int i) {
     digitalWrite(i, LOW);
 }
 
+void impl_write_high(int i) {
+    digitalWrite(i, HIGH);
+}
+
+void impl_pin_out(int pin) {
+    pinMode(pin, OUTPUT);
+}
+
+void impl_serial_begin(int baud) {
+  Serial.begin(baud);
+  Serial.setTimeout(20000);
+}
+
 int impl_available() {
     return Serial.available();
 }
 
-int impl_read(int n) {
+int impl_read(const int n) {
     char arr[n];
     int r =  Serial.readBytes(arr, n);
     for(int i = 0; i < r; i++) {

@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <stdio.h>
 #include "ardwloop.h"
 #include "ardwloop_init.h"
@@ -14,13 +13,6 @@ void ardw_start(int reboot, int read, int post, int j, int before_k) {
 }
 
 /////////////////////////////////
-
-bool ignore()
-{
-  return false;
-}
-
-bool (*POST_IMPL)() = &ignore;
 
 V* ardw_s()
 {
@@ -39,7 +31,7 @@ V* ardw_r()
 
 void ardw_post(bool (*p)())
 {
-  POST_IMPL = p;
+  core_post(p);
 }
 
 //////////////////////////////////
@@ -48,52 +40,10 @@ void ardw_post(bool (*p)())
 
 void ardw_setup()
 {
-
-core_zero();
-
-  pinMode(2, OUTPUT);
-  digitalWrite(2, HIGH);
-
-  Serial.begin(BAUD);
-  Serial.setTimeout(20000);
-
-  initJ();
-  reset();
+  core_setup();
 }
 
 void ardw_loop()
 {
-  send_s();
-
-  int i = 0;
-  int p = 0;
-  bool post = true;
-  while (Serial.available() == 0)
-  {
-    if (post)
-    {
-      if (i == core_delay_post())
-      {
-        post = (*POST_IMPL)();
-        send_p();
-        i = 0;
-      }
-      else
-      {
-        i++;
-        delay(1);
-      }
-    }
-    else
-    {
-      p++;
-      if (p > 999)
-      {
-        send_p();
-        p = 0;
-      }
-      delay(9);
-    }
-  }
-  receive_r();
+  core_loop();
 }
