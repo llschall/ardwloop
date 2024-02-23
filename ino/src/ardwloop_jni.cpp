@@ -7,7 +7,7 @@ int entry_check(int i) {
 }
 
 void entry_begin(int reboot, int read, int post, int beforeK, int j) {
-  core_begin(reboot, read, post, beforeK, j);
+  core_begin(read, post);
 }
 
 void entry_setup() {

@@ -407,13 +407,15 @@ void send_p()
   }
 }
 
-void core_begin(int reboot, int read, int post, int j, int before_k)
+void core_begin(int read, int post)
 {
-  DELAY_REBOOT = reboot;
+  DELAY_REBOOT = 999;
   DELAY_READ = read;
   DELAY_POST = post;
-  DELAY_J = j;
-  DELAY_BEFORE_K = before_k;
+  DELAY_J = 99;
+  DELAY_BEFORE_K = 9;
+
+  core_setup();
 }
 
 V* core_s()

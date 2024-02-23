@@ -10,11 +10,10 @@
 
 #include "ardwloop_core.h"
 
-void ardw_start(int reboot, int read, int post, int j, int before_k);
+void ardw_start(int read, int post);
 
 char ardw_prg();
 
-void ardw_setup();
 void ardw_loop();
 void ardw_post(bool (*p)());
 
