@@ -45,7 +45,7 @@ publishing {
 
                 groupId = 'io.github.llschall'
                 artifactId = 'ardwloop'
-                version = '0.0.7-SNAPSHOT'
+                version = '0.0.7'
 
                 pom {
                     signing {
@@ -80,8 +80,7 @@ publishing {
                     username "$ossrh_user"
                     password "$ossrh_pwd"
                 }
-                url "https://s01.oss.sonatype.org/content/repositories/snapshots"
-                //url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
             }
         }
         signing {
