@@ -7,9 +7,9 @@
 
 /////////////////////////////////
 
-void ardw_start(int reboot, int read, int post, int j, int before_k) {
+void ardw_start(int read, int post) {
   inject_arduino_h();
-  core_begin(reboot,read,post,j,before_k);
+  core_begin(read, post);
 }
 
 /////////////////////////////////
@@ -32,14 +32,6 @@ V* ardw_r()
 void ardw_post(bool (*p)())
 {
   core_post(p);
-}
-
-//////////////////////////////////
-/// MISC
-
-void ardw_setup()
-{
-  core_setup();
 }
 
 void ardw_loop()

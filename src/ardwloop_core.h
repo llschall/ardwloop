@@ -31,7 +31,7 @@ void fct_init(
       int (*prm_read)(int),
       int (*prm_write)(char));
 
-void core_begin(int reboot, int read, int post, int j, int before_k);
+void core_begin(int read, int post);
 int core_delay_post();
 
 void core_setup();
