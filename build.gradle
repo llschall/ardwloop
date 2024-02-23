@@ -80,7 +80,7 @@ publishing {
                     username "$ossrh_user"
                     password "$ossrh_pwd"
                 }
-                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+                url "https://s01.oss.sonatype.org/content/repositories/snapshots"
             }
         }
         signing {
