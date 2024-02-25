@@ -25,7 +25,6 @@ kotlin {
 }
 
 test {
-    exclude 'org/llschall/ardwloop/serial/**'
     systemProperty "test.setup", "Allschwil"
     systemProperty "java.library.path", file("src/test/java/org/llschall/ardwloop/jni").absolutePath
     useJUnitPlatform()
