@@ -11,7 +11,7 @@ public class LocalOnly {
     private final static LocalOnly INSTANCE = new LocalOnly();
 
     private LocalOnly() {
-        this.isGit = Files.exists(Paths.get("/home/runner/work/ardwloop"));
+        this.isGit = Files.exists(Paths.get("/home/runner"));
     }
 
     public static LocalOnly get() {
@@ -19,10 +19,6 @@ public class LocalOnly {
     }
 
     public void skipOnGit() {
-
-        System.getProperties().entrySet().forEach(System.out::println);
-        System.out.println(Paths.get(".").toAbsolutePath());
-
         Assumptions.assumeFalse(isGit);
     }
 }
