@@ -1,14 +1,24 @@
 package org.llschall.ardwloop.jni;
 
+import org.llschall.ardwloop.ArdwTestException;
+import org.llschall.ardwloop.structure.StructureException;
+
 public class NativeEntry {
 
     static {
         System.loadLibrary("entry");
     }
 
+    public NativeEntry(boolean injectOnly) {
+        if (!injectOnly) {
+            throw new ArdwTestException("Should never appear.");
+        }
+        inject();
+    }
+
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
         inject();
-        //init(reboot, read, post, beforeK, j);
+        init(reboot, read, post, beforeK, j);
     }
 
     public NativeEntry() {

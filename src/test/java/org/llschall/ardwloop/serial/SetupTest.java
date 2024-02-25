@@ -23,7 +23,7 @@ public class SetupTest {
 
     @Test
     public void testJni() {
-        NativeEntry entry = new NativeEntry();
+        NativeEntry entry = new NativeEntry(true);
         int ping = entry.ping();
         Assertions.assertEquals(2023, ping);
         int pong = entry.pong();
