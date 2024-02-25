@@ -19,6 +19,10 @@ public class LocalOnly {
     }
 
     public void skipOnGit() {
+
+        System.getProperties().entrySet().forEach(System.out::println);
+        System.out.println(Paths.get(".").toAbsolutePath());
+
         Assumptions.assumeFalse(isGit);
     }
 }
