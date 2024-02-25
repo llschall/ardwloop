@@ -5,7 +5,7 @@ More setup instructions are available in
 https://github.com/llschall/ardwloop-demo
 */
 
-#include <ardwloop.h>
+#include <Ardwloop.h>
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
