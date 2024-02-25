@@ -7,11 +7,11 @@ import java.nio.file.Paths;
 
 public class LocalOnly {
 
-    private final boolean isLocal;
+    private final boolean isGit;
     private final static LocalOnly INSTANCE = new LocalOnly();
 
     private LocalOnly() {
-        this.isLocal = Files.exists(Paths.get("/etc/pulse"));
+        this.isGit = Files.exists(Paths.get("/home/runner/work/ardwloop"));
     }
 
     public static LocalOnly get() {
@@ -19,6 +19,6 @@ public class LocalOnly {
     }
 
     public void skipOnGit() {
-        Assumptions.assumeTrue(isLocal);
+        Assumptions.assumeFalse(isGit);
     }
 }
