@@ -13,12 +13,13 @@ public class NativeEntry {
         if (!injectOnly) {
             throw new JniTestException("Should never appear.");
         }
+        LocalOnly.get().skipOnGit();
         inject();
     }
 
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
-        inject();
         LocalOnly.get().skipOnGit();
+        inject();
         init(reboot, read, post, beforeK, j);
     }
 
