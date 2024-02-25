@@ -1,12 +1,35 @@
 #include <jni.h>        // JNI header provided by JDK
 #include <stdio.h>      // C Standard IO Header
 
+#include "NativeEntry.h"
+
 #include <ardwloop_jni.cpp>
 #include <ardwloop_core.cpp>
+#include <ardwloop_buffer.cpp>
+
 #include "org_llschall_ardwloop_jni_NativeEntry.h"
 #include "fake.h"
 
 JNIEnv *ENV;
+
+JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
+
+fct_init(
+      &fake_delay,
+      &fake_write_low,&fake_write_high,&fake_pin_out,
+      &fake_serial_begin,&fake_available,&fake_read,&fake_write
+      );
+}
+      void fake_delay(unsigned long){};
+      void fake_write_low(int){};
+      void fake_write_high(int){};
+      void fake_pin_out(int){};
+      void fake_serial_begin(int){};
+      int fake_available(){};
+      int fake_read(int) {};
+      int fake_write(char) {};
+
+//////////////////////
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init(JNIEnv *env, jobject obj, int reboot, int read, int post, int beforeK, int j) {
     entry_begin(reboot,read, post,beforeK,j);

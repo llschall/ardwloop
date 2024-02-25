@@ -7,12 +7,15 @@ public class NativeEntry {
     }
 
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
+        inject();
         init(reboot, read, post, beforeK, j);
     }
 
     public NativeEntry() {
         this(1, 1, 1, 1, 1);
     }
+
+    public native void inject();
 
     public native void init(int reboot, int read, int post, int beforeK, int j);
 
