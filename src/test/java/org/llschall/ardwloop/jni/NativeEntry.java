@@ -1,6 +1,7 @@
 package org.llschall.ardwloop.jni;
 
 import org.llschall.ardwloop.JniTestException;
+import org.llschall.ardwloop.LocalOnly;
 
 public class NativeEntry {
 
@@ -17,6 +18,7 @@ public class NativeEntry {
 
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
         inject();
+        LocalOnly.get().skipOnGit();
         init(reboot, read, post, beforeK, j);
     }
 

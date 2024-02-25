@@ -1,17 +1,24 @@
 package org.llschall.ardwloop;
 
-import java.io.File;
+import org.junit.jupiter.api.Assumptions;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class LocalOnly {
 
-    private final boolean localOnly;
+    private final boolean isLocal;
     private final static LocalOnly INSTANCE = new LocalOnly();
 
     private LocalOnly() {
-        this.localOnly = !new File("/etc/pulse").exists();
+        this.isLocal = Files.exists(Paths.get("/etc/pulse"));
     }
 
-    public static boolean get() {
-        return INSTANCE.localOnly;
+    public static LocalOnly get() {
+        return INSTANCE;
+    }
+
+    public void skipOnGit() {
+        Assumptions.assumeTrue(isLocal);
     }
 }
