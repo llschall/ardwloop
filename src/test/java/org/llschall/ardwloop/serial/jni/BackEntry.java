@@ -1,4 +1,4 @@
-package org.llschall.ardwloop.jni;
+package org.llschall.ardwloop.serial.jni;
 
 import org.llschall.ardwloop.serial.IBackEntry;
 import org.llschall.ardwloop.serial.misc.TestTimer;
@@ -19,6 +19,12 @@ public class BackEntry {
     public static void close() {
         Logger.msg("Delegate is closed");
         delegate = null;
+    }
+
+    // Called from JNI tests
+    public static int pong() {
+        Logger.msg("\n****************\n*     PONG     *\n****************\n");
+        return 2024;
     }
 
     public static void msg(String str) {

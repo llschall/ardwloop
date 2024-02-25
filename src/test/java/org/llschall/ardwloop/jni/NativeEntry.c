@@ -1,13 +1,13 @@
 #include <jni.h>        // JNI header provided by JDK
 #include <stdio.h>      // C Standard IO Header
 
-#include "NativeEntry.h"
-
 #include <ardwloop_jni.cpp>
 #include <ardwloop_core.cpp>
 #include <ardwloop_buffer.cpp>
 
+#include "NativeEntry.h"
 #include "org_llschall_ardwloop_jni_NativeEntry.h"
+
 #include "fake.h"
 
 JNIEnv *ENV;
@@ -38,6 +38,13 @@ JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init(JNIEnv *e
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(JNIEnv *env, jobject obj) {
    ENV = env;
    return 2023;
+};
+
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(JNIEnv *env, jobject obj) {
+   ENV = env;
+   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+   jmethodID id = ENV->GetStaticMethodID(cls, "pong", "()I");
+   return ENV->CallStaticCharMethod(cls, id);
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_print(JNIEnv *env, jobject obj) {
@@ -119,7 +126,7 @@ void back_print(int log, char* str, va_list c) {
 void back_print(int log, char* str) {
   if(log > LOG_LEVEL) return;
 
-  jclass cls = ENV->FindClass("jni/BackEntry");
+  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");
 
   jstring jstr = ENV->NewStringUTF(str);

@@ -30,4 +30,8 @@ public class SerialTest0 {
         Assertions.assertEquals(4044, check);
     }
 
+    public static void msg(String str) {
+        System.out.println("str = " + str);
+    }
+
 }
