@@ -5,7 +5,7 @@ void fake_write_high(int);
 void fake_pin_out(int);
 void fake_serial_begin(int);
 int fake_available();
-int fake_read(int);
+int fake_read(char *, int);
 int fake_write(char);
 
 void back_print(int log, char *str);

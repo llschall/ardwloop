@@ -27,21 +27,34 @@ void fake_pin_out(int){};
 void fake_serial_begin(int){};
 
 int fake_available() {
+
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "available", "()I");
   jint i = ENV->CallStaticCharMethod(cls, id);
 
   log_dbg("fake_available -> %d", (int)i);
-
   return i;
 };
 
-int fake_read(int i){
+int fake_read(char *buffer, int n) {
 
+  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+  jmethodID id = ENV->GetStaticMethodID(cls, "read", "()C");
 
+  for (int i = 0; i < n; i++) {
+    char c = ENV->CallStaticCharMethod(cls, id);
+    log_dbg("fake_read -> %c", c);
+    buffer[i] = c;
+  }
+  return n;
 };
 
-int fake_write(char c){};
+int fake_write(char c) {
+  log_dbg("fake_write -> %c", c);
+
+  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+  jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)");
+};
 
 //////////////////////
 
