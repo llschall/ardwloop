@@ -4,6 +4,7 @@
 #include <ardwloop_buffer.cpp>
 #include <ardwloop_core.cpp>
 #include <ardwloop_jni.cpp>
+#include <ardwloop_utils.cpp>
 
 #include "NativeEntry.h"
 #include "org_llschall_ardwloop_jni_NativeEntry.h"
@@ -53,7 +54,9 @@ int fake_write(char c) {
   log_dbg("fake_write -> %c", c);
 
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)");
+  jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)V");
+  ENV->CallStaticCharMethod(cls, id, c);
+  return 1;
 };
 
 //////////////////////
