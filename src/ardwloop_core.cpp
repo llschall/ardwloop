@@ -336,8 +336,9 @@ void send_p() {
 
   int i = P_I;
   P_I++;
-  if (P_I == 1000)
+  if (P_I == 1000) {
     P_I = 0;
+  }
   wr_i(i);
 
   for (unsigned int j = 0; j < sizeof(H); j++) {
@@ -405,7 +406,6 @@ void core_loop() {
   send_s();
 
   int i = 0;
-  int p = 0;
   bool post = true;
   while ((*fct_available)() == 0) {
     if (post) {
@@ -418,11 +418,7 @@ void core_loop() {
         (*fct_delay)(1);
       }
     } else {
-      p++;
-      if (p > 999) {
         send_p();
-        p = 0;
-      }
       (*fct_delay)(9);
     }
   }
