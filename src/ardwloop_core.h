@@ -28,7 +28,7 @@ void fct_init(
     void (*prm_pin_out)(int),
     void (*prm_serial_begin)(int),
     int (*prm_available)(),
-    int (*prm_read)(int),
+    int (*prm_read)(char*, int),
     int (*prm_write)(char));
 
 void core_begin(int read, int post);
