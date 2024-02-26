@@ -86,6 +86,16 @@ char core_prg()
   return PRG;
 }
 
+int core_rc()
+{
+  return Rc;
+}
+
+int core_sc()
+{
+  return Sc;
+}
+
 void reboot()
 {
   (*fct_delay)(DELAY_REBOOT);
@@ -157,7 +167,7 @@ void reset()
 
   if ('C' != rd())
   {
-   log("# Program error #");
+    log("# Program error #");
   }
 
   PRG = rd();
@@ -513,6 +523,7 @@ void core_post(bool (*p)())
   POST_IMPL = p;
 }
 
-void log(const char* msg) {
+void log(const char *msg)
+{
   (*fct_log)(msg);
 }
