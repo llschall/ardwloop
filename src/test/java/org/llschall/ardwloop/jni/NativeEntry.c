@@ -55,6 +55,8 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(
     JNIEnv *env, jobject obj, jint i) {
   ENV = env;
+  int j = i * 2;
+  log_dbg("DEBUG i*2 = %d", j);
   jclass cls = findBackEntryClass();
   jmethodID id = ENV->GetStaticMethodID(cls, "pong", "(I)I");
   return ENV->CallStaticCharMethod(cls, id, i);
@@ -159,6 +161,10 @@ void back_print(int log, char *str) {
   jstring jstr = ENV->NewStringUTF(str);
   ENV->CallStaticVoidMethod(cls, id, jstr);
 }
+
+void log_dbg(char *str, va_list c) { back_print(0, str, c); }
+
+void log_dbg(char *str) { back_print(0, str); }
 
 void back_delay(long ms) {
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
