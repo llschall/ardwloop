@@ -29,11 +29,17 @@ void fake_serial_begin(int){};
 int fake_available() {
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "available", "()I");
+  jint i = ENV->CallStaticCharMethod(cls, id);
 
-  return ENV->CallStaticCharMethod(cls, id);
+  log_dbg("fake_available -> %d", (int)i);
+
+  return i;
 };
 
-int fake_read(int i){};
+int fake_read(int i){
+
+
+};
 
 int fake_write(char c){};
 
