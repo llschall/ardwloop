@@ -8,8 +8,6 @@
 #include "NativeEntry.h"
 #include "org_llschall_ardwloop_jni_NativeEntry.h"
 
-#include "fake.h"
-
 JNIEnv *ENV;
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
@@ -133,7 +131,7 @@ void back_print(int log, char* str, va_list c) {
 }
 
 void back_print(int log, char* str) {
-  if(log > LOG_LEVEL) return;
+  //if(log > LOG_LEVEL) return;
 
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");

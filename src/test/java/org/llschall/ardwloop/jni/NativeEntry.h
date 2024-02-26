@@ -6,3 +6,6 @@
       int fake_available();
       int fake_read(int) ;
       int fake_write(char) ;
+
+      void back_print(int log, char* str);
+      void back_print(int log, char* str, va_list c);
