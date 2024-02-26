@@ -31,13 +31,14 @@ int DELAY_BEFORE_K = -1;
 int bfI = 0;
 int bfN = 0;
 
+void (*fct_log)(const char *);
 void (*fct_delay)(unsigned long);
 void (*fct_write_low)(int);
 void (*fct_write_high)(int);
 void (*fct_pin_out)(int);
 void (*fct_serial_begin)(int);
 int (*fct_available)();
-int (*fct_read)(char*, int);
+int (*fct_read)(char *, int);
 int (*fct_write)(char);
 
 bool ignore()
@@ -48,15 +49,17 @@ bool ignore()
 bool (*POST_IMPL)() = &ignore;
 
 void fct_init(
+    void (*prm_log)(const char *),
     void (*prm_delay)(unsigned long),
     void (*prm_write_low)(int),
     void (*prm_write_high)(int),
     void (*prm_pin_out)(int),
     void (*prm_serial_begin)(int),
     int (*prm_available)(),
-    int (*prm_read)(char*, int),
+    int (*prm_read)(char *, int),
     int (*prm_write)(char))
 {
+  fct_log = prm_log;
   fct_delay = prm_delay;
   fct_write_low = prm_write_low;
   fct_write_high = prm_write_high;
@@ -69,13 +72,13 @@ void fct_init(
 
 int impl_read0(const int n)
 {
-    char arr[n];
-    int r = (*fct_read)(arr, n);
-    for (int i = 0; i < r; i++)
-    {
-        buffer_set(i, arr[i]);
-    }
-    return r;
+  char arr[n];
+  int r = (*fct_read)(arr, n);
+  for (int i = 0; i < r; i++)
+  {
+    buffer_set(i, arr[i]);
+  }
+  return r;
 }
 
 char core_prg()
@@ -214,6 +217,8 @@ void wr_i(int i)
 
 void initJ()
 {
+
+  (*fct_log)("### Init J ###");
   while ((*fct_available)() > 0)
   {
     impl_read0(1);

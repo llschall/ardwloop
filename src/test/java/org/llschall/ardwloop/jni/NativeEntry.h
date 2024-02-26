@@ -1,4 +1,6 @@
 
+
+void fake_log(char *msg);
 void fake_delay(unsigned long);
 void fake_write_low(int);
 void fake_write_high(int);

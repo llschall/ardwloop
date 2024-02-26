@@ -18,9 +18,13 @@ jclass findBackEntryClass() {
 JNIEXPORT void JNICALL
 Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
 
-  fct_init(&fake_delay, &fake_write_low, &fake_write_high, &fake_pin_out,
-           &fake_serial_begin, &fake_available, &fake_read, &fake_write);
+  fct_init(&fake_log, &fake_delay, &fake_write_low, &fake_write_high,
+           &fake_pin_out, &fake_serial_begin, &fake_available, &fake_read,
+           &fake_write);
 }
+
+void fake_log(char *msg) { log_dbg(msg); }
+
 void fake_delay(unsigned long){};
 void fake_write_low(int){};
 void fake_write_high(int){};
