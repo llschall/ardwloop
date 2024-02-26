@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.JTestProgram;
+import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.serial.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
@@ -23,6 +24,7 @@ public class BusTest0 extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
+        LocalOnly.get().skipOnGit();
         StructureTimer.FAKE = true;
         BackEntry.setup(new Computer(this));
     }

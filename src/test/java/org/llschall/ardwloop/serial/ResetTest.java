@@ -12,6 +12,7 @@ public class ResetTest {
 
     @BeforeEach
     void setup() {
+        LocalOnly.get().skipOnGit();
         BackEntry.setup(new ResetEntry());
     }
 
@@ -22,7 +23,6 @@ public class ResetTest {
 
     @Test
     void check() {
-        LocalOnly.get().skipOnGit();
         NativeEntry entry = new NativeEntry();
         entry.reset();
         char prg = entry.prg();

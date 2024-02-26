@@ -2,11 +2,18 @@ package org.llschall.ardwloop.serial;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.serial.jni.BackEntry;
 
 public class SerialTest2 {
+
+    @BeforeEach
+    void setup() {
+        LocalOnly.get().skipOnGit();
+    }
 
     @AfterEach
     void close() {
