@@ -39,7 +39,10 @@ void core_setup();
 void core_loop();
 
 void core_post(bool (*p)());
+
 char core_prg();
+int core_rc();
+int core_sc();
 
 V *core_s();
 V *core_p();

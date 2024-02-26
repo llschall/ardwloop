@@ -35,6 +35,14 @@ char entry_prg()
   return core_prg();
 }
 
+int entry_rc() {
+  return core_rc();
+}
+
+int entry_sc() {
+  return core_sc();
+}
+
 V *entry_s()
 {
   return core_s();
