@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.serial.jni.BackEntry;
+import org.llschall.ardwloop.structure.utils.Logger;
 
 import static org.llschall.ardwloop.serial.Serial.P;
 import static org.llschall.ardwloop.serial.Serial.P_;
@@ -73,5 +74,41 @@ public class SerialTest3 {
         entry.loop();
         Assertions.assertEquals(0, entry.exportR('a', 'v'));
         Assertions.assertEquals(0, entry.exportR('a', 'z'));
+    }
+
+    @Test
+    void test1000() {
+
+        MsgEntry back = new MsgEntry('J', 1, 1);
+        BackEntry.setup(back);
+
+        NativeEntry entry = new NativeEntry(999, 0, 0, 0, 0);
+        entry.setup();
+        Assertions.assertEquals('J', entry.prg());
+        Assertions.assertEquals(1, entry.sc());
+        Assertions.assertEquals(1, entry.rc());
+
+        back.addMsg(S + "000" + Msg.EMPTY_A, "");
+
+        for (int i = 0; i < 10; i++) {
+            back.addMsg(P + "00" + i + Msg.EMPTY_A, "");
+        }
+        for (int i = 10; i < 100; i++) {
+            back.addMsg(P + "0" + i + Msg.EMPTY_A, "");
+        }
+        for (int i = 100; i < 998; i++) {
+            back.addMsg(P_ + i + Msg.EMPTY_A, "");
+        }
+        back.addMsg(P + "998" + Msg.EMPTY_A, "");
+        back.addMsg(P + "999" + Msg.EMPTY_A, "");
+        back.addMsg(P + "000" + Msg.EMPTY_A, "");
+        back.addMsg(P + "001" + Msg.EMPTY_A, "");
+        back.addMsg(P + "002" + Msg.EMPTY_A, R + Msg.EMPTY_A);
+
+        entry.importS('a', 0, 0, 0, 0, 0);
+        entry.loop();
+        Assertions.assertEquals(0, entry.exportR('a', 'v'));
+        Assertions.assertEquals(0, entry.exportR('a', 'z'));
+
     }
 }

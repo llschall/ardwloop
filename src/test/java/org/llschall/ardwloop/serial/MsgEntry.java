@@ -43,8 +43,7 @@ public class MsgEntry implements IBackEntry {
         Msg msg = msgs.get(m);
         String buf = msg.c2a();
         if (buf.isEmpty()) {
-            m++;
-            i = 0;
+            incM();
             writing = false;
             return 0;
         }
@@ -70,12 +69,16 @@ public class MsgEntry implements IBackEntry {
         i++;
         if (i == buf.length()) {
             Logger.msg("[" + m + "] All read !");
-            m++;
+            incM();
             boolean nextMsgHasNothingToWrite = m < msgs.size() && msgs.get(m).a2c().isEmpty();
             writing = !nextMsgHasNothingToWrite;
-            i = 0;
         }
         return c;
+    }
+
+    private void incM() {
+        m++;
+        i = 0;
     }
 
     @Override
