@@ -37,7 +37,6 @@ int fake_available() {
   jmethodID id = ENV->GetStaticMethodID(cls, "available", "()I");
   jint i = ENV->CallStaticCharMethod(cls, id);
 
-  log_dbg("fake_available -> %d", (int)i);
   return i;
 };
 
