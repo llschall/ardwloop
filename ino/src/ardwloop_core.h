@@ -5,12 +5,10 @@
 // MODEL
 //////////
 
-struct D
-{
+struct D {
   int v, w, x, y, z;
 };
-struct V
-{
+struct V {
   D a, b, c, d, e, f, g, h, i;
 };
 
@@ -21,16 +19,11 @@ char rd();
 
 #endif
 
-void fct_init(
-    void (*prm_log)(const char *),
-    void (*prm_delay)(unsigned long),
-    void (*prm_write_low)(int),
-    void (*prm_write_high)(int),
-    void (*prm_pin_out)(int),
-    void (*prm_serial_begin)(int),
-    int (*prm_available)(),
-    int (*prm_read)(char *, int),
-    int (*prm_write)(char));
+void fct_init(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
+              void (*prm_write_low)(int), void (*prm_write_high)(int),
+              void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
+              int (*prm_available)(), int (*prm_read)(char *, int),
+              int (*prm_write)(char));
 
 void core_begin(int read, int post);
 int core_delay_post();
@@ -54,4 +47,4 @@ void send_s();
 void send_p();
 void receive_r();
 
-void log(const char*);
+void log(const char *);
