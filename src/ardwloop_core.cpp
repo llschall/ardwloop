@@ -432,8 +432,6 @@ void core_begin(int read, int post)
   DELAY_POST = post;
   DELAY_J = 99;
   DELAY_BEFORE_K = 9;
-
-  core_setup();
 }
 
 V *core_s()
