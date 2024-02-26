@@ -26,7 +26,6 @@ kotlin {
 
 test {
     systemProperty "test.setup", "Allschwil"
-//    systemProperty "test.jni", "true"
     systemProperty "java.library.path", file("src/test/java/org/llschall/ardwloop/jni").absolutePath
     useJUnitPlatform()
 }

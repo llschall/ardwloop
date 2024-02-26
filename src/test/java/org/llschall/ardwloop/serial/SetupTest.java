@@ -2,6 +2,7 @@ package org.llschall.ardwloop.serial;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 
 public class SetupTest {
@@ -23,6 +24,7 @@ public class SetupTest {
 
     @Test
     public void testJni() {
+        LocalOnly.get().skipOnGitHub();
         NativeEntry entry = new NativeEntry(true);
         int ping = entry.ping();
         Assertions.assertEquals(2023, ping);

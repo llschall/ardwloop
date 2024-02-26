@@ -7,7 +7,7 @@ public class LocalOnlyTest {
 
     @Test
     public void localOnlyTest() {
-        LocalOnly.get().skipOnGit();
+        LocalOnly.get().skipOnGitHub();
         Assertions.assertEquals(2024, 1012*2);
     }
 

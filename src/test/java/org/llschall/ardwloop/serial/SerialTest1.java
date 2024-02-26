@@ -12,7 +12,7 @@ public class SerialTest1 {
 
     @BeforeEach
     void setup() {
-        LocalOnly.get().skipOnGit();
+        LocalOnly.get().skipOnGitHub();
     }
 
     @AfterEach

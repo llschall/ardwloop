@@ -16,7 +16,7 @@ import static org.llschall.ardwloop.serial.Serial.S;
 public class SerialTest3 {
     @BeforeEach
     void setup() {
-        LocalOnly.get().skipOnGit();
+        LocalOnly.get().skipOnGitHub();
     }
 
     @AfterEach
