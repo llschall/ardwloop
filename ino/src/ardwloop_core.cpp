@@ -136,6 +136,7 @@ void wr(char c)
 void reset()
 {
 
+  log("### Reset ###");
   (*fct_delay)(DELAY_BEFORE_K);
   // Wait for 'K'
 
@@ -156,7 +157,7 @@ void reset()
 
   if ('C' != rd())
   {
-    // msg("Program error !");
+   log("# Program error #");
   }
 
   PRG = rd();
@@ -164,6 +165,7 @@ void reset()
   Sc = map_c(rd());
 
   printf("RESET PRG %c\n", PRG);
+  log("# Reset PRG #");
 } //()
 
 void wr_int(int v)
@@ -218,7 +220,7 @@ void wr_i(int i)
 void initJ()
 {
 
-  (*fct_log)("### Init J ###");
+  log("### Init J ###");
   while ((*fct_available)() > 0)
   {
     impl_read0(1);
@@ -234,6 +236,7 @@ void initJ()
     char c = buffer(0);
     if (c == 'J')
     {
+      log("### Got J ###");
       return;
     }
   }
@@ -455,6 +458,8 @@ int core_delay_post()
 
 void core_setup()
 {
+  log("# core_setup--");
+
   S_I = 0;
   P_I = 0;
 
@@ -464,6 +469,8 @@ void core_setup()
 
   initJ();
   reset();
+
+  log("# --core_setup");
 }
 
 void core_loop()
@@ -506,4 +513,8 @@ void core_loop()
 void core_post(bool (*p)())
 {
   POST_IMPL = p;
+}
+
+void log(const char* msg) {
+  (*fct_log)(msg);
 }
