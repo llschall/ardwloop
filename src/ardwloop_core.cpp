@@ -128,6 +128,8 @@ void reset() {
 
   bfN = 0;
 
+  log("# Got K #");
+
   // Send 'K'
   wr('K');
 

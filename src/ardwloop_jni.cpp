@@ -21,8 +21,8 @@ void entry_loop() {
 }
 
 void entry_reset() {
-  // back_print(1, "# ardwloop_jni.h entry_reset#");
-  // reset();
+  log("# ardwloop_jni.h entry_reset#");
+  reset();
 }
 
 char entry_prg() { return core_prg(); }
