@@ -10,6 +10,10 @@
 
 JNIEnv *ENV;
 
+jclass findBackEntryClass() {
+    return ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+};
+
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
 
 fct_init(
@@ -49,7 +53,7 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(JNIEnv *e
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(JNIEnv *env, jobject obj, jint i) {
    ENV = env;
-   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+   jclass cls = findBackEntryClass();
    jmethodID id = ENV->GetStaticMethodID(cls, "pong", "(I)I");
    return ENV->CallStaticCharMethod(cls, id, i);
 };
