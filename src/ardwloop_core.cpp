@@ -48,23 +48,24 @@ bool ignore()
 bool (*POST_IMPL)() = &ignore;
 
 void fct_init(
-      void (*prm_delay)(unsigned long),
-      void (*prm_write_low)(int),
-      void (*prm_write_high)(int),
-      void (*prm_pin_out)(int),
-      void (*prm_serial_begin)(int),
-      int (*prm_available)(),
-      int (*prm_read)(int),
-      int (*prm_write)(char)) {
-          fct_delay = prm_delay;
-          fct_write_low = prm_write_low;
-          fct_write_high = prm_write_high;
-          fct_pin_out = prm_pin_out,
-          fct_serial_begin = prm_serial_begin,
-          fct_available = prm_available;
-          fct_read = prm_read;
-          fct_write = prm_write;
-    }
+    void (*prm_delay)(unsigned long),
+    void (*prm_write_low)(int),
+    void (*prm_write_high)(int),
+    void (*prm_pin_out)(int),
+    void (*prm_serial_begin)(int),
+    int (*prm_available)(),
+    int (*prm_read)(int),
+    int (*prm_write)(char))
+{
+  fct_delay = prm_delay;
+  fct_write_low = prm_write_low;
+  fct_write_high = prm_write_high;
+  fct_pin_out = prm_pin_out,
+  fct_serial_begin = prm_serial_begin,
+  fct_available = prm_available;
+  fct_read = prm_read;
+  fct_write = prm_write;
+}
 
 char core_prg()
 {
@@ -118,7 +119,6 @@ void wr(char c)
   (*fct_write)(c);
 }
 
-
 void reset()
 {
 
@@ -151,7 +151,6 @@ void reset()
 
   printf("RESET PRG %c\n", PRG);
 } //()
-
 
 void wr_int(int v)
 {
@@ -215,7 +214,7 @@ void initJ()
     (*fct_delay)(DELAY_J);
     int n = (*fct_available)();
     if (n > 0)
-    (*fct_read)(1);
+      (*fct_read)(1);
     char c = buffer(0);
     if (c == 'J')
     {
@@ -418,26 +417,28 @@ void core_begin(int read, int post)
   core_setup();
 }
 
-V* core_s()
+V *core_s()
 {
   return &S;
 }
 
-V* core_p()
+V *core_p()
 {
   return &P;
 }
 
-V* core_r()
+V *core_r()
 {
   return &R;
 }
 
-int core_delay_post() {
+int core_delay_post()
+{
   return DELAY_POST;
 }
 
-void core_setup() {
+void core_setup()
+{
   S_I = 0;
   P_I = 0;
 
@@ -486,6 +487,7 @@ void core_loop()
   receive_r();
 }
 
-void core_post(bool (*p)()) {
+void core_post(bool (*p)())
+{
   POST_IMPL = p;
 }

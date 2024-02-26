@@ -4,7 +4,8 @@
 #include "ardwloop_core.h"
 #include "ardwloop_buffer.h"
 
-void inject_arduino_h() {
+void inject_arduino_h()
+{
     fct_init(
         &impl_delay,
         &impl_write_low,
@@ -16,40 +17,49 @@ void inject_arduino_h() {
         &impl_write);
 }
 
-void impl_delay(unsigned long ms) {
+void impl_delay(unsigned long ms)
+{
     delay(ms);
 }
 
-void impl_write_low(int i) {
+void impl_write_low(int i)
+{
     digitalWrite(i, LOW);
 }
 
-void impl_write_high(int i) {
+void impl_write_high(int i)
+{
     digitalWrite(i, HIGH);
 }
 
-void impl_pin_out(int pin) {
+void impl_pin_out(int pin)
+{
     pinMode(pin, OUTPUT);
 }
 
-void impl_serial_begin(int baud) {
-  Serial.begin(baud);
-  Serial.setTimeout(20000);
+void impl_serial_begin(int baud)
+{
+    Serial.begin(baud);
+    Serial.setTimeout(20000);
 }
 
-int impl_available() {
+int impl_available()
+{
     return Serial.available();
 }
 
-int impl_read(const int n) {
+int impl_read(const int n)
+{
     char arr[n];
-    int r =  Serial.readBytes(arr, n);
-    for(int i = 0; i < r; i++) {
+    int r = Serial.readBytes(arr, n);
+    for (int i = 0; i < r; i++)
+    {
         buffer_set(i, arr[i]);
     }
     return r;
 }
 
-int impl_write(char c) {
+int impl_write(char c)
+{
     return Serial.write(c);
 }

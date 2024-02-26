@@ -22,14 +22,14 @@ char rd();
 #endif
 
 void fct_init(
-      void (*prm_delay)(unsigned long),
-      void (*prm_write_low)(int),
-      void (*prm_write_high)(int),
-      void (*prm_pin_out)(int),
-      void (*prm_serial_begin)(int),
-      int (*prm_available)(),
-      int (*prm_read)(int),
-      int (*prm_write)(char));
+    void (*prm_delay)(unsigned long),
+    void (*prm_write_low)(int),
+    void (*prm_write_high)(int),
+    void (*prm_pin_out)(int),
+    void (*prm_serial_begin)(int),
+    int (*prm_available)(),
+    int (*prm_read)(int),
+    int (*prm_write)(char));
 
 void core_begin(int read, int post);
 int core_delay_post();
