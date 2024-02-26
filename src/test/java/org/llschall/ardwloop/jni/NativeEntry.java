@@ -28,13 +28,9 @@ public class NativeEntry {
 
     public native void init(int reboot, int read, int post, int beforeK, int j);
 
-    public native int ping();
+    public native int ping(int i);
 
-    public native int pong();
-
-    public native int print();
-
-    public native int check(int i);
+    public native int pong(int i);
 
     public native void setup();
 

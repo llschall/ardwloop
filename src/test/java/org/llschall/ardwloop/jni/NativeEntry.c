@@ -42,16 +42,16 @@ JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init(JNIEnv *e
     entry_begin(reboot,read, post,beforeK,j);
 };
 
-JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(JNIEnv *env, jobject obj) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(JNIEnv *env, jobject obj, jint i) {
    ENV = env;
-   return 2023;
+   return i;
 };
 
-JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(JNIEnv *env, jobject obj) {
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(JNIEnv *env, jobject obj, jint i) {
    ENV = env;
    jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-   jmethodID id = ENV->GetStaticMethodID(cls, "pong", "()I");
-   return ENV->CallStaticCharMethod(cls, id);
+   jmethodID id = ENV->GetStaticMethodID(cls, "pong", "(I)I");
+   return ENV->CallStaticCharMethod(cls, id, i);
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_print(JNIEnv *env, jobject obj) {

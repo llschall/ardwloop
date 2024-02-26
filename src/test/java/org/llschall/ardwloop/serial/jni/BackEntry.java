@@ -22,9 +22,9 @@ public class BackEntry {
     }
 
     // Called from JNI tests
-    public static int pong() {
-        Logger.msg("\n****************\n*     PONG     *\n****************\n");
-        return 2024;
+    public static int pong(int i) {
+        Logger.msg("\n****************\n*     PONG     *\n*     "+i+"     *\n****************\n");
+        return i;
     }
 
     public static void msg(String str) {
