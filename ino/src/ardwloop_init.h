@@ -15,7 +15,7 @@ void impl_serial_begin(int baud);
 
 int impl_available();
 
-int impl_read(int n);
+int impl_read(char *buffer, const int n);
 
 int impl_write(char c);
 

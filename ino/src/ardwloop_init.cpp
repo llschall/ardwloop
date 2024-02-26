@@ -48,15 +48,8 @@ int impl_available()
     return Serial.available();
 }
 
-int impl_read(const int n)
-{
-    char arr[n];
-    int r = Serial.readBytes(arr, n);
-    for (int i = 0; i < r; i++)
-    {
-        buffer_set(i, arr[i]);
-    }
-    return r;
+int impl_read(char *buffer, const int n) {
+    return Serial.readBytes(buffer, n);
 }
 
 int impl_write(char c)

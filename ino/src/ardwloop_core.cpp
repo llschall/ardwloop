@@ -37,7 +37,7 @@ void (*fct_write_high)(int);
 void (*fct_pin_out)(int);
 void (*fct_serial_begin)(int);
 int (*fct_available)();
-int (*fct_read)(int);
+int (*fct_read)(char*, int);
 int (*fct_write)(char);
 
 bool ignore()
@@ -54,7 +54,7 @@ void fct_init(
     void (*prm_pin_out)(int),
     void (*prm_serial_begin)(int),
     int (*prm_available)(),
-    int (*prm_read)(int),
+    int (*prm_read)(char*, int),
     int (*prm_write)(char))
 {
   fct_delay = prm_delay;
@@ -65,6 +65,17 @@ void fct_init(
   fct_available = prm_available;
   fct_read = prm_read;
   fct_write = prm_write;
+}
+
+int impl_read0(const int n)
+{
+    char arr[n];
+    int r = (*fct_read)(arr, n);
+    for (int i = 0; i < r; i++)
+    {
+        buffer_set(i, arr[i]);
+    }
+    return r;
 }
 
 char core_prg()
@@ -108,7 +119,7 @@ char rd()
   if (i > bfS)
     i = bfS;
 
-  bfN = (*fct_read)(i);
+  bfN = impl_read0(i);
   bfI = 0;
 
   return rd();
@@ -132,7 +143,7 @@ void reset()
 
   while ((*fct_available)())
   {
-    (*fct_read)(1);
+    impl_read0(1);
   }
 
   bfN = 0;
@@ -205,7 +216,7 @@ void initJ()
 {
   while ((*fct_available)() > 0)
   {
-    (*fct_read)(1);
+    impl_read0(1);
   }
 
   while (true)
@@ -214,7 +225,7 @@ void initJ()
     (*fct_delay)(DELAY_J);
     int n = (*fct_available)();
     if (n > 0)
-      (*fct_read)(1);
+      impl_read0(1);
     char c = buffer(0);
     if (c == 'J')
     {
