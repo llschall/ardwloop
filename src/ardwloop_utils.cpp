@@ -1,10 +1,8 @@
 #include "ardwloop_utils.h"
 
-int map_c(char c)
-{
+int map_c(char c) {
 
-  switch (c)
-  {
+  switch (c) {
   case '0':
     return 0;
   case '1':
@@ -29,11 +27,9 @@ int map_c(char c)
   return -1;
 }
 
-char map_i(int i)
-{
+char map_i(int i) {
 
-  switch (i)
-  {
+  switch (i) {
   case 0:
     return '0';
   case 1:
@@ -58,13 +54,11 @@ char map_i(int i)
   return '#';
 }
 
-void toBin(int dec, int a[12])
-{
+void toBin(int dec, int a[12]) {
 
   int v = dec;
 
-  for (int i = 0; i < 12; i++)
-  {
+  for (int i = 0; i < 12; i++) {
     a[i] = v % 2;
     v = v / 2;
   }

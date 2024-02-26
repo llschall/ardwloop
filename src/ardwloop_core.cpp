@@ -41,88 +41,60 @@ int (*fct_available)();
 int (*fct_read)(char *, int);
 int (*fct_write)(char);
 
-bool ignore()
-{
-  return false;
-}
+bool ignore() { return false; }
 
 bool (*POST_IMPL)() = &ignore;
 
-void fct_init(
-    void (*prm_log)(const char *),
-    void (*prm_delay)(unsigned long),
-    void (*prm_write_low)(int),
-    void (*prm_write_high)(int),
-    void (*prm_pin_out)(int),
-    void (*prm_serial_begin)(int),
-    int (*prm_available)(),
-    int (*prm_read)(char *, int),
-    int (*prm_write)(char))
-{
+void fct_init(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
+              void (*prm_write_low)(int), void (*prm_write_high)(int),
+              void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
+              int (*prm_available)(), int (*prm_read)(char *, int),
+              int (*prm_write)(char)) {
   fct_log = prm_log;
   fct_delay = prm_delay;
   fct_write_low = prm_write_low;
   fct_write_high = prm_write_high;
-  fct_pin_out = prm_pin_out,
-  fct_serial_begin = prm_serial_begin,
+  fct_pin_out = prm_pin_out, fct_serial_begin = prm_serial_begin,
   fct_available = prm_available;
   fct_read = prm_read;
   fct_write = prm_write;
 }
 
-int impl_read0(const int n)
-{
+int impl_read0(const int n) {
   char arr[n];
   int r = (*fct_read)(arr, n);
-  for (int i = 0; i < r; i++)
-  {
+  for (int i = 0; i < r; i++) {
     buffer_set(i, arr[i]);
   }
   return r;
 }
 
-char core_prg()
-{
-  return PRG;
-}
+char core_prg() { return PRG; }
 
-int core_rc()
-{
-  return Rc;
-}
+int core_rc() { return Rc; }
 
-int core_sc()
-{
-  return Sc;
-}
+int core_sc() { return Sc; }
 
-void reboot()
-{
+void reboot() {
   (*fct_delay)(DELAY_REBOOT);
   (*fct_write_low)(2);
 }
 
-char rd()
-{
-  if (bfI < bfN)
-  {
+char rd() {
+  if (bfI < bfN) {
     char c = buffer(bfI);
     if (c == 'Z')
       reboot();
-    if (c == 'N')
-    {
+    if (c == 'N') {
       wr('N');
-    }
-    else
-    {
+    } else {
       bfI++;
       return c;
     }
   }
 
   int i = (*fct_available)();
-  while (i == 0)
-  {
+  while (i == 0) {
     (*fct_delay)(DELAY_READ);
     i = (*fct_available)();
   }
@@ -138,25 +110,19 @@ char rd()
   return rd();
 }
 
-void wr(char c)
-{
-  (*fct_write)(c);
-}
+void wr(char c) { (*fct_write)(c); }
 
-void reset()
-{
+void reset() {
 
   log("### Reset ###");
   (*fct_delay)(DELAY_BEFORE_K);
   // Wait for 'K'
 
-  for (char c = rd(); c != 'K'; c = rd())
-  {
+  for (char c = rd(); c != 'K'; c = rd()) {
     printf("RD %c\n", c);
   }
 
-  while ((*fct_available)())
-  {
+  while ((*fct_available)()) {
     impl_read0(1);
   }
 
@@ -165,8 +131,7 @@ void reset()
   // Send 'K'
   wr('K');
 
-  if ('C' != rd())
-  {
+  if ('C' != rd()) {
     log("# Program error #");
   }
 
@@ -178,8 +143,7 @@ void reset()
   log("# Reset PRG #");
 } //()
 
-void wr_int(int v)
-{
+void wr_int(int v) {
 
   bool pos = v >= 0;
   int t = pos ? v : -v;
@@ -188,8 +152,7 @@ void wr_int(int v)
   while (p <= t)
     p *= 10;
 
-  while (p >= 10)
-  {
+  while (p >= 10) {
     p /= 10;
     int d = t / p;
     wr(map_i(d));
@@ -199,53 +162,42 @@ void wr_int(int v)
   wr(pos ? '+' : '-');
 }
 
-void wr_i(int i)
-{
+void wr_i(int i) {
 
-  if (i >= 100)
-  {
+  if (i >= 100) {
     int d = (i / 100);
     wr(map_i(d));
     d = d * 100;
     i = (i - d);
-  }
-  else
-  {
+  } else {
     wr(map_i(0));
   }
-  if (i >= 10)
-  {
+  if (i >= 10) {
     int d = (i / 10);
     wr(map_i(d));
     d = d * 10;
     i = (i - d);
-  }
-  else
-  {
+  } else {
     wr(map_i(0));
   }
   wr(map_i(i));
 }
 
-void initJ()
-{
+void initJ() {
 
   log("### Init J ###");
-  while ((*fct_available)() > 0)
-  {
+  while ((*fct_available)() > 0) {
     impl_read0(1);
   }
 
-  while (true)
-  {
+  while (true) {
     wr('J');
     (*fct_delay)(DELAY_J);
     int n = (*fct_available)();
     if (n > 0)
       impl_read0(1);
     char c = buffer(0);
-    if (c == 'J')
-    {
+    if (c == 'J') {
       log("### Got J ###");
       return;
     }
@@ -255,69 +207,57 @@ void initJ()
 //////////////////////////////////
 // SERIAL
 
-void receive_r()
-{
+void receive_r() {
 
   char r = rd();
 
-  if (r != 'R')
-  {
+  if (r != 'R') {
     printf("Expected R but got %c\n", r);
   }
 
-  for (int i = 0; i < Rc; i++)
-  {
+  for (int i = 0; i < Rc; i++) {
 
     char k = K[i];
 
-    for (unsigned long j = 0; j < sizeof(H); j++)
-    {
+    for (unsigned long j = 0; j < sizeof(H); j++) {
 
       char h = H[j];
 
       char c = rd();
-      if (c == 'Y')
-      {
+      if (c == 'Y') {
         reset();
         return;
       } // if
 
-      if (c != k)
-      {
+      if (c != k) {
         reset();
         return;
       } // if
 
       c = rd();
-      if (c == 'Y')
-      {
+      if (c == 'Y') {
         reset();
         return;
       } // if
 
-      if (c != h)
-      {
+      if (c != h) {
         reset();
         return;
       } // if
 
       int v = 0;
 
-      while (true)
-      {
+      while (true) {
         c = rd();
-        if (c == 'Y')
-        {
+        if (c == 'Y') {
           reset();
           return;
         } // if
 
-        if (c == '+')
-        {
+        if (c == '+') {
           break;
         } // if
-        if (c == '-')
-        {
+        if (c == '-') {
           v *= -1;
           break;
         } // if
@@ -328,8 +268,7 @@ void receive_r()
 
       struct D *d = Rv[i];
 
-      switch (j)
-      {
+      switch (j) {
       case 0:
         d->v = v;
         break;
@@ -350,8 +289,7 @@ void receive_r()
   }     // for i
 } // receive()
 
-void send_s()
-{
+void send_s() {
   wr('S');
 
   int i = S_I;
@@ -360,10 +298,8 @@ void send_s()
     S_I = 0;
   wr_i(i);
 
-  for (int i = 0; i < Sc; i++)
-  {
-    for (unsigned int j = 0; j < sizeof(H); j++)
-    {
+  for (int i = 0; i < Sc; i++) {
+    for (unsigned int j = 0; j < sizeof(H); j++) {
       wr(K[i]);
       wr(H[j]);
 
@@ -371,8 +307,7 @@ void send_s()
 
       int v;
 
-      switch (j)
-      {
+      switch (j) {
       case 0:
         v = d->v;
         break;
@@ -394,8 +329,7 @@ void send_s()
   }
 }
 
-void send_p()
-{
+void send_p() {
   wr('P');
 
   int i = P_I;
@@ -404,8 +338,7 @@ void send_p()
     P_I = 0;
   wr_i(i);
 
-  for (unsigned int j = 0; j < sizeof(H); j++)
-  {
+  for (unsigned int j = 0; j < sizeof(H); j++) {
     wr(K[0]);
     wr(H[j]);
 
@@ -413,8 +346,7 @@ void send_p()
 
     int v;
 
-    switch (j)
-    {
+    switch (j) {
     case 0:
       v = d->v;
       break;
@@ -435,8 +367,7 @@ void send_p()
   }
 }
 
-void core_begin(int read, int post)
-{
+void core_begin(int read, int post) {
   DELAY_REBOOT = 999;
   DELAY_READ = read;
   DELAY_POST = post;
@@ -444,28 +375,15 @@ void core_begin(int read, int post)
   DELAY_BEFORE_K = 9;
 }
 
-V *core_s()
-{
-  return &S;
-}
+V *core_s() { return &S; }
 
-V *core_p()
-{
-  return &P;
-}
+V *core_p() { return &P; }
 
-V *core_r()
-{
-  return &R;
-}
+V *core_r() { return &R; }
 
-int core_delay_post()
-{
-  return DELAY_POST;
-}
+int core_delay_post() { return DELAY_POST; }
 
-void core_setup()
-{
+void core_setup() {
   log("# core_setup--");
 
   S_I = 0;
@@ -481,34 +399,25 @@ void core_setup()
   log("# --core_setup");
 }
 
-void core_loop()
-{
+void core_loop() {
   send_s();
 
   int i = 0;
   int p = 0;
   bool post = true;
-  while ((*fct_available)() == 0)
-  {
-    if (post)
-    {
-      if (i == core_delay_post())
-      {
+  while ((*fct_available)() == 0) {
+    if (post) {
+      if (i == core_delay_post()) {
         post = (*POST_IMPL)();
         send_p();
         i = 0;
-      }
-      else
-      {
+      } else {
         i++;
         (*fct_delay)(1);
       }
-    }
-    else
-    {
+    } else {
       p++;
-      if (p > 999)
-      {
+      if (p > 999) {
         send_p();
         p = 0;
       }
@@ -518,12 +427,6 @@ void core_loop()
   receive_r();
 }
 
-void core_post(bool (*p)())
-{
-  POST_IMPL = p;
-}
+void core_post(bool (*p)()) { POST_IMPL = p; }
 
-void log(const char *msg)
-{
-  (*fct_log)(msg);
-}
+void log(const char *msg) { (*fct_log)(msg); }
