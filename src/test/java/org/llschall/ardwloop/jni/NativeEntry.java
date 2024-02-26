@@ -1,7 +1,6 @@
 package org.llschall.ardwloop.jni;
 
 import org.llschall.ardwloop.JniTestException;
-import org.llschall.ardwloop.LocalOnly;
 
 public class NativeEntry {
 
