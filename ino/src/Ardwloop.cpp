@@ -7,24 +7,25 @@
 
 /////////////////////////////////
 
-void ardw_start(int read, int post) {
+void ardw_start(int read, int post)
+{
   inject_arduino_h();
   core_begin(read, post);
 }
 
 /////////////////////////////////
 
-V* ardw_s()
+V *ardw_s()
 {
   return core_s();
 }
 
-V* ardw_p()
+V *ardw_p()
 {
   return core_p();
 }
 
-V* ardw_r()
+V *ardw_r()
 {
   return core_r();
 }
@@ -39,6 +40,7 @@ void ardw_loop()
   core_loop();
 }
 
-char ardw_prg() {
+char ardw_prg()
+{
   return core_prg();
 }

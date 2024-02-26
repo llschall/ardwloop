@@ -1,7 +1,8 @@
 
 #include "ardwloop_buffer.h"
 
-int buffer_size() {
+int buffer_size()
+{
     return 100;
 }
 
@@ -109,10 +110,12 @@ char Bf[] = {
     '=', // 100
 };
 
-char buffer(int i) {
+char buffer(int i)
+{
     return Bf[i];
 }
 
-void buffer_set(int i, char c) {
+void buffer_set(int i, char c)
+{
     Bf[i] = c;
 }

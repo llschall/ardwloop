@@ -15,8 +15,8 @@ void entry_reset();
 
 char entry_prg();
 
-V* entry_s();
+V *entry_s();
 
-V* entry_r();
+V *entry_r();
 
 #endif
