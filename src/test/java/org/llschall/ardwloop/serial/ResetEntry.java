@@ -2,7 +2,7 @@ package org.llschall.ardwloop.serial;
 
 class ResetEntry implements IBackEntry {
 
-    final String rb = "K--P-W";
+    final String rb = "K-CW54";
     int av = 0;
 
     @Override

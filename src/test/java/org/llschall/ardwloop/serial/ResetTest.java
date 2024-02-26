@@ -27,6 +27,8 @@ public class ResetTest {
         entry.reset();
         char prg = entry.prg();
         Assertions.assertEquals('W', prg);
+        Assertions.assertEquals(5,entry.rc());
+        Assertions.assertEquals(4,entry.sc());
     }
 
     @Test
