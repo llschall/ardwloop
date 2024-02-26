@@ -7,6 +7,7 @@
 void inject_arduino_h()
 {
     fct_init(
+        &impl_log,
         &impl_delay,
         &impl_write_low,
         &impl_write_high,
@@ -15,6 +16,11 @@ void inject_arduino_h()
         &impl_available,
         &impl_read,
         &impl_write);
+}
+
+void impl_log(const char *msg)
+{
+    // do nothing for now
 }
 
 void impl_delay(unsigned long ms)
@@ -48,7 +54,8 @@ int impl_available()
     return Serial.available();
 }
 
-int impl_read(char *buffer, const int n) {
+int impl_read(char *buffer, const int n)
+{
     return Serial.readBytes(buffer, n);
 }
 
