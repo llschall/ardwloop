@@ -46,3 +46,4 @@ bin/
 /.idea/vcs.xml
 /.idea/workspace.xml
 /.idea/uiDesigner.xml
+/local.txt

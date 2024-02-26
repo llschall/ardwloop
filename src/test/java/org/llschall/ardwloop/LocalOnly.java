@@ -11,7 +11,7 @@ public class LocalOnly {
     private final static LocalOnly INSTANCE = new LocalOnly();
 
     private LocalOnly() {
-        this.isLocal = Files.exists(Paths.get("docs"));
+        this.isLocal = Files.exists(Paths.get("local.txt"));
     }
 
     public static LocalOnly get() {
