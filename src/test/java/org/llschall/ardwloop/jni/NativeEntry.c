@@ -11,6 +11,8 @@
 
 JNIEnv *ENV;
 
+bool LOG_DEBUG = false;
+
 jclass findBackEntryClass() {
   return ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
 };
@@ -47,14 +49,17 @@ int fake_read(char *buffer, int n) {
 
   for (int i = 0; i < n; i++) {
     char c = ENV->CallStaticCharMethod(cls, id);
-    log_dbg("fake_read -> %c", c);
+
+    if (LOG_DEBUG)
+      log_dbg("fake_read -> %c", c);
     buffer[i] = c;
   }
   return n;
 };
 
 int fake_write(char c) {
-  log_dbg("fake_write -> %c", c);
+  if (LOG_DEBUG)
+    log_dbg("fake_write -> %c", c);
 
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)V");

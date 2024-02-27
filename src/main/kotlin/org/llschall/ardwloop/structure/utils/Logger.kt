@@ -5,13 +5,22 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object Logger {
+
+    var skipMsg = true;
+
     @JvmStatic
     fun msg(shift: Int, msg: String) {
+        if (skipMsg) {
+            return;
+        }
         log(shift, System.out, msg)
     }
 
     @JvmStatic
     fun msg(msg: String) {
+        if (skipMsg) {
+            return;
+        }
         log(0, System.out, msg)
     }
 
