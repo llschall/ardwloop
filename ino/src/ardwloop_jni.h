@@ -17,4 +17,10 @@ V *entry_s();
 
 V *entry_r();
 
+char entry_prg();
+int entry_rc();
+int entry_sc();
+int entry_delay_read();
+int entry_delay_post();
+
 #endif

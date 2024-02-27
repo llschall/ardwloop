@@ -42,6 +42,10 @@ public class NativeEntry {
 
     public native int sc();
 
+    public native int delay_read();
+
+    public native int delay_post();
+
     public native void reset();
 
     public native int exportR(char v, char d);
