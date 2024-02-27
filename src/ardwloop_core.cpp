@@ -70,10 +70,10 @@ int impl_read0(const int n) {
 }
 
 char core_prg() { return PRG; }
-
 int core_rc() { return Rc; }
-
 int core_sc() { return Sc; }
+int core_delay_read() { return DELAY_READ; }
+int core_delay_post() { return DELAY_POST; }
 
 void reboot() {
   (*fct_delay)(DELAY_REBOOT);
@@ -384,8 +384,6 @@ V *core_p() { return &P; }
 
 V *core_r() { return &R; }
 
-int core_delay_post() { return DELAY_POST; }
-
 void core_setup() {
   log("# core_setup--");
 
@@ -418,7 +416,7 @@ void core_loop() {
         (*fct_delay)(1);
       }
     } else {
-        send_p();
+      send_p();
       (*fct_delay)(9);
     }
   }

@@ -28,6 +28,9 @@ void entry_reset() {
 char entry_prg() { return core_prg(); }
 int entry_rc() { return core_rc(); }
 int entry_sc() { return core_sc(); }
+int entry_delay_read() { return core_delay_read(); }
+int entry_delay_post() { return core_delay_post(); }
+
 
 V *entry_s() { return core_s(); }
 V *entry_r() { return core_r(); }

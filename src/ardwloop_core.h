@@ -36,7 +36,7 @@ void core_post(bool (*p)());
 char core_prg();
 int core_rc();
 int core_sc();
-
+int core_delay_read();
 V *core_s();
 V *core_p();
 V *core_r();
