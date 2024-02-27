@@ -13,7 +13,7 @@ JNIEnv *ENV;
 
 bool LOG_DEBUG = false;
 
-jclass find_back_entry_class(JNIEnv* env) {
+jclass find_back_entry_class(JNIEnv *env) {
   return ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
 };
 
@@ -140,7 +140,7 @@ Java_org_llschall_ardwloop_jni_NativeEntry_sc(JNIEnv *env, jobject obj) {
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
     JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
-    import_S(c,v,w,x,y,z);
+  import_S(c, v, w, x, y, z);
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
