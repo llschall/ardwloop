@@ -42,9 +42,9 @@ public class NativeEntry {
 
     public native int sc();
 
-    public native int delay_read();
+    public native int delayRead();
 
-    public native int delay_post();
+    public native int delayPost();
 
     public native void reset();
 

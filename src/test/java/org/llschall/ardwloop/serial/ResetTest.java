@@ -29,6 +29,8 @@ public class ResetTest {
         Assertions.assertEquals('W', prg);
         Assertions.assertEquals(5,entry.rc());
         Assertions.assertEquals(4,entry.sc());
+        Assertions.assertEquals(1,entry.delayRead());
+        Assertions.assertEquals(1,entry.delayPost());
     }
 
     @Test

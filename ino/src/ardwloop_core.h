@@ -26,7 +26,6 @@ void fct_init(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
               int (*prm_write)(char));
 
 void core_begin(int read, int post);
-int core_delay_post();
 
 void core_setup();
 void core_loop();
@@ -37,6 +36,7 @@ char core_prg();
 int core_rc();
 int core_sc();
 int core_delay_read();
+int core_delay_post();
 V *core_s();
 V *core_p();
 V *core_r();
