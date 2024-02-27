@@ -193,7 +193,6 @@ void back_print(int log, char *str, va_list c) {
 }
 
 void back_print(int log, char *str) {
-  // if(log > LOG_LEVEL) return;
 
   jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
   jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");
@@ -205,36 +204,3 @@ void back_print(int log, char *str) {
 void log_dbg(char *str, va_list c) { back_print(0, str, c); }
 
 void log_dbg(char *str) { back_print(0, str); }
-
-void back_delay(long ms) {
-  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "delay", "(J)V");
-  ENV->CallStaticVoidMethod(cls, id, ms);
-}
-
-// https://www.arduino.cc/reference/en/language/functions/communication/serial/available/
-int back_available() {
-  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "available", "()I");
-
-  return ENV->CallStaticCharMethod(cls, id);
-}
-
-// https://www.arduino.cc/reference/en/language/functions/communication/serial/readbytes/
-int back_read(char *buffer, int length) {
-  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "read", "()C");
-
-  for (int i = 0; i < length; i++) {
-    char c = ENV->CallStaticCharMethod(cls, id);
-    buffer[i] = c;
-  }
-  return length;
-}
-
-void back_write(char c) {
-  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)V");
-
-  ENV->CallStaticVoidMethod(cls, id, c);
-}
