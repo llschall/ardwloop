@@ -140,6 +140,37 @@ Java_org_llschall_ardwloop_jni_NativeEntry_sc(JNIEnv *env, jobject obj) {
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
     JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
+    import_S(c,v,w,x,y,z);
+};
+
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
+    JNIEnv *env, jobject obj, jchar v, jchar d) {
+  V *R = entry_r();
+  return export_v(*R, v, d);
+}
+
+//////////////////////////
+
+void back_print(int log, char *str, va_list c) {
+  char buf[32];
+  snprintf(buf, sizeof(buf), str, c);
+  back_print(log, buf);
+}
+
+void back_print(int log, char *str) {
+
+  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+  jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");
+
+  jstring jstr = ENV->NewStringUTF(str);
+  ENV->CallStaticVoidMethod(cls, id, jstr);
+}
+
+void log_dbg(char *str, va_list c) { back_print(0, str, c); }
+
+void log_dbg(char *str) { back_print(0, str); }
+
+int import_S(char c, jint v, int w, int x, int y, int z) {
 
   V *S = entry_s();
 
@@ -155,7 +186,7 @@ JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
   data->x = x;
   data->y = y;
   data->z = z;
-};
+}
 
 int export_d(D data, jchar d) {
   switch (d) {
@@ -178,29 +209,3 @@ int export_v(V data, jchar v, jchar d) {
     return export_d(data.a, d);
   }
 }
-
-JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
-    JNIEnv *env, jobject obj, jchar v, jchar d) {
-
-  V *R = entry_r();
-  return export_v(*R, v, d);
-}
-
-void back_print(int log, char *str, va_list c) {
-  char buf[32];
-  snprintf(buf, sizeof(buf), str, c);
-  back_print(log, buf);
-}
-
-void back_print(int log, char *str) {
-
-  jclass cls = ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
-  jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");
-
-  jstring jstr = ENV->NewStringUTF(str);
-  ENV->CallStaticVoidMethod(cls, id, jstr);
-}
-
-void log_dbg(char *str, va_list c) { back_print(0, str, c); }
-
-void log_dbg(char *str) { back_print(0, str); }

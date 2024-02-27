@@ -17,3 +17,7 @@ void log_dbg(char *str);
 void log_dbg(char *str, va_list c);
 
 jclass findBackEntryClass();
+
+int import_S(char c, jint v, int w, int x, int y, int z);
+int export_d(D data, jchar d);
+int export_v(V data, jchar v, jchar d);
