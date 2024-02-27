@@ -16,7 +16,7 @@ void back_print(int log, char *str, va_list c);
 void log_dbg(char *str);
 void log_dbg(char *str, va_list c);
 
-jclass findBackEntryClass();
+jclass find_back_entry_class(JNIEnv* env);
 
 int import_S(char c, jint v, int w, int x, int y, int z);
 int export_d(D data, jchar d);
