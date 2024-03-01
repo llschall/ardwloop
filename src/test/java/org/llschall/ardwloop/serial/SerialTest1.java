@@ -36,7 +36,7 @@ public class SerialTest1 {
     @Test
     void setupTest2() {
 
-        MsgEntry back = new MsgEntry('T', 3, 2, 7, 9);
+        MsgEntry back = new MsgEntry('T', 3, 2, 217, 19);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -44,7 +44,7 @@ public class SerialTest1 {
         Assertions.assertEquals('T', entry.prg());
         Assertions.assertEquals(3, entry.rc());
         Assertions.assertEquals(2, entry.sc());
-        Assertions.assertEquals(7, entry.delayRead());
-        Assertions.assertEquals(9, entry.delayPost());
+        Assertions.assertEquals(217, entry.delayRead());
+        Assertions.assertEquals(19, entry.delayPost());
     }
 }
