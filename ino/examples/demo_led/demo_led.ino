@@ -1,6 +1,7 @@
 /*
-Welcome to the Ardwloop demo !
-Version 0.1.1
+Welcome to the Ardwloop Demo !
+
+Featuring Ardwloop 0.1.1
 
 More setup instructions are available in
 https://github.com/llschall/ardwloop-demo
