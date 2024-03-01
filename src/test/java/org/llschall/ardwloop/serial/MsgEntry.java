@@ -7,12 +7,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.llschall.ardwloop.serial.Serial.C_;
-import static org.llschall.ardwloop.serial.Serial.J;
-import static org.llschall.ardwloop.serial.Serial.J_;
-import static org.llschall.ardwloop.serial.Serial.K;
-import static org.llschall.ardwloop.serial.Serial.K_;
-import static org.llschall.ardwloop.serial.Serial.P;
+import static org.llschall.ardwloop.serial.Serial.*;
 
 public class MsgEntry implements IBackEntry {
 
@@ -22,12 +17,16 @@ public class MsgEntry implements IBackEntry {
     int i = 0; // index of the current char
     int av = 0; // how many successive times available() is called
 
-    MsgEntry(char program, int rc, int sc) {
+    MsgEntry(char program, int rc, int sc, int read, int post) {
         this.msgs = new ArrayList<>();
         this.msgs.add(new Msg("", K_ + P + J + K + P));
         this.msgs.add(new Msg(J_, J_));
         this.msgs.add(new Msg("", K_));
-        this.msgs.add(new Msg(K_, C_ + program + rc + sc));
+        this.msgs.add(new Msg(K_, C_ + program + C_ + rc + C_ + sc + C_ + read + C_ + post));
+    }
+
+    MsgEntry(char program, int rc, int sc) {
+        this(program, rc, sc, 0, 0);
     }
 
     void addMsg(String a2c, String c2a) {

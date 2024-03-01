@@ -27,10 +27,10 @@ public class ResetTest {
         entry.reset();
         char prg = entry.prg();
         Assertions.assertEquals('W', prg);
-        Assertions.assertEquals(5,entry.rc());
-        Assertions.assertEquals(4,entry.sc());
-        Assertions.assertEquals(1,entry.delayRead());
-        Assertions.assertEquals(1,entry.delayPost());
+        Assertions.assertEquals(5, entry.rc());
+        Assertions.assertEquals(4, entry.sc());
+        Assertions.assertEquals(7, entry.delayRead());
+        Assertions.assertEquals(9, entry.delayPost());
     }
 
     @Test

@@ -32,4 +32,19 @@ public class SerialTest1 {
         Assertions.assertEquals(5, entry.rc());
         Assertions.assertEquals(7, entry.sc());
     }
+
+    @Test
+    void setupTest2() {
+
+        MsgEntry back = new MsgEntry('T', 3, 2, 7, 9);
+        BackEntry.setup(back);
+
+        NativeEntry entry = new NativeEntry();
+        entry.setup();
+        Assertions.assertEquals('T', entry.prg());
+        Assertions.assertEquals(3, entry.rc());
+        Assertions.assertEquals(2, entry.sc());
+        Assertions.assertEquals(7, entry.delayRead());
+        Assertions.assertEquals(9, entry.delayPost());
+    }
 }
