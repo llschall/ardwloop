@@ -136,10 +136,27 @@ void reset() {
   if ('C' != rd()) {
     log("# Program error #");
   }
-
   PRG = rd();
+
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
   Rc = map_c(rd());
+
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
   Sc = map_c(rd());
+
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
+  DELAY_READ = map_c(rd());
+
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
+  DELAY_POST = map_c(rd());
 
   printf("RESET PRG %c\n", PRG);
   log("# Reset PRG #");
