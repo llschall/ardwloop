@@ -5,9 +5,9 @@
 #include "ardwloop_init.h"
 
 void inject_arduino_h() {
-  fct_init(&impl_log, &impl_delay, &impl_write_low, &impl_write_high,
-           &impl_pin_out, &impl_serial_begin, &impl_available, &impl_read,
-           &impl_write);
+  fct_inject(&impl_log, &impl_delay, &impl_write_low, &impl_write_high,
+             &impl_pin_out, &impl_serial_begin, &impl_available, &impl_read,
+             &impl_write);
 }
 
 void impl_log(const char *msg) {

@@ -20,7 +20,7 @@ jclass find_back_entry_class(JNIEnv *env) {
 JNIEXPORT void JNICALL
 Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
 
-  fct_init(&fake_log, &fake_delay, &fake_write_low, &fake_write_high,
+  fct_inject(&fake_log, &fake_delay, &fake_write_low, &fake_write_high,
            &fake_pin_out, &fake_serial_begin, &fake_available, &fake_read,
            &fake_write);
 }
