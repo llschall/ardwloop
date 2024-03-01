@@ -19,11 +19,11 @@ char rd();
 
 #endif
 
-void fct_init(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
-              void (*prm_write_low)(int), void (*prm_write_high)(int),
-              void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
-              int (*prm_available)(), int (*prm_read)(char *, int),
-              int (*prm_write)(char));
+void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
+                void (*prm_write_low)(int), void (*prm_write_high)(int),
+                void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
+                int (*prm_available)(), int (*prm_read)(char *, int),
+                int (*prm_write)(char));
 
 void core_begin(int read, int post);
 
