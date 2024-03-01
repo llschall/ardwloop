@@ -3,6 +3,7 @@ package org.llschall.ardwloop;
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
+import org.llschall.ardwloop.structure.utils.Logger;
 
 public class ArdwloopStarter {
 
@@ -20,6 +21,7 @@ public class ArdwloopStarter {
     }
 
     public ArdwloopModel start(IArdwProgram program, AbstractLoop... loops) {
+        Logger.msg("Starting Ardwloop version "+ARDWLOOP_VERSION);
         container = new ProgramContainer(program);
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);
