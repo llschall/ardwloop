@@ -7,9 +7,8 @@
 
 /////////////////////////////////
 
-void ardw_start(int read, int post) {
+void ardw_start() {
   inject_arduino_h();
-  core_begin(read, post);
   core_setup();
 }
 
