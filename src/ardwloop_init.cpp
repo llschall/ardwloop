@@ -18,7 +18,7 @@ void (*LOG)(const char *msg) = &ignore_log;
 
 void inject_log(void (*p)(const char *)) {
   LOG = p;
-  impl_log("Logger Injected");
+  impl_log("= logger ready =");
 }
 
 void impl_log(const char *msg) { (*LOG)(msg); }
