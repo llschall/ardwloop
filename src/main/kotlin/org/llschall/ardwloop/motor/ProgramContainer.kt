@@ -16,7 +16,12 @@ class ProgramContainer(private val program: IArdwProgram) {
 
     init {
         val model = ArdwloopModel(this)
-        model.serialMdl.program.set(ProgramCfg(program.id, program.rc, program.sc))
+        model.serialMdl.program.set(
+            ProgramCfg(
+                program.id, program.rc, program.sc,
+                program.read, program.post,
+            )
+        )
 
         config = Config(9600, model)
         this.model = model

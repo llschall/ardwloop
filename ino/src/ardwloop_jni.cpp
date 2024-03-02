@@ -1,22 +1,17 @@
 #include "ardwloop_core.h"
-#include <stdio.h>
 
 int entry_check(int i) {
-  printf("\n# ardwloop_jni.h entry_check# %d\n", i);
+  log("\n# ardwloop_jni.h entry_check#");
   return i * 2;
 }
 
-void entry_begin(int reboot, int read, int post, int beforeK, int j) {
-  core_begin(read, post);
-}
-
 void entry_setup() {
-  printf("\n# ardwloop_jni.h entry_setup#\n");
+  log("\n# ardwloop_jni.h entry_setup#\n");
   core_setup();
 }
 
 void entry_loop() {
-  printf("\n# ardwloop_jni.h entry_loop#\n");
+  log("\n# ardwloop_jni.h entry_loop#\n");
   core_loop();
 }
 
@@ -30,7 +25,6 @@ int entry_rc() { return core_rc(); }
 int entry_sc() { return core_sc(); }
 int entry_delay_read() { return core_delay_read(); }
 int entry_delay_post() { return core_delay_post(); }
-
 
 V *entry_s() { return core_s(); }
 V *entry_r() { return core_r(); }

@@ -21,7 +21,7 @@ internal class Writer(private val port: ISerialPort) {
     fun write(c: Char, d: Char, i: Int) {
         write(c)
         write(d)
-        write(i)
+        write(i, true)
     }
 
     // connection
@@ -39,11 +39,18 @@ internal class Writer(private val port: ISerialPort) {
 
     // switch program
     @Throws(SerialWriteException::class)
-    fun writeC(p: Char, rc: Int, sc: Int) {
+    fun writeC(p: Char, rc: Int, sc: Int, read: Int, post: Int) {
         write(Serial.C)
         write(p)
+        write(Serial.C)
         write(map(rc))
+        write(Serial.C)
         write(map(sc))
+        write(Serial.C)
+        write(read, false)
+        write(Serial.C)
+        write(post, false)
+        write(Serial.C)
         flush()
     }
 
@@ -58,9 +65,13 @@ internal class Writer(private val port: ISerialPort) {
         write(Serial.R)
     }
 
-    private fun write(v: Int) {
+    private fun write(v: Int, signed: Boolean) {
         if (v == 0) {
-            write('+')
+            if (signed) {
+                write('+')
+            } else {
+                write('0')
+            }
             return
         }
 
@@ -78,7 +89,10 @@ internal class Writer(private val port: ISerialPort) {
             write(map(d))
             t -= d * p
         }
-        write(if (pos) '+' else '-')
+
+        if (signed) {
+            write(if (pos) '+' else '-')
+        }
     }
 
     private fun write(c: Char) {

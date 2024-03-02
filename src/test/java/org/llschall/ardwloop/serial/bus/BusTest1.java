@@ -7,14 +7,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.LocalOnly;
-import org.llschall.ardwloop.serial.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.Bus;
-import org.llschall.ardwloop.serial.Serial;
-import org.llschall.ardwloop.serial.SerialLongReadException;
-import org.llschall.ardwloop.serial.SerialWriteException;
-import org.llschall.ardwloop.serial.SerialWrongReadException;
+import org.llschall.ardwloop.serial.*;
+import org.llschall.ardwloop.serial.jni.BackEntry;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
 import org.llschall.ardwloop.serial.misc.IArduino;
 import org.llschall.ardwloop.serial.misc.TestTimer;
@@ -48,7 +44,7 @@ public class BusTest1 extends AbstractBusTest {
 
         // Arduino <<>> Computer
 
-        ProgramCfg cfg = new ProgramCfg('T', 1, sc);
+        ProgramCfg cfg = new ProgramCfg('T', 1, sc, 1, 999);
 
         ArdwloopModel model = new ArdwloopModel(new ProgramContainer(new JTestProgram()));
         model.serialMdl.program.set(cfg);
@@ -92,6 +88,7 @@ public class BusTest1 extends AbstractBusTest {
         computerThd.start();
         arduinoThd.start();
 
+
         // << Z <<
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
@@ -111,11 +108,11 @@ public class BusTest1 extends AbstractBusTest {
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
-
-        // << CT11 <<
+        
+        // << CTC1C1C1C999C <<
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.C + "T11", cableC2A.check());
-        cableC2A.release(4);
+        Assertions.assertEquals("CTC1C1C1C999C", cableC2A.check());
+        cableC2A.release("CTC1C1C1C999C".length());
 
         // >> S >>
         TestTimer.get().delayMs(99);

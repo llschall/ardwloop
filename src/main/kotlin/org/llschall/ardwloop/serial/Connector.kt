@@ -13,7 +13,7 @@ import org.llschall.ardwloop.structure.utils.Logger.msg
 
 internal data class Connector(val model: ArdwloopModel, val reader: Reader, val writer: Writer) {
     @Throws(SerialWriteException::class)
-    fun reboot(p: Char, rc: Int, sc: Int) {
+    fun reboot(p: Char, rc: Int, sc: Int, read: Int, post: Int) {
         val timer = Timer()
 
         val serialMdl = model.serialMdl
@@ -32,7 +32,7 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
                 reader.buffer.ignoreAllNext()
                 // wait to avoid the K to be lost
                 get().delayMs(Serial.DELAY_BEFORE_K)
-                initK(p, rc, sc)
+                initK(p, rc, sc, read, post)
                 serialMdl.connected.set(true)
                 return
             } catch (e: SerialLongReadException) {
@@ -51,7 +51,7 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
     }
 
     @Throws(SerialLongReadException::class, SerialWriteException::class)
-    private fun initK(p: Char, rc: Int, sc: Int) {
+    private fun initK(p: Char, rc: Int, sc: Int, read: Int, post: Int) {
         val serialMdl = model.serialMdl
 
         serialMdl.connected.set(false)
@@ -72,7 +72,7 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
 
         msg("== SERIAL CONNECTION OK ==")
 
-        writer.writeC(p, rc, sc)
+        writer.writeC(p, rc, sc, read, post)
     }
 
     private fun status(status: String) {

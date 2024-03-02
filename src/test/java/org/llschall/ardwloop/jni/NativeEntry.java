@@ -17,7 +17,6 @@ public class NativeEntry {
 
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
         inject();
-        init(reboot, read, post, beforeK, j);
     }
 
     public NativeEntry() {

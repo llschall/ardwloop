@@ -22,4 +22,8 @@ public interface IArdwProgram {
 
     int getSc();
 
+    int getRead();
+
+    int getPost();
+
 }

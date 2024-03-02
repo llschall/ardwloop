@@ -404,14 +404,6 @@ void send_p() {
   }
 }
 
-void core_begin(int read, int post) {
-  DELAY_REBOOT = 999;
-  DELAY_READ = read;
-  DELAY_POST = post;
-  DELAY_J = 99;
-  DELAY_BEFORE_K = 9;
-}
-
 V *core_s() { return &S; }
 
 V *core_p() { return &P; }
@@ -419,6 +411,10 @@ V *core_p() { return &P; }
 V *core_r() { return &R; }
 
 void core_setup() {
+  DELAY_REBOOT = 999;
+  DELAY_J = 99;
+  DELAY_BEFORE_K = 9;
+
   log("# core_setup--");
 
   S_I = 0;

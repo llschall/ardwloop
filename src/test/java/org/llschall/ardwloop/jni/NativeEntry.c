@@ -69,13 +69,6 @@ int fake_write(char c) {
 
 //////////////////////
 
-JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init(
-    JNIEnv *env, jobject obj, int reboot, int read, int post, int beforeK,
-    int j) {
-  ENV = env;
-  entry_begin(reboot, read, post, beforeK, j);
-};
-
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(
     JNIEnv *env, jobject obj, jint i) {
   ENV = env;

@@ -7,11 +7,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.LocalOnly;
-import org.llschall.ardwloop.serial.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.serial.Bus;
 import org.llschall.ardwloop.serial.Serial;
+import org.llschall.ardwloop.serial.jni.BackEntry;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
 import org.llschall.ardwloop.serial.misc.IArduino;
 import org.llschall.ardwloop.serial.misc.TestTimer;
@@ -43,7 +43,7 @@ public class BusTest0 extends AbstractBusTest {
 
         // Arduino <<>> Computer
 
-        ProgramCfg cfg = new ProgramCfg('T', 1, sc);
+        ProgramCfg cfg = new ProgramCfg('T', 1, sc, 0, 0);
 
         ArdwloopModel model = new ArdwloopModel(new ProgramContainer(new JTestProgram()));
         model.serialMdl.program.set(cfg);
@@ -106,13 +106,13 @@ public class BusTest0 extends AbstractBusTest {
         Assertions.assertTrue(a2c.endsWith(Serial.K_));
         cableA2C.releaseAll();
 
-        // << CT11 <<
+        // << CTC1C1C0C0C <<
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
         dump();
-        Assertions.assertEquals(Serial.C + "T11", c2a);
-        cableC2A.release(4);
-
+        Assertions.assertEquals("CTC1C1C0C0C", c2a);
+        cableC2A.release("CTC1C1C0C0C".length());
+        
         TestTimer.get().delayMs(88);
 
         dump();

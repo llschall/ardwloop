@@ -25,8 +25,6 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 int (*prm_available)(), int (*prm_read)(char *, int),
                 int (*prm_write)(char));
 
-void core_begin(int read, int post);
-
 void core_setup();
 void core_loop();
 

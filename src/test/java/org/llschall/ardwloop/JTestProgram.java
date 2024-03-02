@@ -13,7 +13,7 @@ public class JTestProgram implements IArdwProgram {
     public SerialData setup(SerialData s) {
         return new SerialData(0, 1, 1, 1, 1, 1);
     }
-    
+
     @Override
     public int getRc() {
         return 1;
@@ -22,5 +22,15 @@ public class JTestProgram implements IArdwProgram {
     @Override
     public int getSc() {
         return 1;
+    }
+
+    @Override
+    public int getRead() {
+        return 0;
+    }
+
+    @Override
+    public int getPost() {
+        return 0;
     }
 }

@@ -22,10 +22,12 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
     private val p = cfg.p
     private val rc = cfg.rc
     private val sc = cfg.sc
+    private val read = cfg.read
+    private val post = cfg.post
 
     @Throws(SerialWriteException::class)
     fun reboot() {
-        connector!!.reboot(p, rc, sc)
+        connector!!.reboot(p, rc, sc, read, post)
     }
 
     @Throws(SerialWriteException::class)
@@ -100,7 +102,7 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
         connector = Connector(model, reader!!, writer!!)
 
         msg("PLUG")
-        connector!!.reboot(p, rc, sc)
+        connector!!.reboot(p, rc, sc, read, post)
 
         return true
     }
