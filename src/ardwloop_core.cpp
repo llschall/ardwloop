@@ -449,8 +449,7 @@ void core_loop() {
         (*fct_delay)(1);
       }
     } else {
-      send_p();
-      (*fct_delay)(9);
+      (*fct_delay)(DELAY_READ);
     }
   }
   receive_r();
