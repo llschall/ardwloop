@@ -10,9 +10,18 @@ void inject_arduino_h() {
              &impl_write);
 }
 
-void impl_log(const char *msg) {
-  // do nothing for now
+void ignore_log(const char *msg) {
+  // do nothing
 }
+
+void (*LOG)(const char *msg) = &ignore_log;
+
+void inject_log(void (*p)(const char *)) {
+  LOG = p;
+  impl_log("Logger Injected");
+}
+
+void impl_log(const char *msg) { (*LOG)(msg); }
 
 void impl_delay(unsigned long ms) { delay(ms); }
 

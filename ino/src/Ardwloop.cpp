@@ -21,3 +21,7 @@ V *ardw_r() { return core_r(); }
 void ardw_post(bool (*p)()) { core_post(p); }
 void ardw_loop() { core_loop(); }
 char ardw_prg() { return core_prg(); }
+
+void ardw_log(void (*p)(const char *)) {
+  inject_log(p);
+}

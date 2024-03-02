@@ -3,6 +3,8 @@
 
 void inject_arduino_h();
 
+void inject_log(void (*p)(const char *));
+
 void impl_log(const char *msg);
 
 void impl_delay(unsigned long ms);
