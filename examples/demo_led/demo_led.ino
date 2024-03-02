@@ -1,18 +1,20 @@
 /*
-Welcome to the Ardwloop Demo !
+ * Welcome to the Ardwloop Demo !
+ *
+ * Featuring Ardwloop 0.1.1
+ *
+ * More setup instructions are available in
+ * https://github.com/llschall/ardwloop-demo
+ *
+ */
 
-Featuring Ardwloop 0.1.1
-
-More setup instructions are available in
-https://github.com/llschall/ardwloop-demo
-*/
 
 #include <Ardwloop.h>
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
-  ardw_start(9, 9999);
+  ardw_start();
 }
 
 void loop() {
