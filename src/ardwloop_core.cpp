@@ -23,7 +23,7 @@ int P_I = -1;
 char PRG = 'A';
 
 int DELAY_REBOOT = -1;
-int DELAY_READ = -1;
+int DELAY_READ = 99;
 int DELAY_POST = -1;
 int DELAY_J = -1;
 int DELAY_BEFORE_K = -1;
@@ -161,22 +161,25 @@ void reset() {
     s = 10 * s + i;
     c = rd();
   }
-  DELAY_READ = s;
 
   c = rd();
-  s = -1;
+  int p = -1;
 
   while (c != 'C') {
     int i = map_c(c);
-    if (s == -1)
-      s = 0;
-    s = 10 * s + i;
+    if (p == -1)
+      p = 0;
+    p = 10 * p + i;
     c = rd();
   }
-  DELAY_POST = s;
 
-  printf("RESET PRG %c\n", PRG);
-  log("# Reset PRG #");
+  DELAY_READ = s;
+  DELAY_POST = p;
+
+  char m[16];
+  snprintf(m, 16, "%c %d %d", PRG, DELAY_READ, DELAY_POST);
+  log(m);
+  (*fct_delay)(999);
 } //()
 
 void wr_int(int v) {
