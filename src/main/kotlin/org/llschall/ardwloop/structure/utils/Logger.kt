@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter
 
 object Logger {
 
-    var skipMsg = true;
+    var skipMsg = false;
 
     @JvmStatic
     fun msg(shift: Int, msg: String) {
