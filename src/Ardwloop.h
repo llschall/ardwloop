@@ -21,4 +21,6 @@ V *ardw_s();
 V *ardw_p();
 V *ardw_r();
 
+void ardw_log(void (*)(const char *));
+
 #endif

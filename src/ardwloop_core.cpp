@@ -413,7 +413,7 @@ V *core_r() { return &R; }
 void core_setup() {
   DELAY_REBOOT = 999;
   DELAY_J = 99;
-  DELAY_BEFORE_K = 9;
+  DELAY_BEFORE_K = 2000;
 
   log("# core_setup--");
 
