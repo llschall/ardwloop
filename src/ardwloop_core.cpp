@@ -61,14 +61,7 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
   fct_write = prm_write;
 }
 
-int impl_read0(const int n) {
-  char arr[n];
-  int r = (*fct_read)(arr, n);
-  for (int i = 0; i < r; i++) {
-    buffer_set(i, arr[i]);
-  }
-  return r;
-}
+int func_read(char *arr, int n) { return (*fct_read)(arr, n); }
 
 char core_prg() { return PRG; }
 int core_rc() { return Rc; }
