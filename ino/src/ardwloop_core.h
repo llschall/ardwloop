@@ -17,8 +17,6 @@ void reboot();
 void wr(char);
 char rd();
 
-#endif
-
 void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 void (*prm_write_low)(int), void (*prm_write_high)(int),
                 void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
@@ -46,3 +44,5 @@ void send_p();
 void receive_r();
 
 void log(const char *);
+
+#endif
