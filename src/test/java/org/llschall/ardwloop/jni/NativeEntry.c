@@ -4,6 +4,7 @@
 #include <ardwloop_buffer.cpp>
 #include <ardwloop_core.cpp>
 #include <ardwloop_jni.cpp>
+#include <ardwloop_read.cpp>
 #include <ardwloop_utils.cpp>
 
 #include "NativeEntry.h"
