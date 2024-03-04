@@ -75,9 +75,6 @@ void reboot() {
 }
 
 char rd() {
-  char m[16];
-  snprintf(m, 16, "rd() %d %d", bfI, bfN);
-  log(m);
   if (bfI < bfN) {
     char c = buffer(bfI);
     if (c == 'Z')
@@ -86,8 +83,6 @@ char rd() {
       wr('N');
     } else {
       bfI++;
-      snprintf(m, 16, "return %c", c);
-      log(m);
       return c;
     }
   }
@@ -374,5 +369,26 @@ void core_loop() {
 }
 
 void core_post(bool (*p)()) { POST_IMPL = p; }
+
+void log(const char *msg, int i0, int i1) {
+  char m[16];
+  snprintf(m, 16, msg, i0, i1);
+  log(m);
+}
+void log(const char *msg, int i, char c) {
+  char m[16];
+  snprintf(m, 16, msg, i, c);
+  log(m);
+}
+void log(const char *msg, char c, int i) {
+  char m[16];
+  snprintf(m, 16, msg, c, i);
+  log(m);
+}
+void log(const char *msg, char c0, char c1) {
+  char m[16];
+  snprintf(m, 16, msg, c0, c1);
+  log(m);
+}
 
 void log(const char *msg) { (*fct_log)(msg); }

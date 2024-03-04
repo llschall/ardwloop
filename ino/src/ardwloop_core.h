@@ -44,6 +44,10 @@ void reset();
 void send_s();
 void send_p();
 
+void log(const char *, int, int);
+void log(const char *, int, char);
+void log(const char *, char, int);
+void log(const char *, char, char);
 void log(const char *);
 
 #endif
