@@ -11,8 +11,11 @@ int Sc = -1;
 
 struct V R, S, P;
 
-char H[] = {'v', 'w', 'x', 'y', 'z'};
-char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+const char H[] = {'v', 'w', 'x', 'y', 'z'};
+const int Hc = 5;
+
+const char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+const int Kc = 8;
 
 struct D *Rv[] = {&R.a, &R.b, &R.c, &R.d, &R.e, &R.f, &R.g, &R.h, &R.i};
 struct D *Sv[] = {&S.a, &S.b, &S.c, &S.d, &S.e, &S.f, &S.g, &S.h, &S.i};
@@ -251,9 +254,11 @@ void send_s() {
   wr_i(i);
 
   for (int i = 0; i < Sc; i++) {
-    for (unsigned int j = 0; j < sizeof(H); j++) {
+    for (int j = 0; j < Hc; j++) {
+      char h = H[j];
+
       wr(K[i]);
-      wr(H[j]);
+      wr(h);
 
       struct D *d = Sv[i];
 
@@ -291,9 +296,11 @@ void send_p() {
   }
   wr_i(i);
 
-  for (unsigned int j = 0; j < sizeof(H); j++) {
+  for (int j = 0; j < Hc; j++) {
+
+    char h = H[j];
     wr(K[0]);
-    wr(H[j]);
+    wr(h);
 
     struct D *d = Pv[0];
 
@@ -365,7 +372,7 @@ void core_loop() {
       (*fct_delay)(DELAY_READ);
     }
   }
-  receive_r(Rc, H, K, Rv);
+  receive_r(Rc, Hc, H, Kc, K, Rv);
 }
 
 void core_post(bool (*p)()) { POST_IMPL = p; }
