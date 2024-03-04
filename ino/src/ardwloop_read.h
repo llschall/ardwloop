@@ -3,6 +3,6 @@
 
 int impl_read0(const int n);
 
-void receive_r(int Rc, char *H, char *K, struct D **Rv);
+void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K, struct D **Rv);
 
 #endif

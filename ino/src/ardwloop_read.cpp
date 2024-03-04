@@ -17,7 +17,7 @@ int impl_read0(const int n) {
   return r;
 }
 
-void receive_r(int Rc, char *H, char *K, struct D **Rv) {
+void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
   char r = rd();
 
@@ -28,10 +28,8 @@ void receive_r(int Rc, char *H, char *K, struct D **Rv) {
   for (int i = 0; i < Rc; i++) {
     char k = K[i];
 
-    for (unsigned long j = 0; j < 5; j++) {
-
+    for (int j = 0; j < Hc; j++) {
       char h = H[j];
-
       char c = rd();
       if (c == 'Y') {
         reset();
