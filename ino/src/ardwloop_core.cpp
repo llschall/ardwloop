@@ -75,6 +75,9 @@ void reboot() {
 }
 
 char rd() {
+  char m[16];
+  snprintf(m, 16, "rd() %d %d", bfI, bfN);
+  log(m);
   if (bfI < bfN) {
     char c = buffer(bfI);
     if (c == 'Z')
@@ -83,10 +86,13 @@ char rd() {
       wr('N');
     } else {
       bfI++;
+      snprintf(m, 16, "return %c", c);
+      log(m);
       return c;
     }
   }
 
+  log("available()");
   int i = (*fct_available)();
   while (i == 0) {
     (*fct_delay)(DELAY_READ);
@@ -240,88 +246,6 @@ void initJ() {
 //////////////////////////////////
 // SERIAL
 
-void receive_r() {
-
-  char r = rd();
-
-  if (r != 'R') {
-    printf("Expected R but got %c\n", r);
-  }
-
-  for (int i = 0; i < Rc; i++) {
-
-    char k = K[i];
-
-    for (unsigned long j = 0; j < sizeof(H); j++) {
-
-      char h = H[j];
-
-      char c = rd();
-      if (c == 'Y') {
-        reset();
-        return;
-      } // if
-
-      if (c != k) {
-        reset();
-        return;
-      } // if
-
-      c = rd();
-      if (c == 'Y') {
-        reset();
-        return;
-      } // if
-
-      if (c != h) {
-        reset();
-        return;
-      } // if
-
-      int v = 0;
-
-      while (true) {
-        c = rd();
-        if (c == 'Y') {
-          reset();
-          return;
-        } // if
-
-        if (c == '+') {
-          break;
-        } // if
-        if (c == '-') {
-          v *= -1;
-          break;
-        } // if
-
-        int i = map_c(c);
-        v = 10 * v + i;
-      } // while
-
-      struct D *d = Rv[i];
-
-      switch (j) {
-      case 0:
-        d->v = v;
-        break;
-      case 1:
-        d->w = v;
-        break;
-      case 2:
-        d->x = v;
-        break;
-      case 3:
-        d->y = v;
-        break;
-      case 4:
-        d->z = v;
-        break;
-      } // switch
-    }   // for j
-  }     // for i
-} // receive()
-
 void send_s() {
   wr('S');
 
@@ -446,7 +370,7 @@ void core_loop() {
       (*fct_delay)(DELAY_READ);
     }
   }
-  receive_r();
+  receive_r(Rc, H, K, Rv);
 }
 
 void core_post(bool (*p)()) { POST_IMPL = p; }

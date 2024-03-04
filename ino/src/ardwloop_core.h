@@ -43,7 +43,6 @@ void initJ();
 void reset();
 void send_s();
 void send_p();
-void receive_r();
 
 void log(const char *);
 
