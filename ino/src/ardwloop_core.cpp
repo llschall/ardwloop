@@ -15,7 +15,7 @@ const char H[] = {'v', 'w', 'x', 'y', 'z'};
 const int Hc = 5;
 
 const char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
-const int Kc = 8;
+const int Kc = 9;
 
 struct D *Rv[] = {&R.a, &R.b, &R.c, &R.d, &R.e, &R.f, &R.g, &R.h, &R.i};
 struct D *Sv[] = {&S.a, &S.b, &S.c, &S.d, &S.e, &S.f, &S.g, &S.h, &S.i};
@@ -255,10 +255,9 @@ void send_s() {
 
   for (int i = 0; i < Sc; i++) {
     for (int j = 0; j < Hc; j++) {
-      char h = H[j];
-
+      
       wr(K[i]);
-      wr(h);
+      wr(H[j]);
 
       struct D *d = Sv[i];
 
@@ -298,9 +297,8 @@ void send_p() {
 
   for (int j = 0; j < Hc; j++) {
 
-    char h = H[j];
     wr(K[0]);
-    wr(h);
+    wr(H[j]);
 
     struct D *d = Pv[0];
 
