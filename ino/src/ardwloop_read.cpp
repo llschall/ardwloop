@@ -9,8 +9,6 @@
 
 int impl_read0(const int n) {
 
-  log("IMPL READ");
-
   char arr[n];
   int r = func_read(arr, n);
   for (int i = 0; i < r; i++) {
@@ -28,15 +26,9 @@ void receive_r(int Rc, char *H, char *K, struct D **Rv) {
   }
 
   for (int i = 0; i < Rc; i++) {
-    log("for RC");
-
     char k = K[i];
 
     for (unsigned long j = 0; j < 5; j++) {
-
-      char m[16];
-      snprintf(m, 16, "for long %d 5", j);
-      log(m);
 
       char h = H[j];
 
@@ -72,11 +64,9 @@ void receive_r(int Rc, char *H, char *K, struct D **Rv) {
         } // if
 
         if (c == '+') {
-          log("break +");
           break;
         } // if
         if (c == '-') {
-          log("break -");
           v *= -1;
           break;
         } // if
@@ -106,7 +96,4 @@ void receive_r(int Rc, char *H, char *K, struct D **Rv) {
       } // switch
     }   // for j
   }     // for i
-
-  log("lost receive");
-
 } // receive()
