@@ -64,6 +64,8 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
   fct_write = prm_write;
 }
 
+void func_delay(unsigned long ms) {(*fct_delay)(ms);}
+int func_available() { return (*fct_available)(); }
 int func_read(char *arr, int n) { return (*fct_read)(arr, n); }
 
 char core_prg() { return PRG; }
@@ -73,7 +75,7 @@ int core_delay_read() { return DELAY_READ; }
 int core_delay_post() { return DELAY_POST; }
 
 void reboot() {
-  (*fct_delay)(DELAY_REBOOT);
+  func_delay(DELAY_REBOOT);
   (*fct_write_low)(2);
 }
 
@@ -91,10 +93,10 @@ char rd() {
   }
 
   log("available()");
-  int i = (*fct_available)();
+  int i = func_available();
   while (i == 0) {
     (*fct_delay)(DELAY_READ);
-    i = (*fct_available)();
+    i = func_available();
   }
 
   int bfS = buffer_size();
@@ -223,14 +225,14 @@ void wr_i(int i) {
 void initJ() {
 
   log("### Init J ###");
-  while ((*fct_available)() > 0) {
+  while (func_available() > 0) {
     impl_read0(1);
   }
 
   while (true) {
     wr('J');
-    (*fct_delay)(DELAY_J);
-    int n = (*fct_available)();
+    func_delay(DELAY_J);
+    int n = func_available();
     if (n > 0)
       impl_read0(1);
     char c = buffer(0);
@@ -356,7 +358,7 @@ void core_loop() {
 
   int i = 0;
   bool post = true;
-  while ((*fct_available)() == 0) {
+  while (func_available() == 0) {
     if (post) {
       if (i == core_delay_post()) {
         post = (*POST_IMPL)();
