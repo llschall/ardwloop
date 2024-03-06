@@ -1,7 +1,7 @@
 #ifndef ardwloop_read_h
 #define ardwloop_read_h
 
-int impl_read0(const int n);
+int impl_read(const int n);
 
 void set_delay_read(int ms);
 
