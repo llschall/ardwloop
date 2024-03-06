@@ -7,6 +7,22 @@
 
 #include <stdio.h>
 
+int bfI = 0;
+int bfN = 0;
+
+int DELAY_READ = 99;
+
+void set_delay_read(int ms) {
+    DELAY_READ = ms;
+}
+
+int get_delay_read() {
+    return DELAY_READ;
+}
+
+
+void reset_bfn() { bfN = 0;}
+
 int impl_read0(const int n) {
 
   char arr[n];
@@ -16,6 +32,38 @@ int impl_read0(const int n) {
   }
   return r;
 }
+
+char rd() {
+  if (bfI < bfN) {
+    char c = buffer(bfI);
+    if (c == 'Z')
+      reboot();
+    if (c == 'N') {
+      wr('N');
+    } else {
+      bfI++;
+      return c;
+    }
+  }
+
+  log("available()");
+  int i = func_available();
+  while (i == 0) {
+    func_delay(DELAY_READ);
+    i = func_available();
+  }
+
+  int bfS = buffer_size();
+
+  if (i > bfS)
+    i = bfS;
+
+  bfN = impl_read0(i);
+  bfI = 0;
+
+  return rd();
+}
+
 
 void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
