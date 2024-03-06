@@ -80,14 +80,14 @@ void wr(char c) { (*fct_write)(c); }
 void reset() {
 
   log("### Reset ###");
-  (*fct_delay)(DELAY_BEFORE_K);
+  func_delay(DELAY_BEFORE_K);
   // Wait for 'K'
 
   for (char c = rd(); c != 'K'; c = rd()) {
     printf("RD %c\n", c);
   }
 
-  while ((*fct_available)()) {
+  while (func_available()) {
     impl_read0(1);
   }
 
@@ -144,7 +144,7 @@ void reset() {
   char m[16];
   snprintf(m, 16, "%c %d %d", PRG, s, DELAY_POST);
   log(m);
-  (*fct_delay)(999);
+  func_delay(999);
 } //()
 
 void wr_int(int v) {
