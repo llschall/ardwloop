@@ -187,7 +187,7 @@ void wr_i(int i) {
   wr(map_i(i));
 }
 
-void initJ() {
+void init_j() {
 
   log("### Init J ###");
   while (func_available() > 0) {
@@ -312,7 +312,7 @@ void core_setup() {
   (*fct_write_high)(2);
   (*fct_serial_begin)(BAUD);
 
-  initJ();
+  init_j();
   reset();
 
   log("# --core_setup");
