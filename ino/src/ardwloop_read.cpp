@@ -23,7 +23,7 @@ int get_delay_read() {
 
 void reset_bfn() { bfN = 0;}
 
-int impl_read0(const int n) {
+int impl_read(const int n) {
 
   char arr[n];
   int r = func_read(arr, n);
@@ -58,7 +58,7 @@ char rd() {
   if (i > bfS)
     i = bfS;
 
-  bfN = impl_read0(i);
+  bfN = impl_read(i);
   bfI = 0;
 
   return rd();

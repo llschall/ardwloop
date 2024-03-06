@@ -88,7 +88,7 @@ void reset() {
   }
 
   while (func_available()) {
-    impl_read0(1);
+    impl_read(1);
   }
 
   reset_bfn();
@@ -191,7 +191,7 @@ void initJ() {
 
   log("### Init J ###");
   while (func_available() > 0) {
-    impl_read0(1);
+    impl_read(1);
   }
 
   while (true) {
@@ -199,7 +199,7 @@ void initJ() {
     func_delay(DELAY_J);
     int n = func_available();
     if (n > 0)
-      impl_read0(1);
+      impl_read(1);
     char c = buffer(0);
     if (c == 'J') {
       log("### Got J ###");
