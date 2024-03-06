@@ -42,7 +42,7 @@ V *core_s();
 V *core_p();
 V *core_r();
 
-void initJ();
+void init_j();
 void reset();
 void send_s();
 void send_p();
