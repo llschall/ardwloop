@@ -27,13 +27,9 @@ int P_I = -1;
 char PRG = 'A';
 
 int DELAY_REBOOT = -1;
-int DELAY_READ = 99;
 int DELAY_POST = -1;
 int DELAY_J = -1;
 int DELAY_BEFORE_K = -1;
-
-int bfI = 0;
-int bfN = 0;
 
 void (*fct_log)(const char *);
 void (*fct_delay)(unsigned long);
@@ -71,43 +67,12 @@ int func_read(char *arr, int n) { return (*fct_read)(arr, n); }
 char core_prg() { return PRG; }
 int core_rc() { return Rc; }
 int core_sc() { return Sc; }
-int core_delay_read() { return DELAY_READ; }
+int core_delay_read() { return get_delay_read(); }
 int core_delay_post() { return DELAY_POST; }
 
 void reboot() {
   func_delay(DELAY_REBOOT);
   (*fct_write_low)(2);
-}
-
-char rd() {
-  if (bfI < bfN) {
-    char c = buffer(bfI);
-    if (c == 'Z')
-      reboot();
-    if (c == 'N') {
-      wr('N');
-    } else {
-      bfI++;
-      return c;
-    }
-  }
-
-  log("available()");
-  int i = func_available();
-  while (i == 0) {
-    (*fct_delay)(DELAY_READ);
-    i = func_available();
-  }
-
-  int bfS = buffer_size();
-
-  if (i > bfS)
-    i = bfS;
-
-  bfN = impl_read0(i);
-  bfI = 0;
-
-  return rd();
 }
 
 void wr(char c) { (*fct_write)(c); }
@@ -126,7 +91,7 @@ void reset() {
     impl_read0(1);
   }
 
-  bfN = 0;
+  reset_bfn();
 
   log("# Got K #");
 
@@ -173,11 +138,11 @@ void reset() {
     c = rd();
   }
 
-  DELAY_READ = s;
+  set_delay_read(s);
   DELAY_POST = p;
 
   char m[16];
-  snprintf(m, 16, "%c %d %d", PRG, DELAY_READ, DELAY_POST);
+  snprintf(m, 16, "%c %d %d", PRG, s, DELAY_POST);
   log(m);
   (*fct_delay)(999);
 } //()
@@ -366,10 +331,10 @@ void core_loop() {
         i = 0;
       } else {
         i++;
-        (*fct_delay)(1);
+        func_delay(1);
       }
     } else {
-      (*fct_delay)(DELAY_READ);
+      func_delay(get_delay_read());
     }
   }
   receive_r(Rc, Hc, H, Kc, K, Rv);
