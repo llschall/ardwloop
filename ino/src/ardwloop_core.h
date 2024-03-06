@@ -23,7 +23,10 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 int (*prm_available)(), int (*prm_read)(char *, int),
                 int (*prm_write)(char));
 
+
+void func_delay(unsigned long ms);
 int func_read(char *arr, int n);
+int func_available();
 
 void core_setup();
 void core_loop();
