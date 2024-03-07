@@ -11,10 +11,12 @@ int Sc = -1;
 
 struct V R, S, P;
 
-const char H[] = {'v', 'w', 'x', 'y', 'z'};
+const char END = '/';
+
+const char H[] = {'v', 'w', 'x', 'y', 'z', END};
 const int Hc = 5;
 
-const char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+const char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', END};
 const int Kc = 9;
 
 struct D *Rv[] = {&R.a, &R.b, &R.c, &R.d, &R.e, &R.f, &R.g, &R.h, &R.i};
