@@ -37,11 +37,11 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun setupPrg(s: SerialData?): SerialData {
-        return program.setup(s)
+        return program.ardwSetup(s)
     }
 
     fun loopPrg(r: SerialData?): SerialData {
-        return program.loop(r)
+        return program.ardwLoop(r)
     }
 
     fun postPrg(p: SerialData?) {

@@ -5,12 +5,12 @@ import org.llschall.ardwloop.structure.data.SerialData;
 public class JTestProgram implements IArdwProgram {
 
     @Override
-    public SerialData loop(SerialData s) {
+    public SerialData ardwLoop(SerialData s) {
         return new SerialData(0, 1, 1, 1, 1, 1);
     }
 
     @Override
-    public SerialData setup(SerialData s) {
+    public SerialData ardwSetup(SerialData s) {
         return new SerialData(0, 1, 1, 1, 1, 1);
     }
 

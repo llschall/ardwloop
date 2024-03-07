@@ -17,7 +17,7 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} sent from the Arduino setup() call
      * @return The {@link SerialData} that the Arduino board will receive in its first loop()
      */
-    SerialData setup(SerialData s);
+    SerialData ardwSetup(SerialData s);
 
     /**
      * loop() is called by the Ardwloop framework in the same cyclic way as the loop() function
@@ -26,7 +26,7 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} received by the Arduino board
      * @return The {@link SerialData} that will be sent to the Arduino board
      */
-    SerialData loop(SerialData s);
+    SerialData ardwLoop(SerialData s);
 
     /**
      * post() is called by the Ardwloop framework each time the Arduino board sent a post {@link SerialData}
