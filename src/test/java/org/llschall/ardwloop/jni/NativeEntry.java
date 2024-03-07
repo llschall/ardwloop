@@ -1,7 +1,5 @@
 package org.llschall.ardwloop.jni;
 
-import org.llschall.ardwloop.JniTestException;
-
 public class NativeEntry {
 
     static {
@@ -10,7 +8,7 @@ public class NativeEntry {
 
     public NativeEntry(boolean injectOnly) {
         if (!injectOnly) {
-            throw new JniTestException("Should never appear.");
+            throw new JniException("Should never appear.");
         }
         inject();
     }

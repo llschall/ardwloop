@@ -15,7 +15,7 @@ JNIEnv *ENV;
 bool LOG_DEBUG = false;
 
 jclass find_back_entry_class(JNIEnv *env) {
-  return ENV->FindClass("org/llschall/ardwloop/serial/jni/BackEntry");
+  return ENV->FindClass("org/llschall/ardwloop/jni/BackEntry");
 };
 
 JNIEXPORT void JNICALL

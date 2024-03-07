@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.LocalOnly;
+import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
-import org.llschall.ardwloop.serial.jni.BackEntry;
 
 import static org.llschall.ardwloop.serial.Serial.*;
 

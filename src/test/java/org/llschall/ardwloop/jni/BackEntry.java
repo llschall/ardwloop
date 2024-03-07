@@ -1,4 +1,4 @@
-package org.llschall.ardwloop.serial.jni;
+package org.llschall.ardwloop.jni;
 
 import org.llschall.ardwloop.serial.IBackEntry;
 import org.llschall.ardwloop.serial.misc.TestTimer;
@@ -23,7 +23,7 @@ public class BackEntry {
 
     // Called from JNI tests
     public static int pong(int i) {
-        Logger.msg("\n****************\n*     PONG     *\n*     "+i+"     *\n****************\n");
+        Logger.msg("\n****************\n*     PONG     *\n*     " + i + "     *\n****************\n");
         return i;
     }
 
