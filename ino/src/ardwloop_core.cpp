@@ -14,8 +14,6 @@ struct V R, S, P;
 const char END = '/';
 
 const char H[] = {'v', 'w', 'x', 'y', 'z', END};
-const int Hc = 5;
-
 const char K[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', END};
 const int Kc = 9;
 
@@ -223,16 +221,20 @@ void send_s() {
   wr_i(i);
 
   for (int i = 0; i < Sc; i++) {
-    for (int j = 0; j < Hc; j++) {
+    
+    int h_i = 0;
+    char h = H[0];
+
+    while(h!=END) {
       
       wr(K[i]);
-      wr(H[j]);
+      wr(h);
 
       struct D *d = Sv[i];
 
       int v;
 
-      switch (j) {
+      switch (h_i) {
       case 0:
         v = d->v;
         break;
@@ -250,6 +252,9 @@ void send_s() {
         break;
       }
       wr_int(v);
+
+      h_i++;
+      h=H[h_i];
     }
   }
 }
@@ -263,17 +268,20 @@ void send_p() {
     P_I = 0;
   }
   wr_i(i);
+  
+  int h_i = 0;
+  char h = H[0];
 
-  for (int j = 0; j < Hc; j++) {
+  while(h!=END) {
 
     wr(K[0]);
-    wr(H[j]);
+    wr(h);
 
     struct D *d = Pv[0];
 
     int v;
 
-    switch (j) {
+    switch (h_i) {
     case 0:
       v = d->v;
       break;
@@ -291,14 +299,15 @@ void send_p() {
       break;
     }
     wr_int(v);
+
+    h_i++;
+    h=H[h_i];
   }
 }
 
 V *core_s() { return &S; }
-
-V *core_p() { return &P; }
-
 V *core_r() { return &R; }
+V *core_p() { return &P; }
 
 void core_setup() {
   DELAY_REBOOT = 999;
@@ -339,7 +348,7 @@ void core_loop() {
       func_delay(get_delay_read());
     }
   }
-  receive_r(Rc, Hc, H, Kc, K, Rv);
+  receive_r(END, Rc, H, Kc, K, Rv);
 }
 
 void core_post(bool (*p)()) { POST_IMPL = p; }
