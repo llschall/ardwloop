@@ -8,7 +8,7 @@ import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.serial.jni.BackEntry;
 
-public class SerialTest2 {
+public class Serial2Test {
 
     @BeforeEach
     void setup() {

@@ -10,7 +10,7 @@ import org.llschall.ardwloop.serial.jni.BackEntry;
 
 import static org.llschall.ardwloop.serial.Serial.*;
 
-public class SerialTest3 {
+public class Serial3Test {
     @BeforeEach
     void setup() {
         LocalOnly.get().skipOnGitHub();

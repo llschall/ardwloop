@@ -20,7 +20,7 @@ import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
-public class BusTest0 extends AbstractBusTest {
+public class Bus0Test extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
@@ -112,7 +112,7 @@ public class BusTest0 extends AbstractBusTest {
         dump();
         Assertions.assertEquals("CTC1C1C0C0C", c2a);
         cableC2A.release("CTC1C1C0C0C".length());
-        
+
         TestTimer.get().delayMs(88);
 
         dump();

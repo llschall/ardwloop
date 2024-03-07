@@ -21,7 +21,7 @@ import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
-public class BusTest1 extends AbstractBusTest {
+public class Bus1Test extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
@@ -108,7 +108,7 @@ public class BusTest1 extends AbstractBusTest {
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
-        
+
         // << CTC1C1C1C999C <<
         TestTimer.get().delayMs(99);
         Assertions.assertEquals("CTC1C1C1C999C", cableC2A.check());
