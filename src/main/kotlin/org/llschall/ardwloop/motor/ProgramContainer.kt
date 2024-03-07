@@ -18,8 +18,8 @@ class ProgramContainer(private val program: IArdwProgram) {
         val model = ArdwloopModel(this)
         model.serialMdl.program.set(
             ProgramCfg(
-                program.id, program.rc, program.sc,
-                program.read, program.post,
+                program.programId, program.rc, program.sc,
+                program.readDelayMs, program.postDelayMs,
             )
         )
 
@@ -45,6 +45,6 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun postPrg(p: SerialData?) {
-        program.post(p)
+        program.ardwPost(p)
     }
 }

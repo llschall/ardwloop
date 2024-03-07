@@ -33,7 +33,7 @@ public interface IArdwProgram {
      *
      * @param p The received post {@link SerialData}
      */
-    default void post(SerialData p) {
+    default void ardwPost(SerialData p) {
         msg("post ignored");
     }
 
@@ -41,7 +41,7 @@ public interface IArdwProgram {
      * @return An identifier that can reference the program to be runned by the Arduino board,
      * provided a runner supporting multiple programs is loaded on the Arduino board.
      */
-    default char getId() {
+    default char getProgramId() {
         return 'a';
     }
 
@@ -62,12 +62,12 @@ public interface IArdwProgram {
      * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialData}
      * To be adapted to the Arduino project requirements.
      */
-    int getRead();
+    int getReadDelayMs();
 
     /**
      * @return The delay the Arduino board will wait before sending a post {@link SerialData}
      * To be adapted to the Arduino project requirements.
      */
-    int getPost();
+    int getPostDelayMs();
 
 }

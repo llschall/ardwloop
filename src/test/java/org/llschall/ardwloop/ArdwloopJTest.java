@@ -9,8 +9,8 @@ public class ArdwloopJTest {
     public void testApiFromJava() {
 
         JTestProgram program = new JTestProgram();
-        char id = program.getId();
+        char id = program.getProgramId();
 
-        Assertions.assertEquals('a',id);
+        Assertions.assertEquals('a', id);
     }
 }

@@ -25,12 +25,12 @@ public class JTestProgram implements IArdwProgram {
     }
 
     @Override
-    public int getRead() {
+    public int getReadDelayMs() {
         return 0;
     }
 
     @Override
-    public int getPost() {
+    public int getPostDelayMs() {
         return 0;
     }
 }
