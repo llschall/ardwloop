@@ -65,7 +65,7 @@ char rd() {
 }
 
 
-void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K, struct D **Rv) {
+void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
   char r = rd();
 
@@ -76,8 +76,10 @@ void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K,
   for (int i = 0; i < Rc; i++) {
     char k = K[i];
 
-    for (int j = 0; j < Hc; j++) {
-      char h = H[j];
+    char h = H[0];
+    int h_i = 0;
+    while(h!=END) {
+      
       char c = rd();
       if (c == 'Y') {
         reset();
@@ -123,7 +125,7 @@ void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K,
 
       struct D *d = Rv[i];
 
-      switch (j) {
+      switch (h_i) {
       case 0:
         d->v = v;
         break;
@@ -140,6 +142,9 @@ void receive_r(int Rc, const int Hc, const char *H, const int Kc, const char *K,
         d->z = v;
         break;
       } // switch
-    }   // for j
+
+      h_i++;
+      h=H[h_i];
+    }   // while h
   }     // for i
 } // receive()
