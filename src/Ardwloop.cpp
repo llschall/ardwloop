@@ -7,19 +7,20 @@
 
 /////////////////////////////////
 
-void ardw_start() {
+void ardw_setup() {
   inject_arduino_h();
   core_setup();
 }
 
+void ardw_loop() { core_loop(); }
+
 /////////////////////////////////
 
 V *ardw_s() { return core_s(); }
-V *ardw_p() { return core_p(); }
 V *ardw_r() { return core_r(); }
+V *ardw_p() { return core_p(); }
 
 void ardw_post(bool (*p)()) { core_post(p); }
-void ardw_loop() { core_loop(); }
 char ardw_prg() { return core_prg(); }
 
 void ardw_log(void (*p)(const char *)) {

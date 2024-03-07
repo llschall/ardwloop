@@ -10,7 +10,7 @@
 
 #include "ardwloop_core.h"
 
-void ardw_start();
+void ardw_setup();
 
 char ardw_prg();
 
