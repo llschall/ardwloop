@@ -7,10 +7,9 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 public class ArdwloopStarter {
 
-    public static String ARDWLOOP_VERSION = "0.1.1";
-
-    ProgramContainer container;
+    public static final String ARDWLOOP_VERSION = "0.1.1";
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
+    ProgramContainer container;
 
     private ArdwloopStarter() {
         // Singleton pattern
@@ -21,7 +20,7 @@ public class ArdwloopStarter {
     }
 
     public ArdwloopModel start(IArdwProgram program, AbstractLoop... loops) {
-        Logger.msg("Starting Ardwloop version "+ARDWLOOP_VERSION);
+        Logger.msg("Starting Ardwloop version " + ARDWLOOP_VERSION);
         container = new ProgramContainer(program);
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);

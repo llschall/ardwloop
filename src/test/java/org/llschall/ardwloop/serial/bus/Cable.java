@@ -4,7 +4,6 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.stream.Collectors;
 
 class Cable {
 
@@ -17,7 +16,7 @@ class Cable {
 
     String check() {
         StringWriter writer = new StringWriter();
-        List<Character> list = input.stream().collect(Collectors.toList());
+        List<Character> list = input.stream().toList();
         list.stream().map(c -> "" + c).forEach(writer::append);
         return writer.toString();
     }

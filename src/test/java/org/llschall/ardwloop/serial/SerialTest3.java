@@ -7,12 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.serial.jni.BackEntry;
-import org.llschall.ardwloop.structure.utils.Logger;
 
-import static org.llschall.ardwloop.serial.Serial.P;
-import static org.llschall.ardwloop.serial.Serial.P_;
-import static org.llschall.ardwloop.serial.Serial.R;
-import static org.llschall.ardwloop.serial.Serial.S;
+import static org.llschall.ardwloop.serial.Serial.*;
 
 public class SerialTest3 {
     @BeforeEach
