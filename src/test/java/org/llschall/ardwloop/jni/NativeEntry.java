@@ -7,24 +7,18 @@ public class NativeEntry {
     }
 
     public NativeEntry(boolean injectOnly) {
-        if (!injectOnly) {
-            throw new JniException("Should never appear.");
+        inject();
+        if (injectOnly) {
+            return;
         }
-        inject();
-    }
-
-    public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
-        inject();
         importS('a', 0, 0, 0, 0, 0);
     }
 
     public NativeEntry() {
-        this(1, 1, 1, 1, 1);
+        this(false);
     }
 
     public native void inject();
-
-    public native void init(int reboot, int read, int post, int beforeK, int j);
 
     public native int ping(int i);
 

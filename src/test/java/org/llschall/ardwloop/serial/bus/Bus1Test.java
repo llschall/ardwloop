@@ -74,7 +74,7 @@ public class Bus1Test extends AbstractBusTest {
 
         }, "= Computer =");
 
-        NativeEntry entry = new NativeEntry(99, 1, 999, 1, 1);
+        NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
             entry.setup();
@@ -87,7 +87,6 @@ public class Bus1Test extends AbstractBusTest {
 
         computerThd.start();
         arduinoThd.start();
-
 
         // << Z <<
         TestTimer.get().delayMs(99);

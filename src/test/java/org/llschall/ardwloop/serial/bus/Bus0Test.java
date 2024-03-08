@@ -61,7 +61,7 @@ public class Bus0Test extends AbstractBusTest {
             Logger.msg("Finished");
         }, "= Computer =");
 
-        NativeEntry entry = new NativeEntry(99, 0, 0, 99, 9);
+        NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
             entry.setup();
