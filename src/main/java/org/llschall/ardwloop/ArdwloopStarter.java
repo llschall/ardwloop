@@ -13,7 +13,7 @@ public class ArdwloopStarter {
     /**
      * The version of the Ardwloop library
      */
-    public static final String ARDWLOOP_VERSION = "0.1.1";
+    public static final String ARDWLOOP_VERSION = "0.1.2";
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
 
