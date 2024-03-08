@@ -3,7 +3,7 @@ package org.llschall.ardwloop.structure.data
 import java.util.concurrent.atomic.AtomicLong
 
 class SerialData @JvmOverloads constructor(
-    @JvmField val chk: Int?,
+    @JvmField val chk: Int,
     a: SerialVector? = SerialVector(),
     b: SerialVector? = SerialVector(),
     c: SerialVector? = SerialVector(),
@@ -43,7 +43,7 @@ class SerialData @JvmOverloads constructor(
     @JvmField
     val i: SerialVector? = i
 
-    constructor(chk: Int?, av: Int, aw: Int, ax: Int, ay: Int, az: Int) : this(
+    constructor(chk: Int, av: Int, aw: Int, ax: Int, ay: Int, az: Int) : this(
         chk, SerialVector(av, aw, ax, ay, az),
         SerialVector(),
         SerialVector(),
@@ -56,7 +56,23 @@ class SerialData @JvmOverloads constructor(
     )
 
     constructor(
-        chk: Int?,
+        av: Int, aw: Int, ax: Int, ay: Int, az: Int,
+        bv: Int, bw: Int, bx: Int, by: Int, bz: Int
+    ) : this(
+        0,
+        SerialVector(av, aw, ax, ay, az),
+        SerialVector(bv, bw, bx, by, bz),
+        SerialVector(),
+        SerialVector(),
+        SerialVector(),
+        SerialVector(),
+        SerialVector(),
+        SerialVector(),
+        SerialVector()
+    )
+
+    constructor(
+        chk: Int,
         av: Int, aw: Int, ax: Int, ay: Int, az: Int,
         bv: Int, bw: Int, bx: Int, by: Int, bz: Int
     ) : this(

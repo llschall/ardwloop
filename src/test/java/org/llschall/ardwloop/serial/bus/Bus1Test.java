@@ -64,10 +64,10 @@ public class Bus1Test extends AbstractBusTest {
             try {
                 SerialData s = bus.readS();
                 Assertions.assertEquals(0, s.chk);
-                bus.writeR(new SerialData(null, 7, 7, 7, 7, 7));
+                bus.writeR(new SerialData(0, 7, 7, 7, 7, 7));
                 s = bus.readS();
                 Assertions.assertEquals(1, s.chk);
-                bus.writeR(new SerialData(null, 1, 5, 78, -7, 11));
+                bus.writeR(new SerialData(0, 1, 5, 78, -7, 11));
             } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
             }
