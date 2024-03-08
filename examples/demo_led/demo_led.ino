@@ -1,7 +1,7 @@
 /*
  * Welcome to the Ardwloop Demo !
  *
- * Featuring Ardwloop 0.1.1
+ * Featuring Ardwloop 0.1.2
  *
  * More setup instructions are available in
  * https://github.com/llschall/ardwloop-demo
@@ -14,7 +14,7 @@
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
-  ardw_start();
+  ardw_setup();
 }
 
 void loop() {
