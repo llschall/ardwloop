@@ -325,7 +325,8 @@ void core_setup() {
 
   init_j();
   reset();
-
+  send_s();
+  receive_r(END, Rc, H, Kc, K, Rv);
   log("# --core_setup");
 }
 

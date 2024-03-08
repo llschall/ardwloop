@@ -70,7 +70,7 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
   char r = rd();
 
   if (r != 'R') {
-    printf("Expected R but got %c\n", r);
+    log("Expected R but got %c %c\n", r, r);
   }
 
   for (int i = 0; i < Rc; i++) {
@@ -87,6 +87,7 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
       } // if
 
       if (c != k) {
+        log("== ERR %c != %c", c, k);
         reset();
         return;
       } // if
@@ -98,6 +99,7 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
       } // if
 
       if (c != h) {
+        log("== ERR %c != %c", c, h);
         reset();
         return;
       } // if
