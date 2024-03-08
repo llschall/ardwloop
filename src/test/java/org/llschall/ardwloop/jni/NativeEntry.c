@@ -174,11 +174,9 @@ void log_dbg(char *str, va_list c) { back_print(0, str, c); }
 
 void log_dbg(char *str) { back_print(0, str); }
 
-int import_S(char c, jint v, int w, int x, int y, int z) {
+int import_S(char c, int v, int w, int x, int y, int z) {
 
   V *S = entry_s();
-
-  S->a.w = 128;
 
   D *data;
   switch (c) {

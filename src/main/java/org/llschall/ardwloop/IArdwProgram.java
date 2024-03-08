@@ -1,6 +1,7 @@
 package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.data.SerialData;
+import org.llschall.ardwloop.structure.data.SetupData;
 
 import static org.llschall.ardwloop.structure.utils.Logger.msg;
 
@@ -17,7 +18,7 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} sent from the Arduino setup() call
      * @return The {@link SerialData} that the Arduino board will receive in its first loop()
      */
-    SerialData ardwSetup(SerialData s);
+    SetupData ardwSetup(SetupData s);
 
     /**
      * loop() is called by the Ardwloop framework in the same cyclic way as the loop() function

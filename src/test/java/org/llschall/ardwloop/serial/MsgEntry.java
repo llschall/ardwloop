@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.llschall.ardwloop.structure.StructureException;
 import org.llschall.ardwloop.structure.utils.Logger;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,21 @@ public class MsgEntry implements IBackEntry {
         this.msgs.add(new Msg("", K_));
         String c2a = C_ + program + C + rc + C + sc + C + read + C + post + C;
         this.msgs.add(new Msg(K_, c2a));
+        this.msgs.add(new Msg("S000" + buildData(sc), "R" + buildData(rc)));
     }
 
     MsgEntry(char program, int rc, int sc) {
         this(program, rc, sc, 0, 0);
+    }
+
+    String buildData(int n) {
+        StringWriter writer = new StringWriter();
+        char c = 'a';
+        for (int i = 0; i < n; i++) {
+            writer.append(c + "v+" + c + "w+" + c + "x+" + c + "y+" + c + "z+");
+            c++;
+        }
+        return writer.toString();
     }
 
     void addMsg(String a2c, String c2a) {

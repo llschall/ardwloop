@@ -36,8 +36,8 @@ internal class Motor(val model: ArdwloopModel, val config: Config, val bus: Bus)
         val program = config.model.program.get()
         try {
             val s = readS()
-            val r = program.setupPrg(s)
-            writeR(r)
+            val r = program.setupPrg(SetupData(s))
+            writeR(r.data)
 
             reconnect = false
         } catch (e: SerialLongReadException) {

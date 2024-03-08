@@ -1,6 +1,7 @@
 package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.data.SerialData;
+import org.llschall.ardwloop.structure.data.SetupData;
 
 public class JTestProgram implements IArdwProgram {
 
@@ -10,8 +11,8 @@ public class JTestProgram implements IArdwProgram {
     }
 
     @Override
-    public SerialData ardwSetup(SerialData s) {
-        return new SerialData(0, 1, 1, 1, 1, 1);
+    public SetupData ardwSetup(SetupData s) {
+        return new SetupData(new SerialData(0, 1, 1, 1, 1, 1));
     }
 
     @Override

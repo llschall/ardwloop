@@ -18,6 +18,6 @@ void log_dbg(char *str, va_list c);
 
 jclass find_back_entry_class(JNIEnv *env);
 
-int import_S(char c, jint v, int w, int x, int y, int z);
+int import_S(char c, int v, int w, int x, int y, int z);
 int export_d(D data, jchar d);
 int export_v(V data, jchar v, jchar d);

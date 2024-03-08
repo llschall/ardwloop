@@ -15,6 +15,7 @@ public class NativeEntry {
 
     public NativeEntry(int reboot, int read, int post, int beforeK, int j) {
         inject();
+        importS('a', 0, 0, 0, 0, 0);
     }
 
     public NativeEntry() {

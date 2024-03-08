@@ -3,6 +3,7 @@ package org.llschall.ardwloop.motor
 import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.data.SerialData
+import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 
 class ProgramContainer(private val program: IArdwProgram) {
@@ -36,7 +37,7 @@ class ProgramContainer(private val program: IArdwProgram) {
         clock.start()
     }
 
-    fun setupPrg(s: SerialData?): SerialData {
+    fun setupPrg(s: SetupData): SetupData {
         return program.ardwSetup(s)
     }
 

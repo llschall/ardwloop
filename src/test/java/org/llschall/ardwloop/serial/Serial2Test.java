@@ -33,14 +33,14 @@ public class Serial2Test {
         Assertions.assertEquals(1, entry.rc());
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(Serial.S + "000av+aw+ax54+ay+az+",
+        back.addMsg(Serial.S + "001av+aw+ax54+ay+az+",
                 Serial.R + "av67+aw+ax+ay+az68+");
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(Serial.S + "001av+aw+ax54+ay+az+",
+        back.addMsg(Serial.S + "002av+aw+ax54+ay+az+",
                 Serial.R + "av67+aw+ax+ay+az68+");
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
@@ -54,20 +54,21 @@ public class Serial2Test {
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
+
         entry.setup();
         Assertions.assertEquals('J', entry.prg());
-        Assertions.assertEquals(2, entry.sc());
         Assertions.assertEquals(1, entry.rc());
+        Assertions.assertEquals(2, entry.sc());
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(Serial.S + "000av+aw+ax54+ay+az+" + Msg.EMPTY_B,
+        back.addMsg(Serial.S + "001av+aw+ax54+ay+az+" + Msg.EMPTY_B,
                 Serial.R + "av67+aw+ax+ay+az68+");
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(Serial.S + "001av+aw+ax54+ay+az+" + Msg.EMPTY_B,
+        back.addMsg(Serial.S + "002av+aw+ax54+ay+az+" + Msg.EMPTY_B,
                 Serial.R + "av67+aw+ax+ay+az68+");
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
@@ -86,13 +87,13 @@ public class Serial2Test {
         Assertions.assertEquals(9, entry.sc());
         Assertions.assertEquals(9, entry.rc());
 
-        back.addMsg(Serial.S + "000av+aw+ax54+ay+az+" + Msg.EMPTY_B_I,
+        back.addMsg(Serial.S + "001av+aw+ax54+ay+az+" + Msg.EMPTY_B_I,
                 Serial.R + "av+aw+ax+ay+az68+" + Msg.EMPTY_B_I);
         entry.importS('a', 0, 0, 54, 0, 0);
         entry.loop();
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
-        back.addMsg(Serial.S + "001" + Msg.EMPTY_MSG, Serial.R + Msg.EMPTY_MSG);
+        back.addMsg(Serial.S + "002" + Msg.EMPTY_MSG, Serial.R + Msg.EMPTY_MSG);
         entry.importS('a', 0, 0, 0, 0, 0);
         entry.loop();
         Assertions.assertEquals(0, entry.exportR('a', 'z'));

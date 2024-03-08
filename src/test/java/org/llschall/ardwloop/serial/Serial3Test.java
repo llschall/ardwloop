@@ -34,12 +34,12 @@ public class Serial3Test {
         Assertions.assertEquals(1, entry.rc());
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(S + "000av+aw+ax54+ay+az+", R + "av67+aw+ax+ay+az68+");
+        back.addMsg(S + "001av+aw+ax54+ay+az+", R + "av67+aw+ax+ay+az68+");
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
-        back.addMsg(S + "001" + Msg.EMPTY_A, "");
+        back.addMsg(S + "002" + Msg.EMPTY_A, "");
         back.addMsg(P + "000" + Msg.EMPTY_A, R + Msg.EMPTY_A);
         entry.importS('a', 0, 0, 0, 0, 0);
         entry.loop();
@@ -47,11 +47,11 @@ public class Serial3Test {
         Assertions.assertEquals(0, entry.exportR('a', 'z'));
 
         entry.importS('a', 0, 0, 57, 0, 0);
-        back.addMsg(S + "002av+aw+ax57+ay+az+", R + "av+aw+ax+ay+az62+");
+        back.addMsg(S + "003av+aw+ax57+ay+az+", R + "av+aw+ax+ay+az62+");
         entry.loop();
         Assertions.assertEquals(62, entry.exportR('a', 'z'));
 
-        back.addMsg(S + "003" + Msg.EMPTY_A, "");
+        back.addMsg(S + "004" + Msg.EMPTY_A, "");
 
         for (int i = 1; i < 10; i++) {
             back.addMsg(P + "00" + i + Msg.EMPTY_A, "");
@@ -84,7 +84,7 @@ public class Serial3Test {
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
 
-        back.addMsg(S + "000" + Msg.EMPTY_A, "");
+        back.addMsg(S + "001" + Msg.EMPTY_A, "");
 
         for (int i = 0; i < 10; i++) {
             back.addMsg(P + "00" + i + Msg.EMPTY_A, "");
