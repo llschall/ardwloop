@@ -1,8 +1,9 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.IArdwProgram
+import org.llschall.ardwloop.structure.data.LoopData
+import org.llschall.ardwloop.structure.data.PostData
 import org.llschall.ardwloop.structure.data.ProgramCfg
-import org.llschall.ardwloop.structure.data.SerialData
 import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 
@@ -41,11 +42,11 @@ class ProgramContainer(private val program: IArdwProgram) {
         return program.ardwSetup(s)
     }
 
-    fun loopPrg(r: SerialData?): SerialData {
+    fun loopPrg(r: LoopData?): LoopData {
         return program.ardwLoop(r)
     }
 
-    fun postPrg(p: SerialData?) {
+    fun postPrg(p: PostData?) {
         program.ardwPost(p)
     }
 }

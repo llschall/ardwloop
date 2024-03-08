@@ -4,4 +4,10 @@ class SetupData(sd: SerialData) {
     val data: SerialData = sd
 }
 
-class LoopData(data: SerialData)
+class LoopData(sd: SerialData) {
+    val data: SerialData = sd
+}
+
+class PostData(sd: SerialData) {
+    val data: SerialData = sd
+}

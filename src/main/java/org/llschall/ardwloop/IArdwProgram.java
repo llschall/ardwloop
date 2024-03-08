@@ -1,5 +1,7 @@
 package org.llschall.ardwloop;
 
+import org.llschall.ardwloop.structure.data.LoopData;
+import org.llschall.ardwloop.structure.data.PostData;
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.data.SetupData;
 
@@ -27,14 +29,14 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} received by the Arduino board
      * @return The {@link SerialData} that will be sent to the Arduino board
      */
-    SerialData ardwLoop(SerialData s);
+    LoopData ardwLoop(LoopData s);
 
     /**
      * post() is called by the Ardwloop framework each time the Arduino board sent a post {@link SerialData}
      *
      * @param p The received post {@link SerialData}
      */
-    default void ardwPost(SerialData p) {
+    default void ardwPost(PostData p) {
         msg("post ignored");
     }
 

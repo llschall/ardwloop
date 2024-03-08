@@ -71,15 +71,20 @@ internal class Motor(val model: ArdwloopModel, val config: Config, val bus: Bus)
             val atm = AtomicReference<SerialData?>()
 
             StructureThread({
-                val serialR = program.loopPrg(serialS)
+                val serialR = program.loopPrg(LoopData(serialS))
                 model.loop.incrementAndGet()
-                atm.set(serialR)
+                atm.set(serialR.data)
             }, "program_loop").start()
 
             while (atm.get() == null) {
                 get().delayMs(1)
                 val opt = bus.checkP()
-                opt?.let { StructureThread({ program.postPrg(it) }, "program_post").start() }
+                opt?.let {
+                    StructureThread(
+                        { program.postPrg(PostData(it)) },
+                        "program_post"
+                    ).start()
+                }
             }
 
             val loopMs = timer.checkMs()
