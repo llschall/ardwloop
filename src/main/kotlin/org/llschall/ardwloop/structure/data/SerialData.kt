@@ -2,7 +2,7 @@ package org.llschall.ardwloop.structure.data
 
 import java.util.concurrent.atomic.AtomicLong
 
-class SerialData @JvmOverloads constructor(
+open class SerialData @JvmOverloads constructor(
     @JvmField val chk: Int,
     a: SerialVector? = SerialVector(),
     b: SerialVector? = SerialVector(),
