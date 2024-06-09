@@ -3,7 +3,7 @@ package org.llschall.ardwloop
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class AdrwloopKTest {
+class ArdwloopKTest {
 
     @Test
     fun testProgramCanBeCreated() {

@@ -8,12 +8,19 @@ import org.llschall.ardwloop.structure.utils.Logger;
 /**
  * The {@link ArdwloopStarter} starts the Java part of the Arduino program.
  */
+@SuppressWarnings("unused")
 public class ArdwloopStarter {
 
     /**
      * The version of the Ardwloop library
      */
-    public static final String ARDWLOOP_VERSION = "0.1.3";
+    public static final String VERSION = "0.1.3";
+
+    /**
+     * An integer that might vary with the snapshot
+     */
+    public static final int VERSION_INT = 1001;
+
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
 
@@ -34,7 +41,7 @@ public class ArdwloopStarter {
      * @return The {@link ArdwloopModel} created by starting the program
      */
     public ArdwloopModel start(IArdwProgram program, AbstractLoop... loops) {
-        Logger.msg("Starting Ardwloop version " + ARDWLOOP_VERSION);
+        Logger.msg("Starting Ardwloop version " + VERSION);
         container = new ProgramContainer(program);
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);
