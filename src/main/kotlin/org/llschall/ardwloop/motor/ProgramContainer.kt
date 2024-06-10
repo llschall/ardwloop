@@ -1,6 +1,7 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.IArdwProgram
+import org.llschall.ardwloop.serial.SerialProvider
 import org.llschall.ardwloop.structure.data.LoopData
 import org.llschall.ardwloop.structure.data.PostData
 import org.llschall.ardwloop.structure.data.ProgramCfg
@@ -33,7 +34,8 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun start(timer: Timer) {
-        val clock = Clock(timer, config, loops, model)
+        val provider = SerialProvider(model.serialMdl, timer)
+        val clock = Clock(provider, timer, config, loops, model)
         clock.start()
     }
 
