@@ -10,8 +10,6 @@ import org.llschall.ardwloop.structure.utils.Timer
 
 class ProgramContainer(private val program: IArdwProgram) {
 
-    val container: ProgramContainer? = null
-
     @JvmField
     val model: ArdwloopModel
     private val config: Config
