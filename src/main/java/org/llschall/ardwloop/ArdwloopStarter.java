@@ -4,6 +4,7 @@ import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
+import org.llschall.ardwloop.structure.utils.Timer;
 
 /**
  * The {@link ArdwloopStarter} starts the Java part of the Arduino program.
@@ -46,7 +47,9 @@ public class ArdwloopStarter {
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);
         }
-        container.start();
+
+        Timer timer = new Timer();
+        container.start(timer);
         return container.model;
     }
 

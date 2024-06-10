@@ -9,7 +9,7 @@ import org.llschall.ardwloop.structure.model.EventQueue
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Timer
 
-class Clock(val config: Config, val loops: MutableList<AbstractLoop>, val model: ArdwloopModel) {
+class Clock(val timer: Timer, val config: Config, val loops: MutableList<AbstractLoop>, val model: ArdwloopModel) {
     val events: EventQueue = model.eventQueue.get()
 
     fun start() {
@@ -25,7 +25,6 @@ class Clock(val config: Config, val loops: MutableList<AbstractLoop>, val model:
     }
 
     fun launch() {
-        val timer = Timer()
         val bus = Bus(model, SerialProvider(model.serialMdl, timer), timer)
         val motor = Motor(model, config, bus)
 

@@ -6,6 +6,7 @@ import org.llschall.ardwloop.structure.data.PostData
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
+import org.llschall.ardwloop.structure.utils.Timer
 
 class ProgramContainer(private val program: IArdwProgram) {
 
@@ -33,8 +34,8 @@ class ProgramContainer(private val program: IArdwProgram) {
         loops.add(loop)
     }
 
-    fun start() {
-        val clock = Clock(config, loops, model)
+    fun start(timer: Timer) {
+        val clock = Clock(timer, config, loops, model)
         clock.start()
     }
 
