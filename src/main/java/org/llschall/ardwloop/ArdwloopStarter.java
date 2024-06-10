@@ -2,6 +2,8 @@ package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
+import org.llschall.ardwloop.serial.SerialProvider;
+import org.llschall.ardwloop.serial.port.ISerialProvider;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 import org.llschall.ardwloop.structure.utils.Timer;
@@ -49,7 +51,8 @@ public class ArdwloopStarter {
         }
 
         Timer timer = new Timer();
-        container.start(timer);
+        ISerialProvider provider = new SerialProvider(container.model.serialMdl, timer);
+        container.start(provider, timer);
         return container.model;
     }
 
