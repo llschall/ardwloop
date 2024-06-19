@@ -30,7 +30,7 @@ test {
     useJUnitPlatform()
 }
 
-boolean publish = project.hasProperty('ossrh_user')
+boolean publish = project.hasProperty('token_usr')
 
 if (!publish) {
     println('=== Publish skipped because no credential is provided. ===')
@@ -44,7 +44,7 @@ publishing {
 
                 groupId = 'io.github.llschall'
                 artifactId = 'ardwloop'
-                version = '0.1.3-SNAPSHOT'
+                version = '0.1.3'
 
                 pom {
                     signing {
@@ -76,10 +76,11 @@ publishing {
         repositories {
             maven {
                 credentials {
-                    username "$ossrh_user"
-                    password "$ossrh_pwd"
+                    username "$token_usr"
+                    password "$token_pwd"
                 }
-                url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+                //url "https://s01.oss.sonatype.org/content/repositories/snapshots"
             }
         }
         signing {
