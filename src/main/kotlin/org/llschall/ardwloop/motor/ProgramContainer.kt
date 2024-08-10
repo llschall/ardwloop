@@ -2,10 +2,11 @@ package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.serial.port.ISerialProvider
-import org.llschall.ardwloop.structure.StructureTimer
-import org.llschall.ardwloop.structure.data.*
+import org.llschall.ardwloop.structure.data.LoopData
+import org.llschall.ardwloop.structure.data.PostData
+import org.llschall.ardwloop.structure.data.ProgramCfg
+import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
-import org.llschall.ardwloop.structure.utils.Logger
 import org.llschall.ardwloop.structure.utils.Timer
 
 class ProgramContainer(private val program: IArdwProgram) {
@@ -38,11 +39,7 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun setupPrg(s: SetupData): SetupData {
-        Logger.msg("=== Setup successfully triggered ===")
-        StructureTimer.get().shutdown()
-
-        // dead code
-        return SetupData(SerialData(0, 0, 0, 0, 0, 0));
+        return program.ardwSetup(s)
     }
 
     fun loopPrg(r: LoopData?): LoopData {

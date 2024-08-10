@@ -40,7 +40,6 @@ data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISeria
             val `in` = proc.inputStream
             val reader = BufferedReader(InputStreamReader(`in`))
             val list = reader.lines().toList()
-            val size = list.size
             `in`.close()
 
             if (list.isEmpty()) {
