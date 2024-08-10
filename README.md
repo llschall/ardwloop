@@ -13,6 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.llschall:ardwloop:0.1.4'
+    implementation 'io.github.llschall:ardwloop:0.1.5'
 }
 ```
