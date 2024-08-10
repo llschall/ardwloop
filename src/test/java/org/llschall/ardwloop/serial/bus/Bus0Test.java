@@ -20,6 +20,8 @@ import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Bus0Test extends AbstractBusTest {
 
     @BeforeEach
@@ -55,10 +57,14 @@ public class Bus0Test extends AbstractBusTest {
 
         Assertions.assertEquals("N/A", model.serialMdl.status.get());
 
+        var finishedA = new AtomicBoolean(false);
+        var finishedC = new AtomicBoolean(false);
+
         Thread computerThd = new Thread(() -> {
             Logger.msg("Start");
             bus.connect(cfg);
             Logger.msg("Finished");
+            finishedC.set(true);
         }, "= Computer =");
 
         NativeEntry entry = new NativeEntry();
@@ -66,6 +72,7 @@ public class Bus0Test extends AbstractBusTest {
             Logger.msg("Start");
             entry.setup();
             Logger.msg("Finished");
+            finishedA.set(true);
         }, ARDUINO_THD);
 
         computerThd.start();
@@ -114,8 +121,10 @@ public class Bus0Test extends AbstractBusTest {
         cableC2A.release("CTC1C1C0C0C".length());
 
         TestTimer.get().delayMs(88);
-
         dump();
+
+        Assertions.assertTrue(finishedC.get());
+        Assertions.assertTrue(finishedA.get());
         Logger.msg("Finished");
     }
 
