@@ -9,11 +9,8 @@ import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 
 public class Serial1Test {
-
     @BeforeEach
-    void setup() {
-        LocalOnly.get().skipOnGitHub();
-    }
+    void setup() {/* do nothing */ }
 
     @AfterEach
     void close() {

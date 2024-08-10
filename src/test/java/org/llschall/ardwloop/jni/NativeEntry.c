@@ -188,6 +188,8 @@ int import_S(char c, int v, int w, int x, int y, int z) {
   data->x = x;
   data->y = y;
   data->z = z;
+
+  return 0;
 }
 
 int export_d(D data, jchar d) {

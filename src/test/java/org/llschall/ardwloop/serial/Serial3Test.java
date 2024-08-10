@@ -12,9 +12,7 @@ import static org.llschall.ardwloop.serial.Serial.*;
 
 public class Serial3Test {
     @BeforeEach
-    void setup() {
-        LocalOnly.get().skipOnGitHub();
-    }
+    void setup() {/* do nothing */ }
 
     @AfterEach
     void close() {
