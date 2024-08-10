@@ -27,7 +27,7 @@ public class SetupTest {
         NativeEntry entry = new NativeEntry(true);
         int ping = entry.ping(2023);
         Assertions.assertEquals(2023, ping);
-        int pong = entry.pong(202);
+        int pong = entry.pong(2024);
         Assertions.assertEquals(2024, pong);
     }
 }
