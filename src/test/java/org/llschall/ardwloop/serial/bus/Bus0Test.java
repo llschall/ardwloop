@@ -24,7 +24,6 @@ public class Bus0Test extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
-        LocalOnly.get().skipOnGitHub();
         StructureTimer.FAKE = true;
         BackEntry.setup(new Computer(this));
     }

@@ -12,7 +12,6 @@ public class ResetTest {
 
     @BeforeEach
     void setup() {
-        LocalOnly.get().skipOnGitHub();
         BackEntry.setup(new ResetEntry());
     }
 
