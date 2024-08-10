@@ -24,7 +24,6 @@ public class SetupTest {
 
     @Test
     public void testJni() {
-        LocalOnly.get().skipOnGitHub();
         NativeEntry entry = new NativeEntry(true);
         int ping = entry.ping(2023);
         Assertions.assertEquals(2023, ping);
