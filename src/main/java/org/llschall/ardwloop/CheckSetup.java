@@ -6,6 +6,8 @@ import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.data.SetupData;
 import org.llschall.ardwloop.structure.utils.Logger;
 
+import java.util.Properties;
+
 /**
  * Intended to check the connection on start-up only.
  */
@@ -16,10 +18,18 @@ public class CheckSetup {
      */
     public static void main(String[] args) {
 
+        Logger.msg("Java: " + System.getProperty("java.runtime.version"));
+
         ArdwloopStarter.get().start(new IArdwProgram() {
             @Override
             public SetupData ardwSetup(SetupData s) {
-                Logger.msg("=== Setup successfully triggered ===");
+
+                Logger.msg("""
+                        
+                        * * * * * * * * * * * * * * * * *
+                        *  Setup successfully triggered *
+                        * * * * * * * * * * * * * * * * *""");
+
                 StructureTimer.get().shutdown();
 
                 // dead code

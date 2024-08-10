@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
     id 'maven-publish'
     id 'signing'
 }
@@ -13,11 +13,6 @@ dependencies {
 
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
 
 kotlin {
