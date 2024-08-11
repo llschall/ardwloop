@@ -10,13 +10,14 @@ import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.Bus;
-import org.llschall.ardwloop.serial.Serial;
+import org.llschall.ardwloop.serial.*;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
 import org.llschall.ardwloop.serial.misc.IArduino;
 import org.llschall.ardwloop.serial.misc.TestTimer;
+import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
+import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
@@ -26,7 +27,6 @@ public class Bus0Test extends AbstractBusTest {
 
     @BeforeEach
     void setUp() {
-        LocalOnly.get().skipOnGitHub();
         StructureTimer.FAKE = true;
         BackEntry.setup(new Computer(this));
     }
@@ -62,9 +62,18 @@ public class Bus0Test extends AbstractBusTest {
 
         Thread computerThd = new Thread(() -> {
             Logger.msg("Start");
-            bus.connect(cfg);
-            Logger.msg("Finished");
-            finishedC.set(true);
+            boolean connect = bus.connect(cfg);
+
+            Assertions.assertTrue(connect);
+            Logger.msg("Loop 1");
+            try {
+                SerialData s = bus.readS();
+                Assertions.assertEquals(0, s.chk);
+                bus.writeR(new SerialData(0, 7, 7, 7, 7, 7));
+                finishedC.set(true);
+            } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
+                throw new RuntimeException(e);
+            }
         }, "= Computer =");
 
         NativeEntry entry = new NativeEntry();
@@ -79,52 +88,56 @@ public class Bus0Test extends AbstractBusTest {
         // << Z <<
         TestTimer.get().delayMs(88);
         String c2a = cableC2A.check();
-        dump();
         Assertions.assertTrue(c2a.contains(Serial.Z_));
         cableC2A.input.clear();
-        dump();
 
         arduinoThd.start();
         // >> J >>
         TestTimer.get().delayMs(88);
         String a2c = cableA2C.check();
-        dump();
         Assertions.assertTrue(a2c.startsWith(Serial.J_));
         cableA2C.releaseAll();
 
         // << J <<
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
-        dump();
         Assertions.assertTrue(c2a.startsWith(Serial.J_));
         cableC2A.release(1);
 
         // << K <<
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
-        dump();
         Assertions.assertEquals(Serial.K_, c2a);
         cableC2A.release(1);
 
         // >> K >>
         TestTimer.get().delayMs(88);
         a2c = cableA2C.check();
-        dump();
         Assertions.assertTrue(a2c.endsWith(Serial.K_));
         cableA2C.releaseAll();
 
         // << CTC1C1C0C0C <<
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
-        dump();
         Assertions.assertEquals("CTC1C1C0C0C", c2a);
         cableC2A.release("CTC1C1C0C0C".length());
 
-        TestTimer.get().delayMs(88);
-        dump();
+        // >> S >>
+        TestTimer.get().delayMs(99);
+        Assertions.assertEquals(Serial.S + "000av+aw+ax+ay+az+", cableA2C.check());
+        cableA2C.releaseAll();
 
+        // << R <<
+        TestTimer.get().delayMs(99);
         Assertions.assertTrue(finishedC.get());
+        Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+", cableC2A.check());
+        cableC2A.releaseAll();
+
+        TestTimer.get().delayMs(88);
+
         Assertions.assertTrue(finishedA.get());
+
+        dump();
         Logger.msg("Finished");
     }
 

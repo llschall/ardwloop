@@ -98,7 +98,6 @@ public class Bus1Test extends AbstractBusTest {
 
         // << JK <<
         TestTimer.get().delayMs(99);
-        dump();
         Assertions.assertEquals(Serial.J_ + Serial.K, cableC2A.check());
         cableC2A.release(2);
 
@@ -119,25 +118,21 @@ public class Bus1Test extends AbstractBusTest {
 
         // << R <<
         TestTimer.get().delayMs(99);
-        dump();
         Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+", cableC2A.check());
         cableC2A.releaseAll();
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        dump();
         Assertions.assertEquals(Serial.S + "001av+aw+ax+ay+az+", cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
         TestTimer.get().delayMs(99);
-        dump();
         Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+", cableC2A.check());
         cableC2A.releaseAll();
 
         TestTimer.get().delayMs(99);
 
-        Logger.msg("*** Last ***");
         dump();
         Logger.msg("*** Finished ***");
     }
