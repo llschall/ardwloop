@@ -58,7 +58,7 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
             )
             for (s in arr) {
                 wr.append(s)
-                wr.append(" ")
+                wr.append("§")
             }
             msg(wr.toString())
 
@@ -68,6 +68,10 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
             val acm = name.contains("ttyACM")
             val fake = name.contains("FAKE")
             if (usb || rfcomm || acm || fake) {
+                this.port = port
+                serialMdl.port.name.set(name)
+            }
+            if ((port.descriptivePortName ?: "").contains("CH340")) {
                 this.port = port
                 serialMdl.port.name.set(name)
             }
