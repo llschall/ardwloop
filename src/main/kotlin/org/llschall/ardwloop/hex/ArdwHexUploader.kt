@@ -9,7 +9,7 @@ import java.io.InputStreamReader
  *
  * See https://github.com/avrdudes/avrdude
  */
-class ArdwHexUploader() {
+public class ArdwHexUploader() {
 
     var avrdudePath: String = "avrdude"
     var device: String = "atmega328p"

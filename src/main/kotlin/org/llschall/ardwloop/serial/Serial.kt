@@ -58,7 +58,7 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
             )
             for (s in arr) {
                 wr.append(s)
-                wr.append("§")
+                wr.append("&")
             }
             msg(wr.toString())
 
