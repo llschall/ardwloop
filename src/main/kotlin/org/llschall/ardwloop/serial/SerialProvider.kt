@@ -35,6 +35,13 @@ data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISeria
 
     private fun tryRfcomm(): List<SerialComPort> {
 
+        val os = System.getProperty("os.name")
+        if (!os.contains("Linux")) {
+            return emptyList()
+        }
+
+        msg("Linux detected.")
+
         try {
             val proc = Runtime.getRuntime().exec(arrayOf("rfcomm", "-a"))
             val `in` = proc.inputStream
