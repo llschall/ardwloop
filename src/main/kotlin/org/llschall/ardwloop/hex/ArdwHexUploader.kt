@@ -5,21 +5,14 @@ import java.io.IOException
 import java.io.InputStreamReader
 
 /**
- * An ArdwHexUploader uploads a program to an Arduino board using avrdude.
+ * An ArdwHexUploader uploads a program to an Arduino board using the avrdude command.
+ *
  * See https://github.com/avrdudes/avrdude
  */
 class ArdwHexUploader() {
 
-    constructor(
-        avrdudePath: String = "avrdude",
-        device: String = "atmega328p",
-    ) : this() {
-        this.avrdudePath = avrdudePath
-        this.device = device
-    }
-
-    private lateinit var avrdudePath: String
-    private lateinit var device: String
+    var avrdudePath: String = "avrdude"
+    var device: String = "atmega328p"
 
     @Throws(IOException::class)
     fun upload(path: String, port: String) {
