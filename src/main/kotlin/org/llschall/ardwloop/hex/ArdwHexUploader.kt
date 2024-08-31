@@ -13,6 +13,7 @@ class ArdwHexUploader() {
 
     var avrdudePath: String = "avrdude"
     var device: String = "atmega328p"
+    var baudrate: String = "57600"
 
     @Throws(IOException::class)
     fun upload(path: String, port: String) {
@@ -21,7 +22,7 @@ class ArdwHexUploader() {
             "-p", device,
             "-c", "arduino",
             "-P", port,
-            "-b", "57600",
+            "-b", baudrate,
             "-U", "flash:w:$path:i"
         )
         val process = builder.start()
