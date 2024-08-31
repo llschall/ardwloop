@@ -38,6 +38,8 @@ public class ArdwloopStarter {
     }
 
     /**
+     * Access the singleton instance
+     *
      * @return The {@link ArdwloopStarter} instance that can be used to start the Arduino program.
      */
     public static ArdwloopStarter get() {
@@ -45,7 +47,9 @@ public class ArdwloopStarter {
     }
 
     /**
-     * @param selector A customized serial port selector
+     * Sets a custom selector for the serial port
+     *
+     * @param selector The selector that would replace the default one
      */
     public void setSelector(IPortSelector selector) {
         this.selector = selector;

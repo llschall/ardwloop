@@ -41,35 +41,40 @@ public interface IArdwProgram {
     }
 
     /**
-     * @return An identifier that can reference the program to be runned by the Arduino board,
-     * provided a runner supporting multiple programs is loaded on the Arduino board.
+     * The program id enables to upload a program wrapping several ones on the Arduino board.
+     *
+     * @return An identifier that can reference the program to be run by the Arduino board,
      */
     default char getProgramId() {
         return 'a';
     }
 
     /**
-     * @return The size of the {@link SerialData} that the Arduino board will receive.
      * To be adapted to the Arduino project requirements.
+     *
+     * @return The size of the {@link SerialData} that the Arduino board will receive.
      */
     int getRc();
 
 
     /**
-     * @return The size of the {@link SerialData} that the Arduino board will send.
      * To be adapted to the Arduino project requirements.
+     *
+     * @return The size of the {@link SerialData} that the Arduino board will send.
      */
     int getSc();
 
     /**
-     * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialData}
      * To be adapted to the Arduino project requirements.
+     *
+     * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialData}
      */
     int getReadDelayMs();
 
     /**
-     * @return The delay the Arduino board will wait before sending a post {@link SerialData}
      * To be adapted to the Arduino project requirements.
+     *
+     * @return The delay the Arduino board will wait before sending a post {@link SerialData}
      */
     int getPostDelayMs();
 

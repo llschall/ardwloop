@@ -6,14 +6,18 @@ import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.data.SetupData;
 import org.llschall.ardwloop.structure.utils.Logger;
 
-import java.util.Properties;
-
 /**
  * Intended to check the connection on start-up only.
  */
 public class CheckSetup {
 
+    private CheckSetup() {
+        // never called
+    }
+
     /**
+     * Checks of the Serial connection is functional.
+     *
      * @param args: ignored
      */
     public static void main(String[] args) {
