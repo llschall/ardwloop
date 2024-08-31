@@ -71,6 +71,10 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
                 this.port = port
                 serialMdl.port.name.set(name)
             }
+            if ((port.portDescription ?: "").contains("Arduino")) {
+                this.port = port
+                serialMdl.port.name.set(name)
+            }
             if ((port.descriptivePortName ?: "").contains("CH340")) {
                 this.port = port
                 serialMdl.port.name.set(name)
@@ -82,7 +86,7 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
             return false
         }
 
-        msg("Serial port => $port")
+        msg("Serial port ==> $port")
 
         serialMdl.port.name.set(port!!.systemPortName)
 
