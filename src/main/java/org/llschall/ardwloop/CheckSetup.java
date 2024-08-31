@@ -25,10 +25,11 @@ public class CheckSetup {
             public SetupData ardwSetup(SetupData s) {
 
                 Logger.msg("""
-                        
-                        * * * * * * * * * * * * * * * * *
-                        *  Setup successfully triggered *
-                        * * * * * * * * * * * * * * * * *""");
+                        \n
+                        * * * * * * * * * * * * * * * * * * * * *
+                        * *    Setup successfully triggered   * *
+                        * * * * * * * * * * * * * * * * * * * * *
+                        """);
 
                 StructureTimer.get().shutdown();
 
