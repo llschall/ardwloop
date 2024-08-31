@@ -1,7 +1,7 @@
 /*
  * Welcome to the Ardwloop Demo !
  *
- * Featuring Ardwloop 0.1.5
+ * Featuring Ardwloop 0.1.6
  *
  * More setup instructions are available in
  * https://github.com/llschall/ardwloop-demo
