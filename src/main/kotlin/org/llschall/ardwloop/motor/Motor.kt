@@ -13,7 +13,12 @@ import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.util.concurrent.atomic.AtomicReference
 
-internal class Motor(val model: ArdwloopModel, val config: Config, val bus: Bus) : AbstractLoop("MOTOR") {
+internal class Motor(
+    val model: ArdwloopModel,
+    val config: Config,
+    val bus: Bus,
+    val selector: IPortSelector
+) : AbstractLoop("MOTOR") {
     var reconnect: Boolean = false
 
     override fun setup() {
@@ -25,7 +30,7 @@ internal class Motor(val model: ArdwloopModel, val config: Config, val bus: Bus)
         }
 
         serialMdl.connected.set(false)
-        while (!bus.connect(cfg)) {
+        while (!bus.connect(cfg, selector)) {
             msg("Waiting 2s before trying to connect again...")
 
             model.monitorMdl.samples.addLast(MonitorSample())

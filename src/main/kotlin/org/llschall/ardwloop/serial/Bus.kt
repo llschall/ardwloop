@@ -19,8 +19,8 @@ class Bus @JvmOverloads constructor(
     private var connected = false
     private var serial: Serial? = null
 
-    fun connect(cfg: ProgramCfg): Boolean {
-        serial = Serial(model, cfg, timer)
+    fun connect(cfg: ProgramCfg, selector: IPortSelector): Boolean {
+        serial = Serial(model, cfg, timer, selector)
         model.serialMdl.status.set("Connecting...")
 
         try {
@@ -47,7 +47,7 @@ class Bus @JvmOverloads constructor(
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
     fun checkP(): SerialData? {
         val opt = serial!!.checkP()
-        opt?.let { it: SerialData ->  serialMdl.serialP.set(it) }
+        opt?.let { it: SerialData -> serialMdl.serialP.set(it) }
         return opt
     }
 

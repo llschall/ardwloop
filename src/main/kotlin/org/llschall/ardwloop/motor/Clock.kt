@@ -1,6 +1,7 @@
 package org.llschall.ardwloop.motor
 
 import org.llschall.ardwloop.serial.Bus
+import org.llschall.ardwloop.serial.IPortSelector
 import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.structure.StructureShutdownException
 import org.llschall.ardwloop.structure.StructureThread
@@ -17,6 +18,7 @@ class Clock(
     val config: Config,
     val loops: MutableList<AbstractLoop>,
     val model: ArdwloopModel,
+    val selector: IPortSelector,
 ) {
     val events: EventQueue = model.eventQueue.get()
 
@@ -40,7 +42,7 @@ class Clock(
 
     private fun launch() {
         val bus = Bus(model, provider, timer)
-        val motor = Motor(model, config, bus)
+        val motor = Motor(model, config, bus, selector)
 
         loops.add(motor)
 

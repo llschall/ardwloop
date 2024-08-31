@@ -27,7 +27,7 @@ public class CheckSetup {
                 Logger.msg("""
                         \n
                         * * * * * * * * * * * * * * * * * * * * *
-                        * *    Setup successfully triggered   * *
+                         * *   Setup successfully triggered  * *
                         * * * * * * * * * * * * * * * * * * * * *
                         """);
 

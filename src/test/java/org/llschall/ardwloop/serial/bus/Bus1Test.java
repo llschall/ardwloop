@@ -57,7 +57,7 @@ public class Bus1Test extends AbstractBusTest {
 
         Thread computerThd = new Thread(() -> {
             Logger.msg("Start");
-            boolean connect = bus.connect(cfg);
+            boolean connect = bus.connect(cfg, new PortSelector());
             Assertions.assertTrue(connect);
             Logger.msg("Loop 1");
             try {

@@ -10,11 +10,35 @@ import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.StringWriter
+import java.nio.channels.Selector
 import kotlin.collections.set
 
 class PortDescriptor(val name: String, val description: String, val systemName: String)
 
-class Serial internal constructor(private val model: ArdwloopModel, cfg: ProgramCfg, val timer: Timer) {
+interface IPortSelector {
+    fun select(desc: PortDescriptor): Boolean
+}
+
+class PortSelector : IPortSelector {
+
+    override
+    fun select(desc: PortDescriptor): Boolean {
+        val name = desc.systemName
+        return (name.contains("USB")
+                || name.contains("rfcomm")
+                || name.contains("ttyACM")
+                || name.contains("FAKE")
+                )
+    }
+}
+
+
+class Serial internal constructor(
+    private val model: ArdwloopModel,
+    cfg: ProgramCfg,
+    val timer: Timer,
+    val selector: IPortSelector
+) {
     private val serialMdl = model.serialMdl
     private var port: ISerialPort? = null
     private var writer: Writer? = null
@@ -64,30 +88,16 @@ class Serial internal constructor(private val model: ArdwloopModel, cfg: Program
                 systemName = port.systemPortName,
                 description = port.portDescription ?: "",
             )
+            if (selector.select(desc)) {
+                this.port = port
+                serialMdl.port.name.set(desc.name)
+            }
 
             for (s in arr) {
                 wr.append(s)
                 wr.append("&")
             }
             msg(wr.toString())
-
-            val name = desc.systemName
-            if (name.contains("USB")
-                || name.contains("rfcomm")
-                || name.contains("ttyACM")
-                || name.contains("FAKE")
-            ) {
-                this.port = port
-                serialMdl.port.name.set(name)
-            }
-            if (desc.description.contains("Arduino")) {
-                this.port = port
-                serialMdl.port.name.set(name)
-            }
-            if (desc.name.contains("CH340")) {
-                this.port = port
-                serialMdl.port.name.set(name)
-            }
         }
 
         if (port == null) {
