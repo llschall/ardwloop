@@ -16,6 +16,11 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 kotlin {
     jvmToolchain(21)
 }
