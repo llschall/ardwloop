@@ -1,5 +1,6 @@
 package org.llschall.ardwloop.serial
 
+import com.fazecast.jSerialComm.SerialPort
 import org.llschall.ardwloop.serial.*
 import org.llschall.ardwloop.serial.port.*
 import org.llschall.ardwloop.structure.*
@@ -10,25 +11,64 @@ import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.StringWriter
-import java.nio.channels.Selector
 import kotlin.collections.set
 
-class PortDescriptor(val name: String, val description: String, val systemName: String)
+class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
 
-interface IPortSelector {
-    fun select(desc: PortDescriptor): Boolean
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ArdwPortDescriptor
+
+        if (name != other.name) return false
+        if (description != other.description) return false
+        if (systemName != other.systemName) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + description.hashCode()
+        result = 31 * result + systemName.hashCode()
+        return result
+    }
+
 }
 
-class PortSelector : IPortSelector {
+interface IArdwPortSelector {
+    fun select(desc: ArdwPortDescriptor): Boolean
+
+    fun list(): List<ArdwPortDescriptor>
+}
+
+class ArdwPortSelector : IArdwPortSelector {
 
     override
-    fun select(desc: PortDescriptor): Boolean {
+    fun select(desc: ArdwPortDescriptor): Boolean {
         val name = desc.systemName
         return (name.contains("USB")
                 || name.contains("rfcomm")
                 || name.contains("ttyACM")
                 || name.contains("FAKE")
                 )
+    }
+
+    override
+    fun list(): List<ArdwPortDescriptor> {
+        val commPorts = SerialPort.getCommPorts()
+        val list = mutableListOf<ArdwPortDescriptor>()
+        for (port in commPorts) {
+            list.add(
+                ArdwPortDescriptor(
+                    name = port.descriptivePortName,
+                    description = port.portDescription,
+                    systemName = port.systemPortName
+                )
+            )
+        }
+        return list
     }
 }
 
@@ -37,7 +77,7 @@ class Serial internal constructor(
     private val model: ArdwloopModel,
     cfg: ProgramCfg,
     val timer: Timer,
-    val selector: IPortSelector
+    val selector: IArdwPortSelector
 ) {
     private val serialMdl = model.serialMdl
     private var port: ISerialPort? = null
@@ -83,7 +123,7 @@ class Serial internal constructor(
                 "" + port.deviceWriteBufferSize,
             )
 
-            val desc = PortDescriptor(
+            val desc = ArdwPortDescriptor(
                 name = port.descriptivePortName ?: "",
                 systemName = port.systemPortName,
                 description = port.portDescription ?: "",

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.JTestProgram;
-import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
@@ -57,7 +56,7 @@ public class Bus1Test extends AbstractBusTest {
 
         Thread computerThd = new Thread(() -> {
             Logger.msg("Start");
-            boolean connect = bus.connect(cfg, new PortSelector());
+            boolean connect = bus.connect(cfg, new ArdwPortSelector());
             Assertions.assertTrue(connect);
             Logger.msg("Loop 1");
             try {

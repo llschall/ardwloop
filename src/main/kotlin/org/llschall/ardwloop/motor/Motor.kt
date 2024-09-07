@@ -17,7 +17,7 @@ internal class Motor(
     val model: ArdwloopModel,
     val config: Config,
     val bus: Bus,
-    val selector: IPortSelector
+    val selector: IArdwPortSelector
 ) : AbstractLoop("MOTOR") {
     var reconnect: Boolean = false
 

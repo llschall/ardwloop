@@ -3,8 +3,8 @@ package org.llschall.ardwloop;
 import kotlin.jvm.functions.Function2;
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.IPortSelector;
-import org.llschall.ardwloop.serial.PortSelector;
+import org.llschall.ardwloop.serial.IArdwPortSelector;
+import org.llschall.ardwloop.serial.ArdwPortSelector;
 import org.llschall.ardwloop.serial.SerialProvider;
 import org.llschall.ardwloop.serial.port.ISerialProvider;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
@@ -26,12 +26,12 @@ public class ArdwloopStarter {
     /**
      * An integer that might vary with the snapshot
      */
-    public static final int VERSION_INT = 1001;
+    public static final int VERSION_INT = 1003;
 
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
 
-    private IPortSelector selector = new PortSelector();
+    private IArdwPortSelector selector = new ArdwPortSelector();
 
     private ArdwloopStarter() {
         // Singleton pattern
@@ -51,7 +51,7 @@ public class ArdwloopStarter {
      *
      * @param selector The selector that would replace the default one
      */
-    public void setSelector(IPortSelector selector) {
+    public void setSelector(IArdwPortSelector selector) {
         this.selector = selector;
     }
 

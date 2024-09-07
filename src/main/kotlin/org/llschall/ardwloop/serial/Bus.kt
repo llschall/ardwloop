@@ -19,7 +19,7 @@ class Bus @JvmOverloads constructor(
     private var connected = false
     private var serial: Serial? = null
 
-    fun connect(cfg: ProgramCfg, selector: IPortSelector): Boolean {
+    fun connect(cfg: ProgramCfg, selector: IArdwPortSelector): Boolean {
         serial = Serial(model, cfg, timer, selector)
         model.serialMdl.status.set("Connecting...")
 
