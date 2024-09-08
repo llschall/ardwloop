@@ -10,6 +10,8 @@ import static org.llschall.ardwloop.structure.utils.Logger.msg;
 /**
  * {@link IArdwProgram} should be implemented to create the Java program that communicates
  * with the Arduino program loaded on the Arduino board.
+ * <p>
+ * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
 public interface IArdwProgram {
 

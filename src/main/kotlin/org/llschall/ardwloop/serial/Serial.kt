@@ -13,6 +13,9 @@ import org.llschall.ardwloop.structure.utils.Logger.msg
 import java.io.StringWriter
 import kotlin.collections.set
 
+/**
+ * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
+ */
 class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
 
     override fun equals(other: Any?): Boolean {
@@ -37,12 +40,18 @@ class ArdwPortDescriptor(val name: String, val description: String, val systemNa
 
 }
 
+/**
+ * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
+ */
 interface IArdwPortSelector {
     fun select(desc: ArdwPortDescriptor): Boolean
 
     fun list(): List<ArdwPortDescriptor>
 }
 
+/**
+ * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
+ */
 class ArdwPortSelector : IArdwPortSelector {
 
     override

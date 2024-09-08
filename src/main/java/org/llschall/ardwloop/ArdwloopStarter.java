@@ -14,6 +14,8 @@ import org.llschall.ardwloop.structure.utils.Timer;
 
 /**
  * The {@link ArdwloopStarter} starts the Java part of the Arduino program.
+ * <p>
+ * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
 @SuppressWarnings("unused")
 public class ArdwloopStarter {
