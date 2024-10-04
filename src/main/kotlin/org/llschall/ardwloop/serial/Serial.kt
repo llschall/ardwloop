@@ -126,10 +126,6 @@ class Serial internal constructor(
                 port.portDescription,
                 port.descriptivePortName,
                 "" + port.baudRate,
-                "" + port.cTS,
-                "" + port.dCD,
-                "" + port.deviceReadBufferSize,
-                "" + port.deviceWriteBufferSize,
             )
 
             val desc = ArdwPortDescriptor(

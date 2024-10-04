@@ -13,14 +13,6 @@ interface ISerialPort {
 
     var baudRate: Int
 
-    val cTS: Boolean
-
-    val dCD: Boolean
-
-    val deviceReadBufferSize: Int
-
-    val deviceWriteBufferSize: Int
-
     fun closePort()
 
     fun openPort(): Boolean

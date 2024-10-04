@@ -64,26 +64,4 @@ public class FakePort implements ISerialPort {
     public void setBaudRate(int baud) {
 
     }
-
-    @Override
-    public boolean getCTS() {
-        return false;
-    }
-
-    @Override
-    public boolean getDCD() {
-        return false;
-    }
-
-    @Override
-    public int getDeviceReadBufferSize() {
-        return 0;
-    }
-
-    @Override
-    public int getDeviceWriteBufferSize() {
-        return 0;
-    }
-
-
 }

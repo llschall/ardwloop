@@ -39,18 +39,6 @@ data class SerialComPort(val delegate: SerialPort, val timer: Timer, val lastRea
             delegate.setBaudRate(baud)
         }
 
-    override val cTS: Boolean
-        get() = delegate.cts
-
-    override val dCD: Boolean
-        get() = delegate.dcd
-
-    override val deviceReadBufferSize: Int
-        get() = delegate.deviceReadBufferSize
-
-    override val deviceWriteBufferSize: Int
-        get() = delegate.deviceWriteBufferSize
-
     override fun closePort() {
         delegate.closePort()
     }
