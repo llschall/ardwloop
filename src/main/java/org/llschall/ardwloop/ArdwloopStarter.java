@@ -28,7 +28,7 @@ public class ArdwloopStarter {
     /**
      * An integer that might vary with the snapshot
      */
-    public static final int VERSION_INT = 1003;
+    public static final int VERSION_INT = 1001;
 
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
