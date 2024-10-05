@@ -46,7 +46,7 @@ publishing {
                 groupId = 'io.github.llschall'
                 artifactId = 'ardwloop'
                 version = '0.1.8-SNAPSHOT'
-                // version = '0.1.7'
+                // version = '0.1.8'
 
                 pom {
                     signing {
