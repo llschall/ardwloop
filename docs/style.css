@@ -1,6 +1,6 @@
- body {
+body {
   background: linear-gradient(90deg, rgba(230,230,230,1) 10%, rgba(190,190,190,1) 90%);
-  img: {
-   width: 90%;
+  img {
+     width: 100%;
   }
 }
