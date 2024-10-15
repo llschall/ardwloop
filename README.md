@@ -18,4 +18,4 @@ dependencies {
 }
 ```
 
-![](https://github.com/llschall/ardwloop/blob/main/ardwloop.png)
+![](https://github.com/llschall/ardwloop/blob/main/media/ardwloop.png)
