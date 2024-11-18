@@ -3,36 +3,39 @@ layout: default
 title: Home
 ---
 
-<h1>Run the demo</h1>
+<h1>How to run the demo</h1>
 
 <h1>How the code internally works</h1>
 
-The demo is written in Java and located in app/src/main/java.
-It applies the MCV pattern.
-It firstly intends to provide call examples to the ardwloop API.
+The demo is written in Java and located in <i>app/src/main/java</i>.
+It applies the MVC pattern.
+It firstly intends to provide call examples to the <b>ardwloop API</b>.
 
 <h2>DemoProgram</h2>
 
-ardwloop.demo.model.DemoProgram implements the communication with the Arduino board.
+<i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.
 
-That's the most important class to understand what the Demo program in Java sends and receives from the Arduino board.
+That's the most important class to understand what the Demo program sends and receives from the Arduino board.
 
-It implements the IArdwProgram interface, by particular the 2 core methods:
-- public SetupData ardwSetup(SetupData setup)
-- public LoopData ardwLoop(LoopData loop)
+It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:
+<ul>
+    <li>public SetupData <b>ardwSetup</b>(SetupData setup)</li>
+    <li>public LoopData <b>ardwLoop</b>(LoopData loop)</li>
+</ul>
 
-Any program using ardwloop should implement the IArdwProgram interface.
+Any program using ardwloop should implement the <b>IArdwProgram</b> interface.
 
 <h2>DemoModel</h2>
 
-ardwloop.demo.model.DemoModel is the model from the MVC pattern.
+<i>ardwloop.demo.model.<b>DemoModel</b></i> is the model from the MVC pattern.
 
-The most important is that it starts the Ardwloop threads in its start() method, and that it forwards the necessary commands to its DemoProgram instance.
+The most important is that it starts the Ardwloop threads in its
+<b>start()</b> method, and that it forwards the necessary commands to its <b>DemoProgram</b> instance.
 
-In addition, it does the optional stuff hereafter:
-- it stores the ArdwloopModel that would enable to extract various information later on.
-- it uses the ardwloop refresher to synchronize the DemoView refresh with the Arduino communication cycles
+In addition, it does the <i><u>optional</u></i> stuff hereafter:
+- it stores the <b>ArdwloopModel</b> that would enable to extract various information later on.
+- it uses the ardwloop <b>refresher</b> to synchronize the DemoView refresh with the Arduino communication cycles
 
 <h2>StartDemo</h2>
 
-ardwloop.demo.StartDemo.main() is where the program is started.
+<i>ardwloop.demo.<b>StartDemo.main()</b></i> is where the program is started.
