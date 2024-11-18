@@ -6,14 +6,17 @@ title: Home
 <h1>How to run the demo</h1>
 <h2>Upload the demo_led example on the Arduino Board</h2>
 <h2>Start the Java program</h2>
-
-<h1>How the code internally works</h1>
+<h1>How the demo internally works</h1>
 <p>
     The demo code is written in Java and located in <i>app/src/main/java</i>.<br/>
     It applies the MVC pattern.<br/>
     It firstly intends to provide call examples to the <b>ardwloop API</b>.<br/>
 </p>
 <h2>DemoProgram</h2>
+<p>
+    That's the most important class to understand what the Demo program sends and receives from the Arduino board.<br/>
+    <i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.<br/>
+</p>
 <p>
     It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:<br/>
 </p>
@@ -23,8 +26,6 @@ title: Home
 </ul>
 <p>
     Any program using ardwloop should implement the <b>IArdwProgram</b> interface.<br/>
-    That's the most important class to understand what the Demo program sends and receives from the Arduino board.<br/>
-    <i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.<br/>
 </p>
 <h2>DemoModel</h2>
 <p>
