@@ -9,20 +9,20 @@ title: Home
 
 <h1>How the code internally works</h1>
 <p>
-    The demo is written in Java and located in <i>app/src/main/java</i>.
+    The demo code is written in Java and located in <i>app/src/main/java</i>.
     It applies the MVC pattern.
     It firstly intends to provide call examples to the <b>ardwloop API</b>.
 </p>
 <h2>DemoProgram</h2>
-<p>
 <ul>
     <li>public SetupData <b>ardwSetup</b>(SetupData setup)</li>
     <li>public LoopData <b>ardwLoop</b>(LoopData loop)</li>
 </ul>
-It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:
-Any program using ardwloop should implement the <b>IArdwProgram</b> interface.
-That's the most important class to understand what the Demo program sends and receives from the Arduino board.
-<i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.
+<p>
+    It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:
+    Any program using ardwloop should implement the <b>IArdwProgram</b> interface.
+    That's the most important class to understand what the Demo program sends and receives from the Arduino board.
+    <i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.
 </p>
 <h2>DemoModel</h2>
 <p>
