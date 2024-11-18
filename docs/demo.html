@@ -14,12 +14,14 @@ title: Home
     It firstly intends to provide call examples to the <b>ardwloop API</b>.<br/>
 </p>
 <h2>DemoProgram</h2>
+<p>
+    It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:<br/>
+</p>
 <ul>
     <li>public SetupData <b>ardwSetup</b>(SetupData setup)</li>
     <li>public LoopData <b>ardwLoop</b>(LoopData loop)</li>
 </ul>
 <p>
-    It implements the <b>IArdwProgram</b> interface, by particular the 2 core methods:<br/>
     Any program using ardwloop should implement the <b>IArdwProgram</b> interface.<br/>
     That's the most important class to understand what the Demo program sends and receives from the Arduino board.<br/>
     <i>ardwloop.demo.model.<b>DemoProgram</b></i> implements the communication with the Arduino board.<br/>
