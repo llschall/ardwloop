@@ -1,0 +1,38 @@
+---
+layout: default
+title: Home
+---
+
+<h1>Run the demo</h1>
+
+<h1>How the code internally works</h1>
+
+The demo is written in Java and located in app/src/main/java.
+It applies the MCV pattern.
+It firstly intends to provide call examples to the ardwloop API.
+
+<h2>DemoProgram</h2>
+
+ardwloop.demo.model.DemoProgram implements the communication with the Arduino board.
+
+That's the most important class to understand what the Demo program in Java sends and receives from the Arduino board.
+
+It implements the IArdwProgram interface, by particular the 2 core methods:
+- public SetupData ardwSetup(SetupData setup)
+- public LoopData ardwLoop(LoopData loop)
+
+Any program using ardwloop should implement the IArdwProgram interface.
+
+<h2>DemoModel</h2>
+
+ardwloop.demo.model.DemoModel is the model from the MVC pattern.
+
+The most important is that it starts the Ardwloop threads in its start() method, and that it forwards the necessary commands to its DemoProgram instance.
+
+In addition, it does the optional stuff hereafter:
+- it stores the ArdwloopModel that would enable to extract various information later on.
+- it uses the ardwloop refresher to synchronize the DemoView refresh with the Arduino communication cycles
+
+<h2>StartDemo</h2>
+
+ardwloop.demo.StartDemo.main() is where the program is started.
