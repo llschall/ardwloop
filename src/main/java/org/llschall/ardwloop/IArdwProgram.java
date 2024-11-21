@@ -71,13 +71,17 @@ public interface IArdwProgram {
      *
      * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialData}
      */
-    int getReadDelayMs();
+    default int getReadDelayMs() {
+        return 99;
+    }
 
     /**
      * To be adapted to the Arduino project requirements.
      *
      * @return The delay the Arduino board will wait before sending a post {@link SerialData}
      */
-    int getPostDelayMs();
+    default int getPostDelayMs() {
+        return -1;
+    }
 
 }
