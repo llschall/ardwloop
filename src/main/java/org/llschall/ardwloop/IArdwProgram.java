@@ -81,7 +81,7 @@ public interface IArdwProgram {
      * @return The delay the Arduino board will wait before sending a post {@link SerialData}
      */
     default int getPostDelayMs() {
-        return -1;
+        return 9999;
     }
 
 }

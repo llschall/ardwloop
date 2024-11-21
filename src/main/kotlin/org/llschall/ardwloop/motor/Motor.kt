@@ -77,7 +77,7 @@ internal class Motor(
             StructureThread({
                 val serialR = program.loopPrg(LoopData(serialS))
                 model.loop.incrementAndGet()
-                atm.set(serialR.data)
+                atm.set(serialR)
             }, "program_loop").start()
 
             while (atm.get() == null) {
