@@ -49,17 +49,22 @@ interface IArdwPortSelector {
     fun list(): List<ArdwPortDescriptor>
 }
 
-/**
+/**.0
+ * .
+ * .
+ * 000
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
 class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun select(desc: ArdwPortDescriptor): Boolean {
+        if ((desc.name.contains("Arduino")
+                    || desc.name.contains("CH340"))
+        ) return true
+        
         val name = desc.systemName
         return (name.contains("USB")
-                || name.contains("Arduino")
-                || name.contains("CH340")
                 || name.contains("rfcomm")
                 || name.contains("ttyACM")
                 || name.contains("FAKE")
