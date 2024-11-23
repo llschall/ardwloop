@@ -58,6 +58,8 @@ class ArdwPortSelector : IArdwPortSelector {
     fun select(desc: ArdwPortDescriptor): Boolean {
         val name = desc.systemName
         return (name.contains("USB")
+                || name.contains("Arduino")
+                || name.contains("CH340")
                 || name.contains("rfcomm")
                 || name.contains("ttyACM")
                 || name.contains("FAKE")
