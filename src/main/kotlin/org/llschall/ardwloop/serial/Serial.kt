@@ -52,7 +52,7 @@ interface IArdwPortSelector {
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-class ArdwPortSelector : IArdwPortSelector {
+class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun select(desc: ArdwPortDescriptor): Boolean {

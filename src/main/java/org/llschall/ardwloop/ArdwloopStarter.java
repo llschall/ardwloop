@@ -4,7 +4,7 @@ import kotlin.jvm.functions.Function2;
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.serial.IArdwPortSelector;
-import org.llschall.ardwloop.serial.ArdwPortSelector;
+import org.llschall.ardwloop.serial.DefaultPortSelector;
 import org.llschall.ardwloop.serial.SerialProvider;
 import org.llschall.ardwloop.serial.port.ISerialProvider;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
@@ -33,7 +33,7 @@ public class ArdwloopStarter {
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
 
-    private IArdwPortSelector selector = new ArdwPortSelector();
+    private IArdwPortSelector selector = new DefaultPortSelector();
 
     private ArdwloopStarter() {
         // Singleton pattern
