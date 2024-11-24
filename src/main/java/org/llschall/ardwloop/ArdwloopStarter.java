@@ -61,25 +61,27 @@ public class ArdwloopStarter {
      * Entry point of the Ardwloop API
      *
      * @param program The Arduino program to be started
+     * @param baud    The baud value that should be the same as the one given on the Arduino side
      * @param loops   Some additional loops to be executed as well
      * @return The {@link ArdwloopModel} created by starting the program
      */
-    public ArdwloopModel start(IArdwProgram program, AbstractLoop... loops) {
-        return start(program, ArdwloopStarter.get()::build, loops);
+    public ArdwloopModel start(IArdwProgram program, long baud, AbstractLoop... loops) {
+        return start(program, baud, ArdwloopStarter.get()::build, loops);
     }
 
     /**
      * An entry point for customized serial communication
      *
      * @param program The Arduino program to be started
+     * @param baud    The baud value that should be the same as the one given on the Arduino side
      * @param builder A function that provides the serial communication material
      * @param loops   Some additional loops to be executed as well
      * @return The {@link ArdwloopModel} created by starting the program
      */
-    public ArdwloopModel start(IArdwProgram program, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
+    public ArdwloopModel start(IArdwProgram program, long baud, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
 
         Logger.msg("Starting Ardwloop version " + VERSION);
-        container = new ProgramContainer(program);
+        container = new ProgramContainer(program, baud);
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);
         }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
@@ -44,7 +45,8 @@ public class Bus1Test extends AbstractBusTest {
 
         ProgramCfg cfg = new ProgramCfg('T', 1, sc, 1, 999);
 
-        ArdwloopModel model = new ArdwloopModel(new ProgramContainer(new JTestProgram()));
+        ArdwloopModel model = new ArdwloopModel(
+                new ProgramContainer(new JTestProgram(), IArdwConfig.BAUD_38400));
         model.serialMdl.program.set(cfg);
 
         IArduino arduino = new Arduino(this);
@@ -75,7 +77,7 @@ public class Bus1Test extends AbstractBusTest {
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
-            entry.setup(9600);
+            entry.setup(IArdwConfig.BAUD_9600);
             Logger.msg("Loop 1");
             entry.loop();
             Logger.msg("Loop 2");

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
@@ -24,7 +25,7 @@ public class Serial1Test {
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
-        entry.setup(9600);
+        entry.setup(IArdwConfig.BAUD_4800);
         Assertions.assertEquals('T', entry.prg());
         Assertions.assertEquals(5, entry.rc());
         Assertions.assertEquals(7, entry.sc());
@@ -37,7 +38,7 @@ public class Serial1Test {
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
-        entry.setup(9600);
+        entry.setup(IArdwConfig.BAUD_4800);
         Assertions.assertEquals('T', entry.prg());
         Assertions.assertEquals(3, entry.rc());
         Assertions.assertEquals(2, entry.sc());

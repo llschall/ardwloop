@@ -9,8 +9,8 @@ import org.llschall.ardwloop.structure.utils.Logger;
 /**
  * Intended to check the connection on start-up only.
  */
-public class CheckSetup {
-
+class CheckSetup {
+    
     private CheckSetup() {
         // never called
     }
@@ -65,7 +65,7 @@ public class CheckSetup {
             public int getPostDelayMs() {
                 return 0;
             }
-        });
+        }, IArdwConfig.BAUD_19200);
 
     }
 

@@ -10,7 +10,7 @@ import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Timer
 
-class ProgramContainer(private val program: IArdwProgram) {
+class ProgramContainer(private val program: IArdwProgram, private val baud: Long) {
 
     @JvmField
     val model: ArdwloopModel
@@ -26,7 +26,7 @@ class ProgramContainer(private val program: IArdwProgram) {
             )
         )
 
-        config = Config(9600, model)
+        config = Config(baud, model)
         this.model = model
     }
 

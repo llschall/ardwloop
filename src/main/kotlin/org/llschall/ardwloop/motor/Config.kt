@@ -4,8 +4,8 @@ import org.llschall.ardwloop.structure.StructureException
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import java.util.regex.Pattern
 
-class Config(val baud: Int, val model: ArdwloopModel) {
-    
+class Config(val baud: Long, val model: ArdwloopModel) {
+
     private fun parseValue(line: String): String {
         val pattern = Pattern.compile("[^\\d]+(\\d+).*")
         val matcher = pattern.matcher(line)
