@@ -5,9 +5,9 @@ int entry_check(int i) {
   return i * 2;
 }
 
-void entry_setup() {
+void entry_setup(long baud) {
   log("\n# ardwloop_jni.h entry_setup#\n");
-  core_setup();
+  core_setup(baud);
 }
 
 void entry_loop() {

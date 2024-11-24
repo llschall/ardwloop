@@ -89,8 +89,8 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(
 JNIEXPORT jint JNICALL
 Java_org_llschall_ardwloop_jni_NativeEntry_print(JNIEnv *env, jobject obj) {
   ENV = env;
-  back_print(1, "Returns 2023");
-  return 2023;
+  back_print(1, "Returns 2024");
+  return 2024;
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_check(
@@ -100,9 +100,9 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_check(
 };
 
 JNIEXPORT void JNICALL
-Java_org_llschall_ardwloop_jni_NativeEntry_setup(JNIEnv *env, jobject obj) {
+Java_org_llschall_ardwloop_jni_NativeEntry_setup(JNIEnv *env, jobject obj, long baud) {
   ENV = env;
-  entry_setup();
+  entry_setup(baud);
 };
 
 JNIEXPORT void JNICALL

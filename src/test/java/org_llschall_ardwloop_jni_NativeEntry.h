@@ -34,10 +34,10 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong
 /*
  * Class:     org_llschall_ardwloop_jni_NativeEntry
  * Method:    setup
- * Signature: ()V
+ * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_setup
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jlong);
 
 /*
  * Class:     org_llschall_ardwloop_jni_NativeEntry

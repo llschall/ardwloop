@@ -28,7 +28,7 @@ void func_delay(unsigned long ms);
 int func_read(char *arr, int n);
 int func_available();
 
-void core_setup();
+void core_setup(long);
 void core_loop();
 
 void core_post(bool (*p)());

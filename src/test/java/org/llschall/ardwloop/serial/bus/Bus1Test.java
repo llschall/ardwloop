@@ -75,7 +75,7 @@ public class Bus1Test extends AbstractBusTest {
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
-            entry.setup();
+            entry.setup(9600);
             Logger.msg("Loop 1");
             entry.loop();
             Logger.msg("Loop 2");

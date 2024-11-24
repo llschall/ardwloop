@@ -24,7 +24,7 @@ public class NativeEntry {
 
     public native int pong(int i);
 
-    public native void setup();
+    public native void setup(long baud);
 
     public native void loop();
 

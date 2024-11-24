@@ -26,7 +26,7 @@ public class Serial3Test {
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
-        entry.setup();
+        entry.setup(9600);
         Assertions.assertEquals('J', entry.prg());
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
@@ -77,7 +77,7 @@ public class Serial3Test {
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
-        entry.setup();
+        entry.setup(9600);
         Assertions.assertEquals('J', entry.prg());
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
