@@ -7,9 +7,9 @@
 
 /////////////////////////////////
 
-void ardw_setup() {
+void ardw_setup(long baud) {
   inject_arduino_h();
-  core_setup();
+  core_setup(baud);
 }
 
 void ardw_loop() { core_loop(); }

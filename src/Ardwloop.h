@@ -10,7 +10,16 @@
 
 #include "ardwloop_core.h"
 
-void ardw_setup();
+const long BAUD_300 = 300;
+const long BAUD_1200 = 1200;
+const long BAUD_4800 = 4800;
+const long BAUD_9600 = 9600;
+const long BAUD_19200 = 19200;
+const long BAUD_38400 = 38400;
+const long BAUD_57600 = 57600;
+const long BAUD_115200 = 115200;
+
+void ardw_setup(long);
 
 char ardw_prg();
 

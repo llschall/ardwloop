@@ -4,7 +4,7 @@
  * Featuring Ardwloop 0.2.0
  *
  * More setup instructions are available in
- * https://github.com/llschall/ardwloop-demo
+ * https://llschall.github.io/ardwloop/demo
  *
  */
 
@@ -13,7 +13,8 @@
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
-  ardw_setup();
+  // Baud value should be set to the same as on the Java side
+  ardw_setup(BAUD_19200);
 }
 
 int i = 0;

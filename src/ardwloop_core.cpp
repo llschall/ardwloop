@@ -309,7 +309,7 @@ V *core_s() { return &S; }
 V *core_r() { return &R; }
 V *core_p() { return &P; }
 
-void core_setup() {
+void core_setup(long baud) {
   DELAY_REBOOT = 999;
   DELAY_J = 99;
   DELAY_BEFORE_K = 2000;
@@ -321,7 +321,7 @@ void core_setup() {
 
   (*fct_pin_out)(2);
   (*fct_write_high)(2);
-  (*fct_serial_begin)(BAUD);
+  (*fct_serial_begin)(baud);
 
   init_j();
   reset();
