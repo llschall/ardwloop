@@ -65,7 +65,7 @@ public class ArdwloopStarter {
      * @param loops   Some additional loops to be executed as well
      * @return The {@link ArdwloopModel} created by starting the program
      */
-    public ArdwloopModel start(IArdwProgram program, long baud, AbstractLoop... loops) {
+    public ArdwloopModel start(IArdwProgram program, int baud, AbstractLoop... loops) {
         return start(program, baud, ArdwloopStarter.get()::build, loops);
     }
 
@@ -78,7 +78,7 @@ public class ArdwloopStarter {
      * @param loops   Some additional loops to be executed as well
      * @return The {@link ArdwloopModel} created by starting the program
      */
-    public ArdwloopModel start(IArdwProgram program, long baud, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
+    public ArdwloopModel start(IArdwProgram program, int baud, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
 
         Logger.msg("Starting Ardwloop version " + VERSION);
         container = new ProgramContainer(program, baud);
@@ -88,7 +88,7 @@ public class ArdwloopStarter {
 
         Timer timer = new Timer();
         ISerialProvider provider = builder.invoke(container.model.serialMdl, timer);
-        container.start(provider, timer, selector);
+        container.start(provider, baud, timer, selector);
         return container.model;
     }
 
