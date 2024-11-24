@@ -15,7 +15,6 @@ import org.llschall.ardwloop.structure.utils.Timer
 class Clock(
     val provider: ISerialProvider,
     val timer: Timer,
-    val config: Config,
     val loops: MutableList<AbstractLoop>,
     val model: ArdwloopModel,
     val selector: IArdwPortSelector,
@@ -42,7 +41,7 @@ class Clock(
 
     private fun launch() {
         val bus = Bus(model, provider, timer)
-        val motor = Motor(model, config, bus, selector)
+        val motor = Motor(model, bus, selector)
 
         loops.add(motor)
 

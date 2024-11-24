@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(
     val model: ArdwloopModel,
-    val config: Config,
     val bus: Bus,
     val selector: IArdwPortSelector
 ) : AbstractLoop("MOTOR") {
@@ -38,7 +37,7 @@ internal class Motor(
         }
         serialMdl.connected.set(true)
 
-        val program = config.model.program.get()
+        val program = model.program.get()
         try {
             val s = readS()
             val r = program.setupPrg(SetupData(s))
@@ -70,7 +69,7 @@ internal class Motor(
             val serialS = readS()
             val readMs = timer.checkMs()
 
-            val program = config.model.program.get()
+            val program = model.program.get()
 
             val atm = AtomicReference<SerialData?>()
 

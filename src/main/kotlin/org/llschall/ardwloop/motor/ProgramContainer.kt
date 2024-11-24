@@ -14,7 +14,6 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
 
     @JvmField
     val model: ArdwloopModel
-    private val config: Config
     private val loops: MutableList<AbstractLoop> = ArrayList()
 
     init {
@@ -26,7 +25,6 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
             )
         )
 
-        config = Config(baud, model)
         this.model = model
     }
 
@@ -35,7 +33,7 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
     }
 
     fun start(provider: ISerialProvider, timer: Timer, selector: IArdwPortSelector) {
-        val clock = Clock(provider, timer, config, loops, model, selector)
+        val clock = Clock(provider, timer, loops, model, selector)
         clock.start()
     }
 

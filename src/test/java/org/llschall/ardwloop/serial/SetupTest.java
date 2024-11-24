@@ -2,7 +2,6 @@ package org.llschall.ardwloop.serial;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.LocalOnly;
 import org.llschall.ardwloop.jni.NativeEntry;
 
 public class SetupTest {
