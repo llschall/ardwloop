@@ -269,6 +269,7 @@ class Serial internal constructor(
         const val S: Char = 'S' // prefix for S message
         const val R: Char = 'R' // prefix for R message
         const val P: Char = 'P' // prefix for P message
+        const val T: Char = 'T' // suffix for data message
         const val N: Char = 'N' // end of chunk
         const val Z: Char = 'Z' // reboot
 
@@ -277,6 +278,7 @@ class Serial internal constructor(
         const val J_: String = J.toString()
         const val P_: String = P.toString()
         const val R_: String = R.toString()
+        const val T_: String = T.toString()
         const val Z_: String = Z.toString()
     }
 }
