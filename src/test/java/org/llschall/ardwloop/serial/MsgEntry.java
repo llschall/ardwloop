@@ -25,7 +25,7 @@ public class MsgEntry implements IBackEntry {
         this.msgs.add(new Msg("", K_));
         String c2a = C_ + program + C + rc + C + sc + C + read + C + post + C;
         this.msgs.add(new Msg(K_, c2a));
-        this.msgs.add(new Msg("S000" + buildData(sc), "R" + buildData(rc)));
+        this.msgs.add(new Msg("S000" + buildData(sc) + "T", "R" + buildData(rc) + "T"));
     }
 
     MsgEntry(char program, int rc, int sc) {

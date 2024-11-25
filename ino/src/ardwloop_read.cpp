@@ -148,5 +148,12 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
       h_i++;
       h=H[h_i];
     }   // while h
-  }     // for i
+  }  // for i
+
+  char t = rd();
+
+  if (t != 'T') {
+    log("Expected T but got %c %c\n", t, t);
+  }
+
 } // receive()

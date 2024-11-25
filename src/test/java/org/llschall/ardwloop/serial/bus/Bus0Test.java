@@ -23,6 +23,8 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.llschall.ardwloop.serial.Serial.*;
+
 public class Bus0Test extends AbstractBusTest {
 
     @BeforeEach
@@ -125,13 +127,13 @@ public class Bus0Test extends AbstractBusTest {
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.S + "000av+aw+ax+ay+az+", cableA2C.check());
+        Assertions.assertEquals(S + "000av+aw+ax+ay+az+" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(finishedC.get());
-        Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+", cableC2A.check());
+        Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         TestTimer.get().delayMs(88);

@@ -222,6 +222,8 @@ class Serial internal constructor(
                 8 -> i = reader!!.read('i')
             }
         }
+
+
         return SerialData(
             chk,
             a, b, c, d, e, f, g, h, i
@@ -257,6 +259,8 @@ class Serial internal constructor(
                 writer!!.write(c, 'z', it.z!!)
             }
         }
+
+        writer!!.writeT()
         writer!!.flush()
     }
 

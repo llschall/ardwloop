@@ -65,6 +65,10 @@ internal class Writer(private val port: ISerialPort) {
         write(Serial.R)
     }
 
+    fun writeT() {
+        write(Serial.T)
+    }
+
     private fun write(v: Int, signed: Boolean) {
         if (v == 0) {
             if (signed) {

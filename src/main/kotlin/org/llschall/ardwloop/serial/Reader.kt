@@ -65,7 +65,6 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
             }
             c = buffer.read()
         }
-
         return readChk()
     }
 
@@ -105,6 +104,11 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
         val x = read(id, 'x')
         val y = read(id, 'y')
         val z = read(id, 'z')
+
+        val t = buffer.read()
+        if ((t != Serial.T)) {
+            throw SerialWrongReadException("Expected T but got $t")
+        }
 
         return SerialVector(v, w, x, y, z)
     }

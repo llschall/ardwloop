@@ -257,6 +257,7 @@ void send_s() {
       h=H[h_i];
     }
   }
+  wr('T');
 }
 
 void send_p() {
@@ -303,6 +304,7 @@ void send_p() {
     h_i++;
     h=H[h_i];
   }
+  wr('T');
 }
 
 V *core_s() { return &S; }

@@ -21,6 +21,8 @@ import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 
+import static org.llschall.ardwloop.serial.Serial.T;
+
 public class Bus1Test extends AbstractBusTest {
 
     @BeforeEach
@@ -114,22 +116,22 @@ public class Bus1Test extends AbstractBusTest {
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.S + "000av+aw+ax+ay+az+", cableA2C.check());
+        Assertions.assertEquals(Serial.S + "000av+aw+ax+ay+az+" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+", cableC2A.check());
+        Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.S + "001av+aw+ax+ay+az+", cableA2C.check());
+        Assertions.assertEquals(Serial.S + "001av+aw+ax+ay+az+" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+", cableC2A.check());
+        Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         TestTimer.get().delayMs(99);
