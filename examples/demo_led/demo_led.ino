@@ -13,7 +13,7 @@
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
-  // Baud value should be set to the same as on the Java side
+  // Here the baud value should be set to the same value as on the Java side
   ardw_setup(BAUD_19200);
 }
 
