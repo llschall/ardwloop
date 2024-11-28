@@ -10,6 +10,10 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.value.U
+import org.llschall.ardwloop.value.V
+import org.llschall.ardwloop.value.Value
+import org.llschall.ardwloop.value.ValueMap
 
 internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     private val serialMdl = model.serialMdl
@@ -71,7 +75,7 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
     private fun readP(): SerialData {
         val i = readChk()
-        val p = read()
+        val p = readMap()
         serialCnt.incrementAndGet()
         return SerialData(i, p)
     }
@@ -86,45 +90,19 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
         return i
     }
 
-    @Throws(SerialWrongReadException::class, SerialLongReadException::class, GotJException::class)
-    fun read(): SerialVector {
-        val v = read('a', 'v')
-        val w = read('a', 'w')
-        val x = read('a', 'x')
-        val y = read('a', 'y')
-        val z = read('a', 'z')
-
-        return SerialVector(v, w, x, y, z)
-    }
-
-    @Throws(SerialWrongReadException::class, SerialLongReadException::class, GotJException::class)
-    fun read(id: Char): SerialVector {
-        val v = read(id, 'v')
-        val w = read(id, 'w')
-        val x = read(id, 'x')
-        val y = read(id, 'y')
-        val z = read(id, 'z')
-
-        val t = buffer.read()
-        if ((t != Serial.T)) {
-            throw SerialWrongReadException("Expected T but got $t")
-        }
-
-        return SerialVector(v, w, x, y, z)
-    }
-
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    private fun read(id: Char, data: Char): Int {
-        var c = buffer.read()
-        if (c != id) {
-            throw SerialWrongReadException("Expected '$id' but got $c")
-        }
-        c = buffer.read()
-        if (c != data) {
-            throw SerialWrongReadException("Expected '$data' but got $c")
-        }
+    fun readMap(): ValueMap {
 
-        return readInt()
+        val map = ValueMap()
+        while (true) {
+            val u = buffer.read()
+            if (u == Serial.T) {
+                return map
+            }
+            val v = buffer.read()
+            val i = readInt()
+            map.map[U.fromChar(u)]!![V.fromChar(v)] = i
+        }
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)

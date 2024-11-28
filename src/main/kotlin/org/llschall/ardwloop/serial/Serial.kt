@@ -199,35 +199,8 @@ class Serial internal constructor(
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
     fun readS(): SerialData {
         val chk = reader!!.readS()
-
-        var a: SerialVector? = null
-        var b: SerialVector? = null
-        var c: SerialVector? = null
-        var d: SerialVector? = null
-        var e: SerialVector? = null
-        var f: SerialVector? = null
-        var g: SerialVector? = null
-        var h: SerialVector? = null
-        var i: SerialVector? = null
-        for (id in 0 until sc) {
-            when (id) {
-                0 -> a = reader!!.read('a')
-                1 -> b = reader!!.read('b')
-                2 -> c = reader!!.read('c')
-                3 -> d = reader!!.read('d')
-                4 -> e = reader!!.read('e')
-                5 -> f = reader!!.read('f')
-                6 -> g = reader!!.read('g')
-                7 -> h = reader!!.read('h')
-                8 -> i = reader!!.read('i')
-            }
-        }
-
-
-        return SerialData(
-            chk,
-            a, b, c, d, e, f, g, h, i
-        )
+        val map = reader!!.readMap()
+        return SerialData(chk, map)
     }
 
     @Throws(SerialWriteException::class)

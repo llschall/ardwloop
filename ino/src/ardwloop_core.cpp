@@ -227,9 +227,6 @@ void send_s() {
 
     while(h!=END) {
       
-      wr(K[i]);
-      wr(h);
-
       struct D *d = Sv[i];
 
       int v;
@@ -251,7 +248,12 @@ void send_s() {
         v = d->z;
         break;
       }
-      wr_int(v);
+
+      if(v!=0) {
+        wr(K[i]);
+        wr(h);
+        wr_int(v);
+      }
 
       h_i++;
       h=H[h_i];
@@ -275,11 +277,7 @@ void send_p() {
 
   while(h!=END) {
 
-    wr(K[0]);
-    wr(h);
-
     struct D *d = Pv[0];
-
     int v;
 
     switch (h_i) {
@@ -299,7 +297,12 @@ void send_p() {
       v = d->z;
       break;
     }
-    wr_int(v);
+
+    if(v!=0) {
+      wr(K[0]);
+      wr(h);
+      wr_int(v);
+    }
 
     h_i++;
     h=H[h_i];

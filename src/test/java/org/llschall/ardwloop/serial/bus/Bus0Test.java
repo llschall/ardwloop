@@ -127,7 +127,7 @@ public class Bus0Test extends AbstractBusTest {
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(S + "000av+aw+ax+ay+az+" + T, cableA2C.check());
+        Assertions.assertEquals(S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<

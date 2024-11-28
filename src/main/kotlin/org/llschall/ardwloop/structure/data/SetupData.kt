@@ -1,6 +1,6 @@
 package org.llschall.ardwloop.structure.data
 
-class SetupData(s: SerialData) : SerialData(s.chk, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
+class SetupData(s: SerialData) : SerialData(s.chk, s.map, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
 
     constructor(av: Int)
             : this(SerialData(0, av, 0, 0, 0, 0))
@@ -13,7 +13,7 @@ class SetupData(s: SerialData) : SerialData(s.chk, s.a, s.b, s.c, s.d, s.e, s.f,
 
 }
 
-class LoopData(s: SerialData) : SerialData(s.chk, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
+class LoopData(s: SerialData) : SerialData(s.chk, s.map, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
 
     constructor(av: Int)
             : this(SerialData(0, av, 0, 0, 0, 0))
@@ -26,7 +26,7 @@ class LoopData(s: SerialData) : SerialData(s.chk, s.a, s.b, s.c, s.d, s.e, s.f, 
 
 }
 
-class PostData(s: SerialData) : SerialData(s.chk, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
+class PostData(s: SerialData) : SerialData(s.chk, s.map, s.a, s.b, s.c, s.d, s.e, s.f, s.g, s.h, s.i) {
 
     constructor(av: Int)
             : this(SerialData(0, av, 0, 0, 0, 0))

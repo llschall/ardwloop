@@ -32,37 +32,37 @@ public class Serial3Test {
         Assertions.assertEquals(1, entry.rc());
 
         entry.importS('a', 0, 0, 54, 0, 0);
-        back.addMsg(S + "001av+aw+ax54+ay+az+" + T, R + "av67+aw+ax+ay+az68+" + T);
+        back.addMsg(S + "001ax54+" + T, R + "av67+aw+ax+ay+az68+" + T);
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
-        back.addMsg(S + "002" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "000" + Msg.EMPTY_A + T, R + Msg.EMPTY_A + T);
+        back.addMsg(S + "002" + T, "");
+        back.addMsg(P + "000" + T, R + Msg.EMPTY_A + T);
         entry.importS('a', 0, 0, 0, 0, 0);
         entry.loop();
         Assertions.assertEquals(0, entry.exportR('a', 'v'));
         Assertions.assertEquals(0, entry.exportR('a', 'z'));
 
         entry.importS('a', 0, 0, 57, 0, 0);
-        back.addMsg(S + "003av+aw+ax57+ay+az+" + T, R + "av+aw+ax+ay+az62+" + T);
+        back.addMsg(S + "003ax57+" + T, R + "av+aw+ax+ay+az62+" + T);
         entry.loop();
         Assertions.assertEquals(62, entry.exportR('a', 'z'));
 
-        back.addMsg(S + "004" + Msg.EMPTY_A + T, "");
+        back.addMsg(S + "004" + T, "");
 
         for (int i = 1; i < 10; i++) {
-            back.addMsg(P + "00" + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P + "00" + i + T, "");
         }
         for (int i = 10; i < 100; i++) {
-            back.addMsg(P + "0" + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P + "0" + i + T, "");
         }
         for (int i = 100; i < 1000; i++) {
-            back.addMsg(P_ + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P_ + i + T, "");
         }
-        back.addMsg(P + "000" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "001" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "002" + Msg.EMPTY_A + T, R + Msg.EMPTY_A + T);
+        back.addMsg(P + "000" + T, "");
+        back.addMsg(P + "001" + T, "");
+        back.addMsg(P + "002" + T, R + Msg.EMPTY_A + T);
 
         entry.importS('a', 0, 0, 0, 0, 0);
         entry.loop();
@@ -82,22 +82,22 @@ public class Serial3Test {
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
 
-        back.addMsg(S + "001" + Msg.EMPTY_A + T, "");
+        back.addMsg(S + "001" + T, "");
 
         for (int i = 0; i < 10; i++) {
-            back.addMsg(P + "00" + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P + "00" + i + T, "");
         }
         for (int i = 10; i < 100; i++) {
-            back.addMsg(P + "0" + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P + "0" + i + T, "");
         }
         for (int i = 100; i < 998; i++) {
-            back.addMsg(P_ + i + Msg.EMPTY_A + T, "");
+            back.addMsg(P_ + i + T, "");
         }
-        back.addMsg(P + "998" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "999" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "000" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "001" + Msg.EMPTY_A + T, "");
-        back.addMsg(P + "002" + Msg.EMPTY_A + T, R + Msg.EMPTY_A + T);
+        back.addMsg(P + "998" + T, "");
+        back.addMsg(P + "999" + T, "");
+        back.addMsg(P + "000" + T, "");
+        back.addMsg(P + "001" + T, "");
+        back.addMsg(P + "002" + T, R + Msg.EMPTY_A + T);
 
         entry.importS('a', 0, 0, 0, 0, 0);
         entry.loop();

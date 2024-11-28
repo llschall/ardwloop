@@ -116,7 +116,7 @@ public class Bus1Test extends AbstractBusTest {
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.S + "000av+aw+ax+ay+az+" + T, cableA2C.check());
+        Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
@@ -126,7 +126,7 @@ public class Bus1Test extends AbstractBusTest {
 
         // >> S >>
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.S + "001av+aw+ax+ay+az+" + T, cableA2C.check());
+        Assertions.assertEquals(Serial.S + "001" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<

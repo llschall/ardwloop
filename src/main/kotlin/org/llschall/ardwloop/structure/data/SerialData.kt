@@ -1,9 +1,11 @@
 package org.llschall.ardwloop.structure.data
 
+import org.llschall.ardwloop.value.ValueMap
 import java.util.concurrent.atomic.AtomicLong
 
 open class SerialData @JvmOverloads constructor(
     @JvmField val chk: Int,
+    @JvmField val map: ValueMap?,
     a: SerialVector? = SerialVector(),
     b: SerialVector? = SerialVector(),
     c: SerialVector? = SerialVector(),
@@ -44,7 +46,8 @@ open class SerialData @JvmOverloads constructor(
     val i: SerialVector? = i
 
     constructor(chk: Int, av: Int, aw: Int, ax: Int, ay: Int, az: Int) : this(
-        chk, SerialVector(av, aw, ax, ay, az),
+        chk, null,
+        SerialVector(av, aw, ax, ay, az),
         SerialVector(),
         SerialVector(),
         SerialVector(),
@@ -59,7 +62,7 @@ open class SerialData @JvmOverloads constructor(
         av: Int, aw: Int, ax: Int, ay: Int, az: Int,
         bv: Int, bw: Int, bx: Int, by: Int, bz: Int
     ) : this(
-        0,
+        0, null,
         SerialVector(av, aw, ax, ay, az),
         SerialVector(bv, bw, bx, by, bz),
         SerialVector(),
@@ -76,7 +79,7 @@ open class SerialData @JvmOverloads constructor(
         av: Int, aw: Int, ax: Int, ay: Int, az: Int,
         bv: Int, bw: Int, bx: Int, by: Int, bz: Int
     ) : this(
-        chk,
+        chk, null,
         SerialVector(av, aw, ax, ay, az),
         SerialVector(bv, bw, bx, by, bz),
         SerialVector(),
