@@ -64,6 +64,29 @@ char rd() {
   return rd();
 }
 
+int read_v() {
+
+  int v = 0;
+  while (true) {
+    char c = rd();
+      if (c == 'Y') {
+         reset();
+         return 0;
+      } // if
+
+      if (c == '+') {
+        return v;
+      } // if
+      if (c == '-') {
+        v *= -1;
+        return v;
+      } // if
+
+      int i = map_c(c);
+      v = 10 * v + i;
+   } // while
+
+}
 
 void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
@@ -104,26 +127,7 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
         return;
       } // if
 
-      int v = 0;
-
-      while (true) {
-        c = rd();
-        if (c == 'Y') {
-          reset();
-          return;
-        } // if
-
-        if (c == '+') {
-          break;
-        } // if
-        if (c == '-') {
-          v *= -1;
-          break;
-        } // if
-
-        int i = map_c(c);
-        v = 10 * v + i;
-      } // while
+      int v = read_v();
 
       struct D *d = Rv[i];
 
