@@ -20,7 +20,6 @@ int get_delay_read() {
     return DELAY_READ;
 }
 
-
 void reset_bfn() { bfN = 0;}
 
 int impl_read(const int n) {
@@ -64,6 +63,29 @@ char rd() {
   return rd();
 }
 
+int read_v() {
+
+  int v = 0;
+  while (true) {
+    char c = rd();
+      if (c == 'Y') {
+         reset();
+         return 0;
+      } // if
+
+      if (c == '+') {
+        return v;
+      } // if
+      if (c == '-') {
+        v *= -1;
+        return v;
+      } // if
+
+      int i = map_c(c);
+      v = 10 * v + i;
+   } // while
+
+}
 
 void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
@@ -73,57 +95,40 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
     log("Expected R but got %c %c\n", r, r);
   }
 
-  for (int i = 0; i < Rc; i++) {
-    char k = K[i];
+  int i = 0;
+  while(i < Rc) {
 
+    char k = K[i];
     char h = H[0];
     int h_i = 0;
+
+    char c = rd();
+    if (c == 'Y') {
+      reset();
+      return;
+    } // if
+    
     while(h!=END) {
       
-      char c = rd();
-      if (c == 'Y') {
-        reset();
-        return;
-      } // if
-
       if (c != k) {
         log("== ERR %c != %c", c, k);
         reset();
         return;
       } // if
 
-      c = rd();
-      if (c == 'Y') {
+      char c0 = rd();
+      if (c0 == 'Y') {
         reset();
         return;
       } // if
 
-      if (c != h) {
+      if (c0 != h) {
         log("== ERR %c != %c", c, h);
         reset();
         return;
       } // if
 
-      int v = 0;
-
-      while (true) {
-        c = rd();
-        if (c == 'Y') {
-          reset();
-          return;
-        } // if
-
-        if (c == '+') {
-          break;
-        } // if
-        if (c == '-') {
-          v *= -1;
-          break;
-        } // if
-
-        int i = map_c(c);
-        v = 10 * v + i;
-      } // while
+      int v = read_v();
 
       struct D *d = Rv[i];
 
@@ -147,8 +152,14 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
 
       h_i++;
       h=H[h_i];
-    }   // while h
-  }  // for i
+
+      if(h!=END) {
+        c = rd();
+      }
+    } // while h
+    
+    i++;
+  }  // while i
 
   char t = rd();
 
