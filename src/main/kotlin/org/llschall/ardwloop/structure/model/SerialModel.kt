@@ -2,6 +2,7 @@ package org.llschall.ardwloop.structure.model
 
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.data.SerialData
+import org.llschall.ardwloop.value.ValueMap
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong

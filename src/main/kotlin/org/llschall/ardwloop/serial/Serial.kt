@@ -10,6 +10,9 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.value.U
+import org.llschall.ardwloop.value.V
+import org.llschall.ardwloop.value.ValueMap
 import java.io.StringWriter
 import kotlin.collections.set
 
@@ -207,29 +210,14 @@ class Serial internal constructor(
     fun writeV(data: SerialData) {
         writer!!.writeR()
 
-        val chars = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i')
-        val map: MutableMap<Char, SerialVector?> = HashMap()
-        map['a'] = data.a
-        map['b'] = data.b
-        map['c'] = data.c
-        map['d'] = data.d
-        map['e'] = data.e
-        map['f'] = data.f
-        map['g'] = data.g
-        map['h'] = data.h
-        map['i'] = data.i
-
-        val rc = serialMdl.program.get().rc
-        for (i in 0 until rc) {
-            val c = chars[i]
-
-            val opt = map[c]
-            opt?.let {
-                if (it.v != 0) writer!!.write(c, 'v', it.v!!)
-                if (it.w != 0) writer!!.write(c, 'w', it.w!!)
-                if (it.x != 0) writer!!.write(c, 'x', it.x!!)
-                if (it.y != 0) writer!!.write(c, 'y', it.y!!)
-                if (it.z != 0) writer!!.write(c, 'z', it.z!!)
+        for (i in U.entries) {
+            val c = i.name.toCharArray()[0]
+            for (entry in V.entries) {
+                val i1 = data.map.map[i]!![entry]
+                if (i1 != 0) {
+                    val c1 = entry.name.toCharArray()[0]
+                    writer!!.write(c, c1, i1!!)
+                }
             }
         }
 

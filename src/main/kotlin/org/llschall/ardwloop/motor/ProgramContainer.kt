@@ -3,12 +3,10 @@ package org.llschall.ardwloop.motor
 import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.serial.IArdwPortSelector
 import org.llschall.ardwloop.serial.port.ISerialProvider
-import org.llschall.ardwloop.structure.data.LoopData
-import org.llschall.ardwloop.structure.data.PostData
 import org.llschall.ardwloop.structure.data.ProgramCfg
-import org.llschall.ardwloop.structure.data.SetupData
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Timer
+import org.llschall.ardwloop.value.ValueMap
 
 class ProgramContainer(private val program: IArdwProgram, private val baud: Long) {
 
@@ -38,15 +36,15 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
         clock.start()
     }
 
-    fun setupPrg(s: SetupData): SetupData {
+    fun setupPrg(s: ValueMap): ValueMap {
         return program.ardwSetup(s)
     }
 
-    fun loopPrg(r: LoopData?): LoopData {
+    fun loopPrg(r: ValueMap?): ValueMap {
         return program.ardwLoop(r)
     }
 
-    fun postPrg(p: PostData?) {
+    fun postPrg(p: ValueMap?) {
         program.ardwPost(p)
     }
 }

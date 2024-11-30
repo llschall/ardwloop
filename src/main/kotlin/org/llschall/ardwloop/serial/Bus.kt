@@ -33,8 +33,8 @@ class Bus @JvmOverloads constructor(
     }
 
     @Throws(SerialWriteException::class)
-    fun writeR(r: SerialData?) {
-        serial!!.writeV(r!!)
+    fun writeR(r: SerialData) {
+        serial!!.writeV(r)
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)

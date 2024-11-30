@@ -1,9 +1,7 @@
 package org.llschall.ardwloop;
 
-import org.llschall.ardwloop.structure.data.LoopData;
-import org.llschall.ardwloop.structure.data.PostData;
 import org.llschall.ardwloop.structure.data.SerialData;
-import org.llschall.ardwloop.structure.data.SetupData;
+import org.llschall.ardwloop.value.ValueMap;
 
 import static org.llschall.ardwloop.structure.utils.Logger.msg;
 
@@ -24,7 +22,7 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} sent from the Arduino setup() call
      * @return The {@link SerialData} that the Arduino board will receive in its first loop()
      */
-    SetupData ardwSetup(SetupData s);
+    ValueMap ardwSetup(ValueMap s);
 
     /**
      * loop() is called by the Ardwloop framework in the same cyclic way as the loop() function
@@ -33,14 +31,14 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} received by the Arduino board
      * @return The {@link SerialData} that will be sent to the Arduino board
      */
-    LoopData ardwLoop(LoopData s);
+    ValueMap ardwLoop(ValueMap s);
 
     /**
      * post() is called by the Ardwloop framework each time the Arduino board sent a post {@link SerialData}
      *
      * @param p The received post {@link SerialData}
      */
-    default void ardwPost(PostData p) {
+    default void ardwPost(ValueMap p) {
         msg("post ignored");
     }
 

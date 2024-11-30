@@ -11,6 +11,7 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.value.ValueMap
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(
@@ -40,8 +41,8 @@ internal class Motor(
         val program = model.program.get()
         try {
             val s = readS()
-            val r = program.setupPrg(SetupData(s))
-            writeR(r)
+            val r = program.setupPrg(s.map)
+            writeR(SerialData(0, r))
             reconnect = false
         } catch (e: SerialLongReadException) {
             err("Setup error", e)
@@ -71,12 +72,12 @@ internal class Motor(
 
             val program = model.program.get()
 
-            val atm = AtomicReference<SerialData?>()
+            val atm = AtomicReference<SerialData>()
 
             StructureThread({
-                val serialR = program.loopPrg(LoopData(serialS))
+                val serialR = program.loopPrg(serialS.map)
                 model.loop.incrementAndGet()
-                atm.set(serialR)
+                atm.set(SerialData(0, serialR))
             }, "program_loop").start()
 
             while (atm.get() == null) {
@@ -84,7 +85,7 @@ internal class Motor(
                 val opt = bus.checkP()
                 opt?.let {
                     StructureThread(
-                        { program.postPrg(PostData(it)) },
+                        { program.postPrg(it.map) },
                         "program_post"
                     ).start()
                 }
@@ -119,7 +120,7 @@ internal class Motor(
     }
 
     @Throws(SerialWriteException::class)
-    fun writeR(r: SerialData?) {
+    fun writeR(r: SerialData) {
         bus.writeR(r)
         model.serialMdl.serialR.set(r)
     }
