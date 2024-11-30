@@ -21,8 +21,7 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 void (*prm_write_low)(int), void (*prm_write_high)(int),
                 void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
                 int (*prm_available)(), int (*prm_read)(char *, int),
-                int (*prm_write)(char));
-
+                int (*prm_write)(char), bool (*prm_post)());
 
 void func_delay(unsigned long ms);
 int func_read(char *arr, int n);

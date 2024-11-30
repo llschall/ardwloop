@@ -41,15 +41,14 @@ int (*fct_available)();
 int (*fct_read)(char *, int);
 int (*fct_write)(char);
 
-bool ignore() { return false; }
-
-bool (*POST_IMPL)() = &ignore;
+bool (*POST_IMPL)();
 
 void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 void (*prm_write_low)(int), void (*prm_write_high)(int),
                 void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
                 int (*prm_available)(), int (*prm_read)(char *, int),
-                int (*prm_write)(char)) {
+                int (*prm_write)(char), bool (*prm_post)()
+                ) {
   fct_log = prm_log;
   fct_delay = prm_delay;
   fct_write_low = prm_write_low;
@@ -58,6 +57,7 @@ void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
   fct_available = prm_available;
   fct_read = prm_read;
   fct_write = prm_write;
+  POST_IMPL = prm_post;
 }
 
 void func_delay(unsigned long ms) {(*fct_delay)(ms);}

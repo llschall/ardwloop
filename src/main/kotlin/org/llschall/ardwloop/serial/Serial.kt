@@ -225,11 +225,11 @@ class Serial internal constructor(
 
             val opt = map[c]
             opt?.let {
-                writer!!.write(c, 'v', it.v!!)
-                writer!!.write(c, 'w', it.w!!)
-                writer!!.write(c, 'x', it.x!!)
-                writer!!.write(c, 'y', it.y!!)
-                writer!!.write(c, 'z', it.z!!)
+                if (it.v != 0) writer!!.write(c, 'v', it.v!!)
+                if (it.w != 0) writer!!.write(c, 'w', it.w!!)
+                if (it.x != 0) writer!!.write(c, 'x', it.x!!)
+                if (it.y != 0) writer!!.write(c, 'y', it.y!!)
+                if (it.z != 0) writer!!.write(c, 'z', it.z!!)
             }
         }
 
