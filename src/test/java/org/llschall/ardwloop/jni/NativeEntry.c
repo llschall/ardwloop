@@ -23,7 +23,7 @@ Java_org_llschall_ardwloop_jni_NativeEntry_inject(JNIEnv *env, jobject obj) {
 
   fct_inject(&fake_log, &fake_delay, &fake_write_low, &fake_write_high,
              &fake_pin_out, &fake_serial_begin, &fake_available, &fake_read,
-             &fake_write);
+             &fake_write, &fake_post);
 }
 
 void fake_log(char *msg) { log_dbg(msg); }
@@ -33,6 +33,7 @@ void fake_write_low(int){};
 void fake_write_high(int){};
 void fake_pin_out(int){};
 void fake_serial_begin(int){};
+void fake_post(bool){ return true;};
 
 int fake_available() {
 

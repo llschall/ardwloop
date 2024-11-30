@@ -9,6 +9,7 @@ void fake_serial_begin(int);
 int fake_available();
 int fake_read(char *, int);
 int fake_write(char);
+void fake_post(bool);
 
 void back_print(int log, char *str);
 void back_print(int log, char *str, va_list c);

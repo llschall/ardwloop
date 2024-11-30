@@ -20,7 +20,6 @@ int get_delay_read() {
     return DELAY_READ;
 }
 
-
 void reset_bfn() { bfN = 0;}
 
 int impl_read(const int n) {
@@ -64,67 +63,81 @@ char rd() {
   return rd();
 }
 
+int read_v() {
+
+  int v = 0;
+  while (true) {
+    char c = rd();
+      if (c == 'Y') {
+         reset();
+         return 0;
+      } // if
+
+      if (c == '+') {
+        return v;
+      } // if
+      if (c == '-') {
+        v *= -1;
+        return v;
+      } // if
+
+      int i = map_c(c);
+      v = 10 * v + i;
+   } // while
+
+}
 
 void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
+  for(int i0=0; i0 < Rc; i0++) {
+    Rv[i0]->v = 0;
+    Rv[i0]->w = 0;
+    Rv[i0]->x = 0;
+    Rv[i0]->y = 0;
+    Rv[i0]->z = 0;
+  }
+  
   char r = rd();
 
   if (r != 'R') {
     log("Expected R but got %c %c\n", r, r);
   }
 
-  for (int i = 0; i < Rc; i++) {
-    char k = K[i];
+  int i = 0;
+  char c = rd();
+    
+  if (c == 'Y') {
+    reset();
+    return;
+  } // if
+    
+  while(i < Rc) {
 
+    char k = K[i];
     char h = H[0];
     int h_i = 0;
+    
+    if (c != k) {
+      i++;
+      k = K[i];
+      continue;
+    } // if
+
+    c = rd();
     while(h!=END) {
-      
-      char c = rd();
-      if (c == 'Y') {
-        reset();
-        return;
-      } // if
 
-      if (c != k) {
-        log("== ERR %c != %c", c, k);
-        reset();
-        return;
-      } // if
-
-      c = rd();
       if (c == 'Y') {
         reset();
         return;
       } // if
 
       if (c != h) {
-        log("== ERR %c != %c", c, h);
-        reset();
-        return;
+        h_i++;
+        h = H[h_i];
+        continue;
       } // if
 
-      int v = 0;
-
-      while (true) {
-        c = rd();
-        if (c == 'Y') {
-          reset();
-          return;
-        } // if
-
-        if (c == '+') {
-          break;
-        } // if
-        if (c == '-') {
-          v *= -1;
-          break;
-        } // if
-
-        int i = map_c(c);
-        v = 10 * v + i;
-      } // while
-
+      int v = read_v();
       struct D *d = Rv[i];
 
       switch (h_i) {
@@ -147,13 +160,21 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
 
       h_i++;
       h=H[h_i];
-    }   // while h
-  }  // for i
+      c = rd();
+      if(c != k) {
+        break;
+      }
+      c = rd();
+    } // while h
+    
+    if(i < Rc) {
+      i++;
+      k = K[i];
+    }
 
-  char t = rd();
+  }  // while i
 
-  if (t != 'T') {
-    log("Expected T but got %c %c\n", t, t);
+  if (c != 'T') {
+    log("Expected T but got %c %c\n", c, c);
   }
-
 } // receive()
