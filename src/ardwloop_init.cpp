@@ -7,7 +7,7 @@
 void inject_arduino_h() {
   fct_inject(&impl_log, &impl_delay, &impl_write_low, &impl_write_high,
              &impl_pin_out, &impl_serial_begin, &impl_available, &impl_read,
-             &impl_write);
+             &impl_write, &impl_post);
 }
 
 void ignore_log(const char *msg) {
@@ -41,3 +41,5 @@ int impl_available() { return Serial.available(); }
 int impl_read(char *buffer, const int n) { return Serial.readBytes(buffer, n); }
 
 int impl_write(char c) { return Serial.write(c); }
+
+bool impl_post() { return false; }

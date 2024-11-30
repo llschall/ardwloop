@@ -23,4 +23,6 @@ int impl_read(char *buffer, const int n);
 
 int impl_write(char c);
 
+bool impl_post();
+
 #endif

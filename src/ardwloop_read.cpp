@@ -89,6 +89,14 @@ int read_v() {
 
 void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
+  for(int i0=0; i0 < Rc; i0++) {
+    Rv[i0]->v = 0;
+    Rv[i0]->w = 0;
+    Rv[i0]->x = 0;
+    Rv[i0]->y = 0;
+    Rv[i0]->z = 0;
+  }
+  
   char r = rd();
 
   if (r != 'R') {
@@ -96,40 +104,40 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
   }
 
   int i = 0;
+  char c = rd();
+    
+  if (c == 'Y') {
+    reset();
+    return;
+  } // if
+    
   while(i < Rc) {
 
     char k = K[i];
     char h = H[0];
     int h_i = 0;
-
-    char c = rd();
-    if (c == 'Y') {
-      reset();
-      return;
-    } // if
     
+    if (c != k) {
+      i++;
+      k = K[i];
+      continue;
+    } // if
+
+    c = rd();
     while(h!=END) {
-      
-      if (c != k) {
-        log("== ERR %c != %c", c, k);
+
+      if (c == 'Y') {
         reset();
         return;
       } // if
 
-      char c0 = rd();
-      if (c0 == 'Y') {
-        reset();
-        return;
-      } // if
-
-      if (c0 != h) {
-        log("== ERR %c != %c", c, h);
-        reset();
-        return;
+      if (c != h) {
+        h_i++;
+        h = H[h_i];
+        continue;
       } // if
 
       int v = read_v();
-
       struct D *d = Rv[i];
 
       switch (h_i) {
@@ -152,19 +160,21 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
 
       h_i++;
       h=H[h_i];
-
-      if(h!=END) {
-        c = rd();
+      c = rd();
+      if(c != k) {
+        break;
       }
+      c = rd();
     } // while h
     
-    i++;
+    if(i < Rc) {
+      i++;
+      k = K[i];
+    }
+
   }  // while i
 
-  char t = rd();
-
-  if (t != 'T') {
-    log("Expected T but got %c %c\n", t, t);
+  if (c != 'T') {
+    log("Expected T but got %c %c\n", c, c);
   }
-
 } // receive()
