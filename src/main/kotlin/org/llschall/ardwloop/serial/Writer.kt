@@ -1,5 +1,6 @@
 package org.llschall.ardwloop.serial
 
+import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.serial.*
 import org.llschall.ardwloop.serial.port.*
 import org.llschall.ardwloop.structure.*
@@ -43,9 +44,9 @@ internal class Writer(private val port: ISerialPort) {
         write(Serial.C)
         write(p)
         write(Serial.C)
-        write(map(rc))
+        write(map(IArdwProgram.SC_RC))
         write(Serial.C)
-        write(map(sc))
+        write(map(IArdwProgram.SC_RC))
         write(Serial.C)
         write(read, false)
         write(Serial.C)

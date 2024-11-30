@@ -15,6 +15,8 @@ import static org.llschall.ardwloop.structure.utils.Logger.msg;
  */
 public interface IArdwProgram {
 
+    int SC_RC = 9;
+
     /**
      * setup() is called by the Ardwloop framework on startup, in the same way the setup() function
      * of the C program running in the Arduino board.
@@ -56,7 +58,10 @@ public interface IArdwProgram {
      *
      * @return The size of the {@link SerialData} that the Arduino board will receive.
      */
-    int getRc();
+    @Deprecated
+    default int getRc() {
+        return SC_RC;
+    }
 
 
     /**
@@ -64,7 +69,10 @@ public interface IArdwProgram {
      *
      * @return The size of the {@link SerialData} that the Arduino board will send.
      */
-    int getSc();
+    @Deprecated
+    default int getSc() {
+        return SC_RC;
+    }
 
     /**
      * To be adapted to the Arduino project requirements.

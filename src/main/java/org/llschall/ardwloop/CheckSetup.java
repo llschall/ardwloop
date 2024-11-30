@@ -10,7 +10,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
  * Intended to check the connection on start-up only.
  */
 class CheckSetup {
-    
+
     private CheckSetup() {
         // never called
     }
@@ -44,16 +44,6 @@ class CheckSetup {
             @Override
             public LoopData ardwLoop(LoopData s) {
                 return null;
-            }
-
-            @Override
-            public int getRc() {
-                return 0;
-            }
-
-            @Override
-            public int getSc() {
-                return 0;
             }
 
             @Override

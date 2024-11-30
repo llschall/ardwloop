@@ -111,8 +111,8 @@ public class Bus1Test extends AbstractBusTest {
 
         // << CTC1C1C1C999C <<
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals("CTC1C1C1C999C", cableC2A.check());
-        cableC2A.release("CTC1C1C1C999C".length());
+        Assertions.assertEquals("CTC9C9C1C999C", cableC2A.check());
+        cableC2A.release("CTC9C9C1C999C".length());
 
         // >> S >>
         TestTimer.get().delayMs(99);
