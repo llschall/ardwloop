@@ -12,21 +12,11 @@ public class V {
 
     public void fromChar(char c, int i) {
         switch (c) {
-            case 'v' -> {
-                v = i;
-            }
-            case 'w' -> {
-                w=i;
-            }
-            case 'x' -> {
-                 x=i;
-            }
-            case 'y' -> {
-                 y=i;
-            }
-            case 'z' -> {
-                 z=i;
-            }
+            case 'v' -> v=i;
+            case 'w' -> w=i;
+            case 'x' -> x=i;
+            case 'y' -> y=i;
+            case 'z' -> z=i;
             default -> throw new StructureException("Unexpected character: " + c);
         }
     }

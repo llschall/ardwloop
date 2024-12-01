@@ -10,9 +10,6 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
-import org.llschall.ardwloop.value.U
-import org.llschall.ardwloop.value.V
-import org.llschall.ardwloop.value.Value
 import org.llschall.ardwloop.value.ValueMap
 
 internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {

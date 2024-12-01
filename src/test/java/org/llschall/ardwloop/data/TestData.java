@@ -2,7 +2,6 @@ package org.llschall.ardwloop.data;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.llschall.ardwloop.value.V;
 import org.llschall.ardwloop.value.ValueMap;
 
 import java.util.Objects;

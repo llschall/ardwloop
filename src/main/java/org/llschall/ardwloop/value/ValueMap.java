@@ -2,10 +2,7 @@ package org.llschall.ardwloop.value;
 
 import org.llschall.ardwloop.structure.StructureException;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ValueMap {
 
