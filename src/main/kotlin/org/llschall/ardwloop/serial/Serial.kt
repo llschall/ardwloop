@@ -212,13 +212,11 @@ class Serial internal constructor(
         
         for (c in 'a'..'i') {
             val map = data.map.fromChar(c)
-            for (v in V.entries) {
-                val i = map[v]!!
-                if (i != 0) {
-                    val c1 = v.name.toCharArray()[0]
-                    writer!!.write(c, c1, i)
-                }
-            }
+            if(map.v !=0) writer!!.write(c,'v', map.v)
+            if(map.w !=0) writer!!.write(c,'w', map.w)
+            if(map.x !=0) writer!!.write(c,'x', map.x)
+            if(map.y !=0) writer!!.write(c,'y', map.y)
+            if(map.z !=0) writer!!.write(c,'z', map.z)
         }
 
         writer!!.writeT()

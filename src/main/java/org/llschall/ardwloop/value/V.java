@@ -2,25 +2,30 @@ package org.llschall.ardwloop.value;
 
 import org.llschall.ardwloop.structure.StructureException;
 
-public enum V {
-    v, w, x, y, z;
+public class V {
 
-    public static V fromChar(char c) {
+    public int v;
+    public int w;
+    public int x;
+    public int y;
+    public int z;
+
+    public void fromChar(char c, int i) {
         switch (c) {
             case 'v' -> {
-                return V.v;
+                v = i;
             }
             case 'w' -> {
-                return V.w;
+                w=i;
             }
             case 'x' -> {
-                return V.x;
+                 x=i;
             }
             case 'y' -> {
-                return V.y;
+                 y=i;
             }
             case 'z' -> {
-                return V.z;
+                 z=i;
             }
             default -> throw new StructureException("Unexpected character: " + c);
         }

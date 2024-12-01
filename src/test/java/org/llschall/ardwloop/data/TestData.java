@@ -12,26 +12,26 @@ public class TestData {
     @Test
     public void testData() {
 
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.v));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.w));
+        Assertions.assertEquals(1, new ValueMap(1).a.v);
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.v));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.v));
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.w));
 
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.v));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1).a.v));
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.v));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.v));
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.w));
 
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.v));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a).get(V.w));
-        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.v));
-        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a).get(V.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1).a.v));
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.v));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 1).a.w));
+        Assertions.assertEquals(1, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.v));
+        Assertions.assertEquals(0, Objects.requireNonNull(new ValueMap(1, 0, 0, 0, 0).a.w));
 
     }
 }

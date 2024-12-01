@@ -9,50 +9,40 @@ import java.util.Map;
 
 public class ValueMap {
 
-    public final Map<V, Integer> a = new HashMap<>();
-    public final Map<V, Integer> b = new HashMap<>();
-    public final Map<V, Integer> c = new HashMap<>();
-    public final Map<V, Integer> d = new HashMap<>();
-    public final Map<V, Integer> e = new HashMap<>();
-    public final Map<V, Integer> f = new HashMap<>();
-    public final Map<V, Integer> g = new HashMap<>();
-    public final Map<V, Integer> h = new HashMap<>();
-    public final Map<V, Integer> i = new HashMap<>();
+    public final V a = new V();
+    public final V b = new V();
+    public final V c = new V();
+    public final V d = new V();
+    public final V e = new V();
+    public final V f = new V();
+    public final V g = new V();
+    public final V h = new V();
+    public final V i = new V();
 
-    public final List<Map<V, Integer>> entries = List.of(
+ public final List<V> entries = List.of(
             a, b, c, d, e, f, g, h, i
     );
 
-    public ValueMap() {
-
-        for (Map<V, Integer> map : entries) {
-            for (V v : V.values()) {
-                map.put(v, 0);
-            }
-        }
-    }
+    public ValueMap() {}
 
     public ValueMap(int av) {
-        this();
-        a.put(V.v, av);
+        a.v = av;
     }
 
     public ValueMap(int av, int aw) {
-        this();
-        a.put(V.v, av);
-        a.put(V.w, aw);
+        a.v = av;
+        a.w = aw;
     }
 
     public ValueMap(int av, int aw, int ax, int ay, int az) {
-        this();
-        a.put(V.v, av);
-        a.put(V.w, aw);
-        a.put(V.x, ax);
-        a.put(V.y, ay);
-        a.put(V.z, az);
+        a.v= av;
+        a.w= aw;
+        a.x= ax;
+        a.y= ay;
+        a.z= az;
     }
 
-    public Map<V, Integer> fromChar(char c) {
+    public V fromChar(char c) {
         if (c == 'a')
             return a;
         if (c == 'b')

@@ -12,6 +12,6 @@ class ArdwloopKTest {
         val program = JTestProgram()
 
         val map = program.ardwSetup(ValueMap())
-        Assertions.assertEquals(1, map.a[V.v])
+        Assertions.assertEquals(1, map.a.v)
     }
 }
