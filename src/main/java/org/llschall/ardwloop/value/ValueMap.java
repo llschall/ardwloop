@@ -1,26 +1,33 @@
 package org.llschall.ardwloop.value;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ValueMap {
 
-    public final Map<U, Map<V, Integer>> map;
+    public final Map<V, Integer> a = new HashMap<>();
+    public final Map<V, Integer> b = new HashMap<>();
+    public final Map<V, Integer> c = new HashMap<>();
+    public final Map<V, Integer> d = new HashMap<>();
+    public final Map<V, Integer> e = new HashMap<>();
+    public final Map<V, Integer> f = new HashMap<>();
+    public final Map<V, Integer> g = new HashMap<>();
+    public final Map<V, Integer> h = new HashMap<>();
+    public final Map<V, Integer> i = new HashMap<>();
 
-    public final Map<V, Integer> a;
-    public final Map<V, Integer> b;
+    public final List<Map<V, Integer>> entries = List.of(
+            a, b, c, d, e, f, g, h
+    );
 
     public ValueMap() {
-        this.map = new HashMap<>();
-        for (U u : U.values()) {
-            Map<V, Integer> map = new HashMap<>();
-            this.map.put(u, map);
+
+        for (Map<V, Integer> map : entries) {
             for (V v : V.values()) {
                 map.put(v, 0);
             }
         }
-        a = map.get(U.a);
-        b = map.get(U.b);
     }
 
     public ValueMap(int av) {
