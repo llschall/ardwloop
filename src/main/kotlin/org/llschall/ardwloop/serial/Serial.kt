@@ -209,14 +209,14 @@ class Serial internal constructor(
     @Throws(SerialWriteException::class)
     fun writeV(data: SerialData) {
         writer!!.writeR()
-
-        for (i in U.entries) {
-            val c = i.name.toCharArray()[0]
-            for (entry in V.entries) {
-                val i1 = data.map.map[i]!![entry]
-                if (i1 != 0) {
-                    val c1 = entry.name.toCharArray()[0]
-                    writer!!.write(c, c1, i1!!)
+        
+        for (c in 'a'..'i') {
+            val map = data.map.fromChar(c)
+            for (v in V.entries) {
+                val i = map[v]!!
+                if (i != 0) {
+                    val c1 = v.name.toCharArray()[0]
+                    writer!!.write(c, c1, i)
                 }
             }
         }

@@ -101,7 +101,7 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
             }
             val v = buffer.read()
             val i = readInt()
-            map.map[U.fromChar(u)]!![V.fromChar(v)] = i
+            map.fromChar(u)[V.fromChar(v)] = i;
         }
     }
 

@@ -6,6 +6,7 @@ public class JTestProgram implements IArdwProgram {
 
     @Override
     public ValueMap ardwLoop(ValueMap s) {
+        
         return new ValueMap(1, 1, 1, 1, 1);
     }
 

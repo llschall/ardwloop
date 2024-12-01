@@ -1,5 +1,7 @@
 package org.llschall.ardwloop.value;
 
+import org.llschall.ardwloop.structure.StructureException;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,7 @@ public class ValueMap {
     public final Map<V, Integer> i = new HashMap<>();
 
     public final List<Map<V, Integer>> entries = List.of(
-            a, b, c, d, e, f, g, h
+            a, b, c, d, e, f, g, h, i
     );
 
     public ValueMap() {
@@ -48,6 +50,29 @@ public class ValueMap {
         a.put(V.x, ax);
         a.put(V.y, ay);
         a.put(V.z, az);
+    }
+
+    public Map<V, Integer> fromChar(char c) {
+        if (c == 'a')
+            return a;
+        if (c == 'b')
+            return b;
+        if (c == 'c')
+            return this.c;
+        if (c == 'd')
+            return d;
+        if (c == 'e')
+            return e;
+        if (c == 'f')
+            return f;
+        if (c == 'g')
+            return g;
+        if (c == 'h')
+            return h;
+        if (c == 'i')
+            return i;
+
+        throw new StructureException("Unexpected char: " + c);
     }
 
 }
