@@ -17,5 +17,6 @@ dependencies {
     implementation 'io.github.llschall:ardwloop:0.2.3'
 }
 ```
+See also the [Maven repository page](https://mvnrepository.com/artifact/io.github.llschall/ardwloop/0.2.3).
 
 ![](https://github.com/llschall/ardwloop/blob/main/media/ardwloop.png)
