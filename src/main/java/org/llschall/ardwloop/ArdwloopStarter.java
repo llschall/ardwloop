@@ -23,7 +23,7 @@ public class ArdwloopStarter {
     /**
      * The version of the Ardwloop library
      */
-    public static final String VERSION = "0.2.4";
+    public static final String VERSION = "0.2.5";
 
     /**
      * An integer that might vary with the snapshot
