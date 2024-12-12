@@ -25,7 +25,7 @@ public class ResetTest {
         entry.reset();
         char prg = entry.prg();
         Assertions.assertEquals('W', prg);
-        Assertions.assertEquals(-1, entry.resetPin());
+        Assertions.assertEquals(12, entry.resetPin());
         Assertions.assertEquals(5, entry.rc());
         Assertions.assertEquals(4, entry.sc());
         Assertions.assertEquals(7, entry.delayRead());
