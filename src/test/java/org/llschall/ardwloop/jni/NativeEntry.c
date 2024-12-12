@@ -124,6 +124,11 @@ Java_org_llschall_ardwloop_jni_NativeEntry_prg(JNIEnv *env, jobject obj) {
 };
 
 JNIEXPORT jint JNICALL
+Java_org_llschall_ardwloop_jni_NativeEntry_resetPin(JNIEnv *env, jobject obj) {
+  return entry_reset_pin();
+};
+
+JNIEXPORT jint JNICALL
 Java_org_llschall_ardwloop_jni_NativeEntry_rc(JNIEnv *env, jobject obj) {
   return entry_rc();
 };

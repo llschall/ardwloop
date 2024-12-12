@@ -30,6 +30,8 @@ public class NativeEntry {
 
     public native char prg();
 
+    public native int resetPin();
+
     public native int rc();
 
     public native int sc();

@@ -33,6 +33,7 @@ void core_loop();
 void core_post(bool (*p)());
 
 char core_prg();
+int core_reset_pin();
 int core_rc();
 int core_sc();
 int core_delay_read();

@@ -57,6 +57,14 @@ JNIEXPORT jchar JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_prg
 
 /*
  * Class:     org_llschall_ardwloop_jni_NativeEntry
+ * Method:    resetPin
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_resetPin
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_llschall_ardwloop_jni_NativeEntry
  * Method:    rc
  * Signature: ()I
  */
