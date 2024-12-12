@@ -30,9 +30,10 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
         loops.add(loop)
     }
 
-    fun start(provider: ISerialProvider, baud: Int, timer: Timer, selector: IArdwPortSelector) {
+    fun start(provider: ISerialProvider, baud: Int, resetPin: Int, timer: Timer, selector: IArdwPortSelector) {
         val clock = Clock(provider, timer, loops, model, selector)
         model.serialMdl.baud.set(baud);
+        model.serialMdl.resetPin.set(resetPin);
         clock.start()
     }
 

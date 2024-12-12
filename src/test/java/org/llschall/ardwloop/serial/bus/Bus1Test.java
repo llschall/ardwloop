@@ -110,10 +110,10 @@ public class Bus1Test extends AbstractBusTest {
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
 
-        // << CTC1C1C1C999C <<
+        // << CTC90C9C9C1C999C <<
         TestTimer.get().delayMs(99);
-        Assertions.assertEquals("CTC9C9C1C999C", cableC2A.check());
-        cableC2A.release("CTC9C9C1C999C".length());
+        Assertions.assertEquals("CTC90C9C9C1C999C", cableC2A.check());
+        cableC2A.release("CTC90C9C9C1C999C".length());
 
         // >> S >>
         TestTimer.get().delayMs(99);

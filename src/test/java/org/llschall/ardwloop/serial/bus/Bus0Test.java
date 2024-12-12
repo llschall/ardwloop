@@ -53,6 +53,7 @@ public class Bus0Test extends AbstractBusTest {
         ArdwloopModel model = new ArdwloopModel(
                 new ProgramContainer(new JTestProgram(), IArdwConfig.BAUD_19200));
         model.serialMdl.program.set(cfg);
+        model.serialMdl.resetPin.set(20);
 
         IArduino arduino = new Arduino(this);
 
@@ -120,11 +121,11 @@ public class Bus0Test extends AbstractBusTest {
         Assertions.assertTrue(a2c.endsWith(Serial.K_));
         cableA2C.releaseAll();
 
-        // << CTC1C1C0C0C <<
+        // << CTC20C9C9C0C0C <<
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
-        Assertions.assertEquals("CTC9C9C0C0C", c2a);
-        cableC2A.release("CTC9C9C0C0C".length());
+        Assertions.assertEquals("CTC20C9C9C0C0C", c2a);
+        cableC2A.release("CTC20C9C9C0C0C".length());
 
         // >> S >>
         TestTimer.get().delayMs(99);

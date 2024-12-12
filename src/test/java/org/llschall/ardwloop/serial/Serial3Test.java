@@ -22,7 +22,7 @@ public class Serial3Test {
     @Test
     void test11() {
 
-        MsgEntry back = new MsgEntry('J', 1, 1);
+        MsgEntry back = new MsgEntry('J', 77, 1, 1);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -73,7 +73,7 @@ public class Serial3Test {
     @Test
     void test1000() {
 
-        MsgEntry back = new MsgEntry('J', 1, 1);
+        MsgEntry back = new MsgEntry('J', 52,1, 1);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();

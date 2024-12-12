@@ -40,9 +40,20 @@ internal class Writer(private val port: ISerialPort) {
 
     // switch program
     @Throws(SerialWriteException::class)
-    fun writeC(p: Char, rc: Int, sc: Int, read: Int, post: Int) {
+    fun writeC(p: Char, resetPin:Int, rc: Int, sc: Int, read: Int, post: Int) {
         write(Serial.C)
         write(p)
+        write(Serial.C)
+
+        if(resetPin < 10) {
+            write(map(0))
+            write(map(resetPin));
+        } else {
+            val i = resetPin / 10;
+            write(map(i))
+            write(map(resetPin - (i*10)))
+        }
+
         write(Serial.C)
         write(map(IArdwProgram.SC_RC))
         write(Serial.C)

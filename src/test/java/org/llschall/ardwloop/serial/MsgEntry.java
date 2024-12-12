@@ -18,18 +18,18 @@ public class MsgEntry implements IBackEntry {
     int i = 0; // index of the current char
     int av = 0; // how many successive times available() is called
 
-    MsgEntry(char program, int rc, int sc, int read, int post) {
+    MsgEntry(char program, int resetPin, int rc, int sc, int read, int post) {
         this.msgs = new ArrayList<>();
         this.msgs.add(new Msg("", K_ + P + J + K + P));
         this.msgs.add(new Msg(J_, J_));
         this.msgs.add(new Msg("", K_));
-        String c2a = C_ + program + C + rc + C + sc + C + read + C + post + C;
+        String c2a = C_ + program + C+ resetPin +C + rc + C + sc + C + read + C + post + C;
         this.msgs.add(new Msg(K_, c2a));
         this.msgs.add(new Msg("S000" + T, "R" + T));
     }
 
-    MsgEntry(char program, int rc, int sc) {
-        this(program, rc, sc, 0, 0);
+    MsgEntry(char program, int resetPin, int rc, int sc) {
+        this(program, resetPin, rc, sc, 0, 0);
     }
 
     String buildData(int n) {

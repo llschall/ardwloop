@@ -20,7 +20,7 @@ public class Serial2Test {
     @Test
     void test11() {
 
-        MsgEntry back = new MsgEntry('J', 1, 1);
+        MsgEntry back = new MsgEntry('J',65, 1, 1);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -49,7 +49,7 @@ public class Serial2Test {
     @Test
     void test12() {
 
-        MsgEntry back = new MsgEntry('J', 1, 2);
+        MsgEntry back = new MsgEntry('J', 54,1, 2);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -79,7 +79,7 @@ public class Serial2Test {
     @Test
     void test99() {
 
-        MsgEntry back = new MsgEntry('J', 9, 9);
+        MsgEntry back = new MsgEntry('J',85, 9, 9);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();

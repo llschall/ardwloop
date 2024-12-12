@@ -35,6 +35,8 @@ public class ArdwloopStarter {
 
     private IArdwPortSelector selector = new DefaultPortSelector();
 
+    private int resetPin = -1;
+
     private ArdwloopStarter() {
         // Singleton pattern
     }
@@ -55,6 +57,10 @@ public class ArdwloopStarter {
      */
     public void setSelector(IArdwPortSelector selector) {
         this.selector = selector;
+    }
+
+    public void setResetPin(int resetPin) {
+        this.resetPin = resetPin;
     }
 
     /**
@@ -88,7 +94,7 @@ public class ArdwloopStarter {
 
         Timer timer = new Timer();
         ISerialProvider provider = builder.invoke(container.model.serialMdl, timer);
-        container.start(provider, baud, timer, selector);
+        container.start(provider, baud, resetPin, timer, selector);
         return container.model;
     }
 

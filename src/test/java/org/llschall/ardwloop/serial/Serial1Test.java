@@ -17,7 +17,7 @@ public class Serial1Test {
     @Test
     void setupTest() {
 
-        MsgEntry back = new MsgEntry('T', 5, 7);
+        MsgEntry back = new MsgEntry('T', 21, 5, 7);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -30,12 +30,13 @@ public class Serial1Test {
     @Test
     void setupTest2() {
 
-        MsgEntry back = new MsgEntry('T', 3, 2, 217, 19);
+        MsgEntry back = new MsgEntry('T', 26,3, 2, 217, 19);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
         entry.setup(IArdwConfig.BAUD_4800);
         Assertions.assertEquals('T', entry.prg());
+        Assertions.assertEquals(3, entry.rc());
         Assertions.assertEquals(3, entry.rc());
         Assertions.assertEquals(2, entry.sc());
         Assertions.assertEquals(217, entry.delayRead());

@@ -28,6 +28,9 @@ class SerialModel {
     val baud: AtomicInteger = AtomicInteger(-1)
 
     @JvmField
+    val resetPin: AtomicInteger = AtomicInteger(-1)
+
+    @JvmField
     val program: AtomicReference<ProgramCfg> = AtomicReference()
 
     @JvmField

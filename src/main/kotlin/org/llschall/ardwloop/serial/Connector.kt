@@ -72,7 +72,11 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
 
         msg("== SERIAL CONNECTION OK ==")
 
-        writer.writeC(p, rc, sc, read, post)
+        var resetPin = serialMdl.resetPin.get()
+        if(resetPin !in 0..89) {
+            resetPin = 90;
+        }
+        writer.writeC(p, resetPin, rc, sc, read, post)
     }
 
     private fun status(status: String) {
