@@ -26,6 +26,8 @@ int P_I = -1;
 
 char PRG = 'A';
 
+int RESET_PIN = -1;
+
 int DELAY_REBOOT = -1;
 int DELAY_POST = -1;
 int DELAY_J = -1;
@@ -65,6 +67,7 @@ int func_available() { return (*fct_available)(); }
 int func_read(char *arr, int n) { return (*fct_read)(arr, n); }
 
 char core_prg() { return PRG; }
+int core_reset_pin() {return RESET_PIN; }
 int core_rc() { return Rc; }
 int core_sc() { return Sc; }
 int core_delay_read() { return get_delay_read(); }
