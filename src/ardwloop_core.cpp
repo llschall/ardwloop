@@ -109,6 +109,18 @@ void reset() {
   if ('C' != rd()) {
     log("# Program error #");
   }
+
+  int i0 = map_c(rd());
+  int i1 = map_c(rd());
+  if(i0 < 9) {
+    RESET_PIN = 10*i0+i1;
+  } else {
+    RESET_PIN = -1;
+  }
+  
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
   Rc = map_c(rd());
   if ('C' != rd()) {
     log("# Program error #");
