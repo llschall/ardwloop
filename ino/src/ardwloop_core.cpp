@@ -75,7 +75,9 @@ int core_delay_post() { return DELAY_POST; }
 
 void reboot() {
   func_delay(DELAY_REBOOT);
-  (*fct_write_low)(2);
+  if(RESET_PIN != -1) {
+    (*fct_write_low)(RESET_PIN);
+  }
 }
 
 void wr(char c) { (*fct_write)(c); }
@@ -112,6 +114,7 @@ void reset() {
 
   int i0 = map_c(rd());
   int i1 = map_c(rd());
+  // support pin values in [0-89]
   if(i0 < 9) {
     RESET_PIN = 10*i0+i1;
   } else {
