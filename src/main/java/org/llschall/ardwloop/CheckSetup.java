@@ -21,6 +21,10 @@ class CheckSetup {
     public static void main(String[] args) {
 
         Logger.msg("Java: " + System.getProperty("java.runtime.version"));
+        new CheckSetup().start();
+    }
+
+    void start() {
 
         ArdwloopStarter.get().start(new IArdwProgram() {
             @Override
@@ -54,7 +58,6 @@ class CheckSetup {
                 return 0;
             }
         }, IArdwConfig.BAUD_19200);
-
     }
 
 }
