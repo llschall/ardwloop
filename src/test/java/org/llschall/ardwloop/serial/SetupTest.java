@@ -4,15 +4,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.jni.NativeEntry;
 
+import java.util.ArrayList;
+import java.util.SequencedCollection;
+
 public class SetupTest {
 
     @Test
-    public void testSetup() {
-        System.out.println("#################");
-        System.out.println("## Setup Test ###");
-        System.out.println("#################");
-
-        Assertions.assertEquals(1, 1);
+    public void testJava() {
+        // SequencedCollection require at least Java 21
+        SequencedCollection<String> collection = new ArrayList<>();
+        collection.addFirst("test");
+        Assertions.assertEquals("test", collection.getFirst());
     }
 
     @Test
