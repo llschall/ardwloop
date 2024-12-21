@@ -17,6 +17,13 @@ import java.util.*
 import java.util.function.Consumer
 
 internal class Writer(private val port: ISerialPort) {
+
+    init {
+        Runtime.getRuntime().addShutdownHook(Thread {
+            writeZ()
+        })
+    }
+
     private val buffer = LinkedList<Char>()
 
     fun write(c: Char, d: Char, i: Int) {
@@ -40,7 +47,7 @@ internal class Writer(private val port: ISerialPort) {
 
     // switch program
     @Throws(SerialWriteException::class)
-    fun writeC(p: Char, resetPin:Int, rc: Int, sc: Int, read: Int, post: Int) {
+    fun writeC(p: Char, resetPin: Int, read: Int, post: Int) {
         write(Serial.C)
         write(p)
         write(Serial.C)

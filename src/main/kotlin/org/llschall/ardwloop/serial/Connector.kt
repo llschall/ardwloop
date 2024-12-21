@@ -76,7 +76,7 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
         if(resetPin !in 0..89) {
             resetPin = 90;
         }
-        writer.writeC(p, resetPin, rc, sc, read, post)
+        writer.writeC(p, resetPin, read, post)
     }
 
     private fun status(status: String) {

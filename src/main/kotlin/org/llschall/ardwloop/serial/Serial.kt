@@ -231,7 +231,7 @@ class Serial internal constructor(
         const val P: Char = 'P' // prefix for P message
         const val T: Char = 'T' // suffix for data message
         const val N: Char = 'N' // end of chunk
-        const val Z: Char = 'Z' // reboot
+        const val Z: Char = 'Z' // reboot the Arduino board
 
         const val C_: String = C.toString()
         const val K_: String = K.toString()
