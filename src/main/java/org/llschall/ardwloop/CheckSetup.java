@@ -57,7 +57,7 @@ class CheckSetup {
             public int getPostDelayMs() {
                 return 0;
             }
-        }, IArdwConfig.BAUD_19200);
+        }, IArdwConfig.BAUD_9600);
     }
 
 }

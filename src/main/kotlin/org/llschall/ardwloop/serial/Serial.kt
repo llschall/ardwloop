@@ -184,6 +184,8 @@ class Serial internal constructor(
     }
 
     fun close() {
+        writer?.writeZ()
+
         if (port != null) {
             port!!.closePort()
             msg(">>> port closed")
