@@ -24,7 +24,7 @@ void setup() {
   }
 
   // Here the baud value should be set to the same value as on the Java side
-  ardw_setup(BAUD_19200);
+  ardw_setup(BAUD_9600);
 }
 
 int i = 0;
