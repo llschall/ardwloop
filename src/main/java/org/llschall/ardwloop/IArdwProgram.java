@@ -13,6 +13,9 @@ import static org.llschall.ardwloop.structure.utils.Logger.msg;
  */
 public interface IArdwProgram {
 
+    /**
+     * The size of the received and sent messages.
+     */
     int SC_RC = 9;
 
     /**

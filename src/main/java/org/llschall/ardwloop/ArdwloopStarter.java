@@ -59,6 +59,12 @@ public class ArdwloopStarter {
         this.selector = selector;
     }
 
+    /**
+     * Required to enable board reset onl.
+     *
+     * @param resetPin The pin connected to the reset (RST) pin,
+     *                 for instance with a 650 ohm resistor.
+     */
     public void setResetPin(int resetPin) {
         this.resetPin = resetPin;
     }
