@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter
 
 object Logger {
 
-    var skipMsg = false;
+    private var skipMsg = false
 
     @JvmStatic
     fun msg(shift: Int, msg: String) {
         if (skipMsg) {
-            return;
+            return
         }
         log(shift, System.out, msg)
     }
@@ -19,7 +19,7 @@ object Logger {
     @JvmStatic
     fun msg(msg: String) {
         if (skipMsg) {
-            return;
+            return
         }
         log(0, System.out, msg)
     }

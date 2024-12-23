@@ -12,10 +12,10 @@ import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
-abstract class AbstractLoop protected constructor(val name: String) {
-    val queue: BlockingQueue<Any> = ArrayBlockingQueue(1)
-    val time: AtomicLong = AtomicLong(-1)
-    val thread: Thread
+abstract class AbstractLoop protected constructor(private val name: String) {
+    private val queue: BlockingQueue<Any> = ArrayBlockingQueue(1)
+    private val time: AtomicLong = AtomicLong(-1)
+    private val thread: Thread
     val timer: Timer = Timer()
 
 

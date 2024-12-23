@@ -13,13 +13,13 @@ import org.llschall.ardwloop.structure.utils.Logger
 import org.llschall.ardwloop.structure.utils.Timer
 
 class Clock(
-    val provider: ISerialProvider,
+    private val provider: ISerialProvider,
     val timer: Timer,
-    val loops: MutableList<AbstractLoop>,
+    private val loops: MutableList<AbstractLoop>,
     val model: ArdwloopModel,
-    val selector: IArdwPortSelector,
+    private val selector: IArdwPortSelector,
 ) {
-    val events: EventQueue = model.eventQueue.get()
+    private val events: EventQueue = model.eventQueue.get()
 
     fun start() {
         Runtime.getRuntime().addShutdownHook(

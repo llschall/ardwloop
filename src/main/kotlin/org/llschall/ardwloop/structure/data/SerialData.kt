@@ -3,7 +3,7 @@ package org.llschall.ardwloop.structure.data
 import org.llschall.ardwloop.value.ValueMap
 import java.util.concurrent.atomic.AtomicLong
 
-open class SerialData constructor(
+open class SerialData(
     @JvmField val chk: Int,
     @JvmField val map: ValueMap,
 ) {

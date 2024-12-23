@@ -22,9 +22,6 @@ class ArdwloopModel(program: ProgramContainer?) {
     val loop: AtomicInteger = AtomicInteger()
 
     @JvmField
-    val config: AtomicReference<String> = AtomicReference("N/A")
-
-    @JvmField
     val program: AtomicReference<ProgramContainer> = AtomicReference()
 
     @JvmField

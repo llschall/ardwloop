@@ -49,7 +49,7 @@ public class Bus1Test extends AbstractBusTest {
         ProgramCfg cfg = new ProgramCfg('T', 1, sc, 1, 999);
 
         ArdwloopModel model = new ArdwloopModel(
-                new ProgramContainer(new JTestProgram(), IArdwConfig.BAUD_38400));
+                new ProgramContainer(new JTestProgram()));
         model.serialMdl.program.set(cfg);
 
         IArduino arduino = new Arduino(this);

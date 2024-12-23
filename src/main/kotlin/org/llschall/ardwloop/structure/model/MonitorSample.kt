@@ -3,8 +3,6 @@ package org.llschall.ardwloop.structure.model
 import java.util.concurrent.atomic.AtomicInteger
 
 class MonitorSample {
-    @JvmField
-    val id: Int = nextId.getAndIncrement()
 
     @JvmField
     val loopMs: Long

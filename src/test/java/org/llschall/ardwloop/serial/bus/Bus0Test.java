@@ -51,7 +51,7 @@ public class Bus0Test extends AbstractBusTest {
         ProgramCfg cfg = new ProgramCfg('T', 1, sc, 0, 0);
 
         ArdwloopModel model = new ArdwloopModel(
-                new ProgramContainer(new JTestProgram(), IArdwConfig.BAUD_19200));
+                new ProgramContainer(new JTestProgram()));
         model.serialMdl.program.set(cfg);
         model.serialMdl.resetPin.set(20);
 

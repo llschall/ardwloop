@@ -20,7 +20,7 @@ data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISeria
 
         val list = tryRfcomm()
         if (list.isNotEmpty()) {
-            return list;
+            return list
         }
 
         val ports = SerialPort.getCommPorts()
@@ -50,7 +50,7 @@ data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISeria
             `in`.close()
 
             if (list.isEmpty()) {
-                return emptyList();
+                return emptyList()
             }
 
             val line = list[0]
@@ -71,8 +71,8 @@ data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISeria
                 }.collect(Collectors.toList())
 
         } catch (e: IOException) {
-            Logger.err(e.message.toString())
-            return emptyList();
+            err(e.message.toString())
+            return emptyList()
         }
     }
 

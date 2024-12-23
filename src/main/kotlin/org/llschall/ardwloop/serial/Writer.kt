@@ -52,13 +52,13 @@ internal class Writer(private val port: ISerialPort) {
         write(p)
         write(Serial.C)
 
-        if(resetPin < 10) {
+        if (resetPin < 10) {
             write(map(0))
-            write(map(resetPin));
+            write(map(resetPin))
         } else {
-            val i = resetPin / 10;
+            val i = resetPin / 10
             write(map(i))
-            write(map(resetPin - (i*10)))
+            write(map(resetPin - (i * 10)))
         }
 
         write(Serial.C)

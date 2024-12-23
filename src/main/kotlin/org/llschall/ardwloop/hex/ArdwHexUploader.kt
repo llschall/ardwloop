@@ -11,9 +11,9 @@ import java.io.InputStreamReader
  */
 public class ArdwHexUploader() {
 
-    var avrdudePath: String = "avrdude"
-    var device: String = "atmega328p"
-    var baudRate: String = "57600"
+    private var avrdudePath: String = "avrdude"
+    private var device: String = "atmega328p"
+    private var baudRate: String = "57600"
 
     @Throws(IOException::class)
     fun upload(path: String, port: String) {

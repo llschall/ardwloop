@@ -93,7 +93,7 @@ public class ArdwloopStarter {
     public ArdwloopModel start(IArdwProgram program, int baud, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
 
         Logger.msg("Starting Ardwloop version " + VERSION);
-        container = new ProgramContainer(program, baud);
+        container = new ProgramContainer(program);
         for (AbstractLoop loop : loops) {
             container.addLoop(loop);
         }

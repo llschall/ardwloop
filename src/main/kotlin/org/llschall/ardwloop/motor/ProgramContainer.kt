@@ -8,7 +8,7 @@ import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Timer
 import org.llschall.ardwloop.value.ValueMap
 
-class ProgramContainer(private val program: IArdwProgram, private val baud: Long) {
+class ProgramContainer(private val program: IArdwProgram) {
 
     @JvmField
     val model: ArdwloopModel
@@ -32,8 +32,8 @@ class ProgramContainer(private val program: IArdwProgram, private val baud: Long
 
     fun start(provider: ISerialProvider, baud: Int, resetPin: Int, timer: Timer, selector: IArdwPortSelector) {
         val clock = Clock(provider, timer, loops, model, selector)
-        model.serialMdl.baud.set(baud);
-        model.serialMdl.resetPin.set(resetPin);
+        model.serialMdl.baud.set(baud)
+        model.serialMdl.resetPin.set(resetPin)
         clock.start()
     }
 

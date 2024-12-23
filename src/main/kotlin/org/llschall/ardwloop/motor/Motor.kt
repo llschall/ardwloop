@@ -3,7 +3,6 @@ package org.llschall.ardwloop.motor
 import org.llschall.ardwloop.serial.*
 import org.llschall.ardwloop.serial.port.*
 import org.llschall.ardwloop.structure.StructureThread
-
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
 import org.llschall.ardwloop.structure.data.*
 import org.llschall.ardwloop.structure.model.*
@@ -11,15 +10,14 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
-import org.llschall.ardwloop.value.ValueMap
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(
     val model: ArdwloopModel,
-    val bus: Bus,
-    val selector: IArdwPortSelector
+    private val bus: Bus,
+    private val selector: IArdwPortSelector
 ) : AbstractLoop("MOTOR") {
-    var reconnect: Boolean = false
+    private var reconnect: Boolean = false
 
     override fun setup() {
         val serialMdl = model.serialMdl

@@ -2,8 +2,6 @@ package org.llschall.ardwloop.value;
 
 import org.llschall.ardwloop.structure.StructureException;
 
-import java.util.List;
-
 public class ValueMap {
 
     public final V a = new V();
@@ -16,11 +14,8 @@ public class ValueMap {
     public final V h = new V();
     public final V i = new V();
 
- public final List<V> entries = List.of(
-            a, b, c, d, e, f, g, h, i
-    );
-
-    public ValueMap() {}
+    public ValueMap() {
+    }
 
     public ValueMap(int av) {
         a.v = av;
@@ -32,11 +27,11 @@ public class ValueMap {
     }
 
     public ValueMap(int av, int aw, int ax, int ay, int az) {
-        a.v= av;
-        a.w= aw;
-        a.x= ax;
-        a.y= ay;
-        a.z= az;
+        a.v = av;
+        a.w = aw;
+        a.x = ax;
+        a.y = ay;
+        a.z = az;
     }
 
     public V fromChar(char c) {
