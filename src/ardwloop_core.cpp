@@ -73,10 +73,14 @@ int core_sc() { return Sc; }
 int core_delay_read() { return get_delay_read(); }
 int core_delay_post() { return DELAY_POST; }
 
+void (* restart)() = 0;
+
 void reboot() {
   func_delay(DELAY_REBOOT);
   if(RESET_PIN != -1) {
     (*fct_write_low)(RESET_PIN);
+  } else {
+    restart();
   }
 }
 
