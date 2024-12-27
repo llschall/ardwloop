@@ -53,28 +53,7 @@ public interface IArdwProgram {
     default char getProgramId() {
         return 'a';
     }
-
-    /**
-     * To be adapted to the Arduino project requirements.
-     *
-     * @return The size of the {@link SerialWrap} that the Arduino board will receive.
-     */
-    @Deprecated
-    default int getRc() {
-        return SC_RC;
-    }
-
-
-    /**
-     * To be adapted to the Arduino project requirements.
-     *
-     * @return The size of the {@link SerialWrap} that the Arduino board will send.
-     */
-    @Deprecated
-    default int getSc() {
-        return SC_RC;
-    }
-
+    
     /**
      * To be adapted to the Arduino project requirements.
      *
