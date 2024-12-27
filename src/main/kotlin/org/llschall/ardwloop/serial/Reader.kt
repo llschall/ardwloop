@@ -10,7 +10,7 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
-import org.llschall.ardwloop.value.ArdwData
+import org.llschall.ardwloop.value.LoopData
 
 internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     private val serialMdl = model.serialMdl
@@ -88,9 +88,9 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun readMap(): ArdwData {
+    fun readMap(): LoopData {
 
-        val map = ArdwData()
+        val map = LoopData()
         while (true) {
             val u = buffer.read()
             if (u == Serial.T) {

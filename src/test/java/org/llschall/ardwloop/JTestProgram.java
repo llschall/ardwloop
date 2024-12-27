@@ -1,17 +1,17 @@
 package org.llschall.ardwloop;
 
-import org.llschall.ardwloop.value.ArdwData;
+import org.llschall.ardwloop.value.LoopData;
 
 public class JTestProgram implements IArdwProgram {
 
     @Override
-    public ArdwData ardwLoop(ArdwData s) {
+    public LoopData ardwLoop(LoopData s) {
 
-        return new ArdwData(1, 1, 1, 1, 1);
+        return new LoopData(1, 1, 1, 1, 1);
     }
 
     @Override
-    public ArdwData ardwSetup(ArdwData s) {
-        return new ArdwData(1, 1, 1, 1, 1);
+    public LoopData ardwSetup(LoopData s) {
+        return new LoopData(1, 1, 1, 1, 1);
     }
 }

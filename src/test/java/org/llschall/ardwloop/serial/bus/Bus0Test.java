@@ -20,7 +20,7 @@ import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialData;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
-import org.llschall.ardwloop.value.ArdwData;
+import org.llschall.ardwloop.value.LoopData;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -74,7 +74,7 @@ public class Bus0Test extends AbstractBusTest {
             try {
                 SerialData s = bus.readS();
                 Assertions.assertEquals(0, s.chk);
-                bus.writeR(new SerialData(0, new ArdwData(7, 7, 7, 7, 7)));
+                bus.writeR(new SerialData(0, new LoopData(7, 7, 7, 7, 7)));
                 finishedC.set(true);
             } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);

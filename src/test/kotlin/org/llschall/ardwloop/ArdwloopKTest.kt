@@ -2,7 +2,7 @@ package org.llschall.ardwloop
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.llschall.ardwloop.value.ArdwData
+import org.llschall.ardwloop.value.LoopData
 
 class ArdwloopKTest {
 
@@ -10,7 +10,7 @@ class ArdwloopKTest {
     fun testProgramCanBeCreated() {
         val program = JTestProgram()
 
-        val map = program.ardwSetup(ArdwData())
+        val map = program.ardwSetup(LoopData())
         Assertions.assertEquals(1, map.a.v)
     }
 }
