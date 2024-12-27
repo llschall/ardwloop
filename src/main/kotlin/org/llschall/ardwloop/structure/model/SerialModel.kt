@@ -1,7 +1,7 @@
 package org.llschall.ardwloop.structure.model
 
 import org.llschall.ardwloop.structure.data.ProgramCfg
-import org.llschall.ardwloop.structure.data.SerialData
+import org.llschall.ardwloop.structure.data.SerialWrap
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
@@ -33,13 +33,13 @@ class SerialModel {
     val program: AtomicReference<ProgramCfg> = AtomicReference()
 
     @JvmField
-    val serialS: AtomicReference<SerialData?> = AtomicReference(null)
+    val serialS: AtomicReference<SerialWrap?> = AtomicReference(null)
 
     @JvmField
-    val serialR: AtomicReference<SerialData?> = AtomicReference(null)
+    val serialR: AtomicReference<SerialWrap?> = AtomicReference(null)
 
     @JvmField
-    val serialP: AtomicReference<SerialData?> = AtomicReference(null)
+    val serialP: AtomicReference<SerialWrap?> = AtomicReference(null)
 
     @JvmField
     val serialCnt: AtomicInteger = AtomicInteger()

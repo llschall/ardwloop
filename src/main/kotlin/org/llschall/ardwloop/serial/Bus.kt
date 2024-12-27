@@ -33,21 +33,21 @@ class Bus @JvmOverloads constructor(
     }
 
     @Throws(SerialWriteException::class)
-    fun writeR(r: SerialData) {
+    fun writeR(r: SerialWrap) {
         serial!!.writeV(r)
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun readS(): SerialData {
+    fun readS(): SerialWrap {
         val dataS = serial!!.readS()
         serialMdl.serialRS.incrementAndGet()
         return dataS
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun checkP(): SerialData? {
+    fun checkP(): SerialWrap? {
         val opt = serial!!.checkP()
-        opt?.let { it: SerialData -> serialMdl.serialP.set(it) }
+        opt?.let { it: SerialWrap -> serialMdl.serialP.set(it) }
         return opt
     }
 

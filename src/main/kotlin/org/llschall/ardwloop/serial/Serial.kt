@@ -194,19 +194,19 @@ class Serial internal constructor(
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun checkP(): SerialData? {
+    fun checkP(): SerialWrap? {
         return reader!!.checkP()
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun readS(): SerialData {
+    fun readS(): SerialWrap {
         val chk = reader!!.readS()
         val map = reader!!.readMap()
-        return SerialData(chk, map)
+        return SerialWrap(chk, map)
     }
 
     @Throws(SerialWriteException::class)
-    fun writeV(data: SerialData) {
+    fun writeV(data: SerialWrap) {
         writer!!.writeR()
 
         for (c in 'a'..'i') {

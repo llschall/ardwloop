@@ -2,7 +2,7 @@ package org.llschall.ardwloop.value;
 
 import org.llschall.ardwloop.structure.StructureException;
 
-public class LoopData {
+public class SerialData {
 
     public final V a = new V();
     public final V b = new V();
@@ -14,19 +14,19 @@ public class LoopData {
     public final V h = new V();
     public final V i = new V();
 
-    public LoopData() {
+    public SerialData() {
     }
 
-    public LoopData(int av) {
+    public SerialData(int av) {
         a.v = av;
     }
 
-    public LoopData(int av, int aw) {
+    public SerialData(int av, int aw) {
         a.v = av;
         a.w = aw;
     }
 
-    public LoopData(int av, int aw, int ax, int ay, int az) {
+    public SerialData(int av, int aw, int ax, int ay, int az) {
         a.v = av;
         a.w = aw;
         a.x = ax;

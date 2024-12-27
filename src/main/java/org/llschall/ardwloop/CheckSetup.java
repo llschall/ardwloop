@@ -2,7 +2,7 @@ package org.llschall.ardwloop;
 
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.utils.Logger;
-import org.llschall.ardwloop.value.LoopData;
+import org.llschall.ardwloop.value.SerialData;
 
 /**
  * Intended to check the connection on start-up only.
@@ -28,7 +28,7 @@ class CheckSetup {
 
         ArdwloopStarter.get().start(new IArdwProgram() {
             @Override
-            public LoopData ardwSetup(LoopData s) {
+            public SerialData ardwSetup(SerialData s) {
 
                 Logger.msg("""
                         \n
@@ -40,11 +40,11 @@ class CheckSetup {
                 StructureTimer.get().shutdown();
 
                 // dead code
-                return new LoopData();
+                return new SerialData();
             }
 
             @Override
-            public LoopData ardwLoop(LoopData s) {
+            public SerialData ardwLoop(SerialData s) {
                 return null;
             }
 

@@ -10,7 +10,7 @@ import org.llschall.ardwloop.structure.model.keyboard.*
 import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
-import org.llschall.ardwloop.value.LoopData
+import org.llschall.ardwloop.value.SerialData
 
 internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     private val serialMdl = model.serialMdl
@@ -42,7 +42,7 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun checkP(): SerialData? {
+    fun checkP(): SerialWrap? {
         if (!buffer.bytesAvailable()) {
             return null
         }
@@ -70,11 +70,11 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    private fun readP(): SerialData {
+    private fun readP(): SerialWrap {
         val i = readChk()
         val p = readMap()
         serialCnt.incrementAndGet()
-        return SerialData(i, p)
+        return SerialWrap(i, p)
     }
 
     @Throws(SerialLongReadException::class, GotJException::class, SerialWrongReadException::class)
@@ -88,9 +88,9 @@ internal class Reader(model: ArdwloopModel, port: ISerialPort, timer: Timer) {
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun readMap(): LoopData {
+    fun readMap(): SerialData {
 
-        val map = LoopData()
+        val map = SerialData()
         while (true) {
             val u = buffer.read()
             if (u == Serial.T) {

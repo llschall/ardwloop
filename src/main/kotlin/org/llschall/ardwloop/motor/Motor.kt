@@ -40,7 +40,7 @@ internal class Motor(
         try {
             val s = readS()
             val r = program.setupPrg(s.map)
-            writeR(SerialData(0, r))
+            writeR(SerialWrap(0, r))
             reconnect = false
         } catch (e: SerialLongReadException) {
             err("Setup error", e)
@@ -70,12 +70,12 @@ internal class Motor(
 
             val program = model.program.get()
 
-            val atm = AtomicReference<SerialData>()
+            val atm = AtomicReference<SerialWrap>()
 
             StructureThread({
                 val serialR = program.loopPrg(serialS.map)
                 model.loop.incrementAndGet()
-                atm.set(SerialData(0, serialR))
+                atm.set(SerialWrap(0, serialR))
             }, "program_loop").start()
 
             while (atm.get() == null) {
@@ -111,14 +111,14 @@ internal class Motor(
     }
 
     @Throws(SerialLongReadException::class, SerialWrongReadException::class, GotJException::class)
-    fun readS(): SerialData {
+    fun readS(): SerialWrap {
         val serialS = bus.readS()
         model.serialMdl.serialS.set(serialS)
         return serialS
     }
 
     @Throws(SerialWriteException::class)
-    fun writeR(r: SerialData) {
+    fun writeR(r: SerialWrap) {
         bus.writeR(r)
         model.serialMdl.serialR.set(r)
     }

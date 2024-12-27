@@ -1,7 +1,7 @@
 package org.llschall.ardwloop;
 
-import org.llschall.ardwloop.structure.data.SerialData;
-import org.llschall.ardwloop.value.LoopData;
+import org.llschall.ardwloop.structure.data.SerialWrap;
+import org.llschall.ardwloop.value.SerialData;
 
 import static org.llschall.ardwloop.structure.utils.Logger.msg;
 
@@ -25,7 +25,7 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} sent from the Arduino setup() call
      * @return The {@link SerialData} that the Arduino board will receive in its first loop()
      */
-    LoopData ardwSetup(LoopData s);
+    SerialData ardwSetup(SerialData s);
 
     /**
      * loop() is called by the Ardwloop framework in the same cyclic way as the loop() function
@@ -34,14 +34,14 @@ public interface IArdwProgram {
      * @param s The {@link SerialData} received by the Arduino board
      * @return The {@link SerialData} that will be sent to the Arduino board
      */
-    LoopData ardwLoop(LoopData s);
+    SerialData ardwLoop(SerialData s);
 
     /**
-     * post() is called by the Ardwloop framework each time the Arduino board sent a post {@link SerialData}
+     * post() is called by the Ardwloop framework each time the Arduino board sent a post {@link SerialWrap}
      *
-     * @param p The received post {@link SerialData}
+     * @param p The received post {@link SerialWrap}
      */
-    default void ardwPost(LoopData p) {
+    default void ardwPost(SerialData p) {
         msg("post ignored");
     }
 
@@ -57,7 +57,7 @@ public interface IArdwProgram {
     /**
      * To be adapted to the Arduino project requirements.
      *
-     * @return The size of the {@link SerialData} that the Arduino board will receive.
+     * @return The size of the {@link SerialWrap} that the Arduino board will receive.
      */
     @Deprecated
     default int getRc() {
@@ -68,7 +68,7 @@ public interface IArdwProgram {
     /**
      * To be adapted to the Arduino project requirements.
      *
-     * @return The size of the {@link SerialData} that the Arduino board will send.
+     * @return The size of the {@link SerialWrap} that the Arduino board will send.
      */
     @Deprecated
     default int getSc() {
@@ -78,7 +78,7 @@ public interface IArdwProgram {
     /**
      * To be adapted to the Arduino project requirements.
      *
-     * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialData}
+     * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialWrap}
      */
     default int getReadDelayMs() {
         return 99;
@@ -87,7 +87,7 @@ public interface IArdwProgram {
     /**
      * To be adapted to the Arduino project requirements.
      *
-     * @return The delay the Arduino board will wait before sending a post {@link SerialData}
+     * @return The delay the Arduino board will wait before sending a post {@link SerialWrap}
      */
     default int getPostDelayMs() {
         return 9999;
