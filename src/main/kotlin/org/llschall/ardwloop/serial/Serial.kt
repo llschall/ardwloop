@@ -99,14 +99,12 @@ class Serial internal constructor(
     private var connector: Connector? = null
 
     private val p = cfg.p
-    private val rc = cfg.rc
-    private val sc = cfg.sc
     private val read = cfg.read
     private val post = cfg.post
 
     @Throws(SerialWriteException::class)
     fun reboot() {
-        connector!!.reboot(p, rc, sc, read, post)
+        connector!!.reboot(p, read, post)
     }
 
     @Throws(SerialWriteException::class)
@@ -178,7 +176,7 @@ class Serial internal constructor(
         connector = Connector(model, reader!!, writer!!)
 
         msg("PLUG")
-        connector!!.reboot(p, rc, sc, read, post)
+        connector!!.reboot(p, read, post)
 
         return true
     }

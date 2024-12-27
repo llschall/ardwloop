@@ -48,7 +48,7 @@ public class Bus0Test extends AbstractBusTest {
 
         // Arduino <<>> Computer
 
-        ProgramCfg cfg = new ProgramCfg('T', 1, sc, 0, 0);
+        ProgramCfg cfg = new ProgramCfg('T', 0, 0);
 
         ArdwloopModel model = new ArdwloopModel(
                 new ProgramContainer(new JTestProgram()));

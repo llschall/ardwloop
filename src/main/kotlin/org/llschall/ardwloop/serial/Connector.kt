@@ -13,7 +13,7 @@ import org.llschall.ardwloop.structure.utils.Logger.msg
 
 internal data class Connector(val model: ArdwloopModel, val reader: Reader, val writer: Writer) {
     @Throws(SerialWriteException::class)
-    fun reboot(p: Char, rc: Int, sc: Int, read: Int, post: Int) {
+    fun reboot(p: Char, read: Int, post: Int) {
         val timer = Timer()
 
         val serialMdl = model.serialMdl

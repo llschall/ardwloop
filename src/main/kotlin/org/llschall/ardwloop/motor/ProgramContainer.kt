@@ -18,7 +18,7 @@ class ProgramContainer(private val program: IArdwProgram) {
         val model = ArdwloopModel(this)
         model.serialMdl.program.set(
             ProgramCfg(
-                program.programId, program.rc, program.sc,
+                program.programId,
                 program.readDelayMs, program.postDelayMs,
             )
         )
