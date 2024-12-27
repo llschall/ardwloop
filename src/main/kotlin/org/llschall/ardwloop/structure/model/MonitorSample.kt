@@ -13,6 +13,9 @@ class MonitorSample {
     @JvmField
     val writeMs: Long
 
+    @JvmField
+    val id = nextId.incrementAndGet()
+
     constructor() {
         loopMs = -1
         readMs = -1
