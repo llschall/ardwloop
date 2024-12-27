@@ -18,12 +18,6 @@ import java.util.function.Consumer
 
 internal class Writer(private val port: ISerialPort) {
 
-    init {
-        Runtime.getRuntime().addShutdownHook(Thread {
-            writeZ()
-        })
-    }
-
     private val buffer = LinkedList<Char>()
 
     fun write(c: Char, d: Char, i: Int) {
@@ -78,6 +72,12 @@ internal class Writer(private val port: ISerialPort) {
     fun writeZ() {
         write(Serial.Z)
         flush()
+    }
+
+    fun writeLastZ() {
+        val bytes = ByteArray(1)
+        bytes[0] = Serial.Z.code.toByte()
+        port.writeBytes(bytes, bytes.size)
     }
 
     fun writeR() {

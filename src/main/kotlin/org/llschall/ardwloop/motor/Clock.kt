@@ -41,6 +41,12 @@ class Clock(
 
     private fun launch() {
         val bus = Bus(model, provider, timer)
+        Runtime.getRuntime().addShutdownHook(
+            Thread {
+                bus.close()
+            }
+        )
+
         val motor = Motor(model, bus, selector)
 
         loops.add(motor)
