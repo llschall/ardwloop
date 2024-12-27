@@ -6,7 +6,7 @@ import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Timer
-import org.llschall.ardwloop.value.ValueMap
+import org.llschall.ardwloop.value.ArdwData
 
 class ProgramContainer(private val program: IArdwProgram) {
 
@@ -37,15 +37,15 @@ class ProgramContainer(private val program: IArdwProgram) {
         clock.start()
     }
 
-    fun setupPrg(s: ValueMap): ValueMap {
+    fun setupPrg(s: ArdwData): ArdwData {
         return program.ardwSetup(s)
     }
 
-    fun loopPrg(r: ValueMap?): ValueMap {
+    fun loopPrg(r: ArdwData?): ArdwData {
         return program.ardwLoop(r)
     }
 
-    fun postPrg(p: ValueMap?) {
+    fun postPrg(p: ArdwData?) {
         program.ardwPost(p)
     }
 }

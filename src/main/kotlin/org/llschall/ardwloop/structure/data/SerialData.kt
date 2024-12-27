@@ -1,11 +1,11 @@
 package org.llschall.ardwloop.structure.data
 
-import org.llschall.ardwloop.value.ValueMap
+import org.llschall.ardwloop.value.ArdwData
 import java.util.concurrent.atomic.AtomicLong
 
 open class SerialData(
     @JvmField val chk: Int,
-    @JvmField val map: ValueMap,
+    @JvmField val map: ArdwData,
 ) {
     private val id: Long = NEXT_ID.getAndIncrement()
 

@@ -2,7 +2,7 @@ package org.llschall.ardwloop.value;
 
 import org.llschall.ardwloop.structure.StructureException;
 
-public class ValueMap {
+public class ArdwData {
 
     public final V a = new V();
     public final V b = new V();
@@ -14,19 +14,19 @@ public class ValueMap {
     public final V h = new V();
     public final V i = new V();
 
-    public ValueMap() {
+    public ArdwData() {
     }
 
-    public ValueMap(int av) {
+    public ArdwData(int av) {
         a.v = av;
     }
 
-    public ValueMap(int av, int aw) {
+    public ArdwData(int av, int aw) {
         a.v = av;
         a.w = aw;
     }
 
-    public ValueMap(int av, int aw, int ax, int ay, int az) {
+    public ArdwData(int av, int aw, int ax, int ay, int az) {
         a.v = av;
         a.w = aw;
         a.x = ax;
