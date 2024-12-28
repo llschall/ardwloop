@@ -9,6 +9,14 @@
 
 void ardw_setup(long baud) {
   inject_arduino_h();
+  inject_serial();
+  core_setup(baud);
+}
+
+void ardw_setup_inject(long baud, void (*prm_serial_begin)(int), int (*prm_available)(),
+                       int (*prm_read)(char *, int), int (*prm_write)(char)) {
+  inject_arduino_h();
+  fct_inject_serial(prm_serial_begin, prm_available, prm_read, prm_write);
   core_setup(baud);
 }
 

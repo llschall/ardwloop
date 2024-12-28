@@ -21,6 +21,9 @@ const long BAUD_115200 = 115200;
 
 void ardw_setup(long);
 
+void ardw_setup_inject(long baud, void (*prm_serial_begin)(int), int (*prm_available)(),
+                       int (*prm_read)(char *, int), int (*prm_write)(char));
+
 char ardw_prg();
 
 void ardw_loop();

@@ -6,9 +6,13 @@
 
 void inject_arduino_h() {
   fct_inject(&impl_log, &impl_delay, &impl_write_low, &impl_write_high,
-             &impl_pin_out, &impl_serial_begin, &impl_available, &impl_read,
-             &impl_write, &impl_post);
+             &impl_pin_out, &impl_post);
 }
+
+void inject_serial() {
+  fct_inject_serial(&impl_serial_begin, &impl_available, &impl_read, &impl_write);
+}
+
 
 void ignore_log(const char *msg) {
   // do nothing
