@@ -3,6 +3,8 @@
 
 void inject_arduino_h();
 
+void inject_serial();
+
 void inject_log(void (*p)(const char *));
 
 void impl_log(const char *msg);

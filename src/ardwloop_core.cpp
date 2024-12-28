@@ -47,19 +47,22 @@ bool (*POST_IMPL)();
 
 void fct_inject(void (*prm_log)(const char *), void (*prm_delay)(unsigned long),
                 void (*prm_write_low)(int), void (*prm_write_high)(int),
-                void (*prm_pin_out)(int), void (*prm_serial_begin)(int),
-                int (*prm_available)(), int (*prm_read)(char *, int),
-                int (*prm_write)(char), bool (*prm_post)()
+                void (*prm_pin_out)(int), bool (*prm_post)()
                 ) {
   fct_log = prm_log;
   fct_delay = prm_delay;
   fct_write_low = prm_write_low;
   fct_write_high = prm_write_high;
-  fct_pin_out = prm_pin_out, fct_serial_begin = prm_serial_begin,
+  POST_IMPL = prm_post;
+}
+
+void fct_inject_serial(void (*prm_serial_begin)(int), int (*prm_available)(),
+                       int (*prm_read)(char *, int), int (*prm_write)(char)
+                ) {
+  fct_serial_begin = prm_serial_begin,
   fct_available = prm_available;
   fct_read = prm_read;
   fct_write = prm_write;
-  POST_IMPL = prm_post;
 }
 
 void func_delay(unsigned long ms) {(*fct_delay)(ms);}
@@ -346,8 +349,10 @@ void core_setup(long baud) {
   S_I = 0;
   P_I = 0;
 
-  (*fct_pin_out)(2);
-  (*fct_write_high)(2);
+  // TODO 2024.12
+  //(*fct_pin_out)(2);
+  //(*fct_write_high)(2);
+
   (*fct_serial_begin)(baud);
 
   init_j();
