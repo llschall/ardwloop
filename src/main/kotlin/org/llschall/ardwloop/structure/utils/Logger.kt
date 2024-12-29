@@ -1,8 +1,8 @@
 package org.llschall.ardwloop.structure.utils
 
 import java.io.PrintStream
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.TimeZone
 
 object Logger {
 
@@ -38,9 +38,7 @@ object Logger {
 
 
     private fun log(shift: Int, out: PrintStream, msg: String) {
-        val formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
-        val now = LocalDateTime.now()
-        val time = now.format(formatter)
+        val time = LoggerDate().asString()
 
         val thread = Thread.currentThread()
         var name = thread.name
@@ -60,4 +58,32 @@ object Logger {
             }
         }
     }
+}
+
+class LoggerDate {
+
+    fun asString(): String {
+        val instance = Calendar.getInstance(TimeZone.getDefault())
+        val hh = addZero(2, instance.get(Calendar.HOUR_OF_DAY))
+        val mm = addZero(2, instance.get(Calendar.MINUTE))
+        val ss = addZero(2, instance.get(Calendar.SECOND))
+        val ms = addZero(3, instance.get(Calendar.MILLISECOND))
+        return "$hh:$mm:$ss.$ms"
+    }
+
+    fun addZero(size: Int, value: Int): String {
+
+        if (size == 2 && value < 10) {
+            return "0$value"
+        }
+        if (size == 3 && value < 100) {
+            return if ((value < 10)) {
+                "00$value"
+            } else {
+                "0$value"
+            }
+        }
+        return "$value"
+    }
+
 }
