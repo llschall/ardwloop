@@ -59,7 +59,9 @@ public class BackEntry {
     // called by NativeEntry.c
     static char read() {
         try {
-            return delegate.read();
+            char read = delegate.read();
+            System.out.print(read);
+            return read;
         } catch (Exception e) {
             Logger.err("Error in read()", e);
             System.exit(0);

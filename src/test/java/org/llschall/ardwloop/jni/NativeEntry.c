@@ -154,7 +154,7 @@ JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
     char* str;
     str = env -> GetStringUTFChars(jstr, 0);
     import_S(str, size, c, v, w, x, y, z);
-    env -> ReleaseStringUTFChars(jstr, str);
+    //env -> ReleaseStringUTFChars(jstr, str);
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(

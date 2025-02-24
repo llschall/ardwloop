@@ -36,7 +36,7 @@ public class Serial4Test {
         Assertions.assertEquals(1, entry.rc());
 
         entry.importS("abc", 3, 'a', 0, 0, 54, 0, 0);
-        back.addMsg(S + "001ax54+" + T, R + "av67+aw+ax+ay+az68+" + T);
+        back.addMsg(S + "001~abc~ax54+" + T, R + "av67+aw+ax+ay+az68+" + T);
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));

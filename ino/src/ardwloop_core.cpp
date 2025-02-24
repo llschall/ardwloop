@@ -247,8 +247,13 @@ void send_s() {
     S_I = 0;
   wr_i(i);
 
-  for(char* str = STR; 0>0; str++) {
-
+  if(STRc > 0) {
+    wr('~');
+    char* str = STR;
+    for(int i = 0; i < STRc; i++) {
+      wr(STR[i]);
+    }
+    wr('~');
   }
 
   for (int i = 0; i < Sc; i++) {
