@@ -2,7 +2,7 @@
  * Adrwloop.h - Entry point of the ardwloop API for the Arduino side
  * See https://llschall.github.io/ardwloop
  *
- * Version 0.3.2
+ * Version 0.3.3
  */
 
 #ifndef ardwloop_h
