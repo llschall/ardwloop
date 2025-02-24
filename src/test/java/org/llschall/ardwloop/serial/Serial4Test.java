@@ -35,15 +35,15 @@ public class Serial4Test {
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
 
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("abc", 'a', 0, 0, 54, 0, 0);
         back.addMsg(S + "001ax54+" + T, R + "av67+aw+ax+ay+az68+" + T);
         entry.loop();
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
+        entry.importS("", 'a', 0, 0, 0, 0, 0);
         back.addMsg(S + "002" + T, "");
         back.addMsg(P + "000" + T, R + Msg.EMPTY_A + T);
-        entry.importS("", 'a', 0, 0, 0, 0, 0);
         entry.loop();
         Assertions.assertEquals(0, entry.exportR('a', 'v'));
         Assertions.assertEquals(0, entry.exportR('a', 'z'));
