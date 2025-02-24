@@ -342,7 +342,7 @@ void send_p() {
 }
 
 V *core_s() { return &S; }
-void core_str(char* str) { STR = str; }
+void core_str(char* str, int size) { STR = str; STRc = size; }
 V *core_r() { return &R; }
 V *core_p() { return &P; }
 

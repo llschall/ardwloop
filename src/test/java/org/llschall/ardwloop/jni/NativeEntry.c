@@ -186,7 +186,7 @@ void log_dbg(char *str) { back_print(0, str); }
 
 int import_S(char *str, int size, char c, int v, int w, int x, int y, int z) {
 
-  //entry_str(str, size);
+  entry_str(str, size);
 
   V *S = entry_s();
 
