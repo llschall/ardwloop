@@ -40,6 +40,7 @@ int core_sc();
 int core_delay_read();
 int core_delay_post();
 V *core_s();
+void core_str(char* str);
 V *core_p();
 V *core_r();
 

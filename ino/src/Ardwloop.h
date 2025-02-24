@@ -30,6 +30,7 @@ void ardw_loop();
 void ardw_post(bool (*p)());
 
 V *ardw_s();
+void ardw_str(char* str);
 V *ardw_p();
 V *ardw_r();
 
