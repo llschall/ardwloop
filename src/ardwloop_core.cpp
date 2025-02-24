@@ -10,6 +10,7 @@ int Rc = -1;
 int Sc = -1;
 
 struct V R, S, P;
+char* STR;
 
 const char END = '/';
 
@@ -336,6 +337,7 @@ void send_p() {
 }
 
 V *core_s() { return &S; }
+void core_str(char* str) { STR = str; }
 V *core_r() { return &R; }
 V *core_p() { return &P; }
 
