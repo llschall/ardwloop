@@ -150,8 +150,11 @@ Java_org_llschall_ardwloop_jni_NativeEntry_delayPost(JNIEnv *env, jobject obj) {
 };
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
-    JNIEnv *env, jobject obj, jstring str, jchar c, jint v, jint w, jint x, jint y, jint z) {
-  import_S(c, v, w, x, y, z);
+    JNIEnv *env, jobject obj, jstring jstr, jchar c, jint v, jint w, jint x, jint y, jint z) {
+    char* str;
+    str = env -> GetStringUTFChars(jstr, 0);
+    import_S(str, c, v, w, x, y, z);
+    env -> ReleaseStringUTFChars(jstr, str);
 };
 
 JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
@@ -181,7 +184,7 @@ void log_dbg(char *str, va_list c) { back_print(0, str, c); }
 
 void log_dbg(char *str) { back_print(0, str); }
 
-int import_S(char c, int v, int w, int x, int y, int z) {
+int import_S(char *str, char c, int v, int w, int x, int y, int z) {
 
   V *S = entry_s();
 
