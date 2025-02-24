@@ -28,5 +28,5 @@ int entry_delay_read() { return core_delay_read(); }
 int entry_delay_post() { return core_delay_post(); }
 
 V *entry_s() { return core_s(); }
-entry_str(char* str) { core_str(str); }
+entry_str(char* str, int size) { core_str(str, size); }
 V *entry_r() { return core_r(); }
