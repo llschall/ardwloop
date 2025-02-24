@@ -14,7 +14,7 @@ void entry_reset();
 char entry_prg();
 
 V *entry_s();
-entry_str(char* str);
+void entry_str(char* str, int size);
 
 V *entry_r();
 

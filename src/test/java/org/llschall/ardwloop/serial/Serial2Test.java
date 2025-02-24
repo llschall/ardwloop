@@ -29,7 +29,7 @@ public class Serial2Test {
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
 
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 54, 0, 0);
         back.addMsg(
                 Serial.S + "001ax54+" + Serial.T,
                 Serial.R + "av67+az68+" + Serial.T);
@@ -37,7 +37,7 @@ public class Serial2Test {
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 54, 0, 0);
         back.addMsg(
                 Serial.S + "002ax54+" + Serial.T,
                 Serial.R + "av67+az68+" + Serial.T);
@@ -59,7 +59,7 @@ public class Serial2Test {
         Assertions.assertEquals(1, entry.rc());
         Assertions.assertEquals(2, entry.sc());
 
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 54, 0, 0);
         back.addMsg(
                 Serial.S + "001ax54+" + Serial.T,
                 Serial.R + "av67+az68+" + Serial.T);
@@ -67,7 +67,7 @@ public class Serial2Test {
         Assertions.assertEquals(67, entry.exportR('a', 'v'));
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 54, 0, 0);
         back.addMsg(
                 Serial.S + "002ax54+" + Serial.T,
                 Serial.R + "av67+az68+" + Serial.T);
@@ -91,14 +91,14 @@ public class Serial2Test {
         back.addMsg(
                 Serial.S + "001ax54+" + Serial.T,
                 Serial.R + "az68+" + Serial.T);
-        entry.importS("", 'a', 0, 0, 54, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 54, 0, 0);
         entry.loop();
         Assertions.assertEquals(68, entry.exportR('a', 'z'));
 
         back.addMsg(
                 Serial.S + "002" + Serial.T,
                 Serial.R + "" + Serial.T);
-        entry.importS("", 'a', 0, 0, 0, 0, 0);
+        entry.importS("", 0, 'a', 0, 0, 0, 0, 0);
         entry.loop();
         Assertions.assertEquals(0, entry.exportR('a', 'z'));
     }

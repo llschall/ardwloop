@@ -11,6 +11,7 @@ int Sc = -1;
 
 struct V R, S, P;
 char* STR;
+int STRc = 0;
 
 const char END = '/';
 
@@ -245,6 +246,10 @@ void send_s() {
   if (S_I == 1000)
     S_I = 0;
   wr_i(i);
+
+  for(char* str = STR; 0>0; str++) {
+
+  }
 
   for (int i = 0; i < Sc; i++) {
     

@@ -11,7 +11,7 @@ public class NativeEntry {
         if (injectOnly) {
             return;
         }
-        importS("", 'a', 0, 0, 0, 0, 0);
+        importS("", 0, 'a', 0, 0, 0, 0, 0);
     }
 
     public NativeEntry() {
@@ -44,6 +44,6 @@ public class NativeEntry {
 
     public native int exportR(char v, char d);
 
-    public native void importS(String str, char c, int v, int w, int x, int y, int z);
+    public native void importS(String str, int size, char c, int v, int w, int x, int y, int z);
 
 }
