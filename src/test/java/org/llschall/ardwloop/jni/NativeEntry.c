@@ -150,7 +150,7 @@ Java_org_llschall_ardwloop_jni_NativeEntry_delayPost(JNIEnv *env, jobject obj) {
 };
 
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
-    JNIEnv *env, jobject obj, jchar c, jint v, jint w, jint x, jint y, jint z) {
+    JNIEnv *env, jobject obj, jstring str, jchar c, jint v, jint w, jint x, jint y, jint z) {
   import_S(c, v, w, x, y, z);
 };
 
