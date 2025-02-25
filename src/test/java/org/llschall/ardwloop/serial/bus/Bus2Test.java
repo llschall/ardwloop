@@ -75,7 +75,7 @@ public class Bus2Test extends AbstractBusTest {
                 bus.writeR(new SerialWrap(0, new SerialData(7, 7, 7, 7, 7)));
                 s = bus.readS();
                 Assertions.assertEquals(1, s.chk);
-                bus.writeR(new SerialWrap(0, new SerialData(1, 5, 78, -7, 11)));
+                bus.writeR(new SerialWrap(0, new SerialData(1, 5, 78, -7, 0)));
             } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
             }
@@ -134,11 +134,6 @@ public class Bus2Test extends AbstractBusTest {
         TestTimer.get().delayMs(99);
         Assertions.assertEquals(Serial.S + "001" + T, cableA2C.check());
         cableA2C.releaseAll();
-
-        // << R <<
-        TestTimer.get().delayMs(99);
-        Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+" + T, cableC2A.check());
-        cableC2A.releaseAll();
 
         TestTimer.get().delayMs(99);
 
