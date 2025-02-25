@@ -95,8 +95,10 @@ public class Bus2Test extends AbstractBusTest {
         computerThd.start();
         arduinoThd.start();
 
+        int ms = 200;
+
         // << Z <<
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
         cableC2A.input.clear();
 
@@ -105,36 +107,36 @@ public class Bus2Test extends AbstractBusTest {
         cableA2C.releaseAll();
 
         // << JK <<
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.J_ + Serial.K, cableC2A.check());
         cableC2A.release(2);
 
         // >> K >>
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
 
         // << CTC90C9C9C1C999C <<
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertEquals("CTC90C9C9C1C999C", cableC2A.check());
         cableC2A.release("CTC90C9C9C1C999C".length());
 
         // >> S >>
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.R_ + "av7+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         // >> S >>
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.S + "001" + T, cableA2C.check());
         cableA2C.releaseAll();
 
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(ms);
 
         dump();
         Logger.msg("*** Finished ***");
