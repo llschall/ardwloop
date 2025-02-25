@@ -4,6 +4,8 @@ import org.llschall.ardwloop.structure.StructureException;
 
 public class SerialData {
 
+    public String str = "";
+
     public final V a = new V();
     public final V b = new V();
     public final V c = new V();
@@ -24,6 +26,15 @@ public class SerialData {
     public SerialData(int av, int aw) {
         a.v = av;
         a.w = aw;
+    }
+
+    public SerialData(String str, int av, int aw, int ax, int ay, int az) {
+        this.str = str;
+        a.v = av;
+        a.w = aw;
+        a.x = ax;
+        a.y = ay;
+        a.z = az;
     }
 
     public SerialData(int av, int aw, int ax, int ay, int az) {

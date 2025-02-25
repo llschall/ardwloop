@@ -82,13 +82,13 @@ public class Bus2Test extends AbstractBusTest {
 
         }, "= Computer =");
 
-        NativeEntry entry = new NativeEntry();
+
         Thread arduinoThd = new Thread(() -> {
+            NativeEntry entry = new NativeEntry();
             Logger.msg("Start");
             entry.setup(IArdwConfig.BAUD_9600);
-            Logger.msg("Loop 1");
-            entry.loop();
-            Logger.msg("Loop 2");
+            Logger.msg("Loop");
+            entry.importS("", 0, 'a', 0, 0, 0, 0, 0);
             entry.loop();
             Logger.msg("Finished");
         }, ARDUINO_THD);
