@@ -95,7 +95,7 @@ public class Bus2Test extends AbstractBusTest {
         computerThd.start();
         arduinoThd.start();
 
-        int ms = 200;
+        int ms = 99;
 
         // << Z <<
         TestTimer.get().delayMs(ms);
