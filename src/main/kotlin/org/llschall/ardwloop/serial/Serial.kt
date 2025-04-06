@@ -16,7 +16,7 @@ import java.io.StringWriter
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
+public class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -52,7 +52,7 @@ interface IArdwPortSelector {
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-class DefaultPortSelector : IArdwPortSelector {
+public open class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun select(desc: ArdwPortDescriptor): Boolean {
