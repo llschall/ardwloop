@@ -90,7 +90,8 @@ class Serial internal constructor(
     private val model: ArdwloopModel,
     cfg: ProgramCfg,
     val timer: Timer,
-    private val selector: IArdwPortSelector
+    private val selector: IArdwPortSelector,
+    private val monitor: ISerialMonitor,
 ) {
     private val serialMdl = model.serialMdl
     private var port: ISerialPort? = null
@@ -173,7 +174,7 @@ class Serial internal constructor(
         reader = Reader(model, port!!, timer)
         writer = Writer(port!!)
 
-        connector = Connector(model, reader!!, writer!!)
+        connector = Connector(model, reader!!, writer!!, monitor)
 
         msg("PLUG")
         connector!!.reboot(p, read, post)

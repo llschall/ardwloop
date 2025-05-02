@@ -24,6 +24,6 @@ public class AbstractBusTest {
             Logger.err("Too many available() calls.");
             StructureTimer.get().shutdown();
         }
-        TestTimer.get().delayMs(av);
+        TestTimer.get().delayMs(9);
     }
 }

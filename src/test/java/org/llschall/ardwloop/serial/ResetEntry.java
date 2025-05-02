@@ -1,5 +1,8 @@
 package org.llschall.ardwloop.serial;
 
+import org.junit.jupiter.api.Assertions;
+import org.llschall.ardwloop.structure.utils.Logger;
+
 class ResetEntry implements IBackEntry {
 
     final String rb = "K-CWC12C5C4C7C9C";
@@ -9,7 +12,8 @@ class ResetEntry implements IBackEntry {
     public int available() {
         if (av > rb.length() - 1) {
             System.err.println("ERROR av[" + av + "]");
-            System.exit(0);
+            Logger.err("FAILURE");
+            Assertions.fail();
         }
         char c = rb.charAt(av);
         av++;
@@ -21,7 +25,8 @@ class ResetEntry implements IBackEntry {
         av--;
         if (av > rb.length() - 1) {
             System.err.println("ERROR rb[" + av + "]");
-            System.exit(0);
+            Logger.err("FAILURE");
+            Assertions.fail();
         }
         char c = rb.charAt(av);
         System.out.println("JAVA rb[" + av + "] > " + c);

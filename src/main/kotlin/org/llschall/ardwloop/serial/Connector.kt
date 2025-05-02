@@ -1,17 +1,18 @@
 package org.llschall.ardwloop.serial
 
-import org.llschall.ardwloop.serial.*
-import org.llschall.ardwloop.serial.port.*
-import org.llschall.ardwloop.structure.*
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
-import org.llschall.ardwloop.structure.data.*
-import org.llschall.ardwloop.structure.model.*
-import org.llschall.ardwloop.structure.model.keyboard.*
-import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.model.ArdwloopModel
+import org.llschall.ardwloop.structure.model.MonitorSample
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Timer
 
-internal data class Connector(val model: ArdwloopModel, val reader: Reader, val writer: Writer) {
+internal data class Connector(
+    val model: ArdwloopModel,
+    val reader: Reader,
+    val writer: Writer,
+    val monitor: ISerialMonitor
+) {
     @Throws(SerialWriteException::class)
     fun reboot(p: Char, read: Int, post: Int) {
         val timer = Timer()
@@ -19,6 +20,7 @@ internal data class Connector(val model: ArdwloopModel, val reader: Reader, val 
         val serialMdl = model.serialMdl
 
         writer.writeZ()
+        monitor.fireZSent()
         status("REBOOT (sent Z)")
 
         serialMdl.connected.set(false)

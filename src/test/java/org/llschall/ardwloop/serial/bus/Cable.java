@@ -4,11 +4,14 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
 
 class Cable {
 
     final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(2000);
     final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(2000);
+
+    CountDownLatch latch = new CountDownLatch(1);
 
     void push(char c) {
         input.add(c);

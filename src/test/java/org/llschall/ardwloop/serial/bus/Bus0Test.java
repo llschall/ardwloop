@@ -10,9 +10,14 @@ import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.*;
+import org.llschall.ardwloop.serial.Bus;
+import org.llschall.ardwloop.serial.DefaultPortSelector;
+import org.llschall.ardwloop.serial.ISerialMonitor;
+import org.llschall.ardwloop.serial.Serial;
+import org.llschall.ardwloop.serial.SerialLongReadException;
+import org.llschall.ardwloop.serial.SerialWriteException;
+import org.llschall.ardwloop.serial.SerialWrongReadException;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
-import org.llschall.ardwloop.serial.misc.IArduino;
 import org.llschall.ardwloop.serial.misc.TestTimer;
 import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
@@ -20,11 +25,14 @@ import org.llschall.ardwloop.structure.data.ProgramCfg;
 import org.llschall.ardwloop.structure.data.SerialWrap;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
+import org.llschall.ardwloop.structure.utils.Timer;
 import org.llschall.ardwloop.value.SerialData;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.llschall.ardwloop.serial.Serial.*;
+import static org.llschall.ardwloop.serial.Serial.R;
+import static org.llschall.ardwloop.serial.Serial.S;
+import static org.llschall.ardwloop.serial.Serial.T;
 
 public class Bus0Test extends AbstractBusTest {
 
@@ -37,7 +45,7 @@ public class Bus0Test extends AbstractBusTest {
     @AfterEach
     void close() {
         Logger.msg("*** Closing ***");
-        TestTimer.get().delayMs(88);
+        TestTimer.get().delayMs(888);
         BackEntry.close();
         Logger.msg("*** Closed ***");
     }
@@ -55,10 +63,19 @@ public class Bus0Test extends AbstractBusTest {
         model.serialMdl.program.set(cfg);
         model.serialMdl.resetPin.set(20);
 
-        IArduino arduino = new Arduino(this);
+        Arduino arduino = new Arduino(this);
 
         FakeProvider provider = new FakeProvider(arduino);
-        Bus bus = new Bus(model, provider);
+
+        var monitor = new ISerialMonitor() {
+            @Override
+            public void fireZSent() {
+                cableC2A.latch.countDown();
+                Logger.msg("Latch released.");
+            }
+        };
+
+        Bus bus = new Bus(model, provider, new Timer(), monitor);
 
         Assertions.assertEquals("N/A", model.serialMdl.status.get());
 
@@ -84,55 +101,83 @@ public class Bus0Test extends AbstractBusTest {
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
+            cableA2C.latch.countDown();
             entry.setup(IArdwConfig.BAUD_38400);
             Logger.msg("Finished");
             finishedA.set(true);
         }, ARDUINO_THD);
 
         computerThd.start();
+
         // << Z <<
-        TestTimer.get().delayMs(88);
+        Logger.msg("=== Step 0 ===");
+        try {
+            Logger.msg("Waiting for latch");
+            cableC2A.latch.await();
+            Logger.msg("Latch released");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         String c2a = cableC2A.check();
         Assertions.assertTrue(c2a.contains(Serial.Z_));
         cableC2A.input.clear();
 
         arduinoThd.start();
         // >> J >>
+        Logger.msg("=== Step 1 ===");
+        try {
+            Logger.msg("Waiting for latch");
+            cableA2C.latch.await();
+            Logger.msg("Latch released");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Logger.msg("=== Step 1a ===");
         TestTimer.get().delayMs(88);
         String a2c = cableA2C.check();
+        Logger.msg("=== Step 1b === " + a2c);
         Assertions.assertTrue(a2c.startsWith(Serial.J_));
+        Logger.msg("=== Step 1c ===");
         cableA2C.releaseAll();
+        Logger.msg("=== Step 1d ===" + cableA2C.check());
 
         // << J <<
+        Logger.msg("=== Step 2 ===");
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
+        Logger.msg(c2a);
         Assertions.assertTrue(c2a.startsWith(Serial.J_));
         cableC2A.release(1);
 
         // << K <<
+        Logger.msg("=== Step 3 ===");
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
         Assertions.assertEquals(Serial.K_, c2a);
         cableC2A.release(1);
 
         // >> K >>
+        Logger.msg("=== Step 4 ===");
         TestTimer.get().delayMs(88);
         a2c = cableA2C.check();
         Assertions.assertTrue(a2c.endsWith(Serial.K_));
         cableA2C.releaseAll();
 
         // << CTC20C9C9C0C0C <<
+        Logger.msg("=== Step 5 ===");
         TestTimer.get().delayMs(88);
         c2a = cableC2A.check();
         Assertions.assertEquals("CTC20C9C9C0C0C", c2a);
         cableC2A.release("CTC20C9C9C0C0C".length());
 
         // >> S >>
+        Logger.msg("=== Step 6 ===");
         TestTimer.get().delayMs(99);
         Assertions.assertEquals(S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
+        Logger.msg("=== Step 7 ===");
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(finishedC.get());
         Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, cableC2A.check());

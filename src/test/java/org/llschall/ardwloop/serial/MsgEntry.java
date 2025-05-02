@@ -8,7 +8,14 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.llschall.ardwloop.serial.Serial.*;
+import static org.llschall.ardwloop.serial.Serial.C;
+import static org.llschall.ardwloop.serial.Serial.C_;
+import static org.llschall.ardwloop.serial.Serial.J;
+import static org.llschall.ardwloop.serial.Serial.J_;
+import static org.llschall.ardwloop.serial.Serial.K;
+import static org.llschall.ardwloop.serial.Serial.K_;
+import static org.llschall.ardwloop.serial.Serial.P;
+import static org.llschall.ardwloop.serial.Serial.T;
 
 public class MsgEntry implements IBackEntry {
 
@@ -23,7 +30,7 @@ public class MsgEntry implements IBackEntry {
         this.msgs.add(new Msg("", K_ + P + J + K + P));
         this.msgs.add(new Msg(J_, J_));
         this.msgs.add(new Msg("", K_));
-        String c2a = C_ + program + C+ resetPin +C + rc + C + sc + C + read + C + post + C;
+        String c2a = C_ + program + C + resetPin + C + rc + C + sc + C + read + C + post + C;
         this.msgs.add(new Msg(K_, c2a));
         this.msgs.add(new Msg("S000" + T, "R" + T));
     }
@@ -68,7 +75,8 @@ public class MsgEntry implements IBackEntry {
         av++;
         if (av > 9) {
             Logger.err("Too many available() calls", new StructureException("Too many available() calls !"));
-            System.exit(0);
+            Logger.err("FAILURE");
+            Assertions.fail();
         }
         return size;
     }

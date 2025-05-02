@@ -1,26 +1,26 @@
 package org.llschall.ardwloop.serial
 
-import org.llschall.ardwloop.serial.*
-import org.llschall.ardwloop.serial.port.*
-import org.llschall.ardwloop.structure.*
-import org.llschall.ardwloop.structure.data.*
-import org.llschall.ardwloop.structure.model.*
-import org.llschall.ardwloop.structure.model.keyboard.*
-import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.serial.port.GotJException
+import org.llschall.ardwloop.serial.port.ISerialProvider
+import org.llschall.ardwloop.structure.data.ProgramCfg
+import org.llschall.ardwloop.structure.data.SerialWrap
+import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Timer
 
 class Bus @JvmOverloads constructor(
     private val model: ArdwloopModel,
     private val provider: ISerialProvider,
-    private val timer: Timer = Timer()
+    private val timer: Timer = Timer(),
+    private val monitor: ISerialMonitor = DefaultSerialMonitor(),
 ) {
     private val serialMdl = model.serialMdl
     private var connected = false
     private var serial: Serial? = null
 
     fun connect(cfg: ProgramCfg, selector: IArdwPortSelector): Boolean {
-        serial = Serial(model, cfg, timer, selector)
+        serial = Serial(model, cfg, timer, selector, monitor)
         model.serialMdl.status.set("Connecting...")
 
         try {
@@ -61,5 +61,15 @@ class Bus @JvmOverloads constructor(
     fun reboot() {
         serial!!.reboot()
         msg(">>>>>>>> Reboot >>>>>>>>")
+    }
+}
+
+interface ISerialMonitor {
+    fun fireZSent();
+}
+
+private class DefaultSerialMonitor : ISerialMonitor {
+    override fun fireZSent() {
+        // Do nothing.
     }
 }

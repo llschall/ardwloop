@@ -64,7 +64,6 @@ public class BackEntry {
             return read;
         } catch (Exception e) {
             Logger.err("Error in read()", e);
-            System.exit(0);
             throw new StructureException("Should never appear.");
         }
     }
@@ -75,7 +74,6 @@ public class BackEntry {
             delegate.write(c);
         } catch (Exception e) {
             Logger.err("Error in write() " + c, e);
-            System.exit(0);
         }
     }
 }
