@@ -98,44 +98,53 @@ public class Bus2Test extends AbstractBusTest {
         int ms = 99;
 
         // << Z <<
+        Logger.msg("=== Step 0 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
         cableC2A.input.clear();
 
         // >> J >>
+        Logger.msg("=== Step 1 ===");
         Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_));
         cableA2C.releaseAll();
 
         // << JK <<
+        Logger.msg("=== Step 2 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.J_ + Serial.K, cableC2A.check());
         cableC2A.release(2);
 
         // >> K >>
+        Logger.msg("=== Step 3 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
 
         // << CTC90C9C9C1C999C <<
+        Logger.msg("=== Step 4 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertEquals("CTC90C9C9C1C999C", cableC2A.check());
         cableC2A.release("CTC90C9C9C1C999C".length());
 
         // >> S >>
+        Logger.msg("=== Step 5 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
+        Logger.msg("=== Step 6 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.R_ + "av7+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         // >> S >>
+        Logger.msg("=== Step 7 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertEquals(Serial.S + "001" + T, cableA2C.check());
         cableA2C.releaseAll();
 
+        Logger.msg("=== Step 8 ===");
         TestTimer.get().delayMs(ms);
 
         dump();
