@@ -1,4 +1,3 @@
-import java.nio.file.Files
 import java.nio.file.Paths
 
 plugins {
@@ -38,6 +37,9 @@ tasks.named<Test>("test") {
     println("PATH is [$path]")
     systemProperty("java.library.path", path)
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 if (!project.hasProperty("token_usr")) {
