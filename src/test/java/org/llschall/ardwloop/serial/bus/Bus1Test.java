@@ -10,7 +10,12 @@ import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.*;
+import org.llschall.ardwloop.serial.Bus;
+import org.llschall.ardwloop.serial.DefaultPortSelector;
+import org.llschall.ardwloop.serial.Serial;
+import org.llschall.ardwloop.serial.SerialLongReadException;
+import org.llschall.ardwloop.serial.SerialWriteException;
+import org.llschall.ardwloop.serial.SerialWrongReadException;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
 import org.llschall.ardwloop.serial.misc.IArduino;
 import org.llschall.ardwloop.serial.misc.TestTimer;
@@ -135,7 +140,7 @@ public class Bus1Test extends AbstractBusTest {
         Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(999);
 
         dump();
         Logger.msg("*** Finished ***");
