@@ -4,12 +4,12 @@ import org.llschall.ardwloop.serial.IBackEntry;
 import org.llschall.ardwloop.structure.utils.Logger;
 
 // Arduino
-class Computer implements IBackEntry {
+class BusEntry implements IBackEntry {
 
     private final AbstractBusTest busTest;
     int av = 0;
 
-    public Computer(AbstractBusTest busTest) {
+    public BusEntry(AbstractBusTest busTest) {
         this.busTest = busTest;
     }
 
