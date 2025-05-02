@@ -47,3 +47,4 @@ bin/
 /.idea/codeStyles/Project.xml
 /docs/.jekyll-cache/
 /local.properties
+/ino/src/main.cpp
