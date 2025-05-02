@@ -29,7 +29,7 @@ public class Bus1Test extends AbstractBusTest {
     @BeforeEach
     void setUp() {
         StructureTimer.FAKE = true;
-        BackEntry.setup(new Computer(this));
+        BackEntry.setup(new BusEntry(this));
     }
 
     @AfterEach
