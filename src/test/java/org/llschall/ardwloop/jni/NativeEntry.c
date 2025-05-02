@@ -14,8 +14,24 @@ JNIEnv *ENV;
 
 bool LOG_DEBUG = false;
 
-jclass find_back_entry_class(JNIEnv *env) {
-  return ENV->FindClass("org/llschall/ardwloop/jni/BackEntry");
+int env_not_found_error() {
+    return 1/0;
+}
+
+int class_not_found_error() {
+    return 1/0;
+}
+
+jclass find_back_entry_class() {
+
+  if (ENV == NULL) {
+    env_not_found_error();
+  }
+  jclass cls = ENV->FindClass("org/llschall/ardwloop/jni/BackEntry");
+  if (cls == NULL) {
+    class_not_found_error();
+  }
+  return cls;
 };
 
 JNIEXPORT void JNICALL
@@ -38,7 +54,7 @@ void fake_post(bool){ return true;};
 
 int fake_available() {
 
-  jclass cls = find_back_entry_class(ENV);
+  jclass cls = find_back_entry_class();
   jmethodID id = ENV->GetStaticMethodID(cls, "available", "()I");
   jint i = ENV->CallStaticCharMethod(cls, id);
 
@@ -47,7 +63,7 @@ int fake_available() {
 
 int fake_read(char *buffer, int n) {
 
-  jclass cls = find_back_entry_class(ENV);
+  jclass cls = find_back_entry_class();
   jmethodID id = ENV->GetStaticMethodID(cls, "read", "()C");
 
   for (int i = 0; i < n; i++) {
@@ -64,7 +80,7 @@ int fake_write(char c) {
   if (LOG_DEBUG)
     log_dbg("fake_write -> %c", c);
 
-  jclass cls = find_back_entry_class(ENV);
+  jclass cls = find_back_entry_class();
   jmethodID id = ENV->GetStaticMethodID(cls, "write", "(C)V");
   ENV->CallStaticCharMethod(cls, id, c);
   return 1;
@@ -83,7 +99,7 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_pong(
   ENV = env;
   int j = i * 2;
   log_dbg("DEBUG i*2 = %d", j);
-  jclass cls = find_back_entry_class(env);
+  jclass cls = find_back_entry_class();
   jmethodID id = ENV->GetStaticMethodID(cls, "pong", "(I)I");
   return ENV->CallStaticCharMethod(cls, id, i);
 };
@@ -173,7 +189,7 @@ void back_print(int log, char *str, va_list c) {
 
 void back_print(int log, char *str) {
 
-  jclass cls = find_back_entry_class(ENV);
+  jclass cls = find_back_entry_class();
   jmethodID id = ENV->GetStaticMethodID(cls, "msg", "(Ljava/lang/String;)V");
 
   jstring jstr = ENV->NewStringUTF(str);

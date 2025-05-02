@@ -17,7 +17,9 @@ void back_print(int log, char *str, va_list c);
 void log_dbg(char *str);
 void log_dbg(char *str, va_list c);
 
-jclass find_back_entry_class(JNIEnv *env);
+int env_not_found_error();
+int class_not_found_error();
+jclass find_back_entry_class();
 
 int import_S(char* str, int size, char c, int v, int w, int x, int y, int z);
 int export_d(D data, jchar d);
