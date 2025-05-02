@@ -32,8 +32,4 @@ jobs:
         uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: build
-      - name: Print logs
-        run: |
-          echo "Print hs_err_xxx logs..."
-          cat /home/runner/work/ardwloop/ardwloop/hs_err_*.log
         
