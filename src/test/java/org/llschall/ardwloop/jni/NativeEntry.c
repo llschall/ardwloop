@@ -102,7 +102,6 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_ping(
   jclass cls = ENV->FindClass("org/llschall/ardwloop/jni/BackEntry");
   if (cls == NULL) class_not_found_error();
 
-
   return i;
 };
 
