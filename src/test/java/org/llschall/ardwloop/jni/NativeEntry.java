@@ -7,6 +7,7 @@ public class NativeEntry {
     }
 
     public NativeEntry(boolean injectOnly) {
+        init();
         inject();
         if (injectOnly) {
             return;
@@ -17,6 +18,8 @@ public class NativeEntry {
     public NativeEntry() {
         this(false);
     }
+
+    public native int init();
 
     public native void inject();
 

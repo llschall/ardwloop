@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     org_llschall_ardwloop_jni_NativeEntry
+ * Method:    init
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_init
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_llschall_ardwloop_jni_NativeEntry
  * Method:    inject
  * Signature: ()V
  */

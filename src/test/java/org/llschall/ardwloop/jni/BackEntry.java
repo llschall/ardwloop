@@ -1,10 +1,8 @@
 package org.llschall.ardwloop.jni;
 
+import org.junit.jupiter.api.Assertions;
 import org.llschall.ardwloop.serial.IBackEntry;
 import org.llschall.ardwloop.serial.misc.TestTimer;
-import org.llschall.ardwloop.structure.StructureException;
-import org.llschall.ardwloop.structure.StructureShutdownException;
-import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.utils.Logger;
 
 public class BackEntry {
@@ -35,11 +33,8 @@ public class BackEntry {
     static void delay(long ms) {
         try {
             TestTimer.get().delayMs(ms);
-        } catch (StructureShutdownException e) {
-            throw e;
         } catch (Exception e) {
-            Logger.err("Error in delay()", e);
-            throw new StructureException(e.getMessage());
+            Assertions.fail();
         }
     }
 
@@ -47,24 +42,19 @@ public class BackEntry {
     static int available() {
         try {
             return delegate.available();
-        } catch (StructureShutdownException e) {
-            throw e;
         } catch (Exception e) {
-            Logger.err("Error in available()", e);
-            StructureTimer.get().fail(e);
-            return -1;
+            Assertions.fail();
+            return 0;
         }
     }
 
     // called by NativeEntry.c
     static char read() {
         try {
-            char read = delegate.read();
-            System.out.print(read);
-            return read;
+            return delegate.read();
         } catch (Exception e) {
-            Logger.err("Error in read()", e);
-            throw new StructureException("Should never appear.");
+            Assertions.fail();
+            return 0;
         }
     }
 
@@ -73,7 +63,7 @@ public class BackEntry {
         try {
             delegate.write(c);
         } catch (Exception e) {
-            Logger.err("Error in write() " + c, e);
+            Assertions.fail();
         }
     }
 }
