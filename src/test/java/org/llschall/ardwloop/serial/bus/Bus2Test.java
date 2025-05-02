@@ -40,7 +40,7 @@ public class Bus2Test extends AbstractBusTest {
     @AfterEach
     void close() {
         Logger.msg("*** Closing ***");
-        TestTimer.get().delayMs(99);
+        TestTimer.get().delayMs(999);
         BackEntry.close();
         Logger.msg("*** Closed ***");
     }
