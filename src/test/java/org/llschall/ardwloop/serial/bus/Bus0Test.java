@@ -96,7 +96,7 @@ public class Bus0Test extends AbstractBusTest {
             } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
             }
-        }, "= Computer =");
+        }, COMPUTER_THD);
 
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
