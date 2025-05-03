@@ -70,8 +70,7 @@ public class Bus0Test extends AbstractBusTest {
         var monitor = new ISerialMonitor() {
             @Override
             public void fireZSent() {
-                cableC2A.latch.countDown();
-                Logger.msg("Latch released.");
+                Logger.msg("Z sent.");
             }
         };
 
@@ -101,7 +100,6 @@ public class Bus0Test extends AbstractBusTest {
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Start");
-            cableA2C.latch.countDown();
             entry.setup(IArdwConfig.BAUD_38400);
             Logger.msg("Finished");
             finishedA.set(true);
@@ -111,80 +109,58 @@ public class Bus0Test extends AbstractBusTest {
 
         // << Z <<
         Logger.msg("=== Step 0 ===");
-        try {
-            Logger.msg("Waiting for latch");
-            cableC2A.latch.await();
-            Logger.msg("Latch released");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        String c2a = cableC2A.check();
-        Assertions.assertTrue(c2a.contains(Serial.Z_));
-        cableC2A.input.clear();
+        String c2a = cableC2A.check(1);
+        Assertions.assertEquals(Serial.Z_, c2a);
 
+        cableC2A.available.add('*');
         arduinoThd.start();
+
         // >> J >>
         Logger.msg("=== Step 1 ===");
-        try {
-            Logger.msg("Waiting for latch");
-            cableA2C.latch.await();
-            Logger.msg("Latch released");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Logger.msg("=== Step 1a ===");
-        TestTimer.get().delayMs(88);
-        String a2c = cableA2C.check();
-        Logger.msg("=== Step 1b === " + a2c);
-        Assertions.assertTrue(a2c.startsWith(Serial.J_));
-        Logger.msg("=== Step 1c ===");
-        cableA2C.releaseAll();
-        Logger.msg("=== Step 1d ===" + cableA2C.check());
+        String a2c = cableA2C.check(1);
+        Assertions.assertEquals(Serial.J_, a2c);
 
         // << J <<
-        Logger.msg("=== Step 2 ===");
-        TestTimer.get().delayMs(88);
-        c2a = cableC2A.check();
-        Logger.msg(c2a);
-        Assertions.assertTrue(c2a.startsWith(Serial.J_));
-        cableC2A.release(1);
+        Logger.msg("=== Step 2a ===");
+        cableA2C.available.add('*');
+        cableA2C.available.add('J');
+        c2a = cableC2A.check(1);
+        Logger.msg("=== Step 2b === ");
+        Assertions.assertEquals(Serial.J_, c2a);
 
         // << K <<
         Logger.msg("=== Step 3 ===");
-        TestTimer.get().delayMs(88);
-        c2a = cableC2A.check();
+        cableA2C.available.add('*');
+        cableA2C.available.add('*');
+        cableA2C.available.add('*');
+        cableA2C.available.add('*');
+        c2a = cableC2A.check(1);
         Assertions.assertEquals(Serial.K_, c2a);
-        cableC2A.release(1);
 
         // >> K >>
         Logger.msg("=== Step 4 ===");
-        TestTimer.get().delayMs(88);
-        a2c = cableA2C.check();
-        Assertions.assertTrue(a2c.endsWith(Serial.K_));
-        cableA2C.releaseAll();
+        cableC2A.available.add('*');
+        a2c = cableA2C.check(1);
+        Assertions.assertEquals(Serial.K_, a2c);
 
         // << CTC20C9C9C0C0C <<
         Logger.msg("=== Step 5 ===");
-        TestTimer.get().delayMs(88);
-        c2a = cableC2A.check();
+        c2a = cableC2A.check("CTC20C9C9C0C0C".length());
         Assertions.assertEquals("CTC20C9C9C0C0C", c2a);
-        cableC2A.release("CTC20C9C9C0C0C".length());
 
         // >> S >>
         Logger.msg("=== Step 6 ===");
-        TestTimer.get().delayMs(99);
-        Assertions.assertEquals(S + "000" + T, cableA2C.check());
-        cableA2C.releaseAll();
+        a2c = cableA2C.check(5);
+        Assertions.assertEquals(S + "000" + T, a2c);
 
         // << R <<
         Logger.msg("=== Step 7 ===");
-        TestTimer.get().delayMs(99);
-        Assertions.assertTrue(finishedC.get());
-        Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, cableC2A.check());
-        cableC2A.releaseAll();
+        c2a = cableC2A.check(22);
+        Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, c2a);
 
         TestTimer.get().delayMs(88);
 
+        Assertions.assertTrue(finishedC.get());
         Assertions.assertTrue(finishedA.get());
 
         dump();

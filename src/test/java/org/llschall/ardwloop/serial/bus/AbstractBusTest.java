@@ -8,8 +8,8 @@ import java.io.StringWriter;
 
 public class AbstractBusTest {
 
-    public static final String ARDUINO_THD = "#=#=# Arduino";
-    public static final String COMPUTER_THD = "#=#=# Computer";
+    public static final String ARDUINO_THD = "=# Arduino #=";
+    public static final String COMPUTER_THD = "=# Computer #=";
 
     final Cable cableA2C = new Cable();
     final Cable cableC2A = new Cable();
