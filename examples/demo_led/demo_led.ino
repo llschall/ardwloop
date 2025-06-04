@@ -30,6 +30,8 @@ void setup() {
 int i = 0;
 int last_v = -1;
 
+int bx = 0;
+
 void loop() {
   ardw_loop();
 
@@ -46,6 +48,9 @@ void loop() {
 
   ardw_s()->a.x = i;
   last_v = v;
+
+  ardw_s()->a.y = 2025;
+  ardw_s()->b.x = bx++;
 
   delay(99);
 }
