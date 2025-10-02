@@ -48,3 +48,4 @@ bin/
 /docs/.jekyll-cache/
 /local.properties
 /ino/src/main.cpp
+/.kotlin/
