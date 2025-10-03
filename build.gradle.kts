@@ -42,62 +42,46 @@ tasks.named<Test>("test") {
     }
 }
 
-if (!project.hasProperty("token_usr")) {
-    println("=== Publish skipped because no credential is provided. ===")
-} else {
-    val user: String = properties["token_usr"].toString()
-    val pwd: String = properties["token_pwd"].toString()
 
-    afterEvaluate {
-        publishing {
-            publications {
-                create<MavenPublication>("ardwloop") {
-                    from(components["java"])
+publishing {
+    publications {
+        create<MavenPublication>("ardwloop") {
+            from(components["java"])
 
-                    groupId = "io.github.llschall"
-                    artifactId = "ardwloop"
-                    version = "0.3.4-SNAPSHOT"
+            groupId = "io.github.llschall"
+            artifactId = "ardwloop"
+            version = "0.3.4-SNAPSHOT"
 
-                    pom {
-                        signing {
-                            sign("publishing.publications.ardwloop")
-                            sign("configurations.archives")
-                        }
-                        name = "ardwloop"
-                        description =
-                            "ardwloop takes care of exchanging a matrix of data between your Java (or Kotlin) program and its matching Arduino program."
-                        url = "https://llschall.github.io/ardwloop"
-                        licenses {
-                            license {
-                                name = "The Apache License, Version 2.0"
-                                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                            }
-                        }
-                        developers {
-                            developer {
-                                id = "llschall"
-                                name = "Laurent Schall"
-                                email = "llschall@gmx.com"
-                            }
-                        }
-                        scm {
-                            url = "https://github.com/llschall/ardwloop.git"
-                        }
+            pom {
+                signing {
+                    sign("publishing.publications.ardwloop")
+                    sign("configurations.archives")
+                }
+                name = "ardwloop"
+                description =
+                    "ardwloop takes care of exchanging a matrix of data between your Java (or Kotlin) program and its matching Arduino program."
+                url = "https://llschall.github.io/ardwloop"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
                 }
-            }
-            repositories {
-                maven {
-                    credentials {
-                        username = user
-                        password = pwd
+                developers {
+                    developer {
+                        id = "llschall"
+                        name = "Laurent Schall"
+                        email = "llschall@gmx.com"
                     }
-                    url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots")
                 }
-            }
-            signing {
-                sign(publishing.publications["ardwloop"])
+                scm {
+                    url = "https://github.com/llschall/ardwloop.git"
+                }
             }
         }
     }
+    signing {
+        sign(publishing.publications["ardwloop"])
+    }
 }
+
