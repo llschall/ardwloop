@@ -50,13 +50,9 @@ publishing {
 
             groupId = "io.github.llschall"
             artifactId = "ardwloop"
-            version = "0.3.4-SNAPSHOT"
+            version = "0.3.4"
 
             pom {
-                signing {
-                    sign("publishing.publications.ardwloop")
-                    sign("configurations.archives")
-                }
                 name = "ardwloop"
                 description =
                     "ardwloop takes care of exchanging a matrix of data between your Java (or Kotlin) program and its matching Arduino program."
@@ -79,9 +75,8 @@ publishing {
                 }
             }
         }
-    }
-    signing {
-        sign(publishing.publications["ardwloop"])
+        signing {
+            sign(publishing.publications["ardwloop"])
+        }
     }
 }
-
