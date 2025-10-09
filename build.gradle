@@ -1,0 +1,78 @@
+// Groovy version of the build script
+import java.nio.file.Paths
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.fazecast:jSerialComm:2.10.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+test {
+    systemProperty 'test.setup', 'Allschwil'
+    def folder = System.getProperty('user.dir')
+    def path = Paths.get(folder).resolve('src/test/java/org/llschall/ardwloop/jni').toAbsolutePath().toString()
+    println "PATH is [${path}]"
+    systemProperty 'java.library.path', path
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+publishing {
+    publications {
+        ardwloop(MavenPublication) {
+            from components.java
+            groupId = 'io.github.llschall'
+            artifactId = 'ardwloop'
+            version = '0.3.5-SNAPSHOT'
+            pom {
+                name = 'ardwloop'
+                description = 'ardwloop takes care of exchanging a matrix of data between your Java (or Kotlin) program and its matching Arduino program.'
+                url = 'https://llschall.github.io/ardwloop'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'llschall'
+                        name = 'Laurent Schall'
+                        email = 'llschall@gmx.com'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/llschall/ardwloop.git'
+                }
+            }
+        }
+    }
+    signing {
+        sign publishing.publications.ardwloop
+    }
+}
