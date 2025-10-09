@@ -3,8 +3,8 @@ package org.llschall.ardwloop;
 import kotlin.jvm.functions.Function2;
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
-import org.llschall.ardwloop.serial.IArdwPortSelector;
 import org.llschall.ardwloop.serial.DefaultPortSelector;
+import org.llschall.ardwloop.serial.IArdwPortSelector;
 import org.llschall.ardwloop.serial.SerialProvider;
 import org.llschall.ardwloop.serial.port.ISerialProvider;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
@@ -23,7 +23,7 @@ public class ArdwloopStarter {
     /**
      * The version of the Ardwloop library
      */
-    public static final String VERSION = "0.3.4";
+    public static final String VERSION = "0.3.5";
 
     /**
      * An integer that might vary with the snapshot
