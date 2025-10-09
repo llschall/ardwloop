@@ -33,6 +33,17 @@ public class V {
     public int z;
 
     /**
+     * Default constructor for V. Initializes all fields to zero.
+     */
+    public V() {
+        v = 0;
+        w = 0;
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+
+    /**
      * Sets the value of the specified field (v, w, x, y, or z) to the given integer.
      *
      * @param c the character representing the field ('v', 'w', 'x', 'y', or 'z')
