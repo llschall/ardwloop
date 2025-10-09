@@ -8,6 +8,9 @@ import org.llschall.ardwloop.structure.StructureException;
  */
 public class SerialData {
 
+    /**
+     * String data associated with this SerialData instance.
+     */
     public String str = "";
 
     /**
@@ -18,7 +21,6 @@ public class SerialData {
      * The vector b that wraps 5 integers
      */
     public final V b = new V();
-
     /**
      * The vector c that wraps 5 integers
      */
@@ -54,15 +56,36 @@ public class SerialData {
     public SerialData() {
     }
 
+    /**
+     * Constructor that initializes vector a's v value.
+     *
+     * @param av value for a.v
+     */
     public SerialData(int av) {
         a.v = av;
     }
 
+    /**
+     * Constructor that initializes vector a's v and w values.
+     *
+     * @param av value for a.v
+     * @param aw value for a.w
+     */
     public SerialData(int av, int aw) {
         a.v = av;
         a.w = aw;
     }
 
+    /**
+     * Constructor that initializes the string and all values of vector a.
+     *
+     * @param str string value
+     * @param av  value for a.v
+     * @param aw  value for a.w
+     * @param ax  value for a.x
+     * @param ay  value for a.y
+     * @param az  value for a.z
+     */
     public SerialData(String str, int av, int aw, int ax, int ay, int az) {
         this.str = str;
         a.v = av;
@@ -72,6 +95,15 @@ public class SerialData {
         a.z = az;
     }
 
+    /**
+     * Constructor that initializes all values of vector a.
+     *
+     * @param av value for a.v
+     * @param aw value for a.w
+     * @param ax value for a.x
+     * @param ay value for a.y
+     * @param az value for a.z
+     */
     public SerialData(int av, int aw, int ax, int ay, int az) {
         a.v = av;
         a.w = aw;
@@ -80,6 +112,13 @@ public class SerialData {
         a.z = az;
     }
 
+    /**
+     * Returns the vector corresponding to the given character.
+     *
+     * @param c character representing the vector ('a' to 'i')
+     * @return the corresponding V instance
+     * @throws StructureException if the character is not valid
+     */
     public V fromChar(char c) {
         if (c == 'a')
             return a;
