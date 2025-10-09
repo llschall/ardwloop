@@ -32,6 +32,13 @@ public class V {
      */
     public int z;
 
+    /**
+     * Sets the value of the specified field (v, w, x, y, or z) to the given integer.
+     *
+     * @param c the character representing the field ('v', 'w', 'x', 'y', or 'z')
+     * @param i the integer value to set
+     * @throws StructureException if the character is not one of the valid fields
+     */
     public void fromChar(char c, int i) {
         switch (c) {
             case 'v' -> v = i;
@@ -39,7 +46,8 @@ public class V {
             case 'x' -> x = i;
             case 'y' -> y = i;
             case 'z' -> z = i;
-            default -> throw new StructureException("Unexpected character: " + c);
+            default ->
+                    throw new StructureException("Unexpected character: " + c);
         }
     }
 }
