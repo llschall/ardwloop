@@ -23,7 +23,7 @@ class Cable {
     }
 
     void push(char c) {
-        available.add(c);
+        input.add(c);
     }
 
     void pushZero() {
