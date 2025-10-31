@@ -13,10 +13,10 @@ class Cable {
 
     final String logId;
 
-    final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(2000);
+    private final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(2000);
 
-    final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(1);
-    final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(1);
+    private final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(2000);
+    private final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(2000);
 
     public Cable(String logId) {
         this.logId = logId;
@@ -126,4 +126,7 @@ class Cable {
     }
 
 
+    public void clear() {
+        input.clear();
+    }
 }

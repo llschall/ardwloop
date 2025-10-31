@@ -113,7 +113,7 @@ public class Bus0Test extends AbstractBusTest {
         String c2a = cableC2A.check(1);
         Assertions.assertEquals(Serial.Z_, c2a);
 
-        cableC2A.available.add('*');
+        cableC2A.pushZero();
         arduinoThd.start();
 
         // >> J >>
@@ -123,24 +123,24 @@ public class Bus0Test extends AbstractBusTest {
 
         // << J <<
         Logger.msg("=== Step 2a ===");
-        cableA2C.available.add('*');
-        cableA2C.available.add('J');
+        cableA2C.pushZero();
+        cableA2C.push('J');
         c2a = cableC2A.check(1);
         Logger.msg("=== Step 2b === ");
         Assertions.assertEquals(Serial.J_, c2a);
 
         // << K <<
         Logger.msg("=== Step 3 ===");
-        cableA2C.available.add('*');
-        cableA2C.available.add('*');
-        cableA2C.available.add('*');
-        cableA2C.available.add('*');
+        cableA2C.pushZero();
+        cableA2C.pushZero();
+        cableA2C.pushZero();
+        cableA2C.pushZero();
         c2a = cableC2A.check(1);
         Assertions.assertEquals(Serial.K_, c2a);
 
         // >> K >>
         Logger.msg("=== Step 4 ===");
-        cableC2A.available.add('*');
+        cableC2A.pushZero();
         a2c = cableA2C.check(1);
         Assertions.assertEquals(Serial.K_, a2c);
 

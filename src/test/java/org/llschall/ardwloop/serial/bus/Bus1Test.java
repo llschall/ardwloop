@@ -101,10 +101,10 @@ public class Bus1Test extends AbstractBusTest {
         // << Z <<
         TestTimer.get().delayMs(99);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
-        cableC2A.input.clear();
+        cableC2A.clear();
 
         if (SkipNext.get().skip()) return;
-        
+
         // >> J >>
         Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_));
         cableA2C.releaseAll();

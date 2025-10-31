@@ -103,7 +103,7 @@ public class Bus2Test extends AbstractBusTest {
         Logger.msg("=== Step 0 ===");
         TestTimer.get().delayMs(ms);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
-        cableC2A.input.clear();
+        cableC2A.clear();
 
         if (SkipNext.get().skip()) return;
 
