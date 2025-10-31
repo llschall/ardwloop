@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.JTestProgram;
-import org.llschall.ardwloop.SkipNext;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
@@ -114,20 +113,24 @@ public class Bus0Test extends AbstractBusTest {
         String c2a = cableC2A.check(1);
         Assertions.assertEquals(Serial.Z_, c2a);
 
-        cableC2A.pushZero();
         arduinoThd.start();
+        cableC2A.pushZero();
 
         // >> J >>
         Logger.msg("=== Step 1 ===");
         String a2c = cableA2C.check(1);
         Assertions.assertEquals(Serial.J_, a2c);
 
-        if (SkipNext.get().skip()) return;
+        // unlock ignore all next
+        cableA2C.pushZero();
+
+        Logger.msg("=== Step 2a ===");
+        // >> J >>
+        cableC2A.pushZero();
+        a2c = cableA2C.check(1);
+        Assertions.assertEquals(Serial.J_, a2c);
 
         // << J <<
-        Logger.msg("=== Step 2a ===");
-        cableA2C.pushZero();
-        cableA2C.push('J');
         c2a = cableC2A.check(1);
         Logger.msg("=== Step 2b === ");
         Assertions.assertEquals(Serial.J_, c2a);
