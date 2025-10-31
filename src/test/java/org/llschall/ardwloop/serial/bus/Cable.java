@@ -17,7 +17,11 @@ class Cable {
     final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(2000);
 
     void push(char c) {
-        input.add(c);
+        available.add(c);
+    }
+
+    void pushZero() {
+        available.add('*');
     }
 
     String check() {
