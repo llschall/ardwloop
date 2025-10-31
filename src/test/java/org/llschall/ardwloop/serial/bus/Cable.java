@@ -11,10 +11,16 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 class Cable {
 
+    final String logId;
+
     final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(2000);
 
-    final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(2000);
-    final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(2000);
+    final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(1);
+    final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(1);
+
+    public Cable(String logId) {
+        this.logId = logId;
+    }
 
     void push(char c) {
         available.add(c);
@@ -39,7 +45,7 @@ class Cable {
                 Character c = input.poll(1, java.util.concurrent.TimeUnit.SECONDS);
                 if (c == null) {
                     dumpThd();
-                    throw new RuntimeException("Time out while waiting on cable data.");
+                    throw new RuntimeException("Time out while waiting on " + logId);
                 }
                 writer.append(c);
                 available.add(c);
@@ -116,7 +122,7 @@ class Cable {
                 writer.append("\t").append(element.toString()).append("\n");
             }
         }
-        Logger.msg(writer.toString());
+        System.err.println(writer);
     }
 
 
