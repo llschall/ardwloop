@@ -3,8 +3,8 @@ package org.llschall.ardwloop.serial.bus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.jni.BackEntry;
@@ -18,7 +18,6 @@ import org.llschall.ardwloop.serial.SerialLongReadException;
 import org.llschall.ardwloop.serial.SerialWriteException;
 import org.llschall.ardwloop.serial.SerialWrongReadException;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
-import org.llschall.ardwloop.serial.misc.TestTimer;
 import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
@@ -28,7 +27,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
 import org.llschall.ardwloop.structure.utils.Timer;
 import org.llschall.ardwloop.value.SerialData;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import static org.llschall.ardwloop.serial.Serial.R;
 import static org.llschall.ardwloop.serial.Serial.S;
@@ -45,14 +44,13 @@ public class Bus0Test extends AbstractBusTest {
     @AfterEach
     void close() {
         Logger.msg("*** Closing ***");
-        TestTimer.get().delayMs(888);
         BackEntry.close();
         Logger.msg("*** Closed ***");
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {1})
-    void testConnect(int sc) {
+    @Test
+    @Timeout(9)
+    void testConnect() throws InterruptedException {
 
         // Arduino <<>> Computer
 
@@ -78,8 +76,7 @@ public class Bus0Test extends AbstractBusTest {
 
         Assertions.assertEquals("N/A", model.serialMdl.status.get());
 
-        var finishedA = new AtomicBoolean(false);
-        var finishedC = new AtomicBoolean(false);
+        var finished = new ArrayBlockingQueue<String>(2);
 
         Thread computerThd = new Thread(() -> {
             Logger.msg("Start");
@@ -91,7 +88,7 @@ public class Bus0Test extends AbstractBusTest {
                 SerialWrap s = bus.readS();
                 Assertions.assertEquals(0, s.chk);
                 bus.writeR(new SerialWrap(0, new SerialData(7, 7, 7, 7, 7)));
-                finishedC.set(true);
+                finished.add("Computer finished");
             } catch (SerialLongReadException | SerialWrongReadException |
                      GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
@@ -103,7 +100,7 @@ public class Bus0Test extends AbstractBusTest {
             Logger.msg("Start");
             entry.setup(IArdwConfig.BAUD_38400);
             Logger.msg("Finished");
-            finishedA.set(true);
+            finished.add("Arduino finished");
         }, ARDUINO_THD);
 
         computerThd.start();
@@ -165,10 +162,8 @@ public class Bus0Test extends AbstractBusTest {
         c2a = cableC2A.check(22);
         Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, c2a);
 
-        TestTimer.get().delayMs(88);
-
-        Assertions.assertTrue(finishedC.get());
-        Assertions.assertTrue(finishedA.get());
+        Logger.msg(finished.take());
+        Logger.msg(finished.take());
 
         dump();
         Logger.msg("Finished");
