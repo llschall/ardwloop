@@ -13,10 +13,9 @@ class Cable {
 
     final String logId;
 
-    private final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(2000);
-
-    private final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(2000);
-    private final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(2000);
+    private final ArrayBlockingQueue<Character> input = new ArrayBlockingQueue<>(99);
+    private final ArrayBlockingQueue<Character> available = new ArrayBlockingQueue<>(99);
+    private final ArrayBlockingQueue<Character> output = new ArrayBlockingQueue<>(99);
 
     public Cable(String logId) {
         this.logId = logId;
@@ -56,6 +55,17 @@ class Cable {
         return writer.toString();
     }
 
+    int available() {
+        try {
+            Character c = available.take();
+            if (c == '*') return 0;
+            output.add(c);
+            return 1;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     String dump() {
         StringWriter writer = new StringWriter();
         ArrayList<Character> list;
@@ -85,17 +95,6 @@ class Cable {
         }
     }
 
-    int available() {
-        try {
-            Character c = available.take();
-            if (c == '*') return 0;
-            output.add(c);
-            return 1;
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     char pull() {
         try {
             return output.take();
@@ -119,6 +118,9 @@ class Cable {
 
             writer.append("\n").append(thread.getName()).append(":\n");
             for (StackTraceElement element : entry.getValue()) {
+                String moduleName = element.getModuleName();
+                if ("java.base".equals(moduleName)) continue;
+
                 writer.append("\t").append(element.toString()).append("\n");
             }
         }
