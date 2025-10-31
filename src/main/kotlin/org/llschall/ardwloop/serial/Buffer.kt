@@ -1,17 +1,14 @@
 package org.llschall.ardwloop.serial
 
-import org.llschall.ardwloop.serial.*
-import org.llschall.ardwloop.serial.port.*
-import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.serial.port.GotJException
+import org.llschall.ardwloop.serial.port.ISerialPort
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
-import org.llschall.ardwloop.structure.data.*
-import org.llschall.ardwloop.structure.model.*
-import org.llschall.ardwloop.structure.model.keyboard.*
-import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.model.ArdwloopModel
+import org.llschall.ardwloop.structure.model.MonitorSample
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import org.llschall.ardwloop.structure.utils.Text.ms
 import org.llschall.ardwloop.structure.utils.Timer
-import java.util.*
+import java.util.LinkedList
 
 internal class Buffer(private val model: ArdwloopModel, private val port: ISerialPort, private val lastRead: Timer) {
     private val chars = LinkedList<Char>()
