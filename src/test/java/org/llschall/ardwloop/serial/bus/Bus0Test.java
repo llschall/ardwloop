@@ -92,7 +92,8 @@ public class Bus0Test extends AbstractBusTest {
                 Assertions.assertEquals(0, s.chk);
                 bus.writeR(new SerialWrap(0, new SerialData(7, 7, 7, 7, 7)));
                 finishedC.set(true);
-            } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
+            } catch (SerialLongReadException | SerialWrongReadException |
+                     GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
             }
         }, COMPUTER_THD);

@@ -39,7 +39,7 @@ class Cable {
                 Character c = input.poll(1, java.util.concurrent.TimeUnit.SECONDS);
                 if (c == null) {
                     dumpThd();
-                    throw new RuntimeException("Time out");
+                    throw new RuntimeException("Time out while waiting on cable data.");
                 }
                 writer.append(c);
                 available.add(c);
