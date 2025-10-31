@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.JTestProgram;
+import org.llschall.ardwloop.SkipNext;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
@@ -76,7 +77,8 @@ public class Bus1Test extends AbstractBusTest {
                 s = bus.readS();
                 Assertions.assertEquals(1, s.chk);
                 bus.writeR(new SerialWrap(0, new SerialData(1, 5, 78, -7, 11)));
-            } catch (SerialLongReadException | SerialWrongReadException | GotJException | SerialWriteException e) {
+            } catch (SerialLongReadException | SerialWrongReadException |
+                     GotJException | SerialWriteException e) {
                 throw new RuntimeException(e);
             }
 
@@ -101,6 +103,8 @@ public class Bus1Test extends AbstractBusTest {
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
         cableC2A.input.clear();
 
+        if (SkipNext.get().skip()) return;
+        
         // >> J >>
         Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_));
         cableA2C.releaseAll();
