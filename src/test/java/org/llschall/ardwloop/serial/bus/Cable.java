@@ -4,7 +4,6 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
 class Cable {
@@ -28,10 +27,8 @@ class Cable {
     }
 
     String check() {
-        StringWriter writer = new StringWriter();
-        List<Character> list = input.stream().toList();
-        list.stream().map(c -> "" + c).forEach(writer::append);
-        return writer.toString();
+        int size = input.size();
+        return check(size);
     }
 
     String check(int n) {

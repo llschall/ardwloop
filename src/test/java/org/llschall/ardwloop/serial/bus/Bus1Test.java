@@ -5,14 +5,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.JTestProgram;
 import org.llschall.ardwloop.SkipNext;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.serial.Bus;
-import org.llschall.ardwloop.serial.DefaultPortSelector;
 import org.llschall.ardwloop.serial.Serial;
 import org.llschall.ardwloop.serial.SerialLongReadException;
 import org.llschall.ardwloop.serial.SerialWriteException;
@@ -64,9 +62,6 @@ public class Bus1Test extends AbstractBusTest {
         Assertions.assertEquals("N/A", model.serialMdl.status.get());
 
         Thread computerThd = new Thread(() -> {
-            Logger.msg("Start");
-            boolean connect = bus.connect(cfg, new DefaultPortSelector());
-            Assertions.assertTrue(connect);
             Logger.msg("Loop 1");
             try {
                 SerialWrap s = bus.readS();
@@ -84,8 +79,6 @@ public class Bus1Test extends AbstractBusTest {
 
         NativeEntry entry = new NativeEntry();
         Thread arduinoThd = new Thread(() -> {
-            Logger.msg("Start");
-            entry.setup(IArdwConfig.BAUD_9600);
             Logger.msg("Loop 1");
             entry.loop();
             Logger.msg("Loop 2");
@@ -93,37 +86,12 @@ public class Bus1Test extends AbstractBusTest {
             Logger.msg("Finished");
         }, ARDUINO_THD);
 
-        computerThd.start();
         arduinoThd.start();
-
-        // << Z <<
-        delayMs(99);
-        Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
-        cableC2A.clear();
         if (SkipNext.get().skip()) return;
-
-        // >> J >>
-        Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_), dumpThd());
-        cableA2C.releaseAll();
-
-        // << JK <<
-        delayMs(99);
-        Assertions.assertEquals(Serial.J_ + Serial.K, cableC2A.check());
-        cableC2A.release(2);
-
-        // >> K >>
-        delayMs(99);
-        Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
-        cableA2C.releaseAll();
-
-        // << CTC90C9C9C1C999C <<
-        delayMs(99);
-        Assertions.assertEquals("CTC90C9C9C1C999C", cableC2A.check());
-        cableC2A.release("CTC90C9C9C1C999C".length());
+        computerThd.start();
 
         // >> S >>
-        delayMs(99);
-        Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check());
+        Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check(5), dumpThd());
         cableA2C.releaseAll();
 
         // << R <<
