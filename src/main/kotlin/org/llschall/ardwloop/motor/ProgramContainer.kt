@@ -1,5 +1,6 @@
 package org.llschall.ardwloop.motor
 
+import org.llschall.ardwloop.ArdwloopStatus
 import org.llschall.ardwloop.IArdwProgram
 import org.llschall.ardwloop.serial.IArdwPortSelector
 import org.llschall.ardwloop.serial.port.ISerialProvider
@@ -31,6 +32,7 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun start(provider: ISerialProvider, baud: Int, resetPin: Int, timer: Timer, selector: IArdwPortSelector) {
+        program.fireStatusChanged(ArdwloopStatus.STARTED)
         val clock = Clock(provider, timer, loops, model, selector)
         model.serialMdl.baud.set(baud)
         model.serialMdl.resetPin.set(resetPin)
@@ -38,6 +40,7 @@ class ProgramContainer(private val program: IArdwProgram) {
     }
 
     fun setupPrg(s: SerialData): SerialData {
+        program.fireStatusChanged(ArdwloopStatus.CONNECTED)
         return program.ardwSetup(s)
     }
 

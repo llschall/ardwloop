@@ -45,6 +45,10 @@ public interface IArdwProgram {
         msg("post ignored");
     }
 
+    default void fireStatusChanged(ArdwloopStatus status) {
+        msg("Status changed: " + status);
+    }
+
     /**
      * The program id enables to upload a program wrapping several ones on the Arduino board.
      *
@@ -53,7 +57,7 @@ public interface IArdwProgram {
     default char getProgramId() {
         return 'a';
     }
-    
+
     /**
      * To be adapted to the Arduino project requirements.
      *
