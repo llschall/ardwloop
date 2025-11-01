@@ -11,6 +11,7 @@ import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.serial.Bus;
+import org.llschall.ardwloop.serial.DefaultPortSelector;
 import org.llschall.ardwloop.serial.Serial;
 import org.llschall.ardwloop.serial.SerialLongReadException;
 import org.llschall.ardwloop.serial.SerialWriteException;
@@ -64,6 +65,9 @@ public class Bus1Test extends AbstractBusTest {
         Thread computerThd = new Thread(() -> {
             Logger.msg("Loop 1");
             try {
+                bus.reset(cfg, new DefaultPortSelector());
+                bus.connect();
+
                 SerialWrap s = bus.readS();
                 Assertions.assertEquals(0, s.chk);
                 bus.writeR(new SerialWrap(0, new SerialData(7, 7, 7, 7, 7)));
@@ -87,8 +91,8 @@ public class Bus1Test extends AbstractBusTest {
         }, ARDUINO_THD);
 
         arduinoThd.start();
-        if (SkipNext.get().skip()) return;
         computerThd.start();
+        if (SkipNext.get().skip()) return;
 
         // >> S >>
         Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check(5), dumpThd());
