@@ -1,23 +1,38 @@
 package org.llschall.ardwloop.motor
 
-import org.llschall.ardwloop.serial.*
-import org.llschall.ardwloop.serial.port.*
+import org.llschall.ardwloop.serial.Bus
+import org.llschall.ardwloop.serial.IArdwPortSelector
+import org.llschall.ardwloop.serial.SerialLongReadException
+import org.llschall.ardwloop.serial.SerialWriteException
+import org.llschall.ardwloop.serial.SerialWrongReadException
+import org.llschall.ardwloop.serial.port.GotJException
+import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.structure.StructureThread
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
-import org.llschall.ardwloop.structure.data.*
-import org.llschall.ardwloop.structure.model.*
-import org.llschall.ardwloop.structure.model.keyboard.*
-import org.llschall.ardwloop.structure.utils.*
+import org.llschall.ardwloop.structure.data.SerialWrap
+import org.llschall.ardwloop.structure.model.ArdwloopModel
+import org.llschall.ardwloop.structure.model.MonitorSample
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
+import org.llschall.ardwloop.structure.utils.Timer
 import java.util.concurrent.atomic.AtomicReference
 
 internal class Motor(
     val model: ArdwloopModel,
-    private val bus: Bus,
+    provider: ISerialProvider,
     private val selector: IArdwPortSelector
 ) : AbstractLoop("MOTOR") {
     private var reconnect: Boolean = false
+
+    val bus: Bus = Bus(model, provider, timer)
+
+    init {
+        Runtime.getRuntime().addShutdownHook(
+            Thread {
+                bus.close()
+            }
+        )
+    }
 
     override fun setup() {
         val serialMdl = model.serialMdl
@@ -28,11 +43,14 @@ internal class Motor(
         }
 
         serialMdl.connected.set(false)
-        while (!bus.connect(cfg, selector)) {
+
+        bus.reset(cfg, selector)
+        while (!bus.connect()) {
             msg("Waiting 2s before trying to connect again...")
 
             model.monitorMdl.samples.addLast(MonitorSample())
             get().delayMs(2000)
+            bus.reset(cfg, selector)
         }
         serialMdl.connected.set(true)
 

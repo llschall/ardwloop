@@ -19,14 +19,17 @@ class Bus @JvmOverloads constructor(
     private var connected = false
     private var serial: Serial? = null
 
-    fun connect(cfg: ProgramCfg, selector: IArdwPortSelector): Boolean {
+    fun reset(cfg: ProgramCfg, selector: IArdwPortSelector) {
         serial = Serial(model, cfg, timer, selector, monitor)
+    }
+
+    fun connect(): Boolean {
         model.serialMdl.status.set("Connecting...")
 
         try {
             connected = serial!!.connect(provider)
         } catch (e: SerialWriteException) {
-            err("Serial connection failed.")
+            err("Serial connection failed: " + e.message)
         }
         msg("Serial connection " + (if (connected) "OK" else "failed"))
         return connected
@@ -65,7 +68,7 @@ class Bus @JvmOverloads constructor(
 }
 
 interface ISerialMonitor {
-    fun fireZSent();
+    fun fireZSent()
 }
 
 private class DefaultSerialMonitor : ISerialMonitor {
