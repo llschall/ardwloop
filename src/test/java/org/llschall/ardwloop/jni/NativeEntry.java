@@ -7,7 +7,6 @@ public class NativeEntry {
     }
 
     public NativeEntry(boolean injectOnly) {
-        init();
         inject();
         if (injectOnly) {
             return;

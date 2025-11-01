@@ -82,6 +82,8 @@ public class Bus1Test extends AbstractBusTest {
         }, "= Computer =");
 
         NativeEntry entry = new NativeEntry();
+        entry.init();
+
         Thread arduinoThd = new Thread(() -> {
             Logger.msg("Loop 1");
             entry.loop();
@@ -92,11 +94,11 @@ public class Bus1Test extends AbstractBusTest {
 
         arduinoThd.start();
         computerThd.start();
-        if (SkipNext.get().skip()) return;
 
         // >> S >>
         Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check(5), dumpThd());
         cableA2C.releaseAll();
+        if (SkipNext.get().skip()) return;
 
         // << R <<
         delayMs(99);

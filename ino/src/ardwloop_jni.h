@@ -6,6 +6,7 @@
 int entry_check(int i);
 void entry_begin(int reboot, int read, int post, int beforeK, int j);
 
+void entry_init();
 void entry_setup(long);
 void entry_loop();
 
