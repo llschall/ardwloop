@@ -5,6 +5,8 @@ import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.utils.Logger;
 
 import java.io.StringWriter;
+import java.util.HashSet;
+import java.util.Map;
 
 public class AbstractBusTest {
 
@@ -28,4 +30,34 @@ public class AbstractBusTest {
         }
         TestTimer.get().delayMs(9);
     }
+
+    void delayMs(int ms) {
+        TestTimer.get().delayMs(ms);
+    }
+
+    String dumpThd() {
+
+        var names = new HashSet<String>();
+        names.add(AbstractBusTest.COMPUTER_THD);
+        names.add(AbstractBusTest.ARDUINO_THD);
+
+        StringWriter writer = new StringWriter();
+
+        Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces();
+        for (Map.Entry<Thread, StackTraceElement[]> entry : map.entrySet()) {
+            Thread thread = entry.getKey();
+            if (!names.contains(thread.getName())) continue;
+
+            writer.append("\n").append(thread.getName()).append(":\n");
+            for (StackTraceElement element : entry.getValue()) {
+                String moduleName = element.getModuleName();
+                if ("java.base".equals(moduleName)) continue;
+
+                writer.append("\t").append(element.toString()).append("\n");
+            }
+        }
+        return writer.toString();
+    }
+
+
 }

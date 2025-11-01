@@ -4,9 +4,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 
 class Cable {
@@ -43,7 +41,6 @@ class Cable {
             try {
                 Character c = input.poll(1, java.util.concurrent.TimeUnit.SECONDS);
                 if (c == null) {
-                    dumpThd();
                     throw new RuntimeException("Time out while waiting on " + logId);
                 }
                 writer.append(c);
@@ -102,31 +99,6 @@ class Cable {
             throw new RuntimeException(e);
         }
     }
-
-    void dumpThd() {
-
-        var names = new HashSet<String>();
-        names.add(AbstractBusTest.COMPUTER_THD);
-        names.add(AbstractBusTest.ARDUINO_THD);
-
-        StringWriter writer = new StringWriter();
-
-        Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces();
-        for (Map.Entry<Thread, StackTraceElement[]> entry : map.entrySet()) {
-            Thread thread = entry.getKey();
-            if (!names.contains(thread.getName())) continue;
-
-            writer.append("\n").append(thread.getName()).append(":\n");
-            for (StackTraceElement element : entry.getValue()) {
-                String moduleName = element.getModuleName();
-                if ("java.base".equals(moduleName)) continue;
-
-                writer.append("\t").append(element.toString()).append("\n");
-            }
-        }
-        System.err.println(writer);
-    }
-
 
     public void clear() {
         input.clear();

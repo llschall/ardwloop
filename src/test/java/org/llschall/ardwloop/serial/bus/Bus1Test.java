@@ -19,7 +19,6 @@ import org.llschall.ardwloop.serial.SerialWriteException;
 import org.llschall.ardwloop.serial.SerialWrongReadException;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
 import org.llschall.ardwloop.serial.misc.IArduino;
-import org.llschall.ardwloop.serial.misc.TestTimer;
 import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
@@ -41,7 +40,6 @@ public class Bus1Test extends AbstractBusTest {
     @AfterEach
     void close() {
         Logger.msg("*** Closing ***");
-        TestTimer.get().delayMs(99);
         BackEntry.close();
         Logger.msg("*** Closed ***");
     }
@@ -99,52 +97,51 @@ public class Bus1Test extends AbstractBusTest {
         arduinoThd.start();
 
         // << Z <<
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertTrue(cableC2A.check().contains(Serial.Z_));
         cableC2A.clear();
-
         if (SkipNext.get().skip()) return;
 
         // >> J >>
-        Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_));
+        Assertions.assertTrue(cableA2C.check().startsWith(Serial.J_), dumpThd());
         cableA2C.releaseAll();
 
         // << JK <<
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals(Serial.J_ + Serial.K, cableC2A.check());
         cableC2A.release(2);
 
         // >> K >>
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertTrue(cableA2C.check().endsWith(Serial.K_));
         cableA2C.releaseAll();
 
         // << CTC90C9C9C1C999C <<
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals("CTC90C9C9C1C999C", cableC2A.check());
         cableC2A.release("CTC90C9C9C1C999C".length());
 
         // >> S >>
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals(Serial.S + "000" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals(Serial.R_ + "av7+aw7+ax7+ay7+az7+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
         // >> S >>
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals(Serial.S + "001" + T, cableA2C.check());
         cableA2C.releaseAll();
 
         // << R <<
-        TestTimer.get().delayMs(99);
+        delayMs(99);
         Assertions.assertEquals(Serial.R + "av1+aw5+ax78+ay7-az11+" + T, cableC2A.check());
         cableC2A.releaseAll();
 
-        TestTimer.get().delayMs(999);
+        delayMs(999);
 
         dump();
         Logger.msg("*** Finished ***");
