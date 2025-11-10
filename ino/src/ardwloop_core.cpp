@@ -351,6 +351,10 @@ void core_str(char* str, int size) { STR = str; STRc = size; }
 V *core_r() { return &R; }
 V *core_p() { return &P; }
 
+void core_init(int si) {
+  S_I = si;
+}
+
 void core_setup(long baud) {
   DELAY_REBOOT = 999;
   DELAY_J = 99;
@@ -358,12 +362,8 @@ void core_setup(long baud) {
 
   log("# core_setup--");
 
-  S_I = 0;
+  core_init(0);
   P_I = 0;
-
-  // TODO 2024.12
-  //(*fct_pin_out)(2);
-  //(*fct_write_high)(2);
 
   (*fct_serial_begin)(baud);
 

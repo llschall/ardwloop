@@ -6,7 +6,7 @@ int entry_check(int i) {
 }
 
 void entry_init() {
-  S_I = 0;
+  core_init(0);
 }
 
 void entry_setup(long baud) {
