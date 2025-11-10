@@ -264,8 +264,7 @@ void send_s() {
     while(h!=END) {
       
       struct D *d = Sv[i];
-
-      int v;
+      int v = -1;
 
       switch (h_i) {
       case 0:
@@ -314,7 +313,7 @@ void send_p() {
   while(h!=END) {
 
     struct D *d = Pv[0];
-    int v;
+    int v = -1;
 
     switch (h_i) {
     case 0:
