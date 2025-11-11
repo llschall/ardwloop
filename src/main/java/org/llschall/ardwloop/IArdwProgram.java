@@ -45,6 +45,11 @@ public interface IArdwProgram {
         msg("post ignored");
     }
 
+    /**
+     * To be notified of status changes of the Ardwloop connection.
+     *
+     * @param status The new {@link ArdwloopStatus}
+     */
     default void fireStatusChanged(ArdwloopStatus status) {
         msg("Status changed: " + status);
     }
