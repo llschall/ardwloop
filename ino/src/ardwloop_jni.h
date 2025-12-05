@@ -16,7 +16,7 @@ char entry_prg();
 
 V *entry_s();
 void entry_str(char* str, int size);
-
+int entry_arr(int);
 V *entry_r();
 
 char entry_prg();

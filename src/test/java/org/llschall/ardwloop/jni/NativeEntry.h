@@ -23,3 +23,4 @@ int class_not_found_error();
 int import_S(char* str, int size, char c, int v, int w, int x, int y, int z);
 int export_d(D data, jchar d);
 int export_v(V data, jchar v, jchar d);
+int export_arr(int);

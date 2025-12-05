@@ -206,10 +206,17 @@ JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS(
     //env -> ReleaseStringUTFChars(jstr, str);
 };
 
-JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
+JNIEXPORT jint JNICALL
+Java_org_llschall_ardwloop_jni_NativeEntry_exportR(
     JNIEnv *env, jobject obj, jchar v, jchar d) {
   V *R = entry_r();
   return export_v(*R, v, d);
+}
+
+JNIEXPORT jint JNICALL
+Java_org_llschall_ardwloop_jni_NativeEntry_exportArray(
+    JNIEnv *env, jobject obj, jint i) {
+  return export_arr(i);
 }
 
 //////////////////////////
@@ -276,4 +283,8 @@ int export_v(V data, jchar v, jchar d) {
   case 'a':
     return export_d(data.a, d);
   }
+}
+
+int export_arr(int i) {
+return entry_arr(i);
 }

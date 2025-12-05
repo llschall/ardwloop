@@ -127,6 +127,14 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportR
 JNIEXPORT void JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_importS
   (JNIEnv *, jobject, jstring, jint, jchar, jint, jint, jint, jint, jint);
 
+/*
+ * Class:     org_llschall_ardwloop_jni_NativeEntry
+ * Method:    exportArray
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_exportArray
+  (JNIEnv *, jobject, jint);
+
 #ifdef __cplusplus
 }
 #endif

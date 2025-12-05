@@ -33,4 +33,5 @@ int entry_delay_post() { return core_delay_post(); }
 
 V *entry_s() { return core_s(); }
 void entry_str(char* str, int size) { core_str(str, size); }
+int entry_arr(int i) { return core_arr(i); }
 V *entry_r() { return core_r(); }

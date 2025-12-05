@@ -48,4 +48,5 @@ public class NativeEntry {
 
     public native void importS(String str, int size, char c, int v, int w, int x, int y, int z);
 
+    public native int exportArray(int i);
 }
