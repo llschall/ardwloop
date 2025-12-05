@@ -249,7 +249,6 @@ void send_s() {
 
   if(STRc > 0) {
     wr('~');
-    char* str = STR;
     for(int i = 0; i < STRc; i++) {
       wr(STR[i]);
     }
@@ -368,8 +367,6 @@ void core_setup(long baud) {
 
   init_j();
   reset();
-  send_s();
-  receive_r(END, Rc, H, Kc, K, Rv);
   log("# --core_setup");
 }
 
