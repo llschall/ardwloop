@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 
+int ARR[4] = { 7,64,0,2 };
+
 int Rc = -1;
 int Sc = -1;
 
@@ -346,6 +348,7 @@ void send_p() {
 
 V *core_s() { return &S; }
 void core_str(char* str, int size) { STR = str; STRc = size; }
+int core_arr(int i) { return ARR[i]; }
 V *core_r() { return &R; }
 V *core_p() { return &P; }
 
