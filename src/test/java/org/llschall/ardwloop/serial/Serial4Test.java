@@ -1,11 +1,5 @@
 package org.llschall.ardwloop.serial;
 
-import static org.llschall.ardwloop.serial.Serial.P;
-import static org.llschall.ardwloop.serial.Serial.P_;
-import static org.llschall.ardwloop.serial.Serial.R;
-import static org.llschall.ardwloop.serial.Serial.S;
-import static org.llschall.ardwloop.serial.Serial.T;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
+
+import static org.llschall.ardwloop.serial.Serial.P;
+import static org.llschall.ardwloop.serial.Serial.R;
+import static org.llschall.ardwloop.serial.Serial.S;
+import static org.llschall.ardwloop.serial.Serial.T;
 
 public class Serial4Test {
     @BeforeEach
@@ -34,6 +33,7 @@ public class Serial4Test {
         Assertions.assertEquals('J', entry.prg());
         Assertions.assertEquals(1, entry.sc());
         Assertions.assertEquals(1, entry.rc());
+        entry.loop();
 
         entry.importS("abc", 3, 'a', 0, 0, 54, 0, 0);
         back.addMsg(S + "001~abc~ax54+" + T, R + "av67+aw+ax+ay+az68+" + T);

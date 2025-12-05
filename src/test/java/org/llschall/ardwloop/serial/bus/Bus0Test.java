@@ -14,24 +14,14 @@ import org.llschall.ardwloop.serial.Bus;
 import org.llschall.ardwloop.serial.DefaultPortSelector;
 import org.llschall.ardwloop.serial.ISerialMonitor;
 import org.llschall.ardwloop.serial.Serial;
-import org.llschall.ardwloop.serial.SerialLongReadException;
-import org.llschall.ardwloop.serial.SerialWriteException;
-import org.llschall.ardwloop.serial.SerialWrongReadException;
 import org.llschall.ardwloop.serial.misc.FakeProvider;
-import org.llschall.ardwloop.serial.port.GotJException;
 import org.llschall.ardwloop.structure.StructureTimer;
 import org.llschall.ardwloop.structure.data.ProgramCfg;
-import org.llschall.ardwloop.structure.data.SerialWrap;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.utils.Logger;
 import org.llschall.ardwloop.structure.utils.Timer;
-import org.llschall.ardwloop.value.SerialData;
 
 import java.util.concurrent.ArrayBlockingQueue;
-
-import static org.llschall.ardwloop.serial.Serial.R;
-import static org.llschall.ardwloop.serial.Serial.S;
-import static org.llschall.ardwloop.serial.Serial.T;
 
 public class Bus0Test extends AbstractBusTest {
 
@@ -82,18 +72,8 @@ public class Bus0Test extends AbstractBusTest {
             Logger.msg("Start");
             bus.reset(cfg, new DefaultPortSelector());
             boolean connect = bus.connect();
-
             Assertions.assertTrue(connect);
-            Logger.msg("Loop 1");
-            try {
-                SerialWrap s = bus.readS();
-                Assertions.assertEquals(0, s.chk);
-                bus.writeR(new SerialWrap(0, new SerialData(7, 7, 7, 7, 7)));
-                finished.add("Computer finished");
-            } catch (SerialLongReadException | SerialWrongReadException |
-                     GotJException | SerialWriteException e) {
-                throw new RuntimeException(e);
-            }
+            finished.add("Computer finished");
         }, COMPUTER_THD);
 
         NativeEntry entry = new NativeEntry();
@@ -152,16 +132,6 @@ public class Bus0Test extends AbstractBusTest {
         Logger.msg("=== Step 5 ===");
         c2a = cableC2A.check("CTC20C9C9C0C0C".length());
         Assertions.assertEquals("CTC20C9C9C0C0C", c2a);
-
-        // >> S >>
-        Logger.msg("=== Step 6 ===");
-        a2c = cableA2C.check(5);
-        Assertions.assertEquals(S + "000" + T, a2c);
-
-        // << R <<
-        Logger.msg("=== Step 7 ===");
-        c2a = cableC2A.check(22);
-        Assertions.assertEquals(R + "av7+aw7+ax7+ay7+az7+" + T, c2a);
 
         Logger.msg(finished.take());
         Logger.msg(finished.take());

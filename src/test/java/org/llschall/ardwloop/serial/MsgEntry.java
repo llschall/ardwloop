@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.llschall.ardwloop.structure.StructureException;
 import org.llschall.ardwloop.structure.utils.Logger;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,16 +36,6 @@ public class MsgEntry implements IBackEntry {
 
     MsgEntry(char program, int resetPin, int rc, int sc) {
         this(program, resetPin, rc, sc, 0, 0);
-    }
-
-    String buildData(int n) {
-        StringWriter writer = new StringWriter();
-        char c = 'a';
-        for (int i = 0; i < n; i++) {
-            writer.append(c + "v+" + c + "w+" + c + "x+" + c + "y+" + c + "z+");
-            c++;
-        }
-        return writer.toString();
     }
 
     void addMsg(String a2c, String c2a) {
@@ -125,16 +114,4 @@ public class MsgEntry implements IBackEntry {
 
 record Msg(String a2c, String c2a) {
     public static final String EMPTY_A = "av+aw+ax+ay+az+";
-    public static final String EMPTY_B = "bv+bw+bx+by+bz+";
-    public static final String EMPTY_C = "cv+cw+cx+cy+cz+";
-    public static final String EMPTY_D = "dv+dw+dx+dy+dz+";
-    public static final String EMPTY_E = "ev+ew+ex+ey+ez+";
-    public static final String EMPTY_F = "fv+fw+fx+fy+fz+";
-    public static final String EMPTY_G = "gv+gw+gx+gy+gz+";
-    public static final String EMPTY_H = "hv+hw+hx+hy+hz+";
-    public static final String EMPTY_I = "iv+iw+ix+iy+iz+";
-    public static final String EMPTY_MSG = EMPTY_A + EMPTY_B + EMPTY_C + EMPTY_D +
-            EMPTY_E + EMPTY_F + EMPTY_G + EMPTY_H + EMPTY_I;
-    public static final String EMPTY_B_I = EMPTY_B + EMPTY_C + EMPTY_D +
-            EMPTY_E + EMPTY_F + EMPTY_G + EMPTY_H + EMPTY_I;
 }
