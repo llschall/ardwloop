@@ -1,6 +1,9 @@
 package org.llschall.ardwloop.serial;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.llschall.ardwloop.IArdwConfig;
 import org.llschall.ardwloop.jni.BackEntry;
 import org.llschall.ardwloop.jni.NativeEntry;
@@ -17,7 +20,7 @@ public class Serial1Test {
     @Test
     void setupTest() {
 
-        MsgEntry back = new MsgEntry('T', 21, 5, 7);
+        MsgEntry back = new MsgEntry('T', 21, 5, 7, 0);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
@@ -30,15 +33,31 @@ public class Serial1Test {
     @Test
     void setupTest2() {
 
-        MsgEntry back = new MsgEntry('T', 26,3, 2, 217, 19);
+        MsgEntry back = new MsgEntry('T', 26, 3, 2, 7, 217, 19);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();
         entry.setup(IArdwConfig.BAUD_4800);
         Assertions.assertEquals('T', entry.prg());
         Assertions.assertEquals(3, entry.rc());
+        Assertions.assertEquals(2, entry.sc());
+        Assertions.assertEquals(7, entry.arrc());
+        Assertions.assertEquals(217, entry.delayRead());
+        Assertions.assertEquals(19, entry.delayPost());
+    }
+
+    @Test
+    void setupTest3() {
+
+        MsgEntry back = new MsgEntry('T', 26, 3, 2, 56, 217, 19);
+        BackEntry.setup(back);
+
+        NativeEntry entry = new NativeEntry();
+        entry.setup(IArdwConfig.BAUD_4800);
+        Assertions.assertEquals('T', entry.prg());
         Assertions.assertEquals(3, entry.rc());
         Assertions.assertEquals(2, entry.sc());
+        Assertions.assertEquals(56, entry.arrc());
         Assertions.assertEquals(217, entry.delayRead());
         Assertions.assertEquals(19, entry.delayPost());
     }

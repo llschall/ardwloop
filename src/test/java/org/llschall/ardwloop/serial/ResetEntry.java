@@ -5,7 +5,7 @@ import org.llschall.ardwloop.structure.utils.Logger;
 
 class ResetEntry implements IBackEntry {
 
-    final String rb = "K-CWC12C5C4C7C9C";
+    final String rb = "K-CWC12C5C4C03C7C9C";
     int av = 0;
 
     @Override

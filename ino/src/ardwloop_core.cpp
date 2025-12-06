@@ -9,7 +9,7 @@
 
 int Rc = -1;
 int Sc = -1;
-int ARRc = 4;
+int ARRc = -1;
 
 struct V R, S, P;
 char* STR;
@@ -87,6 +87,7 @@ char core_prg() { return PRG; }
 int core_reset_pin() {return RESET_PIN; }
 int core_rc() { return Rc; }
 int core_sc() { return Sc; }
+int core_arrc() {return ARRc; }
 int core_delay_read() { return get_delay_read(); }
 int core_delay_post() { return DELAY_POST; }
 
@@ -149,8 +150,13 @@ void reset() {
   if ('C' != rd()) {
     log("# Program error #");
   }
-
   Sc = map_c(rd());
+  if ('C' != rd()) {
+    log("# Program error #");
+  }
+  ARRc = map_c(rd());
+  ARRc = 10*ARRc + map_c(rd());
+  
   if ('C' != rd()) {
     log("# Program error #");
   }

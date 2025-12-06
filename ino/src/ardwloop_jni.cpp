@@ -28,6 +28,7 @@ char entry_prg() { return core_prg(); }
 int entry_reset_pin() { return core_reset_pin(); }
 int entry_rc() { return core_rc(); }
 int entry_sc() { return core_sc(); }
+int entry_arrc() {return core_arrc(); }
 int entry_delay_read() { return core_delay_read(); }
 int entry_delay_post() { return core_delay_post(); }
 

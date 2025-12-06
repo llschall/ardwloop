@@ -38,6 +38,7 @@ char core_prg();
 int core_reset_pin();
 int core_rc();
 int core_sc();
+int core_arrc();
 int core_delay_read();
 int core_delay_post();
 V *core_s();

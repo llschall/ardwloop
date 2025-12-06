@@ -189,6 +189,11 @@ Java_org_llschall_ardwloop_jni_NativeEntry_sc(JNIEnv *env, jobject obj) {
 };
 
 JNIEXPORT jint JNICALL
+Java_org_llschall_ardwloop_jni_NativeEntry_arrc(JNIEnv *env, jobject obj) {
+  return entry_arrc();
+};
+
+JNIEXPORT jint JNICALL
 Java_org_llschall_ardwloop_jni_NativeEntry_delayRead(JNIEnv *env, jobject obj) {
   return entry_delay_read();
 };

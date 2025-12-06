@@ -25,7 +25,7 @@ public class Serial4Test {
     @Test
     void testString() {
 
-        MsgEntry back = new MsgEntry('J', 77, 1, 1);
+        MsgEntry back = new MsgEntry('J', 77, 1, 1, 0);
         BackEntry.setup(back);
 
         NativeEntry entry = new NativeEntry();

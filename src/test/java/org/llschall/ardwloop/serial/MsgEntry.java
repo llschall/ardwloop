@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.llschall.ardwloop.structure.StructureException;
 import org.llschall.ardwloop.structure.utils.Logger;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import static org.llschall.ardwloop.serial.Serial.J_;
 import static org.llschall.ardwloop.serial.Serial.K;
 import static org.llschall.ardwloop.serial.Serial.K_;
 import static org.llschall.ardwloop.serial.Serial.P;
+import static org.llschall.ardwloop.serial.Serial.R;
 import static org.llschall.ardwloop.serial.Serial.T;
 
 public class MsgEntry implements IBackEntry {
@@ -24,18 +26,27 @@ public class MsgEntry implements IBackEntry {
     int i = 0; // index of the current char
     int av = 0; // how many successive times available() is called
 
-    MsgEntry(char program, int resetPin, int rc, int sc, int read, int post) {
+    MsgEntry(char program, int resetPin, int rc, int sc, int arrc, int read, int post) {
         this.msgs = new ArrayList<>();
         this.msgs.add(new Msg("", K_ + P + J + K + P));
         this.msgs.add(new Msg(J_, J_));
         this.msgs.add(new Msg("", K_));
-        String c2a = C_ + program + C + resetPin + C + rc + C + sc + C + read + C + post + C;
+
+        String c = arrc < 10 ? "0" + arrc : "" + arrc;
+        String c2a = C_ + program + C + resetPin + C + rc + C + sc + C + c + C + read + C + post + C;
         this.msgs.add(new Msg(K_, c2a));
-        this.msgs.add(new Msg("S000" + T, "R++++" + T));
+
+        StringWriter writer = new StringWriter();
+        writer.append(R);
+        for (int i1 = 0; i1 < arrc; i1++) {
+            writer.append("+");
+        }
+
+        this.msgs.add(new Msg("S000" + T, writer.toString() + T));
     }
 
-    MsgEntry(char program, int resetPin, int rc, int sc) {
-        this(program, resetPin, rc, sc, 0, 0);
+    MsgEntry(char program, int resetPin, int rc, int sc, int arrc) {
+        this(program, resetPin, rc, sc, arrc, 0, 0);
     }
 
     void addMsg(String a2c, String c2a) {

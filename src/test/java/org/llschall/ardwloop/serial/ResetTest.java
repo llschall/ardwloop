@@ -28,6 +28,7 @@ public class ResetTest {
         Assertions.assertEquals(12, entry.resetPin());
         Assertions.assertEquals(5, entry.rc());
         Assertions.assertEquals(4, entry.sc());
+        Assertions.assertEquals(3, entry.arrc());
         Assertions.assertEquals(7, entry.delayRead());
         Assertions.assertEquals(9, entry.delayPost());
     }

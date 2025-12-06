@@ -89,6 +89,14 @@ JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_sc
 
 /*
  * Class:     org_llschall_ardwloop_jni_NativeEntry
+ * Method:    arrc
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_llschall_ardwloop_jni_NativeEntry_arrc
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     org_llschall_ardwloop_jni_NativeEntry
  * Method:    delayRead
  * Signature: ()I
  */

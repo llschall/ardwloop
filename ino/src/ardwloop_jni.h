@@ -23,6 +23,7 @@ char entry_prg();
 int entry_reset_pin();
 int entry_rc();
 int entry_sc();
+int entry_arrc();
 int entry_delay_read();
 int entry_delay_post();
 
