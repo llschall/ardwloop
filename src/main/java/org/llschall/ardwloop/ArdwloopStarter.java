@@ -50,6 +50,12 @@ public class ArdwloopStarter {
         return INSTANCE;
     }
 
+
+    /**
+     * Sets the log level of the internal logger
+     *
+     * @param level The log level as defined in {@link Logger}
+     */
     public void setLogLevel(int level) {
         Logger.setLevel(level);
     }

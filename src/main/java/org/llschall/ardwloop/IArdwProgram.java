@@ -63,6 +63,11 @@ public interface IArdwProgram {
         return 'a';
     }
 
+    /**
+     * To be adapted to the Arduino project requirements.
+     *
+     * @return The size of the data array exchanged with the Arduino board
+     */
     default int getArraySize() {
         return 0;
     }

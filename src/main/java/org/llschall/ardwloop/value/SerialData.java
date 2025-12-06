@@ -13,6 +13,9 @@ public class SerialData {
      */
     public String str = "";
 
+    /**
+     * The inner class V represents a vector of 5 integers.
+     */
     public Integer[] array;
 
     /**
@@ -97,6 +100,16 @@ public class SerialData {
         a.z = az;
     }
 
+    /**
+     * Constructor that initializes the array and all values of vector a.
+     *
+     * @param array array of Integer
+     * @param av    value for a.v
+     * @param aw    value for a.w
+     * @param ax    value for a.x
+     * @param ay    value for a.y
+     * @param az    value for a.z
+     */
     public SerialData(Integer[] array, int av, int aw, int ax, int ay, int az) {
         this.array = array;
         a.v = av;
