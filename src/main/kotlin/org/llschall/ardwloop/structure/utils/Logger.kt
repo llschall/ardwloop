@@ -6,11 +6,12 @@ import java.util.TimeZone
 
 object Logger {
 
-    private var skipMsg = false
+    @JvmStatic
+    var level: Int = 0
 
     @JvmStatic
-    fun msg(shift: Int, msg: String) {
-        if (skipMsg) {
+    fun msg(msg: String, shift: Int) {
+        if (level < 1) {
             return
         }
         log(shift, System.out, msg)
@@ -18,7 +19,7 @@ object Logger {
 
     @JvmStatic
     fun msg(msg: String) {
-        if (skipMsg) {
+        if (level < 1) {
             return
         }
         log(0, System.out, msg)

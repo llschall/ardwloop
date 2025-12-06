@@ -50,6 +50,10 @@ public class ArdwloopStarter {
         return INSTANCE;
     }
 
+    public void setLogLevel(int level) {
+        Logger.setLevel(level);
+    }
+
     /**
      * Sets a custom selector for the serial port
      *

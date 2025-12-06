@@ -20,7 +20,7 @@ public class AbstractBusTest {
         StringWriter writer = new StringWriter();
         writer.append("\nC2A: ").append(cableC2A.dump());
         writer.append("\nA2C: ").append(cableA2C.dump());
-        Logger.msg(1, writer.toString());
+        Logger.msg(writer.toString(), 1);
     }
 
     void check(int av) {

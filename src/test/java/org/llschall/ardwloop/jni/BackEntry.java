@@ -26,7 +26,7 @@ public class BackEntry {
     }
 
     public static void msg(String str) {
-        Logger.msg(1, str);
+        Logger.msg(str, 1);
     }
 
     // called by NativeEntry.c
