@@ -154,16 +154,20 @@ void reset() {
   if ('C' != rd()) {
     log("# Program error #");
   }
-  ARRc = map_c(rd());
-  ARRc = 10*ARRc + map_c(rd());
-  
-  if ('C' != rd()) {
-    log("# Program error #");
-  }
 
   char c = rd();
   int s = -1;
+  while (c != 'C') {
+    int i = map_c(c);
+    if (s == -1)
+      s = 0;
+    s = 10 * s + i;
+    c = rd();
+  }
+  ARRc = s;
+  s = -1;
 
+  c = rd();
   while (c != 'C') {
     int i = map_c(c);
     if (s == -1)
