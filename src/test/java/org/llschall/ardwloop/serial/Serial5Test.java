@@ -35,7 +35,7 @@ public class Serial5Test {
         entry.loop();
 
         entry.importS("", 0, 'a', 0, 0, 0, 0, 0);
-        back.addMsg(S + "001" + T, R + "" + T);
+        back.addMsg(S + "001" + T, R + "7+64+++" + T);
         entry.loop();
         Assertions.assertEquals(7, entry.exportArray(0));
         Assertions.assertEquals(64, entry.exportArray(1));

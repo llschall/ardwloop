@@ -9,6 +9,6 @@ int get_delay_read();
 
 void reset_bfn();
 
-void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv);
+void receive_r(const char END, int *ARR, int ARRc, int Rc, const char *H, const int Kc, const char *K, struct D **Rv);
 
 #endif
