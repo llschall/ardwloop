@@ -6,14 +6,24 @@
 
 #include <stdio.h>
 
-int ARR[4] = { 7,64,0,2 };
 
 int Rc = -1;
 int Sc = -1;
+int ARRc = 4;
 
 struct V R, S, P;
 char* STR;
 int STRc = 0;
+
+int ARR[64] = { 
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,0,0,0
+ };
 
 const char END = '/';
 
@@ -392,7 +402,7 @@ void core_loop() {
       func_delay(get_delay_read());
     }
   }
-  receive_r(END, Rc, H, Kc, K, Rv);
+  receive_r(END, ARR, ARRc, Rc, H, Kc, K, Rv);
 }
 
 void core_post(bool (*p)()) { POST_IMPL = p; }

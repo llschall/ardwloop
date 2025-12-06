@@ -87,7 +87,7 @@ int read_v() {
 
 }
 
-void receive_r(const char END, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
+void receive_r(const char END, int *ARR ,int ARRc, int Rc, const char *H, const int Kc, const char *K, struct D **Rv) {
 
   for(int i0=0; i0 < Rc; i0++) {
     Rv[i0]->v = 0;
@@ -101,6 +101,10 @@ void receive_r(const char END, int Rc, const char *H, const int Kc, const char *
 
   if (r != 'R') {
     log("Expected R but got %c %c\n", r, r);
+  }
+
+  for(int i =0; i < ARRc; i++) {
+    ARR[i] = read_v();
   }
 
   int i = 0;
