@@ -1,19 +1,14 @@
 package org.llschall.ardwloop.serial
 
 import org.llschall.ardwloop.IArdwProgram
-import org.llschall.ardwloop.serial.*
-import org.llschall.ardwloop.serial.port.*
-import org.llschall.ardwloop.structure.*
+import org.llschall.ardwloop.serial.port.ISerialPort
+import org.llschall.ardwloop.structure.StructureException
 import org.llschall.ardwloop.structure.StructureTimer.Companion.get
-import org.llschall.ardwloop.structure.data.*
-import org.llschall.ardwloop.structure.model.*
-import org.llschall.ardwloop.structure.model.keyboard.*
-import org.llschall.ardwloop.structure.utils.*
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import org.llschall.ardwloop.structure.utils.Timer
 import java.io.StringWriter
-import java.util.*
+import java.util.LinkedList
 import java.util.function.Consumer
 
 internal class Writer(private val port: ISerialPort) {
@@ -41,7 +36,7 @@ internal class Writer(private val port: ISerialPort) {
 
     // switch program
     @Throws(SerialWriteException::class)
-    fun writeC(p: Char, resetPin: Int, read: Int, post: Int) {
+    fun writeC(arrc: Int, p: Char, resetPin: Int, read: Int, post: Int) {
         write(Serial.C)
         write(p)
         write(Serial.C)
@@ -59,6 +54,8 @@ internal class Writer(private val port: ISerialPort) {
         write(map(IArdwProgram.SC_RC))
         write(Serial.C)
         write(map(IArdwProgram.SC_RC))
+        write(Serial.C)
+        write(arrc, signed = false)
         write(Serial.C)
         write(read, false)
         write(Serial.C)

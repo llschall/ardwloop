@@ -44,7 +44,7 @@ public class Bus0Test extends AbstractBusTest {
 
         // Arduino <<>> Computer
 
-        ProgramCfg cfg = new ProgramCfg('T', 0, 0);
+        ProgramCfg cfg = new ProgramCfg('T', 0, 0, 0);
 
         ArdwloopModel model = new ArdwloopModel(
                 new ProgramContainer(new JTestProgram()));
@@ -128,10 +128,10 @@ public class Bus0Test extends AbstractBusTest {
         a2c = cableA2C.check(1);
         Assertions.assertEquals(Serial.K_, a2c);
 
-        // << CTC20C9C9C0C0C <<
+        // << CTC20C9C9C0C0C0C <<
         Logger.msg("=== Step 5 ===");
-        c2a = cableC2A.check("CTC20C9C9C0C0C".length());
-        Assertions.assertEquals("CTC20C9C9C0C0C", c2a);
+        c2a = cableC2A.check("CTC20C9C9C0C0C0C".length());
+        Assertions.assertEquals("CTC20C9C9C0C0C0C", c2a);
 
         Logger.msg(finished.take());
         Logger.msg(finished.take());

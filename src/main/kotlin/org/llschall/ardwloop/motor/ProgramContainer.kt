@@ -20,7 +20,9 @@ class ProgramContainer(private val program: IArdwProgram) {
         model.serialMdl.program.set(
             ProgramCfg(
                 program.programId,
-                program.readDelayMs, program.postDelayMs,
+                program.arraySize,
+                program.readDelayMs,
+                program.postDelayMs,
             )
         )
 

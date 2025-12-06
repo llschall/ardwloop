@@ -63,6 +63,10 @@ public interface IArdwProgram {
         return 'a';
     }
 
+    default int getArraySize() {
+        return 0;
+    }
+
     /**
      * To be adapted to the Arduino project requirements.
      *

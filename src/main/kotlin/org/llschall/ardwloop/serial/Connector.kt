@@ -14,7 +14,7 @@ internal data class Connector(
     val monitor: ISerialMonitor
 ) {
     @Throws(SerialWriteException::class)
-    fun reboot(p: Char, read: Int, post: Int) {
+    fun reboot(arrc: Int, p: Char, read: Int, post: Int) {
         val timer = Timer()
 
         val serialMdl = model.serialMdl
@@ -34,7 +34,7 @@ internal data class Connector(
                 reader.buffer.ignoreAllNext()
                 // wait to avoid the K to be lost
                 get().delayMs(Serial.DELAY_BEFORE_K)
-                initK(p, read, post)
+                initK(arrc, p, read, post)
                 serialMdl.connected.set(true)
                 return
             } catch (e: SerialLongReadException) {
@@ -53,7 +53,7 @@ internal data class Connector(
     }
 
     @Throws(SerialLongReadException::class, SerialWriteException::class)
-    private fun initK(p: Char, read: Int, post: Int) {
+    private fun initK(arrc: Int, p: Char, read: Int, post: Int) {
         val serialMdl = model.serialMdl
 
         serialMdl.connected.set(false)
@@ -78,7 +78,7 @@ internal data class Connector(
         if (resetPin !in 0..89) {
             resetPin = 90
         }
-        writer.writeC(p, resetPin, read, post)
+        writer.writeC(arrc, p, resetPin, read, post)
     }
 
     private fun status(status: String) {

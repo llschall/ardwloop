@@ -2,6 +2,7 @@ package org.llschall.ardwloop.structure.data
 
 data class ProgramCfg(
     @JvmField val p: Char,
+    @JvmField val arrc: Int,
     @JvmField val read: Int,
     @JvmField val post: Int,
 ) {
