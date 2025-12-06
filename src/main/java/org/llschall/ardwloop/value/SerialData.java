@@ -13,6 +13,8 @@ public class SerialData {
      */
     public String str = "";
 
+    public Integer[] array;
+
     /**
      * The vector a that wraps 5 integers
      */
@@ -88,6 +90,15 @@ public class SerialData {
      */
     public SerialData(String str, int av, int aw, int ax, int ay, int az) {
         this.str = str;
+        a.v = av;
+        a.w = aw;
+        a.x = ax;
+        a.y = ay;
+        a.z = az;
+    }
+
+    public SerialData(Integer[] array, int av, int aw, int ax, int ay, int az) {
+        this.array = array;
         a.v = av;
         a.w = aw;
         a.x = ax;

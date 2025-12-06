@@ -208,6 +208,11 @@ class Serial internal constructor(
     fun writeV(data: SerialWrap) {
         writer!!.writeR()
 
+        for (i in 0 until arrc) {
+            val v = data.map.array.get(i)
+            writer!!.write(v, true)
+        }
+
         for (c in 'a'..'i') {
             val map = data.map.fromChar(c)
             if (map.v != 0) writer!!.write(c, 'v', map.v)
