@@ -15,7 +15,7 @@ import java.io.StringWriter
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-public class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
+class ArdwPortDescriptor(val name: String, val description: String, val systemName: String) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -51,7 +51,7 @@ interface IArdwPortSelector {
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-public open class DefaultPortSelector : IArdwPortSelector {
+open class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun select(desc: ArdwPortDescriptor): Boolean {
@@ -98,7 +98,7 @@ class Serial internal constructor(
     private var reader: Reader? = null
     private var connector: Connector? = null
 
-    private val arrc = cfg.arrc;
+    private val arrc = cfg.arrc
     private val p = cfg.p
     private val read = cfg.read
     private val post = cfg.post
@@ -244,7 +244,6 @@ class Serial internal constructor(
         const val J_: String = J.toString()
         const val P_: String = P.toString()
         const val R_: String = R.toString()
-        const val T_: String = T.toString()
         const val Z_: String = Z.toString()
     }
 }
