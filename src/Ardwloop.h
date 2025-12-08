@@ -31,6 +31,7 @@ void ardw_post(bool (*p)());
 
 V *ardw_s();
 void ardw_str(char* str, int size);
+int ardw_array(int);
 V *ardw_p();
 V *ardw_r();
 
