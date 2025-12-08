@@ -25,6 +25,7 @@ void ardw_loop() { core_loop(); }
 /////////////////////////////////
 
 V *ardw_s() { return core_s(); }
+int ardw_array(int i) { return core_arr(i); }
 void ardw_str(char* str, int size) { core_str(str, size); }
 V *ardw_r() { return core_r(); }
 V *ardw_p() { return core_p(); }

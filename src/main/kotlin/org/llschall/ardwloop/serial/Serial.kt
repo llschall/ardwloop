@@ -209,7 +209,7 @@ class Serial internal constructor(
         writer!!.writeR()
 
         for (i in 0 until arrc) {
-            val v = data.map.array.get(i)
+            val v = data.map.array[i]
             writer!!.write(v, true)
         }
 
