@@ -37,6 +37,8 @@ public class ArdwloopStarter {
 
     private int resetPin = -1;
 
+    private boolean retryConnection = true;
+
     private ArdwloopStarter() {
         // Singleton pattern
     }
@@ -80,6 +82,15 @@ public class ArdwloopStarter {
     }
 
     /**
+     * Sets whether the connection should be retried until successful
+     *
+     * @param retryConnection true to retry connection until successful, false to try only once
+     */
+    public void setRetryConnection(boolean retryConnection) {
+        this.retryConnection = retryConnection;
+    }
+
+    /**
      * Entry point of the Ardwloop API
      *
      * @param program The Arduino program to be started
@@ -110,7 +121,7 @@ public class ArdwloopStarter {
 
         Timer timer = new Timer();
         ISerialProvider provider = builder.invoke(container.model.serialMdl, timer);
-        container.start(provider, baud, resetPin, timer, selector);
+        container.start(provider, baud, resetPin, timer, selector, retryConnection);
         return container.model;
     }
 

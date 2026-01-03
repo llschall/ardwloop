@@ -1,5 +1,6 @@
 package org.llschall.ardwloop.motor
 
+import org.llschall.ardwloop.ArdwloopStatus
 import org.llschall.ardwloop.serial.Bus
 import org.llschall.ardwloop.serial.IArdwPortSelector
 import org.llschall.ardwloop.serial.SerialLongReadException
@@ -8,7 +9,7 @@ import org.llschall.ardwloop.serial.SerialWrongReadException
 import org.llschall.ardwloop.serial.port.GotJException
 import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.structure.StructureThread
-import org.llschall.ardwloop.structure.StructureTimer.Companion.get
+import org.llschall.ardwloop.structure.StructureTimer
 import org.llschall.ardwloop.structure.data.SerialWrap
 import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.model.MonitorSample
@@ -42,19 +43,32 @@ internal class Motor(
             bus.close()
         }
 
+        val program = model.program.get()
         serialMdl.connected.set(false)
 
+        program.fireStatusChanged(ArdwloopStatus.CONNECTING)
         bus.reset(cfg, selector)
+
         while (!bus.connect()) {
+
+            if (!serialMdl.retryConnection.get()) {
+                program.fireStatusChanged(ArdwloopStatus.CONNECTION_ABORTED)
+                StructureThread.stop.set(true)
+                msg("Serial connection failed and retry is switched off.")
+                StructureTimer.get().stop()
+                return
+            }
+            program.fireStatusChanged(ArdwloopStatus.CONNECTION_RETRY)
+
             msg("Waiting 2s before trying to connect again...")
 
             model.monitorMdl.samples.addLast(MonitorSample())
-            get().delayMs(2000)
+            StructureTimer.get().delayMs(2000)
             bus.reset(cfg, selector)
         }
+        program.fireStatusChanged(ArdwloopStatus.CONNECTED)
         serialMdl.connected.set(true)
 
-        val program = model.program.get()
         try {
             val s = readS()
             val r = program.setupPrg(s.map)
@@ -67,7 +81,7 @@ internal class Motor(
         } catch (e: SerialWriteException) {
             err("Setup error", e)
         } catch (e: GotJException) {
-            get().fail(e)
+            StructureTimer.get().fail(e)
         }
     }
 
@@ -97,7 +111,7 @@ internal class Motor(
             }, "program_loop").start()
 
             while (atm.get() == null) {
-                get().delayMs(1)
+                StructureTimer.get().delayMs(1)
                 val opt = bus.checkP()
                 opt?.let {
                     StructureThread(
@@ -124,7 +138,7 @@ internal class Motor(
             err("Error", e)
             reconnect = true
         } catch (e: GotJException) {
-            get().fail(e)
+            StructureTimer.get().fail(e)
         }
     }
 
