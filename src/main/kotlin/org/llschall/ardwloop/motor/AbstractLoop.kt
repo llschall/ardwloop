@@ -18,7 +18,6 @@ abstract class AbstractLoop protected constructor(private val name: String) {
     private val thread: Thread
     val timer: Timer = Timer()
 
-
     init {
         thread = StructureThread({
             msg("====== Setup... ======")
@@ -29,6 +28,11 @@ abstract class AbstractLoop protected constructor(private val name: String) {
             } catch (e: StructureShutdownException) {
                 loop = false
             }
+
+            if (StructureThread.stop.get()) {
+                loop = false
+            }
+
             msg("====== Setup OK ======")
 
             while (loop) {

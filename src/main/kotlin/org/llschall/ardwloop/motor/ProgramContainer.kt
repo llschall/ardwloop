@@ -33,16 +33,23 @@ class ProgramContainer(private val program: IArdwProgram) {
         loops.add(loop)
     }
 
-    fun start(provider: ISerialProvider, baud: Int, resetPin: Int, timer: Timer, selector: IArdwPortSelector) {
+    fun start(
+        provider: ISerialProvider,
+        baud: Int,
+        resetPin: Int,
+        timer: Timer,
+        selector: IArdwPortSelector,
+        retryConnection: Boolean
+    ) {
         program.fireStatusChanged(ArdwloopStatus.STARTED)
         val clock = Clock(provider, timer, loops, model, selector)
         model.serialMdl.baud.set(baud)
         model.serialMdl.resetPin.set(resetPin)
+        model.serialMdl.retryConnection.set(retryConnection)
         clock.start()
     }
 
     fun setupPrg(s: SerialData): SerialData {
-        program.fireStatusChanged(ArdwloopStatus.CONNECTED)
         return program.ardwSetup(s)
     }
 
@@ -53,4 +60,9 @@ class ProgramContainer(private val program: IArdwProgram) {
     fun postPrg(p: SerialData?) {
         program.ardwPost(p)
     }
+
+    fun fireStatusChanged(status: ArdwloopStatus) {
+        program.fireStatusChanged(status)
+    }
+
 }

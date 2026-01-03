@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.atomic.AtomicReference
 
 class SerialModel {
+
     @JvmField
     val connected: AtomicBoolean = AtomicBoolean()
 
@@ -28,6 +29,9 @@ class SerialModel {
 
     @JvmField
     val resetPin: AtomicInteger = AtomicInteger(-1)
+
+    @JvmField
+    val retryConnection: AtomicBoolean = AtomicBoolean()
 
     @JvmField
     val program: AtomicReference<ProgramCfg> = AtomicReference()

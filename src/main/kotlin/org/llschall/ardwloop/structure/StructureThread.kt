@@ -1,3 +1,11 @@
 package org.llschall.ardwloop.structure
 
-class StructureThread(task: Runnable?, name: String) : Thread(task, "## $name ##")
+import java.util.concurrent.atomic.AtomicBoolean
+
+class StructureThread(task: Runnable?, name: String) : Thread(task, "## $name ##") {
+
+    companion object StaticHolder {
+        val stop = AtomicBoolean(false)
+    }
+
+}

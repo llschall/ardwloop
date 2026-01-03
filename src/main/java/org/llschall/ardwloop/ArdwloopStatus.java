@@ -9,6 +9,18 @@ public enum ArdwloopStatus {
      */
     STARTED,
     /**
+     * Connecting
+     */
+    CONNECTING,
+    /**
+     * Connection failed
+     */
+    CONNECTION_RETRY,
+    /**
+     * Connection aborted
+     */
+    CONNECTION_ABORTED,
+    /**
      * Connection ready
      */
     CONNECTED,
