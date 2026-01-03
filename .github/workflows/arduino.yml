@@ -1,5 +1,7 @@
 name: Arduino Library
-on: [push, pull_request]
+permissions:
+  contents: read
+on: [ push, pull_request ]
 jobs:
   lint:
     runs-on: ubuntu-latest
