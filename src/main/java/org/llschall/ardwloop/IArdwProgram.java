@@ -71,16 +71,7 @@ public interface IArdwProgram {
     default int getArraySize() {
         return 0;
     }
-
-    /**
-     * To be adapted to the Arduino project requirements.
-     *
-     * @return The polling delay of the Arduino board when it checks if the Java program sent a {@link SerialWrap}
-     */
-    default int getReadDelayMs() {
-        return 99;
-    }
-
+    
     /**
      * To be adapted to the Arduino project requirements.
      *
