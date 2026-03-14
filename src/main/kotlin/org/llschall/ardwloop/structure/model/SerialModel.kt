@@ -11,9 +11,12 @@ class SerialModel {
 
     @JvmField
     val connected: AtomicBoolean = AtomicBoolean()
-    
+
     @JvmField
     val serialRS: AtomicInteger = AtomicInteger()
+
+    @JvmField
+    val portName: AtomicReference<String> = AtomicReference("no port")
 
     @JvmField
     val status: AtomicReference<String> = AtomicReference("N/A")

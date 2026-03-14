@@ -18,13 +18,13 @@ data class SerialComPort(val delegate: SerialPort, val timer: Timer) : ISerialPo
         delegate.readBytes(bytes, n.toInt())
     }
 
-    override val descriptivePortName: String?
+    override val descriptivePortName: String
         get() = delegate.descriptivePortName
 
     override val systemPortName: String
         get() = delegate.systemPortName
 
-    override val portDescription: String?
+    override val portDescription: String
         get() = delegate.portDescription
 
     override var baudRate: Int
