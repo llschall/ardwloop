@@ -29,7 +29,7 @@ data class SerialProvider(val serialMdl: SerialModel) : ISerialProvider {
         return Arrays.stream(ports)
             .map { port: SerialPort? ->
                 SerialComPort(
-                    port!!, timer, serialMdl.lastReadMs
+                    port!!, timer
                 )
             }
             .collect(Collectors.toList())
@@ -68,7 +68,7 @@ data class SerialProvider(val serialMdl: SerialModel) : ISerialProvider {
             return Arrays.stream(ports)
                 .map { port: SerialPort? ->
                     SerialComPort(
-                        port!!, timer, serialMdl.lastReadMs
+                        port!!, timer
                     )
                 }.collect(Collectors.toList())
 
