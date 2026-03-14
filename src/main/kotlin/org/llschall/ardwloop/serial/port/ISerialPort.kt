@@ -5,11 +5,11 @@ interface ISerialPort {
 
     fun readBytes(bytes: ByteArray?, n: Long)
 
-    val descriptivePortName: String?
+    val descriptivePortName: String
 
     val systemPortName: String
 
-    val portDescription: String?
+    val portDescription: String
 
     var baudRate: Int
 

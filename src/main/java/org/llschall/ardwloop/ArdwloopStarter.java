@@ -33,7 +33,7 @@ public class ArdwloopStarter {
     private static final ArdwloopStarter INSTANCE = new ArdwloopStarter();
     ProgramContainer container;
 
-    private IArdwPortSelector selector = new DefaultPortSelector();
+    private IArdwPortSelector selector;
 
     private int resetPin = -1;
 
@@ -121,6 +121,11 @@ public class ArdwloopStarter {
 
         Timer timer = new Timer();
         ISerialProvider provider = builder.invoke(container.model.serialMdl, timer);
+
+        if (selector == null) {
+            selector = new DefaultPortSelector(provider);
+        }
+
         container.start(provider, baud, resetPin, timer, selector, retryConnection);
         return container.model;
     }

@@ -65,7 +65,7 @@ public class Bus1Test extends AbstractBusTest {
         Thread computerThd = new Thread(() -> {
             Logger.msg("Loop 1");
             try {
-                bus.reset(cfg, new DefaultPortSelector());
+                bus.reset(cfg, new DefaultPortSelector(provider));
                 bus.connect();
 
                 SerialWrap s = bus.readS();

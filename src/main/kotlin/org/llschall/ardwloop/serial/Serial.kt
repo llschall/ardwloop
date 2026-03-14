@@ -1,6 +1,5 @@
 package org.llschall.ardwloop.serial
 
-import com.fazecast.jSerialComm.SerialPort
 import org.llschall.ardwloop.serial.port.GotJException
 import org.llschall.ardwloop.serial.port.ISerialPort
 import org.llschall.ardwloop.serial.port.ISerialProvider
@@ -51,7 +50,7 @@ interface IArdwPortSelector {
 /**
  * See <a href="https://llschall.github.io/ardwloop">ardwloop pages</a>
  */
-open class DefaultPortSelector : IArdwPortSelector {
+open class DefaultPortSelector(val provider: ISerialProvider) : IArdwPortSelector {
 
     override
     fun select(desc: ArdwPortDescriptor): Boolean {
@@ -69,9 +68,9 @@ open class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun list(): List<ArdwPortDescriptor> {
-        val commPorts = SerialPort.getCommPorts()
+        val ports = provider.listPorts()
         val list = mutableListOf<ArdwPortDescriptor>()
-        for (port in commPorts) {
+        for (port in ports) {
             list.add(
                 ArdwPortDescriptor(
                     name = port.descriptivePortName,
@@ -132,9 +131,9 @@ class Serial internal constructor(
             )
 
             val desc = ArdwPortDescriptor(
-                name = port.descriptivePortName ?: "",
+                name = port.descriptivePortName,
                 systemName = port.systemPortName,
-                description = port.portDescription ?: "",
+                description = port.portDescription,
             )
             if (selector.select(desc)) {
                 this.port = port
