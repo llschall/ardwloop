@@ -6,7 +6,6 @@ import org.llschall.ardwloop.serial.IArdwPortSelector
 import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.structure.data.ProgramCfg
 import org.llschall.ardwloop.structure.model.ArdwloopModel
-import org.llschall.ardwloop.structure.utils.Timer
 import org.llschall.ardwloop.value.SerialData
 
 class ProgramContainer(private val program: IArdwProgram) {
@@ -37,12 +36,11 @@ class ProgramContainer(private val program: IArdwProgram) {
         provider: ISerialProvider,
         baud: Int,
         resetPin: Int,
-        timer: Timer,
         selector: IArdwPortSelector,
         retryConnection: Boolean
     ) {
         program.fireStatusChanged(ArdwloopStatus.STARTED)
-        val clock = Clock(provider, timer, loops, model, selector)
+        val clock = Clock(provider, loops, model, selector)
         model.serialMdl.baud.set(baud)
         model.serialMdl.resetPin.set(resetPin)
         model.serialMdl.retryConnection.set(retryConnection)

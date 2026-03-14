@@ -5,17 +5,19 @@ import org.llschall.ardwloop.serial.port.ISerialPort
 import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.serial.port.SerialComPort
 import org.llschall.ardwloop.structure.model.SerialModel
-import org.llschall.ardwloop.structure.utils.Logger
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import org.llschall.ardwloop.structure.utils.Timer
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.*
+import java.util.Arrays
 import java.util.stream.Collectors
 
-data class SerialProvider(val serialMdl: SerialModel, val timer: Timer) : ISerialProvider {
+data class SerialProvider(val serialMdl: SerialModel) : ISerialProvider {
+
+    val timer = Timer()
+
     override fun listPorts(): List<ISerialPort> {
 
         val list = tryRfcomm()

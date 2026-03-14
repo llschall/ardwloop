@@ -1,6 +1,6 @@
 package org.llschall.ardwloop;
 
-import kotlin.jvm.functions.Function2;
+import kotlin.jvm.functions.Function1;
 import org.llschall.ardwloop.motor.AbstractLoop;
 import org.llschall.ardwloop.motor.ProgramContainer;
 import org.llschall.ardwloop.serial.DefaultPortSelector;
@@ -10,7 +10,6 @@ import org.llschall.ardwloop.serial.port.ISerialProvider;
 import org.llschall.ardwloop.structure.model.ArdwloopModel;
 import org.llschall.ardwloop.structure.model.SerialModel;
 import org.llschall.ardwloop.structure.utils.Logger;
-import org.llschall.ardwloop.structure.utils.Timer;
 
 /**
  * The {@link ArdwloopStarter} starts the Java part of the Arduino program.
@@ -111,7 +110,7 @@ public class ArdwloopStarter {
      * @param loops   Some additional loops to be executed as well
      * @return The {@link ArdwloopModel} created by starting the program
      */
-    public ArdwloopModel start(IArdwProgram program, int baud, Function2<SerialModel, Timer, ISerialProvider> builder, AbstractLoop... loops) {
+    public ArdwloopModel start(IArdwProgram program, int baud, Function1<SerialModel, ISerialProvider> builder, AbstractLoop... loops) {
 
         Logger.msg("Starting Ardwloop version " + VERSION);
         container = new ProgramContainer(program);
@@ -119,14 +118,13 @@ public class ArdwloopStarter {
             container.addLoop(loop);
         }
 
-        Timer timer = new Timer();
-        ISerialProvider provider = builder.invoke(container.model.serialMdl, timer);
-        container.start(provider, baud, resetPin, timer, selector, retryConnection);
+        ISerialProvider provider = builder.invoke(container.model.serialMdl);
+        container.start(provider, baud, resetPin, selector, retryConnection);
         return container.model;
     }
 
-    private ISerialProvider build(SerialModel model, Timer timer) {
-        return new SerialProvider(model, timer);
+    private ISerialProvider build(SerialModel model) {
+        return new SerialProvider(model);
     }
 
 }
