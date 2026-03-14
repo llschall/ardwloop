@@ -110,7 +110,6 @@ class Serial internal constructor(
 
     @Throws(SerialWriteException::class)
     fun connect(provider: ISerialProvider): Boolean {
-        serialMdl.port.name.set("Scanning ...")
 
         val ports = provider.listPorts()
 
@@ -138,7 +137,6 @@ class Serial internal constructor(
             )
             if (selector.select(desc)) {
                 this.port = port
-                serialMdl.port.name.set(desc.name)
             }
 
             for (s in arr) {
@@ -149,13 +147,10 @@ class Serial internal constructor(
         }
 
         if (port == null) {
-            serialMdl.port.name.set("No valid port found")
             return false
         }
 
         msg("Serial port ==> $port")
-
-        serialMdl.port.name.set(port!!.systemPortName)
 
         val baud = serialMdl.baud.get()
         serialMdl.status.set("Opening...")

@@ -11,10 +11,7 @@ class SerialModel {
 
     @JvmField
     val connected: AtomicBoolean = AtomicBoolean()
-
-    @JvmField
-    val port: SerialPort = SerialPort()
-
+    
     @JvmField
     val serialRS: AtomicInteger = AtomicInteger()
 

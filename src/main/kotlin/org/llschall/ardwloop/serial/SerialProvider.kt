@@ -4,7 +4,6 @@ import com.fazecast.jSerialComm.SerialPort
 import org.llschall.ardwloop.serial.port.ISerialPort
 import org.llschall.ardwloop.serial.port.ISerialProvider
 import org.llschall.ardwloop.serial.port.SerialComPort
-import org.llschall.ardwloop.structure.model.SerialModel
 import org.llschall.ardwloop.structure.utils.Logger.err
 import org.llschall.ardwloop.structure.utils.Logger.msg
 import org.llschall.ardwloop.structure.utils.Timer
@@ -14,7 +13,7 @@ import java.io.InputStreamReader
 import java.util.Arrays
 import java.util.stream.Collectors
 
-data class SerialProvider(val serialMdl: SerialModel) : ISerialProvider {
+class SerialProvider : ISerialProvider {
 
     val timer = Timer()
 
@@ -56,9 +55,7 @@ data class SerialProvider(val serialMdl: SerialModel) : ISerialProvider {
             }
 
             val line = list[0]
-            serialMdl.port.bluetooth.set(true)
             if (!line.endsWith("clean ")) {
-                serialMdl.port.name.set("Unexpected: $line")
                 err(line)
             }
             msg("Bluetooth: $line")

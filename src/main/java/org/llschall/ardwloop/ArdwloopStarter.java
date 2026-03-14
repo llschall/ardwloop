@@ -124,7 +124,7 @@ public class ArdwloopStarter {
     }
 
     private ISerialProvider build(SerialModel model) {
-        return new SerialProvider(model);
+        return new SerialProvider();
     }
 
 }
