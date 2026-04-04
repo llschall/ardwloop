@@ -1,6 +1,5 @@
 package org.llschall.ardwloop.serial
 
-import com.fazecast.jSerialComm.SerialPort
 import org.llschall.ardwloop.serial.port.GotJException
 import org.llschall.ardwloop.serial.port.ISerialPort
 import org.llschall.ardwloop.serial.port.ISerialProvider
@@ -69,7 +68,7 @@ open class DefaultPortSelector : IArdwPortSelector {
 
     override
     fun list(): List<ArdwPortDescriptor> {
-        val commPorts = SerialPort.getCommPorts()
+        val commPorts = SerialProvider().listPorts()
         val list = mutableListOf<ArdwPortDescriptor>()
         for (port in commPorts) {
             list.add(
@@ -110,7 +109,6 @@ class Serial internal constructor(
 
     @Throws(SerialWriteException::class)
     fun connect(provider: ISerialProvider): Boolean {
-        serialMdl.port.name.set("Scanning ...")
 
         val ports = provider.listPorts()
 
@@ -132,13 +130,12 @@ class Serial internal constructor(
             )
 
             val desc = ArdwPortDescriptor(
-                name = port.descriptivePortName ?: "",
+                name = port.descriptivePortName,
                 systemName = port.systemPortName,
-                description = port.portDescription ?: "",
+                description = port.portDescription,
             )
             if (selector.select(desc)) {
                 this.port = port
-                serialMdl.port.name.set(desc.name)
             }
 
             for (s in arr) {
@@ -149,13 +146,11 @@ class Serial internal constructor(
         }
 
         if (port == null) {
-            serialMdl.port.name.set("No valid port found")
             return false
         }
-
+        
         msg("Serial port ==> $port")
-
-        serialMdl.port.name.set(port!!.systemPortName)
+        model.serialMdl.portName.set(port!!.descriptivePortName)
 
         val baud = serialMdl.baud.get()
         serialMdl.status.set("Opening...")

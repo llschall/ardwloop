@@ -9,11 +9,9 @@ import org.llschall.ardwloop.structure.model.ArdwloopModel
 import org.llschall.ardwloop.structure.model.Event
 import org.llschall.ardwloop.structure.model.EventQueue
 import org.llschall.ardwloop.structure.utils.Logger
-import org.llschall.ardwloop.structure.utils.Timer
 
 class Clock(
     private val provider: ISerialProvider,
-    val timer: Timer,
     private val loops: MutableList<AbstractLoop>,
     val model: ArdwloopModel,
     private val selector: IArdwPortSelector,
