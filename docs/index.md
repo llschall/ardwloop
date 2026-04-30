@@ -3,24 +3,24 @@ layout: default
 title: Home
 ---
 
-<h1>Welcome to the ardwloop page !</h1>
+# Welcome to the ardwloop page !
 
-<p>Ardwloop is an open source Java framework easing the control of an Arduino program from a Java program.<br>
-    From both sides the Java and the Arduino programs would typically need to firstly handshake each other and then
-    exchange data on a regular basis.</p>
+Ardwloop is an open source Java framework easing the control of an Arduino program from a Java program.
+From both sides the Java and the Arduino programs would typically need to firstly handshake each other and then
+exchange data on a regular basis.
 
-<p>The entire ardwloop source code is available in the GitHub <a
-        href="https://github.com/llschall/ardwloop">repository</a>.</p>
+The entire ardwloop source code is available in the GitHub [repository](https://github.com/llschall/ardwloop).
 
-<h1>Examples of ardwloop integration</h1>
-<h2>ardwloop-demo</h2>
-<a href="/ardwloop/demo.html">Demo page</a>
-<br>
-<a href="https://github.com/llschall/ardwloop-demo">github</a>
-<h2>ardw-sensor-fx</h2>
-<a href="https://github.com/llschall/ardw-sensor-fx">github</a>
+# Examples of ardwloop integration
 
-<br>
-<img src="https://github.com/llschall/ardwloop/blob/main/media/qr_code.png?raw=true"
-     style="width:120px"
-     alt="qrcode"/>
+## ardwloop-demo
+
+[Demo page](/ardwloop/demo.html)
+
+[github](https://github.com/llschall/ardwloop-demo)
+
+## ardw-sensor-fx
+
+[github](https://github.com/llschall/ardw-sensor-fx)
+
+<img src="https://github.com/llschall/ardwloop/blob/main/media/qr_code.png?raw=true" width="120" alt="qrcode"/>

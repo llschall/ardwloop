@@ -3,5 +3,6 @@ layout: default
 title: Overview
 ---
 
-<p>This is the overview.</p>
-<img src="https://github.com/llschall/ardwloop/raw/main/media/diagram.png" alt="ardwloop"/>
+This is the overview.
+
+![ardwloop](https://github.com/llschall/ardwloop/raw/main/media/diagram.png)

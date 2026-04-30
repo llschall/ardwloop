@@ -3,12 +3,15 @@ layout: default
 title: Links
 ---
 
-<h1>Github</h1>
-<a href="https://github.com/llschall/ardwloop">Github</a>
+# Github
 
-<h1>Maven Central</h1>
-<a href="https://central.sonatype.com/artifact/io.github.llschall/ardwloop">ardwloop</a>
-<a href="https://central.sonatype.com/artifact/io.github.llschall/ardwloop-ext">ardwloop-ext</a>
+[Github](https://github.com/llschall/ardwloop)
 
-<h1>Arduino</h1>
-<a href="https://docs.arduino.cc/libraries/ardwloop">Arduino Library</a>
+# Maven Central
+
+- [ardwloop](https://central.sonatype.com/artifact/io.github.llschall/ardwloop)
+- [ardwloop-ext](https://central.sonatype.com/artifact/io.github.llschall/ardwloop-ext)
+
+# Arduino
+
+[Arduino Library](https://docs.arduino.cc/libraries/ardwloop)
