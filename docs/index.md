@@ -23,4 +23,4 @@ The entire ardwloop source code is available in the GitHub [repository](https://
 
 [github](https://github.com/llschall/ardw-sensor-fx)
 
-<img src="https://github.com/llschall/ardwloop/blob/main/media/qr_code.png?raw=true" width="120" alt="qrcode"/>
+<img src="https://github.com/llschall/ardwloop/blob/main/media/qr_code.png?raw=true" width="80" style="width:80px;max-width:80px;height:auto;" alt="qrcode"/>
