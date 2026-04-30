@@ -45,7 +45,6 @@ bin/
 /.idea/uiDesigner.xml
 /.idea/codeStyles/codeStyleConfig.xml
 /.idea/codeStyles/Project.xml
-/docs/.jekyll-cache/
 /local.properties
 /ino/src/main.cpp
 /.kotlin/
