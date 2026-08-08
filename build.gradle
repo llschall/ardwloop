@@ -2,7 +2,7 @@
 import java.nio.file.Paths
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+    id 'org.jetbrains.kotlin.jvm' version '2.4.10'
     id 'maven-publish'
     id 'signing'
 }
@@ -20,14 +20,14 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
     withJavadocJar()
     withSourcesJar()
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(25)
 }
 
 test {
