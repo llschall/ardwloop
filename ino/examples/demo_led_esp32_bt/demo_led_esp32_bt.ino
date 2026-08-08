@@ -2,7 +2,7 @@
  * Welcome to the Ardwloop Demo,
  * customized for board based on ESP32 and bluetooth communication.
  *
- * Featuring Ardwloop 0.4.1
+ * Featuring Ardwloop 0.4.2
  *
  * Make sure you selected an ESP32 board in your IDE
  * before trying to compile this.
