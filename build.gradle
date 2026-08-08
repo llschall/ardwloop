@@ -12,7 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.fazecast:jSerialComm:2.10.4'
+    // https://mvnrepository.com/artifact/com.fazecast/jSerialComm
+    implementation 'com.fazecast:jSerialComm:2.11.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
